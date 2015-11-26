@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="wxs">
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/common"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/user"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/system"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/blog"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/image"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/vote"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sound"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/message"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/wxs"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/diary"/>
+        <property name="context-root" value="/wxs"/>
+        <property name="java-output-path" value="/wxs/WebRoot/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>

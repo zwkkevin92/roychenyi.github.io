@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="wxs"
+  id="myeclipse.1447990809460"
+  context-root="/wxs"
+  j2ee-spec="6.0"
+  archive="wxs.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

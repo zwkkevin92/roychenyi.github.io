@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="src" path="common"/>
+	<classpathentry kind="src" path="user"/>
+	<classpathentry kind="src" path="system"/>
+	<classpathentry kind="src" path="blog"/>
+	<classpathentry kind="src" path="image"/>
+	<classpathentry kind="src" path="vote"/>
+	<classpathentry kind="src" path="sound"/>
+	<classpathentry kind="src" path="message"/>
+	<classpathentry kind="src" path="wxs"/>
+	<classpathentry kind="src" path="diary"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_6_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
