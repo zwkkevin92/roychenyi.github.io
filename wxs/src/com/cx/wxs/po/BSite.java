@@ -103,7 +103,6 @@ public class BSite implements java.io.Serializable {
 		this.siteType = siteType;
 		this.status = status;
 		this.MGuestbooks = MGuestbooks;
-	
 		this.DCatalogs = DCatalogs;
 		this.DAnnexes = DAnnexes;
 		this.BStatuses = BStatuses;

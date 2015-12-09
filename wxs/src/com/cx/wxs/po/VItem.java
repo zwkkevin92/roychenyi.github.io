@@ -31,6 +31,10 @@ public class VItem implements java.io.Serializable {
 	private Timestamp updateTime;
 	private Integer count;
 	private Short sortOrder;
+	private Integer ext1;
+	private Integer ext2;
+	private String ext3;
+	private String ext4;
 	private Set<VCount> VCounts = new HashSet<VCount>(0);
 
 	// Constructors
@@ -47,14 +51,18 @@ public class VItem implements java.io.Serializable {
 
 	/** full constructor */
 	public VItem(VVote VVote, String content, Timestamp createTime,
-			Timestamp updateTime, Integer count, Short sortOrder,
-			Set<VCount> VCounts) {
+			Timestamp updateTime, Integer count, Short sortOrder, Integer ext1,
+			Integer ext2, String ext3, String ext4, Set<VCount> VCounts) {
 		this.VVote = VVote;
 		this.content = content;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 		this.count = count;
 		this.sortOrder = sortOrder;
+		this.ext1 = ext1;
+		this.ext2 = ext2;
+		this.ext3 = ext3;
+		this.ext4 = ext4;
 		this.VCounts = VCounts;
 	}
 
@@ -123,6 +131,42 @@ public class VItem implements java.io.Serializable {
 
 	public void setSortOrder(Short sortOrder) {
 		this.sortOrder = sortOrder;
+	}
+
+	@Column(name = "ext1")
+	public Integer getExt1() {
+		return this.ext1;
+	}
+
+	public void setExt1(Integer ext1) {
+		this.ext1 = ext1;
+	}
+
+	@Column(name = "ext2")
+	public Integer getExt2() {
+		return this.ext2;
+	}
+
+	public void setExt2(Integer ext2) {
+		this.ext2 = ext2;
+	}
+
+	@Column(name = "ext3", length = 1024)
+	public String getExt3() {
+		return this.ext3;
+	}
+
+	public void setExt3(String ext3) {
+		this.ext3 = ext3;
+	}
+
+	@Column(name = "ext4", length = 1024)
+	public String getExt4() {
+		return this.ext4;
+	}
+
+	public void setExt4(String ext4) {
+		this.ext4 = ext4;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VItem")

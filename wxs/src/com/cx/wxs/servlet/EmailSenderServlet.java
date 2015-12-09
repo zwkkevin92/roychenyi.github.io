@@ -25,8 +25,8 @@ import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
 import org.xbill.DNS.Type;
 
-import com.cx.wxs.util.Globals;
-import com.cx.wxs.util.StringUtil;
+import com.cx.wxs.utils.Globals;
+import com.cx.wxs.utils.StringUtils;
 
 
 
@@ -60,7 +60,7 @@ public class EmailSenderServlet extends GenericServlet implements Runnable{
 		
 		this.initParams();
 		
-		if(StringUtil.isNotEmpty(smtp_host)){
+		if(StringUtils.isNotEmpty(smtp_host)){
 			userDNSQuery = false;
 	        Properties mailProperties = System.getProperties();
 	        mailProperties.put("mail.smtp.host", smtp_host);
@@ -97,10 +97,10 @@ public class EmailSenderServlet extends GenericServlet implements Runnable{
 	 */
 	protected void initParams() throws ServletException{
 		sender = getInitParameter("sender");
-		if(StringUtil.isEmpty(sender))
+		if(StringUtils.isEmpty(sender))
 			throw new ServletException("Parameter sender is required.");
 		mail_queue_path = getInitParameter("mail-queue-path");
-		if(StringUtil.isEmpty(mail_queue_path))
+		if(StringUtils.isEmpty(mail_queue_path))
 			throw new ServletException("Parameter mail-queue-path is required.");
 		else{
 			if(mail_queue_path.startsWith(Globals.LOCAL_PATH_PREFIX)){
@@ -116,7 +116,7 @@ public class EmailSenderServlet extends GenericServlet implements Runnable{
 		}
 		smtp_host = getInitParameter("smtp-host");
 		String tmp = getInitParameter("smtp-port");
-		if(StringUtil.isNotEmpty(tmp) && StringUtil.isNumeric(tmp))
+		if(StringUtils.isNotEmpty(tmp) && StringUtils.isNumeric(tmp))
 			smtp_port = Integer.parseInt(tmp);
 		smtp_user = getInitParameter("smtp-user");
 		smtp_pass = getInitParameter("smtp-password");

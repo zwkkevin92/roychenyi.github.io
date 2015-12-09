@@ -1,14 +1,16 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,8 +23,8 @@ public class SysInvitationCode implements java.io.Serializable {
 	// Fields
 
 	private Integer codeId;
-	private UUser UUser;
-	private WWxs WWxs;
+	private Integer userId;
+	private Integer wxsId;
 	private String code;
 	private Timestamp regTime;
 	private String clientAgent;
@@ -30,6 +32,7 @@ public class SysInvitationCode implements java.io.Serializable {
 	private Short clientType;
 	private Short status;
 	private Short flag;
+	private Set<UUser> UUsers = new HashSet<UUser>(0);
 
 	// Constructors
 
@@ -38,17 +41,17 @@ public class SysInvitationCode implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public SysInvitationCode(UUser UUser, WWxs WWxs) {
-		this.UUser = UUser;
-		this.WWxs = WWxs;
+	public SysInvitationCode(Integer userId, Integer wxsId) {
+		this.userId = userId;
+		this.wxsId = wxsId;
 	}
 
 	/** full constructor */
-	public SysInvitationCode(UUser UUser, WWxs WWxs, String code,
+	public SysInvitationCode(Integer userId, Integer wxsId, String code,
 			Timestamp regTime, String clientAgent, String clientIp,
-			Short clientType, Short status, Short flag) {
-		this.UUser = UUser;
-		this.WWxs = WWxs;
+			Short clientType, Short status, Short flag, Set<UUser> UUsers) {
+		this.userId = userId;
+		this.wxsId = wxsId;
 		this.code = code;
 		this.regTime = regTime;
 		this.clientAgent = clientAgent;
@@ -56,6 +59,7 @@ public class SysInvitationCode implements java.io.Serializable {
 		this.clientType = clientType;
 		this.status = status;
 		this.flag = flag;
+		this.UUsers = UUsers;
 	}
 
 	// Property accessors
@@ -70,24 +74,22 @@ public class SysInvitationCode implements java.io.Serializable {
 		this.codeId = codeId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	public UUser getUUser() {
-		return this.UUser;
+	@Column(name = "user_id")
+	public Integer getUserId() {
+		return this.userId;
 	}
 
-	public void setUUser(UUser UUser) {
-		this.UUser = UUser;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "wxs_id", nullable = false)
-	public WWxs getWWxs() {
-		return this.WWxs;
+	@Column(name = "wxs_id", nullable = false)
+	public Integer getWxsId() {
+		return this.wxsId;
 	}
 
-	public void setWWxs(WWxs WWxs) {
-		this.WWxs = WWxs;
+	public void setWxsId(Integer wxsId) {
+		this.wxsId = wxsId;
 	}
 
 	@Column(name = "code", length = 16)
@@ -151,6 +153,15 @@ public class SysInvitationCode implements java.io.Serializable {
 
 	public void setFlag(Short flag) {
 		this.flag = flag;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysInvitationCode")
+	public Set<UUser> getUUsers() {
+		return this.UUsers;
+	}
+
+	public void setUUsers(Set<UUser> UUsers) {
+		this.UUsers = UUsers;
 	}
 
 }

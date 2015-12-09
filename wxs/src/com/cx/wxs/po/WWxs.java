@@ -50,8 +50,7 @@ public class WWxs implements java.io.Serializable {
 	private Set<WConfig> WConfigs = new HashSet<WConfig>(0);
 	private Set<WLink> WLinks = new HashSet<WLink>(0);
 	private Set<WStatus> WStatuses = new HashSet<WStatus>(0);
-	private Set<SysInvitationCode> sysInvitationCodes = new HashSet<SysInvitationCode>(
-			0);
+
 
 	// Constructors
 
@@ -73,7 +72,7 @@ public class WWxs implements java.io.Serializable {
 			String soundName, String imageName, Integer siteType, Short status,
 			Integer ext1, Integer ext2, String ext3, String ext4,
 			Set<WBook> WBooks, Set<WConfig> WConfigs, Set<WLink> WLinks,
-			Set<WStatus> WStatuses, Set<SysInvitationCode> sysInvitationCodes) {
+			Set<WStatus> WStatuses) {
 		this.account = account;
 		this.password = password;
 		this.name = name;
@@ -101,7 +100,7 @@ public class WWxs implements java.io.Serializable {
 		this.WConfigs = WConfigs;
 		this.WLinks = WLinks;
 		this.WStatuses = WStatuses;
-		this.sysInvitationCodes = sysInvitationCodes;
+
 	}
 
 	// Property accessors
@@ -359,13 +358,6 @@ public class WWxs implements java.io.Serializable {
 		this.WStatuses = WStatuses;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<SysInvitationCode> getSysInvitationCodes() {
-		return this.sysInvitationCodes;
-	}
 
-	public void setSysInvitationCodes(Set<SysInvitationCode> sysInvitationCodes) {
-		this.sysInvitationCodes = sysInvitationCodes;
-	}
 
 }

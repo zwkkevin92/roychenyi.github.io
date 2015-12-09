@@ -22,7 +22,7 @@ public class UBook implements java.io.Serializable {
 
 	private Integer ubookId;
 	private UUser UUser;
-	private Integer name;
+	private String name;
 	private String bookDetaik;
 	private String cover;
 	private Timestamp time;
@@ -38,13 +38,13 @@ public class UBook implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public UBook(UUser UUser, Integer name) {
+	public UBook(UUser UUser, String name) {
 		this.UUser = UUser;
 		this.name = name;
 	}
 
 	/** full constructor */
-	public UBook(UUser UUser, Integer name, String bookDetaik, String cover,
+	public UBook(UUser UUser, String name, String bookDetaik, String cover,
 			Timestamp time, Integer ext1, Integer ext2, String ext3, String ext4) {
 		this.UUser = UUser;
 		this.name = name;
@@ -79,12 +79,12 @@ public class UBook implements java.io.Serializable {
 		this.UUser = UUser;
 	}
 
-	@Column(name = "name", nullable = false)
-	public Integer getName() {
+	@Column(name = "name", nullable = false, length = 50)
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(Integer name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

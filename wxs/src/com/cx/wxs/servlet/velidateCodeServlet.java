@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cx.wxs.util.ValidateCode;
+import com.cx.wxs.utils.ValidateCode;
 
 public class velidateCodeServlet extends HttpServlet {
 
