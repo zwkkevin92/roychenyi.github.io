@@ -41,8 +41,7 @@ public class SysInvitationCode implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public SysInvitationCode(Integer userId, Integer wxsId) {
-		this.userId = userId;
+	public SysInvitationCode(Integer wxsId) {
 		this.wxsId = wxsId;
 	}
 

@@ -19,9 +19,9 @@ public class UFriend implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private UUser UUserByUserId;
+	private UUser UUserByFriendId;
 	private UFriendGroup UFriendGroup;
-	private Integer userId;
-	private Integer friendId;
 	private Integer friendType;
 	private Integer friendRole;
 	private Timestamp addTime;
@@ -34,24 +34,24 @@ public class UFriend implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public UFriend(Integer id, UFriendGroup UFriendGroup, Integer userId,
-			Integer friendId, Integer friendType, Timestamp addTime) {
+	public UFriend(Integer id, UUser UUserByUserId, UUser UUserByFriendId,
+			UFriendGroup UFriendGroup, Integer friendType, Timestamp addTime) {
 		this.id = id;
+		this.UUserByUserId = UUserByUserId;
+		this.UUserByFriendId = UUserByFriendId;
 		this.UFriendGroup = UFriendGroup;
-		this.userId = userId;
-		this.friendId = friendId;
 		this.friendType = friendType;
 		this.addTime = addTime;
 	}
 
 	/** full constructor */
-	public UFriend(Integer id, UFriendGroup UFriendGroup, Integer userId,
-			Integer friendId, Integer friendType, Integer friendRole,
+	public UFriend(Integer id, UUser UUserByUserId, UUser UUserByFriendId,
+			UFriendGroup UFriendGroup, Integer friendType, Integer friendRole,
 			Timestamp addTime, Short status) {
 		this.id = id;
+		this.UUserByUserId = UUserByUserId;
+		this.UUserByFriendId = UUserByFriendId;
 		this.UFriendGroup = UFriendGroup;
-		this.userId = userId;
-		this.friendId = friendId;
 		this.friendType = friendType;
 		this.friendRole = friendRole;
 		this.addTime = addTime;
@@ -70,6 +70,26 @@ public class UFriend implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	public UUser getUUserByUserId() {
+		return this.UUserByUserId;
+	}
+
+	public void setUUserByUserId(UUser UUserByUserId) {
+		this.UUserByUserId = UUserByUserId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "friend_id", nullable = false)
+	public UUser getUUserByFriendId() {
+		return this.UUserByFriendId;
+	}
+
+	public void setUUserByFriendId(UUser UUserByFriendId) {
+		this.UUserByFriendId = UUserByFriendId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id", nullable = false)
 	public UFriendGroup getUFriendGroup() {
 		return this.UFriendGroup;
@@ -77,24 +97,6 @@ public class UFriend implements java.io.Serializable {
 
 	public void setUFriendGroup(UFriendGroup UFriendGroup) {
 		this.UFriendGroup = UFriendGroup;
-	}
-
-	@Column(name = "user_id", nullable = false)
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	@Column(name = "friend_id", nullable = false)
-	public Integer getFriendId() {
-		return this.friendId;
-	}
-
-	public void setFriendId(Integer friendId) {
-		this.friendId = friendId;
 	}
 
 	@Column(name = "friend_type", nullable = false)

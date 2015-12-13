@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -46,6 +45,7 @@ public class BSite implements java.io.Serializable {
 	private Integer siteType;
 	private Short status;
 	private Set<MGuestbook> MGuestbooks = new HashSet<MGuestbook>(0);
+	private Set<UUser> UUsers = new HashSet<UUser>(0);
 	private Set<DCatalog> DCatalogs = new HashSet<DCatalog>(0);
 	private Set<DAnnex> DAnnexes = new HashSet<DAnnex>(0);
 	private Set<BStatus> BStatuses = new HashSet<BStatus>(0);
@@ -79,7 +79,7 @@ public class BSite implements java.io.Serializable {
 			String accessCode, String indexName, String diaryName,
 			String soundName, String imageName, String friendName,
 			Integer siteType, Short status, Set<MGuestbook> MGuestbooks,
-			 Set<DCatalog> DCatalogs, Set<DAnnex> DAnnexes,
+			Set<UUser> UUsers, Set<DCatalog> DCatalogs, Set<DAnnex> DAnnexes,
 			Set<BStatus> BStatuses, Set<IAlbum> IAlbums, Set<DDiary> DDiaries,
 			Set<BTag> BTags, Set<BConfig> BConfigs, Set<BAccess> BAccesses,
 			Set<IImage> IImages) {
@@ -103,6 +103,7 @@ public class BSite implements java.io.Serializable {
 		this.siteType = siteType;
 		this.status = status;
 		this.MGuestbooks = MGuestbooks;
+		this.UUsers = UUsers;
 		this.DCatalogs = DCatalogs;
 		this.DAnnexes = DAnnexes;
 		this.BStatuses = BStatuses;
@@ -136,7 +137,15 @@ public class BSite implements java.io.Serializable {
 		this.sysStyle = sysStyle;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	public UUser getUUser() {
+		return this.UUser;
+	}
 
+	public void setUUser(UUser UUser) {
+		this.UUser = UUser;
+	}
 
 	@Column(name = "name", nullable = false, length = 20)
 	public String getName() {
@@ -300,13 +309,13 @@ public class BSite implements java.io.Serializable {
 		this.MGuestbooks = MGuestbooks;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "BSite")
-	public UUser getUUser() {
-		return this.UUser;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
+	public Set<UUser> getUUsers() {
+		return this.UUsers;
 	}
 
-	public void setUUser(UUser UUser) {
-		this.UUser = UUser;
+	public void setUUsers(Set<UUser> UUsers) {
+		this.UUsers = UUsers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")

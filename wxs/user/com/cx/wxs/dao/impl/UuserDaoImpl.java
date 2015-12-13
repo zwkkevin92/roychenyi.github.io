@@ -1,5 +1,6 @@
 package com.cx.wxs.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,26 +8,28 @@ import java.util.Map;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 
-import com.cx.wxs.dao.UuserDao;
-import com.cx.wxs.dto.UuserDto;
+import com.cx.wxs.base.dao.BaseDaoImpl;
+import com.cx.wxs.dao.UUserDao;
+import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.DbType;
 import com.cx.wxs.po.UBook;
 import com.cx.wxs.po.UUser;
+import com.cx.wxs.utils.BeanToDto;
 import com.cx.wxs.utils.StringUtils;
-import com.cy.wxs.base.dao.BaseDaoImpl;
 
 /**
  * @author 陈义
  * @date   2015-12-3 上午11:34:21
  */
 @Repository("UuserDao")
-public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDao{
+public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDao{
 
+	private BeanToDto<UUser,UUserDto> beanToDto;
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#getUuser(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#getUuser(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public UuserDto getUuser(UuserDto uuserDto) {
+	public UUserDto getUuser(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null){
 		    StringBuffer stringBuffer=new StringBuffer();
@@ -41,39 +44,47 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 				stringBuffer.append(" a.username=:username");
 				params.put("username",uuserDto.getUsername());
 			}
-			List<UuserDto> list=this.findDto(stringBuffer.toString(), params, UuserDto.class);
+			List<UUser> list=this.find(stringBuffer.toString(), params);
 			if(list!=null&&list.size()>0){
-				return list.get(0);
+				UUser uuser= list.get(0);
+				UUserDto dto=new UUserDto(); 
+				dto=beanToDto.T1ToD1(uuser, dto);
+				return dto;
 			}
 		}
 		return null;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#getUuserList(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#getUuserList(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public List<UuserDto> getUuserList(UuserDto uuserDto) {
+	public List<UUserDto> getUuserList(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null){
 			StringBuffer stringBuffer=new StringBuffer();
 			Map<String,Object> params=new HashMap<String,Object>();
 			stringBuffer.append("from "+UUser.class.getName()+" u");
 			stringBuffer.append(" where 1=1 ");
-			if(uuserDto.getSysRank().getRankId()!=null&&uuserDto.getSysRank().getRankId()>0){
+			if(uuserDto.getSysRankDto().getRankId()!=null&&uuserDto.getSysRankDto().getRankId()>0){
 				stringBuffer.append(" and u.sysRank.rankId=:rankId");
-				params.put("rankId",uuserDto.getSysRank().getRankId());
+				params.put("rankId",uuserDto.getSysRankDto().getRankId());
 			}
 			if(uuserDto.getNickname()!=null){
 				stringBuffer.append(" and u.nickname like :nickname");
 				params.put("nickname","%"+uuserDto.getNickname()+"%");
 			}
 			
-			List<UuserDto> list=null; 
+			List<UUserDto> list=new ArrayList<UUserDto>(); 
+			List<UUser> list1=new ArrayList<UUser>();
 			if(uuserDto.getPage()!=null&&uuserDto.getRows()!=null){
-				list=this.findDto(stringBuffer.toString(),params,uuserDto.getPage(),uuserDto.getRows(),UuserDto.class);
+				list1=this.find(stringBuffer.toString(),params,uuserDto.getPage(),uuserDto.getRows());
 			}else{
-				list=this.findDto(stringBuffer.toString(),params,UuserDto.class);
+				list1=this.find(stringBuffer.toString(),params);
+			}
+			for(UUser user:list1){
+				UUserDto dto=beanToDto.T1ToD1(user, new UUserDto());
+				list.add(dto);
 			}
 			return list;
 		}
@@ -81,55 +92,56 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#addUuser(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#addUuser(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public Integer addUuser(UuserDto uuserDto) {
+	public Integer addUuser(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getNickname()!=null&&uuserDto.getUsername()!=null&&uuserDto.getPassword()!=null){
 			UUser uuser=new UUser();
-			BeanUtils.copyProperties(uuserDto, uuser);
+		//	BeanUtils.copyProperties(uuserDto, uuser);
+			uuser=beanToDto.D1ToT1(uuser, uuserDto);
 			return this.save(uuser);
 		}
-		return null;
+		return 0;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#updateUuser(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#updateUuser(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public Integer updateUuser(UuserDto uuserDto) {
+	public Integer updateUuser(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getUserId()!=null&&uuserDto.getUserId()>0){
 			StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
 			String[] fl = new String[]{"uid"};//过滤掉的字段
 			Map<String, Object> map = uuserDto.createSetPropertiesVal(uuserDto, "a", fl);
 			Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);		
-			stringBuffer.append(" form "+UBook.class.getName()+" a");
+			stringBuffer.append(" form "+UUser.class.getName()+" a");
 			stringBuffer.append(map.get(StringUtils.SET_HQL));
-			stringBuffer.append(" where u.uid=:uid");
+			stringBuffer.append(" where u.userId=:uid");
 			params.put("uid",uuserDto.getUid());
 			return this.executeHql(stringBuffer.toString(),params);
 		}
-		return null;
+		return 0;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#deleteUuser(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#deleteUuser(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public Integer deleteUuser(UuserDto uuserDto) {
+	public Integer deleteUuser(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getUserId()!=null&&uuserDto.getUserId()>0){
 			StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
 		    Map<String,Object> params=new HashMap<String,Object>();
-			stringBuffer.append(" from "+UBook.class.getName()+" a ");
+			stringBuffer.append(" from "+UUser.class.getName()+" a ");
 			stringBuffer.append(" where 1=1 ");
 				stringBuffer.append(" and userId=:userid ");
 				params.put("userid",uuserDto.getUserId());
 			return this.executeHql(stringBuffer.toString(), params);
 		}
-		return null;
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -146,10 +158,10 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#getUuserListByInvitationCode(com.cx.wxs.dto.UuserDto, java.util.List)
+	 * @see com.cx.wxs.dao.UuserDao#getUuserListByInvitationCode(com.cx.wxs.dto.UUserDto, java.util.List)
 	 */
 	@Override
-	public List<UuserDto> getUuserListByInvitationCode(UuserDto userDto,
+	public List<UUserDto> getUuserListByInvitationCode(UUserDto userDto,
 			List<Integer> codeIdList) {
 		// TODO Auto-generated method stub
 		if(userDto!=null&&codeIdList!=null){
@@ -158,11 +170,16 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 			stringBuffer.append("from "+UUser.class.getName()+" a ");
 			stringBuffer.append(" where a.sysInvitationCode in (:codeIdList)");
 			params.put("codeIdList",codeIdList);
-			List<UuserDto> list=null;
+			List<UUserDto> list=new ArrayList<UUserDto>(); 
+			List<UUser> list1=new ArrayList<UUser>();
 			if(userDto.getPage()!=null&&userDto.getRows()!=null){
-			list=this.findDto(stringBuffer.toString(),params,userDto.getPage(),userDto.getRows(),UuserDto.class);
+				list1=this.find(stringBuffer.toString(),params,userDto.getPage(),userDto.getRows());
 			}else{
-				list=this.findDto(stringBuffer.toString(),params,UuserDto.class);
+				list1=this.find(stringBuffer.toString(),params);
+			}
+			for(UUser user:list1){
+				UUserDto dto=beanToDto.T1ToD1(user, new UUserDto());
+				list.add(dto);
 			}
 			return list;
 		}
@@ -170,10 +187,10 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cx.wxs.dao.UuserDao#login(com.cx.wxs.dto.UuserDto)
+	 * @see com.cx.wxs.dao.UuserDao#login(com.cx.wxs.dto.UUserDto)
 	 */
 	@Override
-	public UuserDto login(UuserDto uuserDto) {
+	public UUserDto login(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&StringUtils.isNotEmpty(uuserDto.getUsername())&&StringUtils.isNotEmpty(uuserDto.getPassword())){
 			StringBuffer stringBuffer=new StringBuffer();
@@ -182,9 +199,12 @@ public class UuserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UuserDa
 			stringBuffer.append(" where a.username=:username and a.password=:password");
 			params.put("username",uuserDto.getUsername());
 			params.put("password",uuserDto.getPassword());
-			List<UuserDto> list=this.findDto(stringBuffer.toString(),params,UuserDto.class);
+			List<UUser> list=this.find(stringBuffer.toString(), params);
 			if(list!=null&&list.size()>0){
-				return list.get(0);
+				UUser uuser= list.get(0);
+				UUserDto dto=new UUserDto(); 
+				dto=beanToDto.T1ToD1(uuser, dto);
+				return dto;
 			}
 		}
 		return null;

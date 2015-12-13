@@ -1,14 +1,14 @@
 #MyEclipse Hibernate Properties
-#Tue Dec 08 15:14:02 CST 2015
+#Fri Dec 11 11:04:18 CST 2015
 sessionFactoryName=
 genBasicCompId=true
 profile=
 daoSFId=
 version=4.1
 jndiPath=
-detectM2M=true
+detectM2M=false
 reStrategyClass=
-detectO2O=true
+detectO2O=false
 springDaoFile=
 useJavaTypes=true
 keyGenerator=
@@ -19,6 +19,6 @@ sessionFactoryId=
 basePersistenceClass=
 genAnnotations=true
 reSettingsFile=
-#configFile=/wxs/conf/hibernate.cfg.xml
+configFile=/wxs/src/hibernate.cfg.xml
 createConfigFile=true
 addLibs2Classpath=true

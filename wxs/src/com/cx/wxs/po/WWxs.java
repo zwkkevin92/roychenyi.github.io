@@ -51,7 +51,6 @@ public class WWxs implements java.io.Serializable {
 	private Set<WLink> WLinks = new HashSet<WLink>(0);
 	private Set<WStatus> WStatuses = new HashSet<WStatus>(0);
 
-
 	// Constructors
 
 	/** default constructor */
@@ -100,7 +99,6 @@ public class WWxs implements java.io.Serializable {
 		this.WConfigs = WConfigs;
 		this.WLinks = WLinks;
 		this.WStatuses = WStatuses;
-
 	}
 
 	// Property accessors
@@ -357,7 +355,5 @@ public class WWxs implements java.io.Serializable {
 	public void setWStatuses(Set<WStatus> WStatuses) {
 		this.WStatuses = WStatuses;
 	}
-
-
 
 }

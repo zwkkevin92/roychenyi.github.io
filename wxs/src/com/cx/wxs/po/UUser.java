@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -86,6 +84,7 @@ public class UUser implements java.io.Serializable {
 	private Set<SBox> SBoxes = new HashSet<SBox>(0);
 	private Set<VReply2> VReply2sForCommentator = new HashSet<VReply2>(0);
 	private Set<SReply2> SReply2sForUserId = new HashSet<SReply2>(0);
+	private Set<UFriend> UFriendsForUserId = new HashSet<UFriend>(0);
 	private Set<UFriendGroup> UFriendGroups = new HashSet<UFriendGroup>(0);
 	private Set<MGuestbook> MGuestbooks = new HashSet<MGuestbook>(0);
 	private Set<IAlbum> IAlbums = new HashSet<IAlbum>(0);
@@ -96,6 +95,7 @@ public class UUser implements java.io.Serializable {
 	private Set<UBook> UBooks = new HashSet<UBook>(0);
 	private Set<IAccess> IAccesses = new HashSet<IAccess>(0);
 	private Set<BBacklist> BBacklistsForUserId = new HashSet<BBacklist>(0);
+	private Set<UFriend> UFriendsForFriendId = new HashSet<UFriend>(0);
 	private Set<DReply2> DReply2sForUserId = new HashSet<DReply2>(0);
 	private Set<MMessage> MMessagesForUserId = new HashSet<MMessage>(0);
 	private Set<VAccess> VAccesses = new HashSet<VAccess>(0);
@@ -150,16 +150,17 @@ public class UUser implements java.io.Serializable {
 			Set<IReply1> IReply1s, Set<IUpvote> IUpvotes,
 			Set<SysLoginRecord> sysLoginRecords, Set<SBox> SBoxes,
 			Set<VReply2> VReply2sForCommentator,
-			Set<SReply2> SReply2sForUserId, Set<UFriendGroup> UFriendGroups,
-			Set<MGuestbook> MGuestbooks, Set<IAlbum> IAlbums,
-			Set<SAccess> SAccesses, Set<VReply2> VReply2sForUserId,
-			Set<VCount> VCounts, Set<DAnnex> DAnnexes, Set<UBook> UBooks,
-			Set<IAccess> IAccesses, Set<BBacklist> BBacklistsForUserId,
-			Set<DReply2> DReply2sForUserId, Set<MMessage> MMessagesForUserId,
-			Set<VAccess> VAccesses, Set<MMessage> MMessagesForReceiveId,
-			Set<MReply> MReplies, Set<IReply2> IReply2sForCommentator,
-			Set<SReply1> SReply1s, Set<DAccess> DAccesses,
-			Set<BBacklist> BBacklistsForBackId) {
+			Set<SReply2> SReply2sForUserId, Set<UFriend> UFriendsForUserId,
+			Set<UFriendGroup> UFriendGroups, Set<MGuestbook> MGuestbooks,
+			Set<IAlbum> IAlbums, Set<SAccess> SAccesses,
+			Set<VReply2> VReply2sForUserId, Set<VCount> VCounts,
+			Set<DAnnex> DAnnexes, Set<UBook> UBooks, Set<IAccess> IAccesses,
+			Set<BBacklist> BBacklistsForUserId,
+			Set<UFriend> UFriendsForFriendId, Set<DReply2> DReply2sForUserId,
+			Set<MMessage> MMessagesForUserId, Set<VAccess> VAccesses,
+			Set<MMessage> MMessagesForReceiveId, Set<MReply> MReplies,
+			Set<IReply2> IReply2sForCommentator, Set<SReply1> SReply1s,
+			Set<DAccess> DAccesses, Set<BBacklist> BBacklistsForBackId) {
 		this.USign = USign;
 		this.BSite = BSite;
 		this.sysCollege = sysCollege;
@@ -219,6 +220,7 @@ public class UUser implements java.io.Serializable {
 		this.SBoxes = SBoxes;
 		this.VReply2sForCommentator = VReply2sForCommentator;
 		this.SReply2sForUserId = SReply2sForUserId;
+		this.UFriendsForUserId = UFriendsForUserId;
 		this.UFriendGroups = UFriendGroups;
 		this.MGuestbooks = MGuestbooks;
 		this.IAlbums = IAlbums;
@@ -229,6 +231,7 @@ public class UUser implements java.io.Serializable {
 		this.UBooks = UBooks;
 		this.IAccesses = IAccesses;
 		this.BBacklistsForUserId = BBacklistsForUserId;
+		this.UFriendsForFriendId = UFriendsForFriendId;
 		this.DReply2sForUserId = DReply2sForUserId;
 		this.MMessagesForUserId = MMessagesForUserId;
 		this.VAccesses = VAccesses;
@@ -262,8 +265,8 @@ public class UUser implements java.io.Serializable {
 		this.USign = USign;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", unique = true, nullable = false, insertable = false, updatable = false)
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -791,6 +794,15 @@ public class UUser implements java.io.Serializable {
 		this.SReply2sForUserId = SReply2sForUserId;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
+	public Set<UFriend> getUFriendsForUserId() {
+		return this.UFriendsForUserId;
+	}
+
+	public void setUFriendsForUserId(Set<UFriend> UFriendsForUserId) {
+		this.UFriendsForUserId = UFriendsForUserId;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
 	public Set<UFriendGroup> getUFriendGroups() {
 		return this.UFriendGroups;
@@ -879,6 +891,15 @@ public class UUser implements java.io.Serializable {
 
 	public void setBBacklistsForUserId(Set<BBacklist> BBacklistsForUserId) {
 		this.BBacklistsForUserId = BBacklistsForUserId;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByFriendId")
+	public Set<UFriend> getUFriendsForFriendId() {
+		return this.UFriendsForFriendId;
+	}
+
+	public void setUFriendsForFriendId(Set<UFriend> UFriendsForFriendId) {
+		this.UFriendsForFriendId = UFriendsForFriendId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
