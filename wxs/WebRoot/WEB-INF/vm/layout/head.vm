@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="keywords" content="${page_keywords}">
+<meta name="description" content="${page_description}">
+
+#if(!$disable_seachable)
+<meta name="Robots" content="index,follow"/>
+#else
+<meta name="Robots" content="noindex,nofollow"/>
+#end
+
+<title>${page_title}</title>
+
+<link rel="shortcut icon" type="image/x-icon" mce-fref="$link.getContextURL/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
+<link rel="icon" type="image/x-icon" mce-fref="$link.getContextURL/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
+
+#bootstrap()
+

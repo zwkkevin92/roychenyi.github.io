@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysTopicDao")
 public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements SysTopicDao{
@@ -27,7 +27,7 @@ public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements S
     /**
     * 通过id获取SysTopicDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysTopicDto getSysTopicByID(SysTopicDto sysTopicDto){
@@ -51,7 +51,7 @@ public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements S
     /**
     * 通过相关数据获取SysTopicDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysTopicDto> getSysTopicList(SysTopicDto sysTopicDto){
@@ -61,7 +61,7 @@ public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements S
     /**
     * 添加一个新的SysTopic到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysTopic(SysTopicDto sysTopicDto){
@@ -77,12 +77,12 @@ public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements S
     /**
     * 更新SysTopic
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysTopic(SysTopicDto sysTopicDto){
         // TODO Auto-generated method stub
-        if(sysTopicDto!=null&&sysTopicDto.getUid()!=null){
+        if(sysTopicDto!=null&&sysTopicDto.getTopicId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysTopicDto.createSetPropertiesVal(sysTopicDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysTopicDaoImpl extends BaseDaoImpl<SysTopic, Integer> implements S
     /**
     * 删除SysTopic
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysTopic(SysTopicDto sysTopicDto){
          // TODO Auto-generated method stub
-        if(sysTopicDto!=null&&sysTopicDto.getUid()!=null){
+        if(sysTopicDto!=null&&sysTopicDto.getTopicId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysTopic.class.getName()+" a");

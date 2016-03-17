@@ -46,10 +46,9 @@ public class DAnnex implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public DAnnex(DDiary DDiary, UUser UUser, BSite BSite) {
+	public DAnnex(DDiary DDiary, UUser UUser) {
 		this.DDiary = DDiary;
 		this.UUser = UUser;
-		this.BSite = BSite;
 	}
 
 	/** full constructor */
@@ -110,7 +109,7 @@ public class DAnnex implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -119,7 +118,7 @@ public class DAnnex implements java.io.Serializable {
 		this.BSite = BSite;
 	}
 
-	@Column(name = "upload_time", length = 0)
+	@Column(name = "upload_time", length = 19)
 	public Timestamp getUploadTime() {
 		return this.uploadTime;
 	}
@@ -200,7 +199,7 @@ public class DAnnex implements java.io.Serializable {
 		this.size = size;
 	}
 
-	@Column(name = "last_time", length = 0)
+	@Column(name = "last_time", length = 19)
 	public Timestamp getLastTime() {
 		return this.lastTime;
 	}

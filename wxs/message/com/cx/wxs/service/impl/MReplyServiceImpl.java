@@ -11,7 +11,7 @@ import com.cx.wxs.service.MReplyService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("MReplyService")
@@ -26,7 +26,7 @@ public class MReplyServiceImpl implements MReplyService {
     /**
     * 通过用户id获取MReplyDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public MReplyDto getMReplyByID(MReplyDto mReplyDto){
@@ -36,7 +36,7 @@ public class MReplyServiceImpl implements MReplyService {
     /**
     * 通过相关信息获取MReplyDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<MReplyDto> getMReplyList(MReplyDto mReplyDto){
@@ -46,7 +46,7 @@ public class MReplyServiceImpl implements MReplyService {
     /**
     * 添加一个新的MReply到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addMReply(MReplyDto mReplyDto){
@@ -56,7 +56,7 @@ public class MReplyServiceImpl implements MReplyService {
     /**
     * 更新MReply
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateMReply(MReplyDto mReplyDto){
@@ -66,7 +66,7 @@ public class MReplyServiceImpl implements MReplyService {
     /**
     * 删除MReply
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteMReply(MReplyDto mReplyDto){

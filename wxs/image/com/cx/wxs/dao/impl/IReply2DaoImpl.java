@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("IReply2Dao")
 public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IReply2Dao{
@@ -27,7 +27,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 通过id获取IReply2Dto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IReply2Dto getIReply2ByID(IReply2Dto iReply2Dto){
@@ -51,7 +51,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 通过相关数据获取IReply2DtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IReply2Dto> getIReply2List(IReply2Dto iReply2Dto){
@@ -61,7 +61,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 添加一个新的IReply2到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIReply2(IReply2Dto iReply2Dto){
@@ -77,12 +77,12 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 更新IReply2
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIReply2(IReply2Dto iReply2Dto){
         // TODO Auto-generated method stub
-        if(iReply2Dto!=null&&iReply2Dto.getUid()!=null){
+        if(iReply2Dto!=null&&iReply2Dto.getIreply1Id()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = iReply2Dto.createSetPropertiesVal(iReply2Dto, "a", fl);
@@ -99,12 +99,12 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 删除IReply2
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIReply2(IReply2Dto iReply2Dto){
          // TODO Auto-generated method stub
-        if(iReply2Dto!=null&&iReply2Dto.getUid()!=null){
+        if(iReply2Dto!=null&&iReply2Dto.getIreply1Id()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+IReply2.class.getName()+" a");

@@ -27,13 +27,7 @@ public class UUser implements java.io.Serializable {
 	private Integer userId;
 	private USign USign;
 	private BSite BSite;
-	private SysCollege sysCollege;
-	private SysInvitationCode sysInvitationCode;
-	private SysProvince sysProvince;
 	private SysRank sysRank;
-	private SysCity sysCity;
-	private SysSchool sysSchool;
-	private Integer siteId;
 	private String username;
 	private String password;
 	private String nickname;
@@ -44,6 +38,10 @@ public class UUser implements java.io.Serializable {
 	private String homepage;
 	private String qq;
 	private String mobile;
+	private Integer provinceId;
+	private Integer cityId;
+	private Integer schoolId;
+	private Integer collegeId;
 	private String class_;
 	private String portrait;
 	private Timestamp regtime;
@@ -60,6 +58,7 @@ public class UUser implements java.io.Serializable {
 	private Integer guestbookCount;
 	private Integer tagCount;
 	private Integer popedom;
+	private Integer coidId;
 	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
 	private Set<VVote> VVotes = new HashSet<VVote>(0);
 	private Set<DUpvote> DUpvotes = new HashSet<DUpvote>(0);
@@ -84,7 +83,6 @@ public class UUser implements java.io.Serializable {
 	private Set<SBox> SBoxes = new HashSet<SBox>(0);
 	private Set<VReply2> VReply2sForCommentator = new HashSet<VReply2>(0);
 	private Set<SReply2> SReply2sForUserId = new HashSet<SReply2>(0);
-	private Set<UFriend> UFriendsForUserId = new HashSet<UFriend>(0);
 	private Set<UFriendGroup> UFriendGroups = new HashSet<UFriendGroup>(0);
 	private Set<MGuestbook> MGuestbooks = new HashSet<MGuestbook>(0);
 	private Set<IAlbum> IAlbums = new HashSet<IAlbum>(0);
@@ -95,10 +93,11 @@ public class UUser implements java.io.Serializable {
 	private Set<UBook> UBooks = new HashSet<UBook>(0);
 	private Set<IAccess> IAccesses = new HashSet<IAccess>(0);
 	private Set<BBacklist> BBacklistsForUserId = new HashSet<BBacklist>(0);
-	private Set<UFriend> UFriendsForFriendId = new HashSet<UFriend>(0);
 	private Set<DReply2> DReply2sForUserId = new HashSet<DReply2>(0);
 	private Set<MMessage> MMessagesForUserId = new HashSet<MMessage>(0);
 	private Set<VAccess> VAccesses = new HashSet<VAccess>(0);
+	private Set<SysInvitationCode> sysInvitationCodes = new HashSet<SysInvitationCode>(
+			0);
 	private Set<MMessage> MMessagesForReceiveId = new HashSet<MMessage>(0);
 	private Set<MReply> MReplies = new HashSet<MReply>(0);
 	private Set<IReply2> IReply2sForCommentator = new HashSet<IReply2>(0);
@@ -113,34 +112,27 @@ public class UUser implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public UUser(USign USign, BSite BSite, SysInvitationCode sysInvitationCode,
-			Integer siteId, String username, String password, String nickname,
-			Integer roleId, Short sex) {
-		this.USign = USign;
-		this.BSite = BSite;
-		this.sysInvitationCode = sysInvitationCode;
-		this.siteId = siteId;
+	public UUser(String username, String password, String nickname,
+			Integer roleId) {
 		this.username = username;
 		this.password = password;
 		this.nickname = nickname;
 		this.roleId = roleId;
-		this.sex = sex;
 	}
 
 	/** full constructor */
-	public UUser(USign USign, BSite BSite, SysCollege sysCollege,
-			SysInvitationCode sysInvitationCode, SysProvince sysProvince,
-			SysRank sysRank, SysCity sysCity, SysSchool sysSchool,
-			Integer siteId, String username, String password, String nickname,
-			Integer roleId, Short sex, Timestamp birth, String email,
-			String homepage, String qq, String mobile, String class_,
+	public UUser(USign USign, BSite BSite, SysRank sysRank, String username,
+			String password, String nickname, Integer roleId, Short sex,
+			Timestamp birth, String email, String homepage, String qq,
+			String mobile, Integer provinceId, Integer cityId,
+			Integer schoolId, Integer collegeId, String class_,
 			String portrait, Timestamp regtime, Timestamp lastTime,
 			String lastIp, Short keepDay, Short onlineStatus,
 			Integer articleCount, Integer articleReplyCount,
 			Integer topicCount, Integer topicReplyCount, Integer imageCount,
 			Integer imageReplyCount, Integer guestbookCount, Integer tagCount,
-			Integer popedom, Set<DDiary> DDiaries, Set<VVote> VVotes,
-			Set<DUpvote> DUpvotes, Set<DReply1> DReply1s,
+			Integer popedom, Integer coidId, Set<DDiary> DDiaries,
+			Set<VVote> VVotes, Set<DUpvote> DUpvotes, Set<DReply1> DReply1s,
 			Set<IReply2> IReply2sForUserId, Set<SSound> SSounds,
 			Set<USign> USigns, Set<SReply2> SReply2sForCommentator,
 			Set<BAccess> BAccesses, Set<VUpvote> VUpvotes, Set<IImage> IImages,
@@ -150,26 +142,19 @@ public class UUser implements java.io.Serializable {
 			Set<IReply1> IReply1s, Set<IUpvote> IUpvotes,
 			Set<SysLoginRecord> sysLoginRecords, Set<SBox> SBoxes,
 			Set<VReply2> VReply2sForCommentator,
-			Set<SReply2> SReply2sForUserId, Set<UFriend> UFriendsForUserId,
-			Set<UFriendGroup> UFriendGroups, Set<MGuestbook> MGuestbooks,
-			Set<IAlbum> IAlbums, Set<SAccess> SAccesses,
-			Set<VReply2> VReply2sForUserId, Set<VCount> VCounts,
-			Set<DAnnex> DAnnexes, Set<UBook> UBooks, Set<IAccess> IAccesses,
-			Set<BBacklist> BBacklistsForUserId,
-			Set<UFriend> UFriendsForFriendId, Set<DReply2> DReply2sForUserId,
-			Set<MMessage> MMessagesForUserId, Set<VAccess> VAccesses,
+			Set<SReply2> SReply2sForUserId, Set<UFriendGroup> UFriendGroups,
+			Set<MGuestbook> MGuestbooks, Set<IAlbum> IAlbums,
+			Set<SAccess> SAccesses, Set<VReply2> VReply2sForUserId,
+			Set<VCount> VCounts, Set<DAnnex> DAnnexes, Set<UBook> UBooks,
+			Set<IAccess> IAccesses, Set<BBacklist> BBacklistsForUserId,
+			Set<DReply2> DReply2sForUserId, Set<MMessage> MMessagesForUserId,
+			Set<VAccess> VAccesses, Set<SysInvitationCode> sysInvitationCodes,
 			Set<MMessage> MMessagesForReceiveId, Set<MReply> MReplies,
 			Set<IReply2> IReply2sForCommentator, Set<SReply1> SReply1s,
 			Set<DAccess> DAccesses, Set<BBacklist> BBacklistsForBackId) {
 		this.USign = USign;
 		this.BSite = BSite;
-		this.sysCollege = sysCollege;
-		this.sysInvitationCode = sysInvitationCode;
-		this.sysProvince = sysProvince;
 		this.sysRank = sysRank;
-		this.sysCity = sysCity;
-		this.sysSchool = sysSchool;
-		this.siteId = siteId;
 		this.username = username;
 		this.password = password;
 		this.nickname = nickname;
@@ -180,6 +165,10 @@ public class UUser implements java.io.Serializable {
 		this.homepage = homepage;
 		this.qq = qq;
 		this.mobile = mobile;
+		this.provinceId = provinceId;
+		this.cityId = cityId;
+		this.schoolId = schoolId;
+		this.collegeId = collegeId;
 		this.class_ = class_;
 		this.portrait = portrait;
 		this.regtime = regtime;
@@ -196,6 +185,7 @@ public class UUser implements java.io.Serializable {
 		this.guestbookCount = guestbookCount;
 		this.tagCount = tagCount;
 		this.popedom = popedom;
+		this.coidId = coidId;
 		this.DDiaries = DDiaries;
 		this.VVotes = VVotes;
 		this.DUpvotes = DUpvotes;
@@ -220,7 +210,6 @@ public class UUser implements java.io.Serializable {
 		this.SBoxes = SBoxes;
 		this.VReply2sForCommentator = VReply2sForCommentator;
 		this.SReply2sForUserId = SReply2sForUserId;
-		this.UFriendsForUserId = UFriendsForUserId;
 		this.UFriendGroups = UFriendGroups;
 		this.MGuestbooks = MGuestbooks;
 		this.IAlbums = IAlbums;
@@ -231,10 +220,10 @@ public class UUser implements java.io.Serializable {
 		this.UBooks = UBooks;
 		this.IAccesses = IAccesses;
 		this.BBacklistsForUserId = BBacklistsForUserId;
-		this.UFriendsForFriendId = UFriendsForFriendId;
 		this.DReply2sForUserId = DReply2sForUserId;
 		this.MMessagesForUserId = MMessagesForUserId;
 		this.VAccesses = VAccesses;
+		this.sysInvitationCodes = sysInvitationCodes;
 		this.MMessagesForReceiveId = MMessagesForReceiveId;
 		this.MReplies = MReplies;
 		this.IReply2sForCommentator = IReply2sForCommentator;
@@ -256,7 +245,7 @@ public class UUser implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sign_id", nullable = false)
+	@JoinColumn(name = "sign_id")
 	public USign getUSign() {
 		return this.USign;
 	}
@@ -266,43 +255,13 @@ public class UUser implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", unique = true, nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
 
 	public void setBSite(BSite BSite) {
 		this.BSite = BSite;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "college_id")
-	public SysCollege getSysCollege() {
-		return this.sysCollege;
-	}
-
-	public void setSysCollege(SysCollege sysCollege) {
-		this.sysCollege = sysCollege;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "coid_id", nullable = false)
-	public SysInvitationCode getSysInvitationCode() {
-		return this.sysInvitationCode;
-	}
-
-	public void setSysInvitationCode(SysInvitationCode sysInvitationCode) {
-		this.sysInvitationCode = sysInvitationCode;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "province_id")
-	public SysProvince getSysProvince() {
-		return this.sysProvince;
-	}
-
-	public void setSysProvince(SysProvince sysProvince) {
-		this.sysProvince = sysProvince;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -313,35 +272,6 @@ public class UUser implements java.io.Serializable {
 
 	public void setSysRank(SysRank sysRank) {
 		this.sysRank = sysRank;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city_id")
-	public SysCity getSysCity() {
-		return this.sysCity;
-	}
-
-	public void setSysCity(SysCity sysCity) {
-		this.sysCity = sysCity;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "school_id")
-	public SysSchool getSysSchool() {
-		return this.sysSchool;
-	}
-
-	public void setSysSchool(SysSchool sysSchool) {
-		this.sysSchool = sysSchool;
-	}
-
-	@Column(name = "site_id", nullable = false)
-	public Integer getSiteId() {
-		return this.siteId;
-	}
-
-	public void setSiteId(Integer siteId) {
-		this.siteId = siteId;
 	}
 
 	@Column(name = "username", nullable = false, length = 20)
@@ -380,7 +310,7 @@ public class UUser implements java.io.Serializable {
 		this.roleId = roleId;
 	}
 
-	@Column(name = "sex", nullable = false)
+	@Column(name = "sex")
 	public Short getSex() {
 		return this.sex;
 	}
@@ -389,7 +319,7 @@ public class UUser implements java.io.Serializable {
 		this.sex = sex;
 	}
 
-	@Column(name = "birth", length = 0)
+	@Column(name = "birth", length = 19)
 	public Timestamp getBirth() {
 		return this.birth;
 	}
@@ -434,6 +364,42 @@ public class UUser implements java.io.Serializable {
 		this.mobile = mobile;
 	}
 
+	@Column(name = "province_id")
+	public Integer getProvinceId() {
+		return this.provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
+	@Column(name = "city_id")
+	public Integer getCityId() {
+		return this.cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+
+	@Column(name = "school_id")
+	public Integer getSchoolId() {
+		return this.schoolId;
+	}
+
+	public void setSchoolId(Integer schoolId) {
+		this.schoolId = schoolId;
+	}
+
+	@Column(name = "college_id")
+	public Integer getCollegeId() {
+		return this.collegeId;
+	}
+
+	public void setCollegeId(Integer collegeId) {
+		this.collegeId = collegeId;
+	}
+
 	@Column(name = "class", length = 10)
 	public String getClass_() {
 		return this.class_;
@@ -452,7 +418,7 @@ public class UUser implements java.io.Serializable {
 		this.portrait = portrait;
 	}
 
-	@Column(name = "regtime", length = 0)
+	@Column(name = "regtime", length = 19)
 	public Timestamp getRegtime() {
 		return this.regtime;
 	}
@@ -461,7 +427,7 @@ public class UUser implements java.io.Serializable {
 		this.regtime = regtime;
 	}
 
-	@Column(name = "last_time", length = 0)
+	@Column(name = "last_time", length = 19)
 	public Timestamp getLastTime() {
 		return this.lastTime;
 	}
@@ -576,6 +542,15 @@ public class UUser implements java.io.Serializable {
 
 	public void setPopedom(Integer popedom) {
 		this.popedom = popedom;
+	}
+
+	@Column(name = "coid_id")
+	public Integer getCoidId() {
+		return this.coidId;
+	}
+
+	public void setCoidId(Integer coidId) {
+		this.coidId = coidId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
@@ -794,15 +769,6 @@ public class UUser implements java.io.Serializable {
 		this.SReply2sForUserId = SReply2sForUserId;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<UFriend> getUFriendsForUserId() {
-		return this.UFriendsForUserId;
-	}
-
-	public void setUFriendsForUserId(Set<UFriend> UFriendsForUserId) {
-		this.UFriendsForUserId = UFriendsForUserId;
-	}
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
 	public Set<UFriendGroup> getUFriendGroups() {
 		return this.UFriendGroups;
@@ -893,15 +859,6 @@ public class UUser implements java.io.Serializable {
 		this.BBacklistsForUserId = BBacklistsForUserId;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByFriendId")
-	public Set<UFriend> getUFriendsForFriendId() {
-		return this.UFriendsForFriendId;
-	}
-
-	public void setUFriendsForFriendId(Set<UFriend> UFriendsForFriendId) {
-		this.UFriendsForFriendId = UFriendsForFriendId;
-	}
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
 	public Set<DReply2> getDReply2sForUserId() {
 		return this.DReply2sForUserId;
@@ -927,6 +884,15 @@ public class UUser implements java.io.Serializable {
 
 	public void setVAccesses(Set<VAccess> VAccesses) {
 		this.VAccesses = VAccesses;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
+	public Set<SysInvitationCode> getSysInvitationCodes() {
+		return this.sysInvitationCodes;
+	}
+
+	public void setSysInvitationCodes(Set<SysInvitationCode> sysInvitationCodes) {
+		this.sysInvitationCodes = sysInvitationCodes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByReceiveId")

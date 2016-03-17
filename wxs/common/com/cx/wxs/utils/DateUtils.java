@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 
-public class DateUtils {
+public class DateUtils extends org.apache.commons.lang3.time.DateUtils{
 
 	/**
 	 * 依据给定的开始时间、结束时间按求出相应的日期集合
@@ -379,6 +379,25 @@ public class DateUtils {
 		} else if (year1 == year2 && month1 == month2) {
 			dateList.add(formatDate(date2, "dd"));
 		}
+	}
+	
+	/**
+	 * 通过int定义的年月日获取时间
+	 * @param year
+	 * @param month
+	 * @param date
+	 * @return
+	 */
+	public static Calendar getDateBegin(int year, int month, int date){
+		Calendar begin_time = Calendar.getInstance();
+		begin_time.set(Calendar.YEAR, year);
+		begin_time.set(Calendar.MONTH, month-1);
+		begin_time.set(Calendar.DATE, date);
+		begin_time.set(Calendar.HOUR_OF_DAY, 0);
+		begin_time.set(Calendar.MINUTE, 0);
+		begin_time.set(Calendar.SECOND, 0);
+		begin_time.set(Calendar.MILLISECOND, 0);
+		return begin_time;
 	}
 	
 	//字符串抓换成常规时间

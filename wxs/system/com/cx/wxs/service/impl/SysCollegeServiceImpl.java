@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysCollegeService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysCollegeService")
@@ -26,7 +26,7 @@ public class SysCollegeServiceImpl implements SysCollegeService {
     /**
     * 通过用户id获取SysCollegeDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysCollegeDto getSysCollegeByID(SysCollegeDto sysCollegeDto){
@@ -36,7 +36,7 @@ public class SysCollegeServiceImpl implements SysCollegeService {
     /**
     * 通过相关信息获取SysCollegeDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysCollegeDto> getSysCollegeList(SysCollegeDto sysCollegeDto){
@@ -46,7 +46,7 @@ public class SysCollegeServiceImpl implements SysCollegeService {
     /**
     * 添加一个新的SysCollege到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysCollege(SysCollegeDto sysCollegeDto){
@@ -56,7 +56,7 @@ public class SysCollegeServiceImpl implements SysCollegeService {
     /**
     * 更新SysCollege
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysCollege(SysCollegeDto sysCollegeDto){
@@ -66,7 +66,7 @@ public class SysCollegeServiceImpl implements SysCollegeService {
     /**
     * 删除SysCollege
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysCollege(SysCollegeDto sysCollegeDto){

@@ -11,7 +11,7 @@ import com.cx.wxs.service.BBacklistService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BBacklistService")
@@ -26,7 +26,7 @@ public class BBacklistServiceImpl implements BBacklistService {
     /**
     * 通过用户id获取BBacklistDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BBacklistDto getBBacklistByID(BBacklistDto bBacklistDto){
@@ -36,7 +36,7 @@ public class BBacklistServiceImpl implements BBacklistService {
     /**
     * 通过相关信息获取BBacklistDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BBacklistDto> getBBacklistList(BBacklistDto bBacklistDto){
@@ -46,7 +46,7 @@ public class BBacklistServiceImpl implements BBacklistService {
     /**
     * 添加一个新的BBacklist到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBBacklist(BBacklistDto bBacklistDto){
@@ -56,7 +56,7 @@ public class BBacklistServiceImpl implements BBacklistService {
     /**
     * 更新BBacklist
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBBacklist(BBacklistDto bBacklistDto){
@@ -66,7 +66,7 @@ public class BBacklistServiceImpl implements BBacklistService {
     /**
     * 删除BBacklist
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBBacklist(BBacklistDto bBacklistDto){

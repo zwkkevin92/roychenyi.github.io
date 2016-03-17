@@ -11,7 +11,7 @@ import com.cx.wxs.service.WWxsService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("WWxsService")
@@ -26,7 +26,7 @@ public class WWxsServiceImpl implements WWxsService {
     /**
     * 通过用户id获取WWxsDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WWxsDto getWWxsByID(WWxsDto wWxsDto){
@@ -36,7 +36,7 @@ public class WWxsServiceImpl implements WWxsService {
     /**
     * 通过相关信息获取WWxsDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WWxsDto> getWWxsList(WWxsDto wWxsDto){
@@ -46,7 +46,7 @@ public class WWxsServiceImpl implements WWxsService {
     /**
     * 添加一个新的WWxs到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWWxs(WWxsDto wWxsDto){
@@ -56,7 +56,7 @@ public class WWxsServiceImpl implements WWxsService {
     /**
     * 更新WWxs
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWWxs(WWxsDto wWxsDto){
@@ -66,7 +66,7 @@ public class WWxsServiceImpl implements WWxsService {
     /**
     * 删除WWxs
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWWxs(WWxsDto wWxsDto){

@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysLoginRecordService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysLoginRecordService")
@@ -26,7 +26,7 @@ public class SysLoginRecordServiceImpl implements SysLoginRecordService {
     /**
     * 通过用户id获取SysLoginRecordDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysLoginRecordDto getSysLoginRecordByID(SysLoginRecordDto sysLoginRecordDto){
@@ -36,7 +36,7 @@ public class SysLoginRecordServiceImpl implements SysLoginRecordService {
     /**
     * 通过相关信息获取SysLoginRecordDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysLoginRecordDto> getSysLoginRecordList(SysLoginRecordDto sysLoginRecordDto){
@@ -46,7 +46,7 @@ public class SysLoginRecordServiceImpl implements SysLoginRecordService {
     /**
     * 添加一个新的SysLoginRecord到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
@@ -56,7 +56,7 @@ public class SysLoginRecordServiceImpl implements SysLoginRecordService {
     /**
     * 更新SysLoginRecord
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
@@ -66,7 +66,7 @@ public class SysLoginRecordServiceImpl implements SysLoginRecordService {
     /**
     * 删除SysLoginRecord
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){

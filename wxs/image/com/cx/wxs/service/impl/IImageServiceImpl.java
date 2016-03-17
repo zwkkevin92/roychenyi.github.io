@@ -11,7 +11,7 @@ import com.cx.wxs.service.IImageService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("IImageService")
@@ -26,7 +26,7 @@ public class IImageServiceImpl implements IImageService {
     /**
     * 通过用户id获取IImageDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IImageDto getIImageByID(IImageDto iImageDto){
@@ -36,7 +36,7 @@ public class IImageServiceImpl implements IImageService {
     /**
     * 通过相关信息获取IImageDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IImageDto> getIImageList(IImageDto iImageDto){
@@ -46,7 +46,7 @@ public class IImageServiceImpl implements IImageService {
     /**
     * 添加一个新的IImage到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIImage(IImageDto iImageDto){
@@ -56,7 +56,7 @@ public class IImageServiceImpl implements IImageService {
     /**
     * 更新IImage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIImage(IImageDto iImageDto){
@@ -66,7 +66,7 @@ public class IImageServiceImpl implements IImageService {
     /**
     * 删除IImage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIImage(IImageDto iImageDto){

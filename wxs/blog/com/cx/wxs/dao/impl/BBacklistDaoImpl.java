@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("BBacklistDao")
 public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements BBacklistDao{
@@ -27,7 +27,7 @@ public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements
     /**
     * 通过id获取BBacklistDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BBacklistDto getBBacklistByID(BBacklistDto bBacklistDto){
@@ -51,7 +51,7 @@ public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements
     /**
     * 通过相关数据获取BBacklistDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BBacklistDto> getBBacklistList(BBacklistDto bBacklistDto){
@@ -61,7 +61,7 @@ public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements
     /**
     * 添加一个新的BBacklist到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBBacklist(BBacklistDto bBacklistDto){
@@ -77,12 +77,12 @@ public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements
     /**
     * 更新BBacklist
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBBacklist(BBacklistDto bBacklistDto){
         // TODO Auto-generated method stub
-        if(bBacklistDto!=null&&bBacklistDto.getUid()!=null){
+        if(bBacklistDto!=null&&bBacklistDto.getBlacklistId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = bBacklistDto.createSetPropertiesVal(bBacklistDto, "a", fl);
@@ -99,12 +99,12 @@ public class BBacklistDaoImpl extends BaseDaoImpl<BBacklist, Integer> implements
     /**
     * 删除BBacklist
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBBacklist(BBacklistDto bBacklistDto){
          // TODO Auto-generated method stub
-        if(bBacklistDto!=null&&bBacklistDto.getUid()!=null){
+        if(bBacklistDto!=null&&bBacklistDto.getBlacklistId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+BBacklist.class.getName()+" a");

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("BConfigDao")
 public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BConfigDao{
@@ -27,7 +27,7 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
     /**
     * 通过id获取BConfigDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BConfigDto getBConfigByID(BConfigDto bConfigDto){
@@ -51,7 +51,7 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
     /**
     * 通过相关数据获取BConfigDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BConfigDto> getBConfigList(BConfigDto bConfigDto){
@@ -61,7 +61,7 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
     /**
     * 添加一个新的BConfig到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBConfig(BConfigDto bConfigDto){
@@ -77,12 +77,12 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
     /**
     * 更新BConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBConfig(BConfigDto bConfigDto){
         // TODO Auto-generated method stub
-        if(bConfigDto!=null&&bConfigDto.getUid()!=null){
+        if(bConfigDto!=null&&bConfigDto.getBconfigId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = bConfigDto.createSetPropertiesVal(bConfigDto, "a", fl);
@@ -99,12 +99,12 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
     /**
     * 删除BConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBConfig(BConfigDto bConfigDto){
          // TODO Auto-generated method stub
-        if(bConfigDto!=null&&bConfigDto.getUid()!=null){
+        if(bConfigDto!=null&&bConfigDto.getBconfigId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+BConfig.class.getName()+" a");

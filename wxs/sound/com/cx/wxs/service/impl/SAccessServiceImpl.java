@@ -11,7 +11,7 @@ import com.cx.wxs.service.SAccessService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SAccessService")
@@ -26,7 +26,7 @@ public class SAccessServiceImpl implements SAccessService {
     /**
     * 通过用户id获取SAccessDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SAccessDto getSAccessByID(SAccessDto sAccessDto){
@@ -36,7 +36,7 @@ public class SAccessServiceImpl implements SAccessService {
     /**
     * 通过相关信息获取SAccessDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SAccessDto> getSAccessList(SAccessDto sAccessDto){
@@ -46,7 +46,7 @@ public class SAccessServiceImpl implements SAccessService {
     /**
     * 添加一个新的SAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSAccess(SAccessDto sAccessDto){
@@ -56,7 +56,7 @@ public class SAccessServiceImpl implements SAccessService {
     /**
     * 更新SAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSAccess(SAccessDto sAccessDto){
@@ -66,7 +66,7 @@ public class SAccessServiceImpl implements SAccessService {
     /**
     * 删除SAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSAccess(SAccessDto sAccessDto){

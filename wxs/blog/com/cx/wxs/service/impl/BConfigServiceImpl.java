@@ -11,7 +11,7 @@ import com.cx.wxs.service.BConfigService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BConfigService")
@@ -26,7 +26,7 @@ public class BConfigServiceImpl implements BConfigService {
     /**
     * 通过用户id获取BConfigDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BConfigDto getBConfigByID(BConfigDto bConfigDto){
@@ -36,7 +36,7 @@ public class BConfigServiceImpl implements BConfigService {
     /**
     * 通过相关信息获取BConfigDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BConfigDto> getBConfigList(BConfigDto bConfigDto){
@@ -46,7 +46,7 @@ public class BConfigServiceImpl implements BConfigService {
     /**
     * 添加一个新的BConfig到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBConfig(BConfigDto bConfigDto){
@@ -56,7 +56,7 @@ public class BConfigServiceImpl implements BConfigService {
     /**
     * 更新BConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBConfig(BConfigDto bConfigDto){
@@ -66,7 +66,7 @@ public class BConfigServiceImpl implements BConfigService {
     /**
     * 删除BConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBConfig(BConfigDto bConfigDto){

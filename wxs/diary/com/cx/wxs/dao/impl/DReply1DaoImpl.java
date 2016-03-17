@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("DReply1Dao")
 public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DReply1Dao{
@@ -27,7 +27,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 通过id获取DReply1Dto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
@@ -51,7 +51,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 通过相关数据获取DReply1DtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DReply1Dto> getDReply1List(DReply1Dto dReply1Dto){
@@ -61,7 +61,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 添加一个新的DReply1到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDReply1(DReply1Dto dReply1Dto){
@@ -77,12 +77,12 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 更新DReply1
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDReply1(DReply1Dto dReply1Dto){
         // TODO Auto-generated method stub
-        if(dReply1Dto!=null&&dReply1Dto.getUid()!=null){
+        if(dReply1Dto!=null&&dReply1Dto.getDreplyId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dReply1Dto.createSetPropertiesVal(dReply1Dto, "a", fl);
@@ -99,12 +99,12 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 删除DReply1
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDReply1(DReply1Dto dReply1Dto){
          // TODO Auto-generated method stub
-        if(dReply1Dto!=null&&dReply1Dto.getUid()!=null){
+        if(dReply1Dto!=null&&dReply1Dto.getDreplyId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+DReply1.class.getName()+" a");

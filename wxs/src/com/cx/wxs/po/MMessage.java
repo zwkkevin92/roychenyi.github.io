@@ -102,7 +102,7 @@ public class MMessage implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "send_time", length = 0)
+	@Column(name = "send_time", length = 19)
 	public Timestamp getSendTime() {
 		return this.sendTime;
 	}
@@ -111,7 +111,7 @@ public class MMessage implements java.io.Serializable {
 		this.sendTime = sendTime;
 	}
 
-	@Column(name = "expire_time", length = 0)
+	@Column(name = "expire_time", length = 19)
 	public Timestamp getExpireTime() {
 		return this.expireTime;
 	}
@@ -120,7 +120,7 @@ public class MMessage implements java.io.Serializable {
 		this.expireTime = expireTime;
 	}
 
-	@Column(name = "read_time", length = 0)
+	@Column(name = "read_time", length = 19)
 	public Timestamp getReadTime() {
 		return this.readTime;
 	}

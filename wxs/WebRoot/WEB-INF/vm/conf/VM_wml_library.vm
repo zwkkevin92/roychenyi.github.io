@@ -1,23 +1,19 @@
-#*
- * Copyright 2005 Liusoft
- *
- * $Id: VM_wml_library.vm,v 1.5 2006/04/27 03:26:06 liudong Exp $
- *#
+
 
 #macro(wml_error_msg)
 #if($messages.exist())<b>$!messages.getAll()</b><br/>#end
 #end
 
 #macro(wml_gopage $p_url $p_current_page $p_page_count)
-Ò³´Î:${p_current_page}/${p_page_count}<input type="text" name="c_page" value="1" size="2" format="*N" /><anchor>×ªµ½¸ÃÒ³<go href="$p_url"><postfield name="p" value="$(c_page)" /></go></anchor>
+Ò³ï¿½ï¿½:${p_current_page}/${p_page_count}<input type="text" name="c_page" value="1" size="2" format="*N" /><anchor>×ªï¿½ï¿½ï¿½ï¿½Ò³<go href="$p_url"><postfield name="p" value="$(c_page)" /></go></anchor>
 #end
 
 #macro(wml_pager $p_url $p_current_page $p_page_count)	
 	#set($pre_page = $p_current_page - 1)
 	#set($next_page = $p_current_page + 1)
-	#if($p_current_page < $p_page_count)<a href="$p_url&amp;p=$next_page">ÏÂÒ³</a>#end
-	#if($p_current_page>1)<a href="$p_url&amp;p=$pre_page">ÉÏÒ³</a>#end
-	#if($p_current_page > 1)<a href="$p_url">Ê×Ò³</a>#end
+	#if($p_current_page < $p_page_count)<a href="$p_url&amp;p=$next_page">ï¿½ï¿½Ò³</a>#end
+	#if($p_current_page>1)<a href="$p_url&amp;p=$pre_page">ï¿½ï¿½Ò³</a>#end
+	#if($p_current_page > 1)<a href="$p_url">ï¿½ï¿½Ò³</a>#end
 	#if($p_current_page < $p_page_count)<a href="$p_url&amp;p=$page_count">Î²Ò³</a>#end
 #end
 

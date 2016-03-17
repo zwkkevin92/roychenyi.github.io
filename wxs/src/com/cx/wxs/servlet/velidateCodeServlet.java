@@ -50,8 +50,8 @@ public class velidateCodeServlet extends HttpServlet {
           
         HttpSession session =request.getSession();  
           
-        ValidateCode vCode = new ValidateCode(120,40,5,100);  
-        session.setAttribute("code", vCode.getCode());  
+        ValidateCode vCode = new ValidateCode(80,30,4,100);  
+        session.setAttribute("verifycode", vCode.getCode());  
         vCode.write(response.getOutputStream());  
 	}
 

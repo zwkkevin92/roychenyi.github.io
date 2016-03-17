@@ -231,7 +231,7 @@ public class DDiary implements java.io.Serializable {
 		this.clientAgent = clientAgent;
 	}
 
-	@Column(name = "write_time", length = 0)
+	@Column(name = "write_time", length = 19)
 	public Timestamp getWriteTime() {
 		return this.writeTime;
 	}
@@ -240,7 +240,7 @@ public class DDiary implements java.io.Serializable {
 		this.writeTime = writeTime;
 	}
 
-	@Column(name = "last_read_time", length = 0)
+	@Column(name = "last_read_time", length = 19)
 	public Timestamp getLastReadTime() {
 		return this.lastReadTime;
 	}
@@ -249,7 +249,7 @@ public class DDiary implements java.io.Serializable {
 		this.lastReadTime = lastReadTime;
 	}
 
-	@Column(name = "last_reply_time", length = 0)
+	@Column(name = "last_reply_time", length = 19)
 	public Timestamp getLastReplyTime() {
 		return this.lastReplyTime;
 	}
@@ -258,7 +258,7 @@ public class DDiary implements java.io.Serializable {
 		this.lastReplyTime = lastReplyTime;
 	}
 
-	@Column(name = "modify_time", length = 0)
+	@Column(name = "modify_time", length = 19)
 	public Timestamp getModifyTime() {
 		return this.modifyTime;
 	}

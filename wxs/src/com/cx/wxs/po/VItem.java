@@ -97,7 +97,7 @@ public class VItem implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}
@@ -106,7 +106,7 @@ public class VItem implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "update_time", length = 0)
+	@Column(name = "update_time", length = 19)
 	public Timestamp getUpdateTime() {
 		return this.updateTime;
 	}

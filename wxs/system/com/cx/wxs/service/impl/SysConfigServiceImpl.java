@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysConfigService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysConfigService")
@@ -26,7 +26,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     /**
     * 通过用户id获取SysConfigDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysConfigDto getSysConfigByID(SysConfigDto sysConfigDto){
@@ -36,7 +36,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     /**
     * 通过相关信息获取SysConfigDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysConfigDto> getSysConfigList(SysConfigDto sysConfigDto){
@@ -46,7 +46,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     /**
     * 添加一个新的SysConfig到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysConfig(SysConfigDto sysConfigDto){
@@ -56,7 +56,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     /**
     * 更新SysConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysConfig(SysConfigDto sysConfigDto){
@@ -66,7 +66,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     /**
     * 删除SysConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysConfig(SysConfigDto sysConfigDto){

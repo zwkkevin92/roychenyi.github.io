@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysTypeService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysTypeService")
@@ -26,7 +26,7 @@ public class SysTypeServiceImpl implements SysTypeService {
     /**
     * 通过用户id获取SysTypeDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysTypeDto getSysTypeByID(SysTypeDto sysTypeDto){
@@ -36,7 +36,7 @@ public class SysTypeServiceImpl implements SysTypeService {
     /**
     * 通过相关信息获取SysTypeDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysTypeDto> getSysTypeList(SysTypeDto sysTypeDto){
@@ -46,7 +46,7 @@ public class SysTypeServiceImpl implements SysTypeService {
     /**
     * 添加一个新的SysType到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysType(SysTypeDto sysTypeDto){
@@ -56,7 +56,7 @@ public class SysTypeServiceImpl implements SysTypeService {
     /**
     * 更新SysType
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysType(SysTypeDto sysTypeDto){
@@ -66,7 +66,7 @@ public class SysTypeServiceImpl implements SysTypeService {
     /**
     * 删除SysType
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysType(SysTypeDto sysTypeDto){

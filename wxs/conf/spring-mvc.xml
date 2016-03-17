@@ -16,7 +16,7 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
 	<context:annotation-config />
-	<context:component-scan base-package="com.cy.wxs" />
+	<context:component-scan base-package="com.cx.wxs." />
     <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>   
 	<!-- 支持aop注解 -->
     <aop:aspectj-autoproxy /> 
@@ -24,7 +24,10 @@
 	包括 ：js、css、img、..
 	 -->
 	 <mvc:resources location="/js/" mapping="/js/**"/>
-	 <mvc:resources location="/img/" mapping="/img/**"/>
+	 <mvc:resources location="/images/" mapping="/images/**"/>
+	 <mvc:resources location="/css/" mapping="/css/**"/>
+	 <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+	 <mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>
 	 
 	 <!-- 加载velocity.properties -->
 <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -39,32 +42,98 @@
           </props>
         </property>
 </bean> 
+
+<bean id="testVelocity" class="com.cx.wxs.velocity.testVelocity"></bean>
+<bean id="htmlVelocity" class="com.cx.wxs.velocity.HtmlVelocityTool"></bean>
+<bean id="linkVelocity" class="org.apache.velocity.tools.view.LinkTool"></bean>
 <!--
 View resolvers can also be configured with ResourceBundles or XML files. If you need
 different view resolving based on Locale, you have to use the resource bundle resolver.
 配置velocity 模板解析配置
 -->
- <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-    <!-- 使用layout功能是，view解析器需要使用需要使用org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+
+   <!-- 使用layout功能是，view解析器需要使用需要使用org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver
      当不需要使用layout布局时，使用org.springframework.web.servlet.view.velocity.VelocityViewResolver-->
-     <property name="viewClass" value="com.cs.wxs.util.VelocityToolbox2View"/> 
+     <property name="viewClass" value="com.cx.wxs.utils.VelocityToolbox2View"/> 
        <!-- <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView"/>
   -->
+	<property name="order" value="1" />
     <property name="cache" value="false" />
 	<property name="prefix" value="" />
 	<property name="suffix" value=".vm" />
     <property name="contentType" value="text/html;charset=utf-8" /> 
 	<property name="layoutUrl" value="/layout/default.vm" />
 	<property name="requestContextAttribute" value="ac" />
-	<property name="order" value="1" />
 	<property name="numberToolAttribute" value="numbertool" />
 	<property name="dateToolAttribute" value="datetool" />
-	 <property name="toolboxConfigLocation" value="WEB-INF/vm/conf/velocity-toolbox.xml" />              
-	    
+	<property name="toolboxConfigLocation" value="WEB-INF/vm/conf/velocity-toolbox.xml" />
+	<property name="attributesMap">
+		<map>
+			<entry key="test">
+				<ref bean="testVelocity" />
+			</entry>
+			<entry key="test1">
+				<ref bean="testVelocity" />
+			</entry>
+			
+<!-- 			<entry key="link2">
+			    <ref bean="linkVelocity"/>
+			</entry> -->
+   			<entry key="html">
+			    <ref bean="htmlVelocity"/>
+			</entry>  
+		</map>
+	</property>   
 </bean>
 
-
-
+<!-- 配置JSON视图 -->
+  <!-- 配置Fastjson支持 -->
+        <mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+				<list>
+				 <value>text/html;charset=UTF-8</value>
+				 <value>application/json</value>
+				 </list>
+				 </property>
+				<property name="features">
+					<array>
+						<value>WriteMapNullValue</value>
+						<value>WriteNullStringAsEmpty</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+       
+ <!--     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+       <property name="supportedMediaTypes">
+           <list>
+               <value>application/json;charset=UTF-8</value>
+           </list>
+       </property>     
+       <property name="objectMapper">
+           <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+               <property name="dateFormat">
+                   <bean class="java.text.SimpleDateFormat">
+                       <constructor-arg index="0" type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                   </bean>
+               </property>
+           </bean>
+       </property>
+     </bean>
+     <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter"/>
+     <bean id="requestMappingHandlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+       <property name="messageConverters">
+           <list>
+               <ref bean="mappingJacksonHttpMessageConverter"/>
+               <ref bean="stringHttpMessageConverter"/>
+           </list>
+       </property>
+     </bean>
+      --> 
 
   
   <!-- 文件上传 -->
@@ -82,7 +151,7 @@ different view resolving based on Locale, you have to use the resource bundle re
 		<property name="converters">
 			<list>
 				<!-- 日期类型转换 -->
-				<bean class="com.cx.wxs.util.DateUtil"/>
+				<bean class="com.cx.wxs.utils.DateConverter"/>
 			</list>
 		</property>		
 	

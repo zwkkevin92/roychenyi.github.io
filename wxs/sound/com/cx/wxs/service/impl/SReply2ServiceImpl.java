@@ -11,7 +11,7 @@ import com.cx.wxs.service.SReply2Service;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SReply2Service")
@@ -26,7 +26,7 @@ public class SReply2ServiceImpl implements SReply2Service {
     /**
     * 通过用户id获取SReply2Dto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SReply2Dto getSReply2ByID(SReply2Dto sReply2Dto){
@@ -36,7 +36,7 @@ public class SReply2ServiceImpl implements SReply2Service {
     /**
     * 通过相关信息获取SReply2DtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SReply2Dto> getSReply2List(SReply2Dto sReply2Dto){
@@ -46,7 +46,7 @@ public class SReply2ServiceImpl implements SReply2Service {
     /**
     * 添加一个新的SReply2到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSReply2(SReply2Dto sReply2Dto){
@@ -56,7 +56,7 @@ public class SReply2ServiceImpl implements SReply2Service {
     /**
     * 更新SReply2
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSReply2(SReply2Dto sReply2Dto){
@@ -66,7 +66,7 @@ public class SReply2ServiceImpl implements SReply2Service {
     /**
     * 删除SReply2
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSReply2(SReply2Dto sReply2Dto){

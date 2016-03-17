@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("MGuestbookDao")
 public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implements MGuestbookDao{
@@ -27,7 +27,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 通过id获取MGuestbookDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public MGuestbookDto getMGuestbookByID(MGuestbookDto mGuestbookDto){
@@ -51,7 +51,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 通过相关数据获取MGuestbookDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<MGuestbookDto> getMGuestbookList(MGuestbookDto mGuestbookDto){
@@ -61,7 +61,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 添加一个新的MGuestbook到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addMGuestbook(MGuestbookDto mGuestbookDto){
@@ -77,12 +77,12 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 更新MGuestbook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateMGuestbook(MGuestbookDto mGuestbookDto){
         // TODO Auto-generated method stub
-        if(mGuestbookDto!=null&&mGuestbookDto.getUid()!=null){
+        if(mGuestbookDto!=null&&mGuestbookDto.getGuestbookId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = mGuestbookDto.createSetPropertiesVal(mGuestbookDto, "a", fl);
@@ -99,12 +99,12 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 删除MGuestbook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteMGuestbook(MGuestbookDto mGuestbookDto){
          // TODO Auto-generated method stub
-        if(mGuestbookDto!=null&&mGuestbookDto.getUid()!=null){
+        if(mGuestbookDto!=null&&mGuestbookDto.getGuestbookId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+MGuestbook.class.getName()+" a");

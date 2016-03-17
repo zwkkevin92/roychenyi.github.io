@@ -11,7 +11,7 @@ import com.cx.wxs.service.WAccessService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("WAccessService")
@@ -26,7 +26,7 @@ public class WAccessServiceImpl implements WAccessService {
     /**
     * 通过用户id获取WAccessDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WAccessDto getWAccessByID(WAccessDto wAccessDto){
@@ -36,7 +36,7 @@ public class WAccessServiceImpl implements WAccessService {
     /**
     * 通过相关信息获取WAccessDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WAccessDto> getWAccessList(WAccessDto wAccessDto){
@@ -46,7 +46,7 @@ public class WAccessServiceImpl implements WAccessService {
     /**
     * 添加一个新的WAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWAccess(WAccessDto wAccessDto){
@@ -56,7 +56,7 @@ public class WAccessServiceImpl implements WAccessService {
     /**
     * 更新WAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWAccess(WAccessDto wAccessDto){
@@ -66,7 +66,7 @@ public class WAccessServiceImpl implements WAccessService {
     /**
     * 删除WAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWAccess(WAccessDto wAccessDto){

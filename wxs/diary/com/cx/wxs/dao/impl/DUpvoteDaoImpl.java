@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("DUpvoteDao")
 public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUpvoteDao{
@@ -27,7 +27,7 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
     /**
     * 通过id获取DUpvoteDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DUpvoteDto getDUpvoteByID(DUpvoteDto dUpvoteDto){
@@ -51,7 +51,7 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
     /**
     * 通过相关数据获取DUpvoteDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DUpvoteDto> getDUpvoteList(DUpvoteDto dUpvoteDto){
@@ -61,7 +61,7 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
     /**
     * 添加一个新的DUpvote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDUpvote(DUpvoteDto dUpvoteDto){
@@ -77,12 +77,12 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
     /**
     * 更新DUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDUpvote(DUpvoteDto dUpvoteDto){
         // TODO Auto-generated method stub
-        if(dUpvoteDto!=null&&dUpvoteDto.getUid()!=null){
+        if(dUpvoteDto!=null&&dUpvoteDto.getDupvoteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dUpvoteDto.createSetPropertiesVal(dUpvoteDto, "a", fl);
@@ -99,12 +99,12 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
     /**
     * 删除DUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDUpvote(DUpvoteDto dUpvoteDto){
          // TODO Auto-generated method stub
-        if(dUpvoteDto!=null&&dUpvoteDto.getUid()!=null){
+        if(dUpvoteDto!=null&&dUpvoteDto.getDupvoteId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+DUpvote.class.getName()+" a");

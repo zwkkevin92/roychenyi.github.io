@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysLinkDao")
 public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements SysLinkDao{
@@ -27,7 +27,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 通过id获取SysLinkDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysLinkDto getSysLinkByID(SysLinkDto sysLinkDto){
@@ -51,7 +51,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 通过相关数据获取SysLinkDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysLinkDto> getSysLinkList(SysLinkDto sysLinkDto){
@@ -61,7 +61,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 添加一个新的SysLink到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysLink(SysLinkDto sysLinkDto){
@@ -77,12 +77,12 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 更新SysLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysLink(SysLinkDto sysLinkDto){
         // TODO Auto-generated method stub
-        if(sysLinkDto!=null&&sysLinkDto.getUid()!=null){
+        if(sysLinkDto!=null&&sysLinkDto.getLinkId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysLinkDto.createSetPropertiesVal(sysLinkDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 删除SysLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysLink(SysLinkDto sysLinkDto){
          // TODO Auto-generated method stub
-        if(sysLinkDto!=null&&sysLinkDto.getUid()!=null){
+        if(sysLinkDto!=null&&sysLinkDto.getLinkId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysLink.class.getName()+" a");

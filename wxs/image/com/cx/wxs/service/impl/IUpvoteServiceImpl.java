@@ -11,7 +11,7 @@ import com.cx.wxs.service.IUpvoteService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("IUpvoteService")
@@ -26,7 +26,7 @@ public class IUpvoteServiceImpl implements IUpvoteService {
     /**
     * 通过用户id获取IUpvoteDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IUpvoteDto getIUpvoteByID(IUpvoteDto iUpvoteDto){
@@ -36,7 +36,7 @@ public class IUpvoteServiceImpl implements IUpvoteService {
     /**
     * 通过相关信息获取IUpvoteDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IUpvoteDto> getIUpvoteList(IUpvoteDto iUpvoteDto){
@@ -46,7 +46,7 @@ public class IUpvoteServiceImpl implements IUpvoteService {
     /**
     * 添加一个新的IUpvote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIUpvote(IUpvoteDto iUpvoteDto){
@@ -56,7 +56,7 @@ public class IUpvoteServiceImpl implements IUpvoteService {
     /**
     * 更新IUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIUpvote(IUpvoteDto iUpvoteDto){
@@ -66,7 +66,7 @@ public class IUpvoteServiceImpl implements IUpvoteService {
     /**
     * 删除IUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIUpvote(IUpvoteDto iUpvoteDto){

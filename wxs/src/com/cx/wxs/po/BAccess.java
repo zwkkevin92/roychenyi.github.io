@@ -35,8 +35,7 @@ public class BAccess implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public BAccess(UUser UUser, BSite BSite) {
-		this.UUser = UUser;
+	public BAccess(BSite BSite) {
 		this.BSite = BSite;
 	}
 
@@ -64,7 +63,7 @@ public class BAccess implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id")
 	public UUser getUUser() {
 		return this.UUser;
 	}
@@ -83,7 +82,7 @@ public class BAccess implements java.io.Serializable {
 		this.BSite = BSite;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

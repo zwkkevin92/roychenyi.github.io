@@ -11,7 +11,7 @@ import com.cx.wxs.service.MMessageService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("MMessageService")
@@ -26,7 +26,7 @@ public class MMessageServiceImpl implements MMessageService {
     /**
     * 通过用户id获取MMessageDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public MMessageDto getMMessageByID(MMessageDto mMessageDto){
@@ -36,7 +36,7 @@ public class MMessageServiceImpl implements MMessageService {
     /**
     * 通过相关信息获取MMessageDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<MMessageDto> getMMessageList(MMessageDto mMessageDto){
@@ -46,7 +46,7 @@ public class MMessageServiceImpl implements MMessageService {
     /**
     * 添加一个新的MMessage到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addMMessage(MMessageDto mMessageDto){
@@ -56,7 +56,7 @@ public class MMessageServiceImpl implements MMessageService {
     /**
     * 更新MMessage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateMMessage(MMessageDto mMessageDto){
@@ -66,7 +66,7 @@ public class MMessageServiceImpl implements MMessageService {
     /**
     * 删除MMessage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteMMessage(MMessageDto mMessageDto){

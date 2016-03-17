@@ -11,7 +11,7 @@ import com.cx.wxs.service.IAccessService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("IAccessService")
@@ -26,7 +26,7 @@ public class IAccessServiceImpl implements IAccessService {
     /**
     * 通过用户id获取IAccessDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IAccessDto getIAccessByID(IAccessDto iAccessDto){
@@ -36,7 +36,7 @@ public class IAccessServiceImpl implements IAccessService {
     /**
     * 通过相关信息获取IAccessDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IAccessDto> getIAccessList(IAccessDto iAccessDto){
@@ -46,7 +46,7 @@ public class IAccessServiceImpl implements IAccessService {
     /**
     * 添加一个新的IAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIAccess(IAccessDto iAccessDto){
@@ -56,7 +56,7 @@ public class IAccessServiceImpl implements IAccessService {
     /**
     * 更新IAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIAccess(IAccessDto iAccessDto){
@@ -66,7 +66,7 @@ public class IAccessServiceImpl implements IAccessService {
     /**
     * 删除IAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIAccess(IAccessDto iAccessDto){

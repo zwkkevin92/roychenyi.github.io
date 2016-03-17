@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("IAccessDao")
 public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAccessDao{
@@ -27,7 +27,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 通过id获取IAccessDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IAccessDto getIAccessByID(IAccessDto iAccessDto){
@@ -51,7 +51,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 通过相关数据获取IAccessDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IAccessDto> getIAccessList(IAccessDto iAccessDto){
@@ -61,7 +61,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 添加一个新的IAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIAccess(IAccessDto iAccessDto){
@@ -77,12 +77,12 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 更新IAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIAccess(IAccessDto iAccessDto){
         // TODO Auto-generated method stub
-        if(iAccessDto!=null&&iAccessDto.getUid()!=null){
+        if(iAccessDto!=null&&iAccessDto.getIaccessId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = iAccessDto.createSetPropertiesVal(iAccessDto, "a", fl);
@@ -99,12 +99,12 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 删除IAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIAccess(IAccessDto iAccessDto){
          // TODO Auto-generated method stub
-        if(iAccessDto!=null&&iAccessDto.getUid()!=null){
+        if(iAccessDto!=null&&iAccessDto.getIaccessId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+IAccess.class.getName()+" a");

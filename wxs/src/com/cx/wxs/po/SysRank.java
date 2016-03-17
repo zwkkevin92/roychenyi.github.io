@@ -110,7 +110,7 @@ public class SysRank implements java.io.Serializable {
 		this.rankLogo = rankLogo;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

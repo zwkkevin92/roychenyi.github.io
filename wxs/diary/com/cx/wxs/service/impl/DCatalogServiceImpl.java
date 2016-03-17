@@ -11,7 +11,7 @@ import com.cx.wxs.service.DCatalogService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("DCatalogService")
@@ -26,7 +26,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
     * 通过用户id获取DCatalogDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DCatalogDto getDCatalogByID(DCatalogDto dCatalogDto){
@@ -36,7 +36,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
     * 通过相关信息获取DCatalogDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DCatalogDto> getDCatalogList(DCatalogDto dCatalogDto){
@@ -46,7 +46,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
     * 添加一个新的DCatalog到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDCatalog(DCatalogDto dCatalogDto){
@@ -56,7 +56,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
     * 更新DCatalog
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDCatalog(DCatalogDto dCatalogDto){
@@ -66,7 +66,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
     * 删除DCatalog
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDCatalog(DCatalogDto dCatalogDto){

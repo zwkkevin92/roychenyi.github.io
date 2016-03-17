@@ -73,7 +73,7 @@ public class BStatus implements java.io.Serializable {
 		this.BSite = BSite;
 	}
 
-	@Column(name = "time", nullable = false, length = 0)
+	@Column(name = "time", nullable = false, length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}
@@ -109,7 +109,7 @@ public class BStatus implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@Column(name = "update_time", length = 0)
+	@Column(name = "update_time", length = 19)
 	public Timestamp getUpdateTime() {
 		return this.updateTime;
 	}

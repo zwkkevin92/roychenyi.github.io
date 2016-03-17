@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("VCountDao")
 public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCountDao{
@@ -27,7 +27,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 通过id获取VCountDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VCountDto getVCountByID(VCountDto vCountDto){
@@ -51,7 +51,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 通过相关数据获取VCountDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VCountDto> getVCountList(VCountDto vCountDto){
@@ -61,7 +61,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 添加一个新的VCount到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVCount(VCountDto vCountDto){
@@ -77,12 +77,12 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 更新VCount
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVCount(VCountDto vCountDto){
         // TODO Auto-generated method stub
-        if(vCountDto!=null&&vCountDto.getUid()!=null){
+        if(vCountDto!=null&&vCountDto.getVcountId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = vCountDto.createSetPropertiesVal(vCountDto, "a", fl);
@@ -99,12 +99,12 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 删除VCount
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVCount(VCountDto vCountDto){
          // TODO Auto-generated method stub
-        if(vCountDto!=null&&vCountDto.getUid()!=null){
+        if(vCountDto!=null&&vCountDto.getVcountId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+VCount.class.getName()+" a");

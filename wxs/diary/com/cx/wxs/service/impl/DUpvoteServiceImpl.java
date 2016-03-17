@@ -11,7 +11,7 @@ import com.cx.wxs.service.DUpvoteService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("DUpvoteService")
@@ -26,7 +26,7 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     /**
     * 通过用户id获取DUpvoteDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DUpvoteDto getDUpvoteByID(DUpvoteDto dUpvoteDto){
@@ -36,7 +36,7 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     /**
     * 通过相关信息获取DUpvoteDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DUpvoteDto> getDUpvoteList(DUpvoteDto dUpvoteDto){
@@ -46,7 +46,7 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     /**
     * 添加一个新的DUpvote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDUpvote(DUpvoteDto dUpvoteDto){
@@ -56,7 +56,7 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     /**
     * 更新DUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDUpvote(DUpvoteDto dUpvoteDto){
@@ -66,7 +66,7 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     /**
     * 删除DUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDUpvote(DUpvoteDto dUpvoteDto){

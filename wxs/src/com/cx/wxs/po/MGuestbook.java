@@ -42,10 +42,8 @@ public class MGuestbook implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public MGuestbook(UUser UUser, BSite BSite, Integer visitorId,
-			String content) {
+	public MGuestbook(UUser UUser, Integer visitorId, String content) {
 		this.UUser = UUser;
-		this.BSite = BSite;
 		this.visitorId = visitorId;
 		this.content = content;
 	}
@@ -88,7 +86,7 @@ public class MGuestbook implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -142,7 +140,7 @@ public class MGuestbook implements java.io.Serializable {
 		this.clientAgent = clientAgent;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

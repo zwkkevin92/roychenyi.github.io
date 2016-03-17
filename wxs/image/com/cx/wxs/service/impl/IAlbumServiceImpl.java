@@ -11,7 +11,7 @@ import com.cx.wxs.service.IAlbumService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("IAlbumService")
@@ -26,7 +26,7 @@ public class IAlbumServiceImpl implements IAlbumService {
     /**
     * 通过用户id获取IAlbumDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IAlbumDto getIAlbumByID(IAlbumDto iAlbumDto){
@@ -36,7 +36,7 @@ public class IAlbumServiceImpl implements IAlbumService {
     /**
     * 通过相关信息获取IAlbumDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IAlbumDto> getIAlbumList(IAlbumDto iAlbumDto){
@@ -46,7 +46,7 @@ public class IAlbumServiceImpl implements IAlbumService {
     /**
     * 添加一个新的IAlbum到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIAlbum(IAlbumDto iAlbumDto){
@@ -56,7 +56,7 @@ public class IAlbumServiceImpl implements IAlbumService {
     /**
     * 更新IAlbum
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIAlbum(IAlbumDto iAlbumDto){
@@ -66,7 +66,7 @@ public class IAlbumServiceImpl implements IAlbumService {
     /**
     * 删除IAlbum
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIAlbum(IAlbumDto iAlbumDto){

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysTypeDao")
 public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements SysTypeDao{
@@ -27,7 +27,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 通过id获取SysTypeDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysTypeDto getSysTypeByID(SysTypeDto sysTypeDto){
@@ -51,7 +51,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 通过相关数据获取SysTypeDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysTypeDto> getSysTypeList(SysTypeDto sysTypeDto){
@@ -61,7 +61,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 添加一个新的SysType到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysType(SysTypeDto sysTypeDto){
@@ -77,12 +77,12 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 更新SysType
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysType(SysTypeDto sysTypeDto){
         // TODO Auto-generated method stub
-        if(sysTypeDto!=null&&sysTypeDto.getUid()!=null){
+        if(sysTypeDto!=null&&sysTypeDto.getTypeId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysTypeDto.createSetPropertiesVal(sysTypeDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 删除SysType
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysType(SysTypeDto sysTypeDto){
          // TODO Auto-generated method stub
-        if(sysTypeDto!=null&&sysTypeDto.getUid()!=null){
+        if(sysTypeDto!=null&&sysTypeDto.getTypeId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysType.class.getName()+" a");

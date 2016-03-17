@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
@@ -21,10 +24,26 @@ import com.cx.wxs.utils.StringUtils;
  * @author 陈义
  * @date   2015-12-3 上午11:34:21
  */
-@Repository("UuserDao")
+@Repository("UuserDao") 
 public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDao{
 
-	private BeanToDto<UUser,UUserDto> beanToDto;
+	
+	private BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
+	
+	/**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<UUser, UUserDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<UUser, UUserDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.dao.UuserDao#getUuser(com.cx.wxs.dto.UUserDto)
 	 */
@@ -37,11 +56,11 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		    stringBuffer.append(" from "+UUser.class.getName()+" a ");
 		    stringBuffer.append(" where 1=1 ");
 			if(uuserDto.getUserId()!=null&&uuserDto.getUserId()>0){
-				stringBuffer.append(" a.userId=:userId ");
+				stringBuffer.append(" and  a.userId=:userId ");
 				params.put("userId",uuserDto.getUserId());
 			}
 			if(uuserDto.getUsername()!=null){
-				stringBuffer.append(" a.username=:username");
+				stringBuffer.append(" and a.username=:username");
 				params.put("username",uuserDto.getUsername());
 			}
 			List<UUser> list=this.find(stringBuffer.toString(), params);
@@ -203,6 +222,7 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 			if(list!=null&&list.size()>0){
 				UUser uuser= list.get(0);
 				UUserDto dto=new UUserDto(); 
+				BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
 				dto=beanToDto.T1ToD1(uuser, dto);
 				return dto;
 			}

@@ -1,21 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+#set($disable_seachable=true)
+
+#html_doctype()
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-##parse("/layout/static.vm")  
-<title>Legend</title>
+	#parse("layout/head.vm")
 </head>
-<body>
-	<div id="header">
-		##parse("/layout/header.vm")
-		测试!!!!!!!!!!!!!!!!!1
-    </div>
-    <div id="body" style="margin: 40px;min-height: 700px;">
-		$screen_content
+<body class="top-navigation gray-bg" >
+<div id="wrapper">
+<div id="page-wrapper">
+#parse("layout/header.vm")
+    <div class="wrapper wrapper-content">
+        <div class="container">
+      $screen_content
+        </div>
 	</div>
-	<div id="bottom">
-		测试
-		##parse("/layout/bottom.vm")
-    </div>
-</body>
+#parse("layout/footer.vm")	
+</div>
+</div>
+#jquery()
+<!-- Custom and plugin javascript -->
+<script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/main.js?v1.0"></script>
+$extjs
+</body>	
 </html>

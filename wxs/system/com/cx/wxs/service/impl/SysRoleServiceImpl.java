@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysRoleService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysRoleService")
@@ -26,7 +26,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     /**
     * 通过用户id获取SysRoleDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysRoleDto getSysRoleByID(SysRoleDto sysRoleDto){
@@ -36,7 +36,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     /**
     * 通过相关信息获取SysRoleDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysRoleDto> getSysRoleList(SysRoleDto sysRoleDto){
@@ -46,7 +46,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     /**
     * 添加一个新的SysRole到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysRole(SysRoleDto sysRoleDto){
@@ -56,7 +56,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     /**
     * 更新SysRole
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysRole(SysRoleDto sysRoleDto){
@@ -66,7 +66,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     /**
     * 删除SysRole
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysRole(SysRoleDto sysRoleDto){

@@ -1,0 +1,72 @@
+#set($layout = "layout/index.vm")
+#set($page_title="登陆")
+#set($extjs="<!--javascrpt-plugins-layer--><script src='js/plugins/layer/layer.js'></script><script>layer.use('js/plugins/layer/extend/layer.ext.js'); //载入layer拓展模块</script><script src='js/login-check.js'></script>")
+##页面主体
+ <div class="middle-box text-center loginscreen  animated fadeInDown">
+                <div>
+                    <div>
+
+                        <h1 class="logo-name">文</h1>
+
+                    </div>
+                    <h3>欢迎登陆</h3>
+
+                    <form class="m-t" role="form" action="index.html">
+                        <div class="form-group">
+                            <input type="email" id="username" name="username" class="form-control" placeholder="用户名" required="" onblur="usercheck(this)">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="密码" required="">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                            <div class="col-lg-7 col-sm-7 col-xs-7 ">
+
+                                    <input type="text" class="form-control" id="verifyCode" name="verifyCode"
+                                           placeholder="验证码"  onblur="checkVerifyCode(this.value,this.id);" onfocus="inputVerifyCode('img_result');"  />
+
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 no-padding">
+                                <img id="CreateCheckCode" alt="验证码" src="servlet/verify.img" onclick="this.src=this.src+'?'"/>
+                                <a href="javascript:document.getElementById('CreateCheckCode').onclick()" >换一张</a>
+                            </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+
+
+                        <p class="text-muted text-center"> <a href="login.html"> 忘记密码了？</a> | <a href="register.html">注册一个新账号</a>
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+		
+<script type="text/javascript">
+ function checkVerifyCode(value,id){
+    if(value.length>=4){
+    var url="checkVerifyCode?VerifyCode="+value+"&nocahe="+new Date().getTime();
+    var loader=new net.AjaxRequest(url,deal_checkVerifyCode,onerror,"GET");
+    }
+    }
+	
+	function deal_checkVerifyCode(){
+    var obj = eval("("+this.req.responseText+")"); 
+    var img_result= document.getElementById("img_result");
+	document.getElementById("result").style.display="";
+    img_result.style.display="inline";
+    if(obj==1){
+    img_result.src="images/true.png";
+    }else{
+    img_result.src="images/flase.png";
+    document.getElementById("verifyCode").value="";
+	document.getElementById("login_info").innerHTML=document.getElementById("login_info").innerHTML+"验证码错误";
+    }
+    }
+	
+  function inputVerifyCode(id){
+    document.getElementById("result").style.display="none";
+    document.getElementById(id).style.display="none";
+    }	
+</script>

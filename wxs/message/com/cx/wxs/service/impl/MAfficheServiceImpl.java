@@ -11,7 +11,7 @@ import com.cx.wxs.service.MAfficheService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("MAfficheService")
@@ -26,7 +26,7 @@ public class MAfficheServiceImpl implements MAfficheService {
     /**
     * 通过用户id获取MAfficheDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public MAfficheDto getMAfficheByID(MAfficheDto mAfficheDto){
@@ -36,7 +36,7 @@ public class MAfficheServiceImpl implements MAfficheService {
     /**
     * 通过相关信息获取MAfficheDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<MAfficheDto> getMAfficheList(MAfficheDto mAfficheDto){
@@ -46,7 +46,7 @@ public class MAfficheServiceImpl implements MAfficheService {
     /**
     * 添加一个新的MAffiche到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addMAffiche(MAfficheDto mAfficheDto){
@@ -56,7 +56,7 @@ public class MAfficheServiceImpl implements MAfficheService {
     /**
     * 更新MAffiche
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateMAffiche(MAfficheDto mAfficheDto){
@@ -66,7 +66,7 @@ public class MAfficheServiceImpl implements MAfficheService {
     /**
     * 删除MAffiche
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteMAffiche(MAfficheDto mAfficheDto){

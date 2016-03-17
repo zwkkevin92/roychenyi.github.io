@@ -81,7 +81,7 @@ public class SysLink implements java.io.Serializable {
 		this.linkType = linkType;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

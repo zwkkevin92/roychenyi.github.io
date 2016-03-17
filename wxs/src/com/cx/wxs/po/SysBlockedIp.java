@@ -81,7 +81,7 @@ public class SysBlockedIp implements java.io.Serializable {
 		this.blockedType = blockedType;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}
@@ -99,7 +99,7 @@ public class SysBlockedIp implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "update_time", length = 0)
+	@Column(name = "update_time", length = 19)
 	public Timestamp getUpdateTime() {
 		return this.updateTime;
 	}

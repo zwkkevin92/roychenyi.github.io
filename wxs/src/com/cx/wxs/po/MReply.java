@@ -97,7 +97,7 @@ public class MReply implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("WConfigDao")
 public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WConfigDao{
@@ -27,7 +27,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 通过id获取WConfigDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WConfigDto getWConfigByID(WConfigDto wConfigDto){
@@ -51,7 +51,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 通过相关数据获取WConfigDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WConfigDto> getWConfigList(WConfigDto wConfigDto){
@@ -61,7 +61,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 添加一个新的WConfig到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWConfig(WConfigDto wConfigDto){
@@ -77,12 +77,12 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 更新WConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWConfig(WConfigDto wConfigDto){
         // TODO Auto-generated method stub
-        if(wConfigDto!=null&&wConfigDto.getUid()!=null){
+        if(wConfigDto!=null&&wConfigDto.getWconfigId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = wConfigDto.createSetPropertiesVal(wConfigDto, "a", fl);
@@ -99,12 +99,12 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 删除WConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWConfig(WConfigDto wConfigDto){
          // TODO Auto-generated method stub
-        if(wConfigDto!=null&&wConfigDto.getUid()!=null){
+        if(wConfigDto!=null&&wConfigDto.getWconfigId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+WConfig.class.getName()+" a");

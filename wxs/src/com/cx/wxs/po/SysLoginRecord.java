@@ -65,7 +65,7 @@ public class SysLoginRecord implements java.io.Serializable {
 		this.UUser = UUser;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

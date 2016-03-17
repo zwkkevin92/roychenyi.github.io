@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysSchoolDao")
 public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements SysSchoolDao{
@@ -27,7 +27,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 通过id获取SysSchoolDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysSchoolDto getSysSchoolByID(SysSchoolDto sysSchoolDto){
@@ -51,7 +51,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 通过相关数据获取SysSchoolDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysSchoolDto> getSysSchoolList(SysSchoolDto sysSchoolDto){
@@ -61,7 +61,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 添加一个新的SysSchool到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysSchool(SysSchoolDto sysSchoolDto){
@@ -77,12 +77,12 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 更新SysSchool
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysSchool(SysSchoolDto sysSchoolDto){
         // TODO Auto-generated method stub
-        if(sysSchoolDto!=null&&sysSchoolDto.getUid()!=null){
+        if(sysSchoolDto!=null&&sysSchoolDto.getSchoolId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysSchoolDto.createSetPropertiesVal(sysSchoolDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 删除SysSchool
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysSchool(SysSchoolDto sysSchoolDto){
          // TODO Auto-generated method stub
-        if(sysSchoolDto!=null&&sysSchoolDto.getUid()!=null){
+        if(sysSchoolDto!=null&&sysSchoolDto.getSchoolId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysSchool.class.getName()+" a");

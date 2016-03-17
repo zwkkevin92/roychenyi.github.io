@@ -1,0 +1,17 @@
+<footer>
+	<!--回到顶部-->
+	<a href="javascript:scrollTo(0,0)" id="gotop" title="回到顶部" style="display:none;"><i class="fa fa-angle-up fa-4x"></i><span>top</span></a>
+
+	 <div class="footer" >
+        <div class="row">
+            <div class="col-md-5">数据连接列表：<br>测试</div>
+        </div>
+        <div class="pull-right">
+            By：<a href="#" target="_blank">陈义</a>
+        </div>
+        <div>
+            <strong>Copyright</strong> C+ &copy; 2016
+        </div>
+    </div>
+</footer>
+

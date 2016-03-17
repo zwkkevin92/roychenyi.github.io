@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysRankService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysRankService")
@@ -26,7 +26,7 @@ public class SysRankServiceImpl implements SysRankService {
     /**
     * 通过用户id获取SysRankDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysRankDto getSysRankByID(SysRankDto sysRankDto){
@@ -36,7 +36,7 @@ public class SysRankServiceImpl implements SysRankService {
     /**
     * 通过相关信息获取SysRankDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysRankDto> getSysRankList(SysRankDto sysRankDto){
@@ -46,7 +46,7 @@ public class SysRankServiceImpl implements SysRankService {
     /**
     * 添加一个新的SysRank到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysRank(SysRankDto sysRankDto){
@@ -56,7 +56,7 @@ public class SysRankServiceImpl implements SysRankService {
     /**
     * 更新SysRank
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysRank(SysRankDto sysRankDto){
@@ -66,7 +66,7 @@ public class SysRankServiceImpl implements SysRankService {
     /**
     * 删除SysRank
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysRank(SysRankDto sysRankDto){

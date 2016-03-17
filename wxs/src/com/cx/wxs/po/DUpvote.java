@@ -112,7 +112,7 @@ public class DUpvote implements java.io.Serializable {
 		this.clientType = clientType;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

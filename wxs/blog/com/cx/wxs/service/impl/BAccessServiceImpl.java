@@ -11,7 +11,7 @@ import com.cx.wxs.service.BAccessService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BAccessService")
@@ -26,7 +26,7 @@ public class BAccessServiceImpl implements BAccessService {
     /**
     * 通过用户id获取BAccessDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BAccessDto getBAccessByID(BAccessDto bAccessDto){
@@ -36,7 +36,7 @@ public class BAccessServiceImpl implements BAccessService {
     /**
     * 通过相关信息获取BAccessDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BAccessDto> getBAccessList(BAccessDto bAccessDto){
@@ -46,7 +46,7 @@ public class BAccessServiceImpl implements BAccessService {
     /**
     * 添加一个新的BAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBAccess(BAccessDto bAccessDto){
@@ -56,7 +56,7 @@ public class BAccessServiceImpl implements BAccessService {
     /**
     * 更新BAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBAccess(BAccessDto bAccessDto){
@@ -66,7 +66,7 @@ public class BAccessServiceImpl implements BAccessService {
     /**
     * 删除BAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBAccess(BAccessDto bAccessDto){
