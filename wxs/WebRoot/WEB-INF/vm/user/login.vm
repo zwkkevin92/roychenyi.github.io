@@ -43,30 +43,3 @@
                 </div>
             </div>
 		
-<script type="text/javascript">
- function checkVerifyCode(value,id){
-    if(value.length>=4){
-    var url="checkVerifyCode?VerifyCode="+value+"&nocahe="+new Date().getTime();
-    var loader=new net.AjaxRequest(url,deal_checkVerifyCode,onerror,"GET");
-    }
-    }
-	
-	function deal_checkVerifyCode(){
-    var obj = eval("("+this.req.responseText+")"); 
-    var img_result= document.getElementById("img_result");
-	document.getElementById("result").style.display="";
-    img_result.style.display="inline";
-    if(obj==1){
-    img_result.src="images/true.png";
-    }else{
-    img_result.src="images/flase.png";
-    document.getElementById("verifyCode").value="";
-	document.getElementById("login_info").innerHTML=document.getElementById("login_info").innerHTML+"验证码错误";
-    }
-    }
-	
-  function inputVerifyCode(id){
-    document.getElementById("result").style.display="none";
-    document.getElementById(id).style.display="none";
-    }	
-</script>
