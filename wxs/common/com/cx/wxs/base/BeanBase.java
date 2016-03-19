@@ -60,6 +60,7 @@ public  class BeanBase implements Serializable{
    private Boolean isUsers=false;//是否查询用户信息
    private Boolean isFortyLogin=false;
    private String url;  //获取前一个页面的URL
+   private String loginFlag; //-1：不成功；0：待验证；1：成功
 
 	//**************验证信息参数******************/
 
@@ -159,6 +160,73 @@ public  class BeanBase implements Serializable{
 		this.isUsers = isUsers;
 		this.isFortyLogin = isFortyLogin;
 		this.url = url;
+		this.validateNum = validateNum;
+		this.validateCode = validateCode;
+		this.validateMark = validateMark;
+		this.validateType = validateType;
+		ROWNUM_ = rOWNUM_;
+		this.search = search;
+	}
+	
+	
+	
+
+	/**
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param dir
+	 * @param group
+	 * @param order
+	 * @param pageCount
+	 * @param batch
+	 * @param field
+	 * @param ip
+	 * @param local
+	 * @param msg
+	 * @param isSucceed
+	 * @param object
+	 * @param uid
+	 * @param isUsers
+	 * @param isFortyLogin
+	 * @param url
+	 * @param loginFlag
+	 * @param validateNum
+	 * @param validateCode
+	 * @param validateMark
+	 * @param validateType
+	 * @param rOWNUM_
+	 * @param search
+	 * @author 陈义
+	 * @date   2016-3-18下午6:43:50
+	 */
+	public BeanBase(Integer page, Integer rows, String sort, String dir,
+			String group, String order, Integer pageCount, String batch,
+			String field, String ip, String local, String msg,
+			Boolean isSucceed, Object object, Integer uid, Boolean isUsers,
+			Boolean isFortyLogin, String url, String loginFlag,
+			String validateNum, String validateCode, String validateMark,
+			String validateType, BigDecimal rOWNUM_, String search) {
+		super();
+		this.page = page;
+		this.rows = rows;
+		this.sort = sort;
+		this.dir = dir;
+		this.group = group;
+		this.order = order;
+		this.pageCount = pageCount;
+		this.batch = batch;
+		this.field = field;
+		this.ip = ip;
+		this.local = local;
+		this.msg = msg;
+		this.isSucceed = isSucceed;
+		this.object = object;
+		this.uid = uid;
+		this.isUsers = isUsers;
+		this.isFortyLogin = isFortyLogin;
+		this.url = url;
+		this.loginFlag = loginFlag;
 		this.validateNum = validateNum;
 		this.validateCode = validateCode;
 		this.validateMark = validateMark;
@@ -369,6 +437,23 @@ public  class BeanBase implements Serializable{
 	 */
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	
+
+
+	/**
+	 * @return the loginFlag
+	 */
+	public String getLoginFlag() {
+		return loginFlag;
+	}
+
+	/**
+	 * @param loginFlag the loginFlag to set
+	 */
+	public void setLoginFlag(String loginFlag) {
+		this.loginFlag = loginFlag;
 	}
 
 	/**

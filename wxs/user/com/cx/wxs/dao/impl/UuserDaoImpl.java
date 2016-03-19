@@ -1,6 +1,8 @@
 package com.cx.wxs.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -215,19 +217,45 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 			StringBuffer stringBuffer=new StringBuffer();
 			Map<String,Object> params=new HashMap<String,Object>();
 			stringBuffer.append(" from "+UUser.class.getName()+" a ");
-			stringBuffer.append(" where a.username=:username and a.password=:password");
+			stringBuffer.append(" where a.username=:username ");
 			params.put("username",uuserDto.getUsername());
-			params.put("password",uuserDto.getPassword());
+		//	params.put("password",uuserDto.getPassword());
 			List<UUser> list=this.find(stringBuffer.toString(), params);
+			UUserDto dto=new UUserDto(); 
 			if(list!=null&&list.size()>0){
 				UUser uuser= list.get(0);
-				UUserDto dto=new UUserDto(); 
-				BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
-				dto=beanToDto.T1ToD1(uuser, dto);
+				if(uuser.getPassword().equals(uuserDto.getPassword())||uuser.getPassword()==uuserDto.getPassword()){
+					dto=beanToDto.T1ToD1(uuser, dto);
+					dto.setLoginFlag("1");
+				}else{
+					dto.setLoginFlag("-1");
+				}
+		//		BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
+				
 				return dto;
 			}
 		}
 		return null;
+	}
+	/***
+	 * 设置默认属性
+	 * @param userDto
+	 * @author 陈义
+	 * @date   2016-3-18下午4:33:46
+	 */
+	private void setDefault(UUserDto userDto) {
+		//一以下给定默认值，一般与数据库设置的默认值一致
+		Date date=new Date();
+		userDto.setBirth( new Timestamp(date.getTime()));
+		userDto.setRoleId(1);
+		userDto.setArticleCount(0);
+		userDto.setArticleReplyCount(0);
+		userDto.setTagCount(0);
+		userDto.setTopicCount(0);
+		userDto.setTopicReplyCount(0);
+		userDto.setImageCount(0);
+		userDto.setImageReplyCount(0);
+		userDto.setGuestbookCount(0);
 	}
 
 }

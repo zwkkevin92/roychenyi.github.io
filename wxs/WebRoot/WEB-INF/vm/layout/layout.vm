@@ -20,6 +20,8 @@
 <!-- Custom and plugin javascript -->
 <script src="js/plugins/pace/pace.min.js"></script>
 <script src="js/main.js?v1.0"></script>
+#if($extjs)
 $extjs
+#end
 </body>	
 </html>

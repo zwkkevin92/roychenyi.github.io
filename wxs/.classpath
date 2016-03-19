@@ -40,7 +40,6 @@
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/druid-1.0.9.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/ehcache-core-2.4.3.jar"/>
-	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/fastjson-1.2.7.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/hibernate-commons-annotations-4.0.5.Final.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/hibernate-core-4.3.11.Final.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/hibernate-ehcache-4.3.11.Final.jar"/>
@@ -96,5 +95,6 @@
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/velocity-tools-2.0.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/velocity-tools-generic-2.0.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/velocity-tools-view-2.0.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/wxs/WebRoot/WEB-INF/lib/fastjson-1.1.41.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

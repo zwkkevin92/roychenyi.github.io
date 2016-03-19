@@ -26,13 +26,27 @@ function usercheck(user){
 
 }
 
+function testjson(){
+    $.ajax({
+        url:"json",
+        type:"POST",
+        dataType: "json",  
+        success:function(data){
+            alert(data);
+        },
+        error:function(){
+            alert("失败！");
+        }
+    });
+}
 
 function check_VerifyCode(E){
     $.ajax({
     url: "checkVerifyCode?VerifyCode=" + E.value + "&nocahe=" + new Date().getTime(),
     type:"POST",
+    dataType:"json",
     success:function(data) {
-        if (data == 1) {
+        if (data == "1") {
             layer.tips('验证码正确', '#verifyCode', {
                 title: '标题',
                 icon: 1,
@@ -54,9 +68,10 @@ function check_VerifyCode(E){
                 tips: [2, '#78BA32']//还可配置颜色
 
             });
-             E.style.backgroundColor='#FF0000' ;
+            E.style.backgroundColor='#ff0000';
         }
-    }
+    },
+    error:function(){alert("执行失败！");}
      }
     );
 }
@@ -76,6 +91,32 @@ $(document).ready(function () {
 
     $('#verifyCode').focus(function(){
         this.value="";
-        this.style.backgroundColor='#FFFFFF';
+        this.style.backgroundColor='#ffffff';
+    });
+
+    $('#login').click(function() {
+        var str_data = $("#loginform input").map(function () {
+            return ($(this).attr("name") + '=' + $(this).val());
+        }).get().join("&");
+
+        $.ajax({
+            url: "login1",
+            type: "POST",
+            data: str_data,
+            dataType:"json",
+            success: function (data) {
+            	
+            	alert(data["loginFlag"]);
+                if(data["loginFlag"]==-1){
+
+                    $('#error_text').append("<small>登陆失败:账号或密码错误，请检查后登陆</small>");
+                }else if(data["loginFlag"]==0){
+                    $('#error_text').append("<small>验证码错误！</small>");
+                }else{
+                    window.location=data['url'];
+                }
+            }
+
+        });
     });
 });

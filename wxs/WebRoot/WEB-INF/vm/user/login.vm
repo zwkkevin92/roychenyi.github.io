@@ -4,16 +4,23 @@
 ##页面主体
  <div class="middle-box text-center loginscreen  animated fadeInDown">
                 <div>
-                    <div>
+           <!--        <div>
 
                         <h1 class="logo-name">文</h1>
 
                     </div>
+					-->
                     <h3>欢迎登陆</h3>
-
-                    <form class="m-t" role="form" action="index.html">
+                     #if($flag==0)
+						<p id="error_text" class="text-danger text-left"><small>验证码错误</small></p>
+					 #elseif($flag==-1)
+					 <p id="error_text" class="text-danger text-left"><small>账号或密码错误请检查后输入</small></p>
+					 #end
+					 <p id="error_text" class="text-danger text-left"></p>					 
+                    <form class="m-t" role="form" id="loginform" action="login1" method="post">
                         <div class="form-group">
-                            <input type="email" id="username" name="username" class="form-control" placeholder="用户名" required="" onblur="usercheck(this)">
+							<input type="hidden" id="prev_url" name="prev_url" value='$prev_url' />
+                            <input type="email" id="username" name="username" class="form-control" placeholder="账号" required="" onblur="usercheck(this)">
                         </div>
                         <div class="form-group">
                             <input type="password" id="password" name="password" class="form-control" placeholder="密码" required="">
@@ -33,7 +40,7 @@
                             </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                        <button type="button" id="login" class="btn btn-primary block full-width m-b">登 录</button>
 
 
                         <p class="text-muted text-center"> <a href="login.html"> 忘记密码了？</a> | <a href="register.html">注册一个新账号</a>
