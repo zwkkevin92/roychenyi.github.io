@@ -48,9 +48,8 @@ public class IAlbum implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public IAlbum(UUser UUser, BSite BSite) {
+	public IAlbum(UUser UUser) {
 		this.UUser = UUser;
-		this.BSite = BSite;
 	}
 
 	/** full constructor */
@@ -99,7 +98,7 @@ public class IAlbum implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -162,7 +161,7 @@ public class IAlbum implements java.io.Serializable {
 		this.verifycode = verifycode;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

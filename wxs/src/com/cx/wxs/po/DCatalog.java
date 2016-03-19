@@ -47,9 +47,8 @@ public class DCatalog implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public DCatalog(UUser UUser, BSite BSite, String catalogName) {
+	public DCatalog(UUser UUser, String catalogName) {
 		this.UUser = UUser;
-		this.BSite = BSite;
 		this.catalogName = catalogName;
 	}
 
@@ -98,7 +97,7 @@ public class DCatalog implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -125,7 +124,7 @@ public class DCatalog implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

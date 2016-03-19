@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("WBookDao")
 public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDao{
@@ -27,7 +27,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 通过id获取WBookDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WBookDto getWBookByID(WBookDto wBookDto){
@@ -51,7 +51,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 通过相关数据获取WBookDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WBookDto> getWBookList(WBookDto wBookDto){
@@ -61,7 +61,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 添加一个新的WBook到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWBook(WBookDto wBookDto){
@@ -77,12 +77,12 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 更新WBook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWBook(WBookDto wBookDto){
         // TODO Auto-generated method stub
-        if(wBookDto!=null&&wBookDto.getUid()!=null){
+        if(wBookDto!=null&&wBookDto.getWbookId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = wBookDto.createSetPropertiesVal(wBookDto, "a", fl);
@@ -99,12 +99,12 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 删除WBook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWBook(WBookDto wBookDto){
          // TODO Auto-generated method stub
-        if(wBookDto!=null&&wBookDto.getUid()!=null){
+        if(wBookDto!=null&&wBookDto.getWbookId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+WBook.class.getName()+" a");

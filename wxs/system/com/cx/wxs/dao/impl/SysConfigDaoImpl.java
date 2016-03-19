@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysConfigDao")
 public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements SysConfigDao{
@@ -27,7 +27,7 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 通过id获取SysConfigDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysConfigDto getSysConfigByID(SysConfigDto sysConfigDto){
@@ -51,7 +51,7 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 通过相关数据获取SysConfigDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysConfigDto> getSysConfigList(SysConfigDto sysConfigDto){
@@ -61,7 +61,7 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 添加一个新的SysConfig到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysConfig(SysConfigDto sysConfigDto){
@@ -77,12 +77,12 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 更新SysConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysConfig(SysConfigDto sysConfigDto){
         // TODO Auto-generated method stub
-        if(sysConfigDto!=null&&sysConfigDto.getUid()!=null){
+        if(sysConfigDto!=null&&sysConfigDto.getConfigId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysConfigDto.createSetPropertiesVal(sysConfigDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 删除SysConfig
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysConfig(SysConfigDto sysConfigDto){
          // TODO Auto-generated method stub
-        if(sysConfigDto!=null&&sysConfigDto.getUid()!=null){
+        if(sysConfigDto!=null&&sysConfigDto.getConfigId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysConfig.class.getName()+" a");

@@ -239,7 +239,7 @@ public class CreateDto {
 		stringBuffer.append(BLANK_8+"return 0;"+RT_1+BLANK_4+"}"+RT_2);
 		stringBuffer.append(getAnnotation("更新"+getLastChar(c.getName()))+BLANK_4+"public"+BLANK_1+"Integer"+BLANK_1+"update"+getLastChar(c.getName())+"("+getLastChar(c.getName())+"Dto"+BLANK_1+StringUtils.firstLowerCase(getLastChar(c.getName())+"Dto")+"){"+RT_1);
 
-		stringBuffer.append(BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.getUid()!=null){"+RT_1
+		stringBuffer.append(BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"()!=null){"+RT_1
 				+BLANK_8+BLANK_2+"StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());"+RT_1+BLANK_8+BLANK_2+"String[] fl = new String[]{\"uid\"};//过滤掉的字段"+RT_1
 				+BLANK_8+BLANK_2+"Map<String, Object> map = "+lowerName+"Dto.createSetPropertiesVal("+lowerName+"Dto, \"a\", fl);"+RT_1+BLANK_8+BLANK_2+"Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);"+RT_1
 				+BLANK_8+BLANK_2+"stringBuffer.append(\" form \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(map.get(StringUtils.SET_HQL));"+RT_1
@@ -248,7 +248,7 @@ public class CreateDto {
 		stringBuffer.append(BLANK_8+"return 0;"+RT_1+BLANK_4+"}"+RT_2);
 		stringBuffer.append(getAnnotation("删除"+getLastChar(c.getName()))+BLANK_4+"public"+BLANK_1+"Integer"+BLANK_1+"delete"+getLastChar(c.getName())+"("+getLastChar(c.getName())+"Dto"+BLANK_1+StringUtils.firstLowerCase(getLastChar(c.getName())+"Dto")+"){"+RT_1);		
 
-	   stringBuffer.append(BLANK_1+BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.getUid()!=null){"+RT_1
+	   stringBuffer.append(BLANK_1+BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"()!=null){"+RT_1
 			           +BLANK_8+BLANK_2+"StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());"+RT_1+BLANK_8+BLANK_2+"Map<String,Object> params=new HashMap<String,Object>();"+RT_1
 			           +BLANK_8+BLANK_2+"stringBuffer.append(\" from \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(\" where a."+map.get("id")+"=:uid \");"+RT_1
 					   +BLANK_8+BLANK_2+"params.put(\"uid\","+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"());"+RT_1
@@ -528,6 +528,7 @@ public class CreateDto {
 		String popath=System.getProperty("user.dir") + "/src/" + PATH+"/po";
 		File file=new File(popath);
 		String[] javaname=file.list();
+		int m=0; //计数生成的po对应的server、serverImp 、dao、daoImp
 		for(int i=0;i<javaname.length;i++){
 		//	System.out.println(javaname[i]+":"+javaname[i].substring(0,javaname[i].indexOf(".java")));
 			String className=URL+"po."+ javaname[i].substring(0,javaname[i].indexOf(".java"));
@@ -555,6 +556,7 @@ public class CreateDto {
 			}
 			c=Class.forName(className);
 			System.out.println(c.getName());
+			
             if(!module.equals("user")){
             	 Map<String,Object> map= create.getFields(c);
             	 String content= create.createDtoFileContent(c, map);
@@ -567,10 +569,11 @@ public class CreateDto {
          //   	 create.createService(c, content3, module);
             	 String content4=create.createServiceImplContent(c, content3, map);
             	 create.createServiceImpl(c, content4, module);
+            	 m++;
             }
 //			System.out.println(content);
 		}
-		
+		System.out.println("计数:"+m);
 	    c=SysLoginRecord.class;
 	    module="system";
 		Map<String,Object> map= create.getFields(c);

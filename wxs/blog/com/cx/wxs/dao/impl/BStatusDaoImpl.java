@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("BStatusDao")
 public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BStatusDao{
@@ -27,7 +27,7 @@ public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BSt
     /**
     * 通过id获取BStatusDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BStatusDto getBStatusByID(BStatusDto bStatusDto){
@@ -51,7 +51,7 @@ public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BSt
     /**
     * 通过相关数据获取BStatusDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BStatusDto> getBStatusList(BStatusDto bStatusDto){
@@ -61,7 +61,7 @@ public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BSt
     /**
     * 添加一个新的BStatus到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBStatus(BStatusDto bStatusDto){
@@ -77,12 +77,12 @@ public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BSt
     /**
     * 更新BStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBStatus(BStatusDto bStatusDto){
         // TODO Auto-generated method stub
-        if(bStatusDto!=null&&bStatusDto.getUid()!=null){
+        if(bStatusDto!=null&&bStatusDto.getBstatusId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = bStatusDto.createSetPropertiesVal(bStatusDto, "a", fl);
@@ -99,12 +99,12 @@ public class BStatusDaoImpl extends BaseDaoImpl<BStatus, Integer> implements BSt
     /**
     * 删除BStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBStatus(BStatusDto bStatusDto){
          // TODO Auto-generated method stub
-        if(bStatusDto!=null&&bStatusDto.getUid()!=null){
+        if(bStatusDto!=null&&bStatusDto.getBstatusId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+BStatus.class.getName()+" a");

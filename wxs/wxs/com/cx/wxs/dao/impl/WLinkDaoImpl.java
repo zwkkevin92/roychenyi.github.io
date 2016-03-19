@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("WLinkDao")
 public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDao{
@@ -27,7 +27,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 通过id获取WLinkDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WLinkDto getWLinkByID(WLinkDto wLinkDto){
@@ -51,7 +51,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 通过相关数据获取WLinkDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WLinkDto> getWLinkList(WLinkDto wLinkDto){
@@ -61,7 +61,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 添加一个新的WLink到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWLink(WLinkDto wLinkDto){
@@ -77,12 +77,12 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 更新WLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWLink(WLinkDto wLinkDto){
         // TODO Auto-generated method stub
-        if(wLinkDto!=null&&wLinkDto.getUid()!=null){
+        if(wLinkDto!=null&&wLinkDto.getWlinkId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = wLinkDto.createSetPropertiesVal(wLinkDto, "a", fl);
@@ -99,12 +99,12 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 删除WLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWLink(WLinkDto wLinkDto){
          // TODO Auto-generated method stub
-        if(wLinkDto!=null&&wLinkDto.getUid()!=null){
+        if(wLinkDto!=null&&wLinkDto.getWlinkId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+WLink.class.getName()+" a");

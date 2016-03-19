@@ -64,9 +64,8 @@ public class IImage implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public IImage(UUser UUser, BSite BSite, IAlbum IAlbum) {
+	public IImage(UUser UUser, IAlbum IAlbum) {
 		this.UUser = UUser;
-		this.BSite = BSite;
 		this.IAlbum = IAlbum;
 	}
 
@@ -136,7 +135,7 @@ public class IImage implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -218,7 +217,7 @@ public class IImage implements java.io.Serializable {
 		this.tag = tag;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

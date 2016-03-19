@@ -11,7 +11,7 @@ import com.cx.wxs.service.DReply1Service;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("DReply1Service")
@@ -26,7 +26,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     /**
     * 通过用户id获取DReply1Dto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
@@ -36,7 +36,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     /**
     * 通过相关信息获取DReply1DtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DReply1Dto> getDReply1List(DReply1Dto dReply1Dto){
@@ -46,7 +46,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     /**
     * 添加一个新的DReply1到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDReply1(DReply1Dto dReply1Dto){
@@ -56,7 +56,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     /**
     * 更新DReply1
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDReply1(DReply1Dto dReply1Dto){
@@ -66,7 +66,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     /**
     * 删除DReply1
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDReply1(DReply1Dto dReply1Dto){

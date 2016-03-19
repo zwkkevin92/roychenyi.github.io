@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysCollegeDao")
 public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implements SysCollegeDao{
@@ -27,7 +27,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 通过id获取SysCollegeDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysCollegeDto getSysCollegeByID(SysCollegeDto sysCollegeDto){
@@ -51,7 +51,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 通过相关数据获取SysCollegeDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysCollegeDto> getSysCollegeList(SysCollegeDto sysCollegeDto){
@@ -61,7 +61,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 添加一个新的SysCollege到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysCollege(SysCollegeDto sysCollegeDto){
@@ -77,12 +77,12 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 更新SysCollege
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysCollege(SysCollegeDto sysCollegeDto){
         // TODO Auto-generated method stub
-        if(sysCollegeDto!=null&&sysCollegeDto.getUid()!=null){
+        if(sysCollegeDto!=null&&sysCollegeDto.getCollegeId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysCollegeDto.createSetPropertiesVal(sysCollegeDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 删除SysCollege
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysCollege(SysCollegeDto sysCollegeDto){
          // TODO Auto-generated method stub
-        if(sysCollegeDto!=null&&sysCollegeDto.getUid()!=null){
+        if(sysCollegeDto!=null&&sysCollegeDto.getCollegeId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysCollege.class.getName()+" a");

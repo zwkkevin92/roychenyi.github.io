@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("VUpvoteDao")
 public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUpvoteDao{
@@ -27,7 +27,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 通过id获取VUpvoteDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VUpvoteDto getVUpvoteByID(VUpvoteDto vUpvoteDto){
@@ -51,7 +51,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 通过相关数据获取VUpvoteDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VUpvoteDto> getVUpvoteList(VUpvoteDto vUpvoteDto){
@@ -61,7 +61,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 添加一个新的VUpvote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVUpvote(VUpvoteDto vUpvoteDto){
@@ -77,12 +77,12 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 更新VUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVUpvote(VUpvoteDto vUpvoteDto){
         // TODO Auto-generated method stub
-        if(vUpvoteDto!=null&&vUpvoteDto.getUid()!=null){
+        if(vUpvoteDto!=null&&vUpvoteDto.getVupvoteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = vUpvoteDto.createSetPropertiesVal(vUpvoteDto, "a", fl);
@@ -99,12 +99,12 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 删除VUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVUpvote(VUpvoteDto vUpvoteDto){
          // TODO Auto-generated method stub
-        if(vUpvoteDto!=null&&vUpvoteDto.getUid()!=null){
+        if(vUpvoteDto!=null&&vUpvoteDto.getVupvoteId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+VUpvote.class.getName()+" a");

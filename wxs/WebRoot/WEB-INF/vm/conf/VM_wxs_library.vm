@@ -1,13 +1,26 @@
- #*
- * Copyright 2005 Liusoft
- *
- * $Id: VM_dlog4j_library.vm,v 1.18 2006/05/18 00:48:55 liudong Exp $
- *#
+
 
 #macro(html_doctype)
 ##<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE HTML>
+<html lang="zh">	
 #end
+
+#macro(bootstrap)
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+   <link href="css/animate.css" rel="stylesheet">
+   <link href="css/style.css?v=1.0" rel="stylesheet">
+#end
+
+#macro(jquery)
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>          <!--创建手风琴效果的可折叠菜单-->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+#end
+
  
 #macro(show_error_msg)
 #if($messages.exist())

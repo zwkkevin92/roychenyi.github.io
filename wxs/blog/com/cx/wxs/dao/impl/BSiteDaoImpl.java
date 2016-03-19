@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("BSiteDao")
 public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDao{
@@ -27,7 +27,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 通过id获取BSiteDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BSiteDto getBSiteByID(BSiteDto bSiteDto){
@@ -51,7 +51,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 通过相关数据获取BSiteDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BSiteDto> getBSiteList(BSiteDto bSiteDto){
@@ -61,7 +61,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 添加一个新的BSite到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBSite(BSiteDto bSiteDto){
@@ -77,12 +77,12 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 更新BSite
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBSite(BSiteDto bSiteDto){
         // TODO Auto-generated method stub
-        if(bSiteDto!=null&&bSiteDto.getUid()!=null){
+        if(bSiteDto!=null&&bSiteDto.getSiteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = bSiteDto.createSetPropertiesVal(bSiteDto, "a", fl);
@@ -99,12 +99,12 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 删除BSite
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBSite(BSiteDto bSiteDto){
          // TODO Auto-generated method stub
-        if(bSiteDto!=null&&bSiteDto.getUid()!=null){
+        if(bSiteDto!=null&&bSiteDto.getSiteId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+BSite.class.getName()+" a");

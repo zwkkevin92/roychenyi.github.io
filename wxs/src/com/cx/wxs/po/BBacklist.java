@@ -88,7 +88,7 @@ public class BBacklist implements java.io.Serializable {
 		this.blType = blType;
 	}
 
-	@Column(name = "add_time", length = 0)
+	@Column(name = "add_time", length = 19)
 	public Timestamp getAddTime() {
 		return this.addTime;
 	}

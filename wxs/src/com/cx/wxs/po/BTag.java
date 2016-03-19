@@ -90,7 +90,7 @@ public class BTag implements java.io.Serializable {
 		this.refType = refType;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

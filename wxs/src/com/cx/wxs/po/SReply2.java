@@ -151,7 +151,7 @@ public class SReply2 implements java.io.Serializable {
 		this.clientType = clientType;
 	}
 
-	@Column(name = "reply_time", length = 0)
+	@Column(name = "reply_time", length = 19)
 	public Timestamp getReplyTime() {
 		return this.replyTime;
 	}
@@ -160,7 +160,7 @@ public class SReply2 implements java.io.Serializable {
 		this.replyTime = replyTime;
 	}
 
-	@Column(name = "reply_id", length = 0)
+	@Column(name = "reply_id", length = 19)
 	public Timestamp getReplyId() {
 		return this.replyId;
 	}

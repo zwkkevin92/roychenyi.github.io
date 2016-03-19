@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysSchoolService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysSchoolService")
@@ -26,7 +26,7 @@ public class SysSchoolServiceImpl implements SysSchoolService {
     /**
     * 通过用户id获取SysSchoolDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysSchoolDto getSysSchoolByID(SysSchoolDto sysSchoolDto){
@@ -36,7 +36,7 @@ public class SysSchoolServiceImpl implements SysSchoolService {
     /**
     * 通过相关信息获取SysSchoolDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysSchoolDto> getSysSchoolList(SysSchoolDto sysSchoolDto){
@@ -46,7 +46,7 @@ public class SysSchoolServiceImpl implements SysSchoolService {
     /**
     * 添加一个新的SysSchool到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysSchool(SysSchoolDto sysSchoolDto){
@@ -56,7 +56,7 @@ public class SysSchoolServiceImpl implements SysSchoolService {
     /**
     * 更新SysSchool
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysSchool(SysSchoolDto sysSchoolDto){
@@ -66,7 +66,7 @@ public class SysSchoolServiceImpl implements SysSchoolService {
     /**
     * 删除SysSchool
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysSchool(SysSchoolDto sysSchoolDto){

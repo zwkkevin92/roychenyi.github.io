@@ -11,7 +11,7 @@ import com.cx.wxs.service.SUpvoteService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SUpvoteService")
@@ -26,7 +26,7 @@ public class SUpvoteServiceImpl implements SUpvoteService {
     /**
     * 通过用户id获取SUpvoteDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SUpvoteDto getSUpvoteByID(SUpvoteDto sUpvoteDto){
@@ -36,7 +36,7 @@ public class SUpvoteServiceImpl implements SUpvoteService {
     /**
     * 通过相关信息获取SUpvoteDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SUpvoteDto> getSUpvoteList(SUpvoteDto sUpvoteDto){
@@ -46,7 +46,7 @@ public class SUpvoteServiceImpl implements SUpvoteService {
     /**
     * 添加一个新的SUpvote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSUpvote(SUpvoteDto sUpvoteDto){
@@ -56,7 +56,7 @@ public class SUpvoteServiceImpl implements SUpvoteService {
     /**
     * 更新SUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSUpvote(SUpvoteDto sUpvoteDto){
@@ -66,7 +66,7 @@ public class SUpvoteServiceImpl implements SUpvoteService {
     /**
     * 删除SUpvote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSUpvote(SUpvoteDto sUpvoteDto){

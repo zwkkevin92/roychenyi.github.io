@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("WWxsDao")
 public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
@@ -27,7 +27,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 通过id获取WWxsDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WWxsDto getWWxsByID(WWxsDto wWxsDto){
@@ -51,7 +51,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 通过相关数据获取WWxsDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WWxsDto> getWWxsList(WWxsDto wWxsDto){
@@ -61,7 +61,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 添加一个新的WWxs到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWWxs(WWxsDto wWxsDto){
@@ -77,12 +77,12 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 更新WWxs
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWWxs(WWxsDto wWxsDto){
         // TODO Auto-generated method stub
-        if(wWxsDto!=null&&wWxsDto.getUid()!=null){
+        if(wWxsDto!=null&&wWxsDto.getWxsId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = wWxsDto.createSetPropertiesVal(wWxsDto, "a", fl);
@@ -99,12 +99,12 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 删除WWxs
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWWxs(WWxsDto wWxsDto){
          // TODO Auto-generated method stub
-        if(wWxsDto!=null&&wWxsDto.getUid()!=null){
+        if(wWxsDto!=null&&wWxsDto.getWxsId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+WWxs.class.getName()+" a");

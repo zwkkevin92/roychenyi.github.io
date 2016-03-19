@@ -11,7 +11,7 @@ import com.cx.wxs.service.SSoundService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SSoundService")
@@ -26,7 +26,7 @@ public class SSoundServiceImpl implements SSoundService {
     /**
     * 通过用户id获取SSoundDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SSoundDto getSSoundByID(SSoundDto sSoundDto){
@@ -36,7 +36,7 @@ public class SSoundServiceImpl implements SSoundService {
     /**
     * 通过相关信息获取SSoundDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SSoundDto> getSSoundList(SSoundDto sSoundDto){
@@ -46,7 +46,7 @@ public class SSoundServiceImpl implements SSoundService {
     /**
     * 添加一个新的SSound到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSSound(SSoundDto sSoundDto){
@@ -56,7 +56,7 @@ public class SSoundServiceImpl implements SSoundService {
     /**
     * 更新SSound
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSSound(SSoundDto sSoundDto){
@@ -66,7 +66,7 @@ public class SSoundServiceImpl implements SSoundService {
     /**
     * 删除SSound
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSSound(SSoundDto sSoundDto){

@@ -97,7 +97,7 @@ public class SysTopic implements java.io.Serializable {
 		this.topicIndex = topicIndex;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("MMessageDao")
 public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements MMessageDao{
@@ -27,7 +27,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 通过id获取MMessageDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public MMessageDto getMMessageByID(MMessageDto mMessageDto){
@@ -51,7 +51,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 通过相关数据获取MMessageDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<MMessageDto> getMMessageList(MMessageDto mMessageDto){
@@ -61,7 +61,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 添加一个新的MMessage到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addMMessage(MMessageDto mMessageDto){
@@ -77,12 +77,12 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 更新MMessage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateMMessage(MMessageDto mMessageDto){
         // TODO Auto-generated method stub
-        if(mMessageDto!=null&&mMessageDto.getUid()!=null){
+        if(mMessageDto!=null&&mMessageDto.getMessageId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = mMessageDto.createSetPropertiesVal(mMessageDto, "a", fl);
@@ -99,12 +99,12 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 删除MMessage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteMMessage(MMessageDto mMessageDto){
          // TODO Auto-generated method stub
-        if(mMessageDto!=null&&mMessageDto.getUid()!=null){
+        if(mMessageDto!=null&&mMessageDto.getMessageId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+MMessage.class.getName()+" a");

@@ -11,7 +11,7 @@ import com.cx.wxs.service.WLinkService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("WLinkService")
@@ -26,7 +26,7 @@ public class WLinkServiceImpl implements WLinkService {
     /**
     * 通过用户id获取WLinkDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WLinkDto getWLinkByID(WLinkDto wLinkDto){
@@ -36,7 +36,7 @@ public class WLinkServiceImpl implements WLinkService {
     /**
     * 通过相关信息获取WLinkDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WLinkDto> getWLinkList(WLinkDto wLinkDto){
@@ -46,7 +46,7 @@ public class WLinkServiceImpl implements WLinkService {
     /**
     * 添加一个新的WLink到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWLink(WLinkDto wLinkDto){
@@ -56,7 +56,7 @@ public class WLinkServiceImpl implements WLinkService {
     /**
     * 更新WLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWLink(WLinkDto wLinkDto){
@@ -66,7 +66,7 @@ public class WLinkServiceImpl implements WLinkService {
     /**
     * 删除WLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWLink(WLinkDto wLinkDto){

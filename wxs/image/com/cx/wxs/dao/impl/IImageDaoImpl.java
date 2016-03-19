@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("IImageDao")
 public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImageDao{
@@ -27,7 +27,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 通过id获取IImageDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IImageDto getIImageByID(IImageDto iImageDto){
@@ -51,7 +51,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 通过相关数据获取IImageDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IImageDto> getIImageList(IImageDto iImageDto){
@@ -61,7 +61,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 添加一个新的IImage到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIImage(IImageDto iImageDto){
@@ -77,12 +77,12 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 更新IImage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIImage(IImageDto iImageDto){
         // TODO Auto-generated method stub
-        if(iImageDto!=null&&iImageDto.getUid()!=null){
+        if(iImageDto!=null&&iImageDto.getImageId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = iImageDto.createSetPropertiesVal(iImageDto, "a", fl);
@@ -99,12 +99,12 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 删除IImage
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIImage(IImageDto iImageDto){
          // TODO Auto-generated method stub
-        if(iImageDto!=null&&iImageDto.getUid()!=null){
+        if(iImageDto!=null&&iImageDto.getImageId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+IImage.class.getName()+" a");

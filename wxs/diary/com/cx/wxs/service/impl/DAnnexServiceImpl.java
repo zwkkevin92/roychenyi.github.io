@@ -11,7 +11,7 @@ import com.cx.wxs.service.DAnnexService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("DAnnexService")
@@ -26,7 +26,7 @@ public class DAnnexServiceImpl implements DAnnexService {
     /**
     * 通过用户id获取DAnnexDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DAnnexDto getDAnnexByID(DAnnexDto dAnnexDto){
@@ -36,7 +36,7 @@ public class DAnnexServiceImpl implements DAnnexService {
     /**
     * 通过相关信息获取DAnnexDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DAnnexDto> getDAnnexList(DAnnexDto dAnnexDto){
@@ -46,7 +46,7 @@ public class DAnnexServiceImpl implements DAnnexService {
     /**
     * 添加一个新的DAnnex到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDAnnex(DAnnexDto dAnnexDto){
@@ -56,7 +56,7 @@ public class DAnnexServiceImpl implements DAnnexService {
     /**
     * 更新DAnnex
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDAnnex(DAnnexDto dAnnexDto){
@@ -66,7 +66,7 @@ public class DAnnexServiceImpl implements DAnnexService {
     /**
     * 删除DAnnex
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDAnnex(DAnnexDto dAnnexDto){

@@ -90,7 +90,7 @@ public class MAffiche implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "send_time", length = 0)
+	@Column(name = "send_time", length = 19)
 	public Timestamp getSendTime() {
 		return this.sendTime;
 	}
@@ -99,7 +99,7 @@ public class MAffiche implements java.io.Serializable {
 		this.sendTime = sendTime;
 	}
 
-	@Column(name = "expire_time", length = 0)
+	@Column(name = "expire_time", length = 19)
 	public Timestamp getExpireTime() {
 		return this.expireTime;
 	}

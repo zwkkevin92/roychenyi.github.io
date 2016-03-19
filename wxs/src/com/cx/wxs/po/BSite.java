@@ -31,7 +31,7 @@ public class BSite implements java.io.Serializable {
 	private String title;
 	private String siteUrl;
 	private String siteDetail;
-	private String logo;
+	private String logo;  
 	private Short flag;
 	private Timestamp createTime;
 	private Timestamp lastTime;
@@ -201,7 +201,7 @@ public class BSite implements java.io.Serializable {
 		this.flag = flag;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}
@@ -210,7 +210,7 @@ public class BSite implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "last_time", length = 0)
+	@Column(name = "last_time", length = 19)
 	public Timestamp getLastTime() {
 		return this.lastTime;
 	}

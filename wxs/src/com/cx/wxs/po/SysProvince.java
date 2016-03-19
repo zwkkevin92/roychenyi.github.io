@@ -25,7 +25,6 @@ public class SysProvince implements java.io.Serializable {
 	private String name;
 	private String description;
 	private Set<SysCity> sysCities = new HashSet<SysCity>(0);
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
 	private Set<SysSchool> sysSchools = new HashSet<SysSchool>(0);
 
 	// Constructors
@@ -36,11 +35,10 @@ public class SysProvince implements java.io.Serializable {
 
 	/** full constructor */
 	public SysProvince(String name, String description, Set<SysCity> sysCities,
-			Set<UUser> UUsers, Set<SysSchool> sysSchools) {
+			Set<SysSchool> sysSchools) {
 		this.name = name;
 		this.description = description;
 		this.sysCities = sysCities;
-		this.UUsers = UUsers;
 		this.sysSchools = sysSchools;
 	}
 
@@ -81,15 +79,6 @@ public class SysProvince implements java.io.Serializable {
 
 	public void setSysCities(Set<SysCity> sysCities) {
 		this.sysCities = sysCities;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysProvince")
-	public Set<UUser> getUUsers() {
-		return this.UUsers;
-	}
-
-	public void setUUsers(Set<UUser> UUsers) {
-		this.UUsers = UUsers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysProvince")

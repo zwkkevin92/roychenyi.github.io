@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("IAlbumDao")
 public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbumDao{
@@ -27,7 +27,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 通过id获取IAlbumDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public IAlbumDto getIAlbumByID(IAlbumDto iAlbumDto){
@@ -51,7 +51,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 通过相关数据获取IAlbumDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<IAlbumDto> getIAlbumList(IAlbumDto iAlbumDto){
@@ -61,7 +61,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 添加一个新的IAlbum到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addIAlbum(IAlbumDto iAlbumDto){
@@ -77,12 +77,12 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 更新IAlbum
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateIAlbum(IAlbumDto iAlbumDto){
         // TODO Auto-generated method stub
-        if(iAlbumDto!=null&&iAlbumDto.getUid()!=null){
+        if(iAlbumDto!=null&&iAlbumDto.getAlbumId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = iAlbumDto.createSetPropertiesVal(iAlbumDto, "a", fl);
@@ -99,12 +99,12 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 删除IAlbum
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteIAlbum(IAlbumDto iAlbumDto){
          // TODO Auto-generated method stub
-        if(iAlbumDto!=null&&iAlbumDto.getUid()!=null){
+        if(iAlbumDto!=null&&iAlbumDto.getAlbumId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+IAlbum.class.getName()+" a");

@@ -148,12 +148,17 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * @throws Exception
 	 * @return String
 	 */
-	public static String md5(String src) throws Exception {
+	public static String md5(String src) {
+		try{
 		return byte2hex(md5(src.getBytes()));
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public static void main(String[] args) throws Exception{
-		System.out.println(md5("LIU"));
+		System.out.println(md5("123456"));
 		System.out.println(getPinyin("成长"));
 	}
 

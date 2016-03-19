@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysProvinceDao")
 public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implements SysProvinceDao{
@@ -27,7 +27,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 通过id获取SysProvinceDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysProvinceDto getSysProvinceByID(SysProvinceDto sysProvinceDto){
@@ -51,7 +51,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 通过相关数据获取SysProvinceDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysProvinceDto> getSysProvinceList(SysProvinceDto sysProvinceDto){
@@ -61,7 +61,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 添加一个新的SysProvince到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysProvince(SysProvinceDto sysProvinceDto){
@@ -77,12 +77,12 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 更新SysProvince
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysProvince(SysProvinceDto sysProvinceDto){
         // TODO Auto-generated method stub
-        if(sysProvinceDto!=null&&sysProvinceDto.getUid()!=null){
+        if(sysProvinceDto!=null&&sysProvinceDto.getProvinceId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysProvinceDto.createSetPropertiesVal(sysProvinceDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 删除SysProvince
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysProvince(SysProvinceDto sysProvinceDto){
          // TODO Auto-generated method stub
-        if(sysProvinceDto!=null&&sysProvinceDto.getUid()!=null){
+        if(sysProvinceDto!=null&&sysProvinceDto.getProvinceId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysProvince.class.getName()+" a");

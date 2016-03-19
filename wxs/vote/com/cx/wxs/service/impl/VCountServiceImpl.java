@@ -11,7 +11,7 @@ import com.cx.wxs.service.VCountService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("VCountService")
@@ -26,7 +26,7 @@ public class VCountServiceImpl implements VCountService {
     /**
     * 通过用户id获取VCountDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VCountDto getVCountByID(VCountDto vCountDto){
@@ -36,7 +36,7 @@ public class VCountServiceImpl implements VCountService {
     /**
     * 通过相关信息获取VCountDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VCountDto> getVCountList(VCountDto vCountDto){
@@ -46,7 +46,7 @@ public class VCountServiceImpl implements VCountService {
     /**
     * 添加一个新的VCount到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVCount(VCountDto vCountDto){
@@ -56,7 +56,7 @@ public class VCountServiceImpl implements VCountService {
     /**
     * 更新VCount
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVCount(VCountDto vCountDto){
@@ -66,7 +66,7 @@ public class VCountServiceImpl implements VCountService {
     /**
     * 删除VCount
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVCount(VCountDto vCountDto){

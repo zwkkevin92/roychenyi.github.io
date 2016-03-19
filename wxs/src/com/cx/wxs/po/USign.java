@@ -84,7 +84,7 @@ public class USign implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

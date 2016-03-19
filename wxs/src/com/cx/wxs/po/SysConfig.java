@@ -68,7 +68,7 @@ public class SysConfig implements java.io.Serializable {
 		this.value = value;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}
@@ -77,7 +77,7 @@ public class SysConfig implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "last_time", length = 0)
+	@Column(name = "last_time", length = 19)
 	public Timestamp getLastTime() {
 		return this.lastTime;
 	}

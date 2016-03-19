@@ -196,7 +196,7 @@ public class UFriendDaoImpl extends BaseDaoImpl<UFriend,Integer> implements UFri
 			BeanUtils.copyProperties(friend.getUFriendGroup(), groupDto);
 			friendDto.setUFriendGroupDto(groupDto);
 		}
-		if(friend.getUUserByUserId()!=null){
+/*		if(friend.getUUserByUserId()!=null){
 			UUserDto userDto=new UUserDto();
 			BeanUtils.copyProperties(friend.getUUserByUserId(), userDto);
 			friendDto.setUserDto(userDto);
@@ -205,7 +205,7 @@ public class UFriendDaoImpl extends BaseDaoImpl<UFriend,Integer> implements UFri
 			UUserDto ufriend=new UUserDto();
 			BeanUtils.copyProperties(friend.getUUserByFriendId(), ufriend);
 			friendDto.setFriendDto(ufriend);
-		}
+		}*/
 		return friendDto;
 	}
 	

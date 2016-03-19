@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysRankDao")
 public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements SysRankDao{
@@ -27,7 +27,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 通过id获取SysRankDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysRankDto getSysRankByID(SysRankDto sysRankDto){
@@ -51,7 +51,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 通过相关数据获取SysRankDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysRankDto> getSysRankList(SysRankDto sysRankDto){
@@ -61,7 +61,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 添加一个新的SysRank到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysRank(SysRankDto sysRankDto){
@@ -77,12 +77,12 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 更新SysRank
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysRank(SysRankDto sysRankDto){
         // TODO Auto-generated method stub
-        if(sysRankDto!=null&&sysRankDto.getUid()!=null){
+        if(sysRankDto!=null&&sysRankDto.getRankId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysRankDto.createSetPropertiesVal(sysRankDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 删除SysRank
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysRank(SysRankDto sysRankDto){
          // TODO Auto-generated method stub
-        if(sysRankDto!=null&&sysRankDto.getUid()!=null){
+        if(sysRankDto!=null&&sysRankDto.getRankId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysRank.class.getName()+" a");

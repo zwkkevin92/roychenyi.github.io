@@ -41,15 +41,9 @@ public  class BeanBase implements Serializable{
 
 	public final static int CLIENT_HTML = 0;            //PC端
 	public final static int CLIENT_WML = 1;             //手机端
-   ///////////////////查询分页参数
-   /*EasyUI分页控件提交参数：
-   page:当前页
-   rows:每页记录数
-   sort:排序字段
-   order：排序方向
-   */
-   private Integer page;  
-   private Integer rows;
+
+   private Integer page;  //当前页面
+   private Integer rows;  //行数
    private String sort; //排序字段
    private String dir;   //排序方向
    private String group;//分组字段
@@ -65,6 +59,8 @@ public  class BeanBase implements Serializable{
    private Integer uid;//用户uid
    private Boolean isUsers=false;//是否查询用户信息
    private Boolean isFortyLogin=false;
+   private String url;  //获取前一个页面的URL
+   private String loginFlag; //-1：不成功；0：待验证；1：成功
 
 	//**************验证信息参数******************/
 
@@ -123,6 +119,114 @@ public  class BeanBase implements Serializable{
 		this.uid = uid;
 		this.isUsers = isUsers;
 		this.isFortyLogin = isFortyLogin;
+		this.validateNum = validateNum;
+		this.validateCode = validateCode;
+		this.validateMark = validateMark;
+		this.validateType = validateType;
+		ROWNUM_ = rOWNUM_;
+		this.search = search;
+	}
+	
+	
+
+	/**
+	 * full 构造器
+	 * @author 陈义
+	 * @date   2016-1-7下午4:38:39
+	 */
+	public BeanBase(Integer page, Integer rows, String sort, String dir,
+			String group, String order, Integer pageCount, String batch,
+			String field, String ip, String local, String msg,
+			Boolean isSucceed, Object object, Integer uid, Boolean isUsers,
+			Boolean isFortyLogin, String url, String validateNum,
+			String validateCode, String validateMark, String validateType,
+			BigDecimal rOWNUM_, String search) {
+		super();
+		this.page = page;
+		this.rows = rows;
+		this.sort = sort;
+		this.dir = dir;
+		this.group = group;
+		this.order = order;
+		this.pageCount = pageCount;
+		this.batch = batch;
+		this.field = field;
+		this.ip = ip;
+		this.local = local;
+		this.msg = msg;
+		this.isSucceed = isSucceed;
+		this.object = object;
+		this.uid = uid;
+		this.isUsers = isUsers;
+		this.isFortyLogin = isFortyLogin;
+		this.url = url;
+		this.validateNum = validateNum;
+		this.validateCode = validateCode;
+		this.validateMark = validateMark;
+		this.validateType = validateType;
+		ROWNUM_ = rOWNUM_;
+		this.search = search;
+	}
+	
+	
+	
+
+	/**
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param dir
+	 * @param group
+	 * @param order
+	 * @param pageCount
+	 * @param batch
+	 * @param field
+	 * @param ip
+	 * @param local
+	 * @param msg
+	 * @param isSucceed
+	 * @param object
+	 * @param uid
+	 * @param isUsers
+	 * @param isFortyLogin
+	 * @param url
+	 * @param loginFlag
+	 * @param validateNum
+	 * @param validateCode
+	 * @param validateMark
+	 * @param validateType
+	 * @param rOWNUM_
+	 * @param search
+	 * @author 陈义
+	 * @date   2016-3-18下午6:43:50
+	 */
+	public BeanBase(Integer page, Integer rows, String sort, String dir,
+			String group, String order, Integer pageCount, String batch,
+			String field, String ip, String local, String msg,
+			Boolean isSucceed, Object object, Integer uid, Boolean isUsers,
+			Boolean isFortyLogin, String url, String loginFlag,
+			String validateNum, String validateCode, String validateMark,
+			String validateType, BigDecimal rOWNUM_, String search) {
+		super();
+		this.page = page;
+		this.rows = rows;
+		this.sort = sort;
+		this.dir = dir;
+		this.group = group;
+		this.order = order;
+		this.pageCount = pageCount;
+		this.batch = batch;
+		this.field = field;
+		this.ip = ip;
+		this.local = local;
+		this.msg = msg;
+		this.isSucceed = isSucceed;
+		this.object = object;
+		this.uid = uid;
+		this.isUsers = isUsers;
+		this.isFortyLogin = isFortyLogin;
+		this.url = url;
+		this.loginFlag = loginFlag;
 		this.validateNum = validateNum;
 		this.validateCode = validateCode;
 		this.validateMark = validateMark;
@@ -317,6 +421,39 @@ public  class BeanBase implements Serializable{
 
 	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
+	}
+	
+	
+
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	
+
+
+	/**
+	 * @return the loginFlag
+	 */
+	public String getLoginFlag() {
+		return loginFlag;
+	}
+
+	/**
+	 * @param loginFlag the loginFlag to set
+	 */
+	public void setLoginFlag(String loginFlag) {
+		this.loginFlag = loginFlag;
 	}
 
 	/**

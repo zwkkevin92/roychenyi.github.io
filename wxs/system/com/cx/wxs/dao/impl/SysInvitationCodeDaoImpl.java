@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysInvitationCodeDao")
 public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Integer> implements SysInvitationCodeDao{
@@ -27,7 +27,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 通过id获取SysInvitationCodeDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysInvitationCodeDto getSysInvitationCodeByID(SysInvitationCodeDto sysInvitationCodeDto){
@@ -51,7 +51,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 通过相关数据获取SysInvitationCodeDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysInvitationCodeDto> getSysInvitationCodeList(SysInvitationCodeDto sysInvitationCodeDto){
@@ -61,7 +61,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 添加一个新的SysInvitationCode到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
@@ -77,12 +77,12 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 更新SysInvitationCode
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
         // TODO Auto-generated method stub
-        if(sysInvitationCodeDto!=null&&sysInvitationCodeDto.getUid()!=null){
+        if(sysInvitationCodeDto!=null&&sysInvitationCodeDto.getCodeId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysInvitationCodeDto.createSetPropertiesVal(sysInvitationCodeDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 删除SysInvitationCode
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
          // TODO Auto-generated method stub
-        if(sysInvitationCodeDto!=null&&sysInvitationCodeDto.getUid()!=null){
+        if(sysInvitationCodeDto!=null&&sysInvitationCodeDto.getCodeId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysInvitationCode.class.getName()+" a");

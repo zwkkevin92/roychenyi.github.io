@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SBoxDao")
 public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
@@ -27,7 +27,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 通过id获取SBoxDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SBoxDto getSBoxByID(SBoxDto sBoxDto){
@@ -51,7 +51,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 通过相关数据获取SBoxDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SBoxDto> getSBoxList(SBoxDto sBoxDto){
@@ -61,7 +61,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 添加一个新的SBox到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSBox(SBoxDto sBoxDto){
@@ -77,12 +77,12 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 更新SBox
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSBox(SBoxDto sBoxDto){
         // TODO Auto-generated method stub
-        if(sBoxDto!=null&&sBoxDto.getUid()!=null){
+        if(sBoxDto!=null&&sBoxDto.getBoxId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sBoxDto.createSetPropertiesVal(sBoxDto, "a", fl);
@@ -99,12 +99,12 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 删除SBox
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSBox(SBoxDto sBoxDto){
          // TODO Auto-generated method stub
-        if(sBoxDto!=null&&sBoxDto.getUid()!=null){
+        if(sBoxDto!=null&&sBoxDto.getBoxId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SBox.class.getName()+" a");

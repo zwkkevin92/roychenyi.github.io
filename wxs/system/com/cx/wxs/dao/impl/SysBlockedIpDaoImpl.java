@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysBlockedIpDao")
 public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> implements SysBlockedIpDao{
@@ -27,7 +27,7 @@ public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> impl
     /**
     * 通过id获取SysBlockedIpDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysBlockedIpDto getSysBlockedIpByID(SysBlockedIpDto sysBlockedIpDto){
@@ -51,7 +51,7 @@ public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> impl
     /**
     * 通过相关数据获取SysBlockedIpDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysBlockedIpDto> getSysBlockedIpList(SysBlockedIpDto sysBlockedIpDto){
@@ -61,7 +61,7 @@ public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> impl
     /**
     * 添加一个新的SysBlockedIp到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){
@@ -77,12 +77,12 @@ public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> impl
     /**
     * 更新SysBlockedIp
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){
         // TODO Auto-generated method stub
-        if(sysBlockedIpDto!=null&&sysBlockedIpDto.getUid()!=null){
+        if(sysBlockedIpDto!=null&&sysBlockedIpDto.getBlockedipId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysBlockedIpDto.createSetPropertiesVal(sysBlockedIpDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysBlockedIpDaoImpl extends BaseDaoImpl<SysBlockedIp, Integer> impl
     /**
     * 删除SysBlockedIp
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){
          // TODO Auto-generated method stub
-        if(sysBlockedIpDto!=null&&sysBlockedIpDto.getUid()!=null){
+        if(sysBlockedIpDto!=null&&sysBlockedIpDto.getBlockedipId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysBlockedIp.class.getName()+" a");

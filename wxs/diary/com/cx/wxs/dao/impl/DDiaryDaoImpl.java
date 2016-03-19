@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("DDiaryDao")
 public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiaryDao{
@@ -27,7 +27,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 通过id获取DDiaryDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DDiaryDto getDDiaryByID(DDiaryDto dDiaryDto){
@@ -51,7 +51,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 通过相关数据获取DDiaryDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DDiaryDto> getDDiaryList(DDiaryDto dDiaryDto){
@@ -61,7 +61,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 添加一个新的DDiary到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDDiary(DDiaryDto dDiaryDto){
@@ -77,12 +77,12 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 更新DDiary
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDDiary(DDiaryDto dDiaryDto){
         // TODO Auto-generated method stub
-        if(dDiaryDto!=null&&dDiaryDto.getUid()!=null){
+        if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dDiaryDto.createSetPropertiesVal(dDiaryDto, "a", fl);
@@ -99,12 +99,12 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 删除DDiary
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDDiary(DDiaryDto dDiaryDto){
          // TODO Auto-generated method stub
-        if(dDiaryDto!=null&&dDiaryDto.getUid()!=null){
+        if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+DDiary.class.getName()+" a");

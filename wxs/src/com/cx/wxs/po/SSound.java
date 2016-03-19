@@ -159,7 +159,7 @@ public class SSound implements java.io.Serializable {
 		this.filePath = filePath;
 	}
 
-	@Column(name = "time", length = 0)
+	@Column(name = "time", length = 19)
 	public Timestamp getTime() {
 		return this.time;
 	}

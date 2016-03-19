@@ -1,8 +1,5 @@
 package com.cx.wxs.po;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +8,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,7 +23,6 @@ public class SysCollege implements java.io.Serializable {
 	private SysSchool sysSchool;
 	private String name;
 	private String description;
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
 
 	// Constructors
 
@@ -36,12 +31,10 @@ public class SysCollege implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public SysCollege(SysSchool sysSchool, String name, String description,
-			Set<UUser> UUsers) {
+	public SysCollege(SysSchool sysSchool, String name, String description) {
 		this.sysSchool = sysSchool;
 		this.name = name;
 		this.description = description;
-		this.UUsers = UUsers;
 	}
 
 	// Property accessors
@@ -82,15 +75,6 @@ public class SysCollege implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysCollege")
-	public Set<UUser> getUUsers() {
-		return this.UUsers;
-	}
-
-	public void setUUsers(Set<UUser> UUsers) {
-		this.UUsers = UUsers;
 	}
 
 }

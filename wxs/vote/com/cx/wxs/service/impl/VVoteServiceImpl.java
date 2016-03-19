@@ -11,7 +11,7 @@ import com.cx.wxs.service.VVoteService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("VVoteService")
@@ -26,7 +26,7 @@ public class VVoteServiceImpl implements VVoteService {
     /**
     * 通过用户id获取VVoteDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VVoteDto getVVoteByID(VVoteDto vVoteDto){
@@ -36,7 +36,7 @@ public class VVoteServiceImpl implements VVoteService {
     /**
     * 通过相关信息获取VVoteDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VVoteDto> getVVoteList(VVoteDto vVoteDto){
@@ -46,7 +46,7 @@ public class VVoteServiceImpl implements VVoteService {
     /**
     * 添加一个新的VVote到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVVote(VVoteDto vVoteDto){
@@ -56,7 +56,7 @@ public class VVoteServiceImpl implements VVoteService {
     /**
     * 更新VVote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVVote(VVoteDto vVoteDto){
@@ -66,7 +66,7 @@ public class VVoteServiceImpl implements VVoteService {
     /**
     * 删除VVote
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVVote(VVoteDto vVoteDto){

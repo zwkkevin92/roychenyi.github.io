@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysLinkService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysLinkService")
@@ -26,7 +26,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     /**
     * 通过用户id获取SysLinkDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysLinkDto getSysLinkByID(SysLinkDto sysLinkDto){
@@ -36,7 +36,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     /**
     * 通过相关信息获取SysLinkDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysLinkDto> getSysLinkList(SysLinkDto sysLinkDto){
@@ -46,7 +46,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     /**
     * 添加一个新的SysLink到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysLink(SysLinkDto sysLinkDto){
@@ -56,7 +56,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     /**
     * 更新SysLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysLink(SysLinkDto sysLinkDto){
@@ -66,7 +66,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     /**
     * 删除SysLink
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysLink(SysLinkDto sysLinkDto){

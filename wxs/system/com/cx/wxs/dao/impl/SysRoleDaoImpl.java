@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysRoleDao")
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements SysRoleDao{
@@ -27,7 +27,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 通过id获取SysRoleDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysRoleDto getSysRoleByID(SysRoleDto sysRoleDto){
@@ -51,7 +51,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 通过相关数据获取SysRoleDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysRoleDto> getSysRoleList(SysRoleDto sysRoleDto){
@@ -61,7 +61,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 添加一个新的SysRole到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysRole(SysRoleDto sysRoleDto){
@@ -77,12 +77,12 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 更新SysRole
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysRole(SysRoleDto sysRoleDto){
         // TODO Auto-generated method stub
-        if(sysRoleDto!=null&&sysRoleDto.getUid()!=null){
+        if(sysRoleDto!=null&&sysRoleDto.getRoleId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysRoleDto.createSetPropertiesVal(sysRoleDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 删除SysRole
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysRole(SysRoleDto sysRoleDto){
          // TODO Auto-generated method stub
-        if(sysRoleDto!=null&&sysRoleDto.getUid()!=null){
+        if(sysRoleDto!=null&&sysRoleDto.getRoleId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysRole.class.getName()+" a");

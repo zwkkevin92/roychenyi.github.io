@@ -30,7 +30,6 @@ public class SysSchool implements java.io.Serializable {
 	private String description;
 	private String address;
 	private Short post;
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
 	private Set<SysCollege> sysColleges = new HashSet<SysCollege>(0);
 
 	// Constructors
@@ -41,7 +40,7 @@ public class SysSchool implements java.io.Serializable {
 
 	/** full constructor */
 	public SysSchool(SysProvince sysProvince, SysCity sysCity, String name,
-			String description, String address, Short post, Set<UUser> UUsers,
+			String description, String address, Short post,
 			Set<SysCollege> sysColleges) {
 		this.sysProvince = sysProvince;
 		this.sysCity = sysCity;
@@ -49,7 +48,6 @@ public class SysSchool implements java.io.Serializable {
 		this.description = description;
 		this.address = address;
 		this.post = post;
-		this.UUsers = UUsers;
 		this.sysColleges = sysColleges;
 	}
 
@@ -119,15 +117,6 @@ public class SysSchool implements java.io.Serializable {
 
 	public void setPost(Short post) {
 		this.post = post;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysSchool")
-	public Set<UUser> getUUsers() {
-		return this.UUsers;
-	}
-
-	public void setUUsers(Set<UUser> UUsers) {
-		this.UUsers = UUsers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysSchool")

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysLoginRecordDao")
 public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> implements SysLoginRecordDao{
@@ -27,7 +27,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 通过id获取SysLoginRecordDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysLoginRecordDto getSysLoginRecordByID(SysLoginRecordDto sysLoginRecordDto){
@@ -51,7 +51,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 通过相关数据获取SysLoginRecordDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysLoginRecordDto> getSysLoginRecordList(SysLoginRecordDto sysLoginRecordDto){
@@ -61,7 +61,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 添加一个新的SysLoginRecord到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
@@ -77,12 +77,12 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 更新SysLoginRecord
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
         // TODO Auto-generated method stub
-        if(sysLoginRecordDto!=null&&sysLoginRecordDto.getUid()!=null){
+        if(sysLoginRecordDto!=null&&sysLoginRecordDto.getRecordId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysLoginRecordDto.createSetPropertiesVal(sysLoginRecordDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 删除SysLoginRecord
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
          // TODO Auto-generated method stub
-        if(sysLoginRecordDto!=null&&sysLoginRecordDto.getUid()!=null){
+        if(sysLoginRecordDto!=null&&sysLoginRecordDto.getRecordId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysLoginRecord.class.getName()+" a");

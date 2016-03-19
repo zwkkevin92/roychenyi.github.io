@@ -11,7 +11,7 @@ import com.cx.wxs.service.MGuestbookService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("MGuestbookService")
@@ -26,7 +26,7 @@ public class MGuestbookServiceImpl implements MGuestbookService {
     /**
     * 通过用户id获取MGuestbookDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public MGuestbookDto getMGuestbookByID(MGuestbookDto mGuestbookDto){
@@ -36,7 +36,7 @@ public class MGuestbookServiceImpl implements MGuestbookService {
     /**
     * 通过相关信息获取MGuestbookDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<MGuestbookDto> getMGuestbookList(MGuestbookDto mGuestbookDto){
@@ -46,7 +46,7 @@ public class MGuestbookServiceImpl implements MGuestbookService {
     /**
     * 添加一个新的MGuestbook到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addMGuestbook(MGuestbookDto mGuestbookDto){
@@ -56,7 +56,7 @@ public class MGuestbookServiceImpl implements MGuestbookService {
     /**
     * 更新MGuestbook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateMGuestbook(MGuestbookDto mGuestbookDto){
@@ -66,7 +66,7 @@ public class MGuestbookServiceImpl implements MGuestbookService {
     /**
     * 删除MGuestbook
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteMGuestbook(MGuestbookDto mGuestbookDto){

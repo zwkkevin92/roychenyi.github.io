@@ -151,7 +151,7 @@ public class DReply2 implements java.io.Serializable {
 		this.clientType = clientType;
 	}
 
-	@Column(name = "reply_time", length = 0)
+	@Column(name = "reply_time", length = 19)
 	public Timestamp getReplyTime() {
 		return this.replyTime;
 	}

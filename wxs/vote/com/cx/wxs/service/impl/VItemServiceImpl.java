@@ -11,7 +11,7 @@ import com.cx.wxs.service.VItemService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("VItemService")
@@ -26,7 +26,7 @@ public class VItemServiceImpl implements VItemService {
     /**
     * 通过用户id获取VItemDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VItemDto getVItemByID(VItemDto vItemDto){
@@ -36,7 +36,7 @@ public class VItemServiceImpl implements VItemService {
     /**
     * 通过相关信息获取VItemDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VItemDto> getVItemList(VItemDto vItemDto){
@@ -46,7 +46,7 @@ public class VItemServiceImpl implements VItemService {
     /**
     * 添加一个新的VItem到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVItem(VItemDto vItemDto){
@@ -56,7 +56,7 @@ public class VItemServiceImpl implements VItemService {
     /**
     * 更新VItem
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVItem(VItemDto vItemDto){
@@ -66,7 +66,7 @@ public class VItemServiceImpl implements VItemService {
     /**
     * 删除VItem
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVItem(VItemDto vItemDto){

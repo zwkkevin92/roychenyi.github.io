@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("VAccessDao")
 public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAccessDao{
@@ -27,7 +27,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 通过id获取VAccessDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public VAccessDto getVAccessByID(VAccessDto vAccessDto){
@@ -51,7 +51,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 通过相关数据获取VAccessDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<VAccessDto> getVAccessList(VAccessDto vAccessDto){
@@ -61,7 +61,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 添加一个新的VAccess到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addVAccess(VAccessDto vAccessDto){
@@ -77,12 +77,12 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 更新VAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateVAccess(VAccessDto vAccessDto){
         // TODO Auto-generated method stub
-        if(vAccessDto!=null&&vAccessDto.getUid()!=null){
+        if(vAccessDto!=null&&vAccessDto.getVaccessId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = vAccessDto.createSetPropertiesVal(vAccessDto, "a", fl);
@@ -99,12 +99,12 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 删除VAccess
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteVAccess(VAccessDto vAccessDto){
          // TODO Auto-generated method stub
-        if(vAccessDto!=null&&vAccessDto.getUid()!=null){
+        if(vAccessDto!=null&&vAccessDto.getVaccessId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+VAccess.class.getName()+" a");

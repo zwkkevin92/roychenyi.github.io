@@ -11,7 +11,7 @@ import com.cx.wxs.service.BStatusService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BStatusService")
@@ -26,7 +26,7 @@ public class BStatusServiceImpl implements BStatusService {
     /**
     * 通过用户id获取BStatusDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BStatusDto getBStatusByID(BStatusDto bStatusDto){
@@ -36,7 +36,7 @@ public class BStatusServiceImpl implements BStatusService {
     /**
     * 通过相关信息获取BStatusDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BStatusDto> getBStatusList(BStatusDto bStatusDto){
@@ -46,7 +46,7 @@ public class BStatusServiceImpl implements BStatusService {
     /**
     * 添加一个新的BStatus到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBStatus(BStatusDto bStatusDto){
@@ -56,7 +56,7 @@ public class BStatusServiceImpl implements BStatusService {
     /**
     * 更新BStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBStatus(BStatusDto bStatusDto){
@@ -66,7 +66,7 @@ public class BStatusServiceImpl implements BStatusService {
     /**
     * 删除BStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBStatus(BStatusDto bStatusDto){

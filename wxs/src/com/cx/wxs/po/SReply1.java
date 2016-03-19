@@ -108,7 +108,7 @@ public class SReply1 implements java.io.Serializable {
 		this.ownerOnly = ownerOnly;
 	}
 
-	@Column(name = "write_time", length = 0)
+	@Column(name = "write_time", length = 19)
 	public Timestamp getWriteTime() {
 		return this.writeTime;
 	}

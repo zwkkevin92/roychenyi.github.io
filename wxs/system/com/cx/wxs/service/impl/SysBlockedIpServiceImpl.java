@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysBlockedIpService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysBlockedIpService")
@@ -26,7 +26,7 @@ public class SysBlockedIpServiceImpl implements SysBlockedIpService {
     /**
     * 通过用户id获取SysBlockedIpDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysBlockedIpDto getSysBlockedIpByID(SysBlockedIpDto sysBlockedIpDto){
@@ -36,7 +36,7 @@ public class SysBlockedIpServiceImpl implements SysBlockedIpService {
     /**
     * 通过相关信息获取SysBlockedIpDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysBlockedIpDto> getSysBlockedIpList(SysBlockedIpDto sysBlockedIpDto){
@@ -46,7 +46,7 @@ public class SysBlockedIpServiceImpl implements SysBlockedIpService {
     /**
     * 添加一个新的SysBlockedIp到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){
@@ -56,7 +56,7 @@ public class SysBlockedIpServiceImpl implements SysBlockedIpService {
     /**
     * 更新SysBlockedIp
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){
@@ -66,7 +66,7 @@ public class SysBlockedIpServiceImpl implements SysBlockedIpService {
     /**
     * 删除SysBlockedIp
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysBlockedIp(SysBlockedIpDto sysBlockedIpDto){

@@ -11,7 +11,7 @@ import com.cx.wxs.service.BSiteService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BSiteService")
@@ -26,7 +26,7 @@ public class BSiteServiceImpl implements BSiteService {
     /**
     * 通过用户id获取BSiteDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BSiteDto getBSiteByID(BSiteDto bSiteDto){
@@ -36,7 +36,7 @@ public class BSiteServiceImpl implements BSiteService {
     /**
     * 通过相关信息获取BSiteDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BSiteDto> getBSiteList(BSiteDto bSiteDto){
@@ -46,7 +46,7 @@ public class BSiteServiceImpl implements BSiteService {
     /**
     * 添加一个新的BSite到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBSite(BSiteDto bSiteDto){
@@ -56,7 +56,7 @@ public class BSiteServiceImpl implements BSiteService {
     /**
     * 更新BSite
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBSite(BSiteDto bSiteDto){
@@ -66,7 +66,7 @@ public class BSiteServiceImpl implements BSiteService {
     /**
     * 删除BSite
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBSite(BSiteDto bSiteDto){

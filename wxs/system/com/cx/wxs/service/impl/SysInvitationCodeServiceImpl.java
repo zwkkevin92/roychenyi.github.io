@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysInvitationCodeService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysInvitationCodeService")
@@ -26,7 +26,7 @@ public class SysInvitationCodeServiceImpl implements SysInvitationCodeService {
     /**
     * 通过用户id获取SysInvitationCodeDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysInvitationCodeDto getSysInvitationCodeByID(SysInvitationCodeDto sysInvitationCodeDto){
@@ -36,7 +36,7 @@ public class SysInvitationCodeServiceImpl implements SysInvitationCodeService {
     /**
     * 通过相关信息获取SysInvitationCodeDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysInvitationCodeDto> getSysInvitationCodeList(SysInvitationCodeDto sysInvitationCodeDto){
@@ -46,7 +46,7 @@ public class SysInvitationCodeServiceImpl implements SysInvitationCodeService {
     /**
     * 添加一个新的SysInvitationCode到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
@@ -56,7 +56,7 @@ public class SysInvitationCodeServiceImpl implements SysInvitationCodeService {
     /**
     * 更新SysInvitationCode
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
@@ -66,7 +66,7 @@ public class SysInvitationCodeServiceImpl implements SysInvitationCodeService {
     /**
     * 删除SysInvitationCode
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){

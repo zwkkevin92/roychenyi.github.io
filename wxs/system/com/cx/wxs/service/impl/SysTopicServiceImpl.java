@@ -11,7 +11,7 @@ import com.cx.wxs.service.SysTopicService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("SysTopicService")
@@ -26,7 +26,7 @@ public class SysTopicServiceImpl implements SysTopicService {
     /**
     * 通过用户id获取SysTopicDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysTopicDto getSysTopicByID(SysTopicDto sysTopicDto){
@@ -36,7 +36,7 @@ public class SysTopicServiceImpl implements SysTopicService {
     /**
     * 通过相关信息获取SysTopicDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysTopicDto> getSysTopicList(SysTopicDto sysTopicDto){
@@ -46,7 +46,7 @@ public class SysTopicServiceImpl implements SysTopicService {
     /**
     * 添加一个新的SysTopic到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysTopic(SysTopicDto sysTopicDto){
@@ -56,7 +56,7 @@ public class SysTopicServiceImpl implements SysTopicService {
     /**
     * 更新SysTopic
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysTopic(SysTopicDto sysTopicDto){
@@ -66,7 +66,7 @@ public class SysTopicServiceImpl implements SysTopicService {
     /**
     * 删除SysTopic
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysTopic(SysTopicDto sysTopicDto){

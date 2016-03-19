@@ -28,7 +28,6 @@ public class SysCity implements java.io.Serializable {
 	private String name;
 	private String description;
 	private Set<SysSchool> sysSchools = new HashSet<SysSchool>(0);
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
 
 	// Constructors
 
@@ -44,12 +43,11 @@ public class SysCity implements java.io.Serializable {
 
 	/** full constructor */
 	public SysCity(SysProvince sysProvince, String name, String description,
-			Set<SysSchool> sysSchools, Set<UUser> UUsers) {
+			Set<SysSchool> sysSchools) {
 		this.sysProvince = sysProvince;
 		this.name = name;
 		this.description = description;
 		this.sysSchools = sysSchools;
-		this.UUsers = UUsers;
 	}
 
 	// Property accessors
@@ -99,15 +97,6 @@ public class SysCity implements java.io.Serializable {
 
 	public void setSysSchools(Set<SysSchool> sysSchools) {
 		this.sysSchools = sysSchools;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysCity")
-	public Set<UUser> getUUsers() {
-		return this.UUsers;
-	}
-
-	public void setUUsers(Set<UUser> UUsers) {
-		this.UUsers = UUsers;
 	}
 
 }

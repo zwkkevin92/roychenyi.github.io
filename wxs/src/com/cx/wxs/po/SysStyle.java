@@ -95,7 +95,7 @@ public class SysStyle implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "create_time", length = 0)
+	@Column(name = "create_time", length = 19)
 	public Timestamp getCreateTime() {
 		return this.createTime;
 	}

@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 @Repository("SysStyleDao")
 public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements SysStyleDao{
@@ -27,7 +27,7 @@ public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements S
     /**
     * 通过id获取SysStyleDto
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public SysStyleDto getSysStyleByID(SysStyleDto sysStyleDto){
@@ -51,7 +51,7 @@ public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements S
     /**
     * 通过相关数据获取SysStyleDtoList
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<SysStyleDto> getSysStyleList(SysStyleDto sysStyleDto){
@@ -61,7 +61,7 @@ public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements S
     /**
     * 添加一个新的SysStyle到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addSysStyle(SysStyleDto sysStyleDto){
@@ -77,12 +77,12 @@ public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements S
     /**
     * 更新SysStyle
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateSysStyle(SysStyleDto sysStyleDto){
         // TODO Auto-generated method stub
-        if(sysStyleDto!=null&&sysStyleDto.getUid()!=null){
+        if(sysStyleDto!=null&&sysStyleDto.getStyleId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysStyleDto.createSetPropertiesVal(sysStyleDto, "a", fl);
@@ -99,12 +99,12 @@ public class SysStyleDaoImpl extends BaseDaoImpl<SysStyle, Integer> implements S
     /**
     * 删除SysStyle
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteSysStyle(SysStyleDto sysStyleDto){
          // TODO Auto-generated method stub
-        if(sysStyleDto!=null&&sysStyleDto.getUid()!=null){
+        if(sysStyleDto!=null&&sysStyleDto.getStyleId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
            stringBuffer.append(" from "+SysStyle.class.getName()+" a");

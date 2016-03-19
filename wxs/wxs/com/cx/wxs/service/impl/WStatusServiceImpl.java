@@ -11,7 +11,7 @@ import com.cx.wxs.service.WStatusService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("WStatusService")
@@ -26,7 +26,7 @@ public class WStatusServiceImpl implements WStatusService {
     /**
     * 通过用户id获取WStatusDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public WStatusDto getWStatusByID(WStatusDto wStatusDto){
@@ -36,7 +36,7 @@ public class WStatusServiceImpl implements WStatusService {
     /**
     * 通过相关信息获取WStatusDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public List<WStatusDto> getWStatusList(WStatusDto wStatusDto){
@@ -46,7 +46,7 @@ public class WStatusServiceImpl implements WStatusService {
     /**
     * 添加一个新的WStatus到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer addWStatus(WStatusDto wStatusDto){
@@ -56,7 +56,7 @@ public class WStatusServiceImpl implements WStatusService {
     /**
     * 更新WStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer updateWStatus(WStatusDto wStatusDto){
@@ -66,7 +66,7 @@ public class WStatusServiceImpl implements WStatusService {
     /**
     * 删除WStatus
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:50
     */
     @Override
     public Integer deleteWStatus(WStatusDto wStatusDto){

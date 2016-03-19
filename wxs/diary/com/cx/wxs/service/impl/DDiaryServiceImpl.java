@@ -11,7 +11,7 @@ import com.cx.wxs.service.DDiaryService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("DDiaryService")
@@ -26,7 +26,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     /**
     * 通过用户id获取DDiaryDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public DDiaryDto getDDiaryByID(DDiaryDto dDiaryDto){
@@ -36,7 +36,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     /**
     * 通过相关信息获取DDiaryDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<DDiaryDto> getDDiaryList(DDiaryDto dDiaryDto){
@@ -46,7 +46,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     /**
     * 添加一个新的DDiary到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addDDiary(DDiaryDto dDiaryDto){
@@ -56,7 +56,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     /**
     * 更新DDiary
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateDDiary(DDiaryDto dDiaryDto){
@@ -66,7 +66,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     /**
     * 删除DDiary
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteDDiary(DDiaryDto dDiaryDto){

@@ -11,7 +11,7 @@ import com.cx.wxs.service.BTagService;
 
 /**
  * @author 陈义
- * @date 2015-12-13 19:03:39
+ * @date 2016-01-19 14:41:49
  */
 
 @Service("BTagService")
@@ -26,7 +26,7 @@ public class BTagServiceImpl implements BTagService {
     /**
     * 通过用户id获取BTagDto信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public BTagDto getBTagByID(BTagDto bTagDto){
@@ -36,7 +36,7 @@ public class BTagServiceImpl implements BTagService {
     /**
     * 通过相关信息获取BTagDtoList信息
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public List<BTagDto> getBTagList(BTagDto bTagDto){
@@ -46,7 +46,7 @@ public class BTagServiceImpl implements BTagService {
     /**
     * 添加一个新的BTag到数据库
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer addBTag(BTagDto bTagDto){
@@ -56,7 +56,7 @@ public class BTagServiceImpl implements BTagService {
     /**
     * 更新BTag
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer updateBTag(BTagDto bTagDto){
@@ -66,7 +66,7 @@ public class BTagServiceImpl implements BTagService {
     /**
     * 删除BTag
     * @author 陈义
-    * @date 2015-12-13 19:03:39
+    * @date 2016-01-19 14:41:49
     */
     @Override
     public Integer deleteBTag(BTagDto bTagDto){
