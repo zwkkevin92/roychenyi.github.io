@@ -135,14 +135,16 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getUserId()!=null&&uuserDto.getUserId()>0){
 			StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-			String[] fl = new String[]{"uid","userId"};//过滤掉的字段
+			String[] fl = new String[]{"uid","userId","username"};//过滤掉的字段
 			Map<String, Object> map = uuserDto.createSetPropertiesVal(uuserDto, "a", fl);
 			Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);		
-			stringBuffer.append(" form "+UUser.class.getName()+" a");
+			stringBuffer.append(" "+UUser.class.getName()+" a");
 			stringBuffer.append(map.get(StringUtils.SET_HQL));
-			stringBuffer.append(" where u.userId=:uid");
+			stringBuffer.append(" where a.userId=:uid");
 			params.put("uid",uuserDto.getUid());
-			return this.executeHql(stringBuffer.toString(),params);
+			int i=this.executeHql(stringBuffer.toString(),params);
+			System.out.println(i);
+			return i;
 		}
 		return 0;
 	}
@@ -261,6 +263,8 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		userDto.setImageReplyCount(0);
 		userDto.setGuestbookCount(0);
 	}
+	
+
 	
 
 }

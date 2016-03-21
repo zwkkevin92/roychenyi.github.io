@@ -13,13 +13,13 @@
                 <button  aria-controls="navbar" aria-expanded="false" data-target="#search" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="top-search">
                     <i class="fa fa-search"></i>
                 </button>
-                <a href="#" class="navbar-brand">文学社网站</a>
+                <a href="$link.getContextURL()" class="navbar-brand">文学社网站</a>
             </div>
 
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a aria-expanded="false" role="button" href="#"><i class="fa fa-home"></i> 首页</a>
+                        <a aria-expanded="false" role="button" href="$link.getContextURL()"><i class="fa fa-home"></i> 首页</a>
                     </li>
                     <li >
                         <a aria-expanded="false" rele="button" href="#"><i class="fa fa-inbox"></i>社团</a>
@@ -47,10 +47,12 @@
                             </li>
                             <li><a href="">消息</a>
                             </li>
+							<li><a href="$link.getContextURL()/change/newpassword">修改密码</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="logout">
+                        <a href="$link.getContextURL()/logout">
                             <i class="fa fa-sign-out"></i> 退出
                         </a>
                     </li>

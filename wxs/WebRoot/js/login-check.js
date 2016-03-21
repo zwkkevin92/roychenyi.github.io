@@ -148,8 +148,8 @@ var hash = {
         	type:"POST",
         	data:str_data,
         	success:function(data){
-        		if(data==null){
-        		$('#error_text').html("<small>该邮箱没有注册，请点击下面的注册按钮进行注册！</small>");
+        		if(data==null||data==""){
+        		$('#error_text').html("<small>该邮箱没有注册，请点击注册或者重新输入邮箱！</small>");
         		}else{
         		var _mail = $("#username").val().split('@')[1];    //获取邮箱域
                for (var j in hash){
@@ -160,11 +160,17 @@ var hash = {
                  });
                 }
              }
+             
+             
         		}
+        	},
+        	error: function(data){
+        	    $('#error_text').html("<small>该邮箱没有注册，请点击注册或者重新输入邮箱！</small>");
         	}
         });
+         
     });
-//修改密码    
+//忘记密码时,修改密码    
 $('#newpwd').click(function(){
         var pwd1=$('#password').val();
         var pwd2=$('#password1').val();
@@ -178,14 +184,50 @@ $('#newpwd').click(function(){
             $.ajax({
                 url: "change",
                 dataType:"json",
-        	    type:"GET",
+        	    type:"POST",
         	    data:str_data,
                 success: function(data){
                     if(data["loginFlag"]==-1){
 
-                        $('#error_text').append("<small>修改密码失败！</small>");
+                        $('#error_text').html("<small>修改密码失败！</small>");
                     }else{
                     window.location=data['url'];
+                }
+                }
+
+            });
+        }
+
+    });
+    //更换新的密码，修改密码    
+$('#changepwd').click(function(){
+	    var pwd=$('#oldPassword').val();
+        var pwd1=$('#password').val();
+        var pwd2=$('#password1').val();
+        if(pwd==pwd1){
+        $('#error_text').html("<small>新密码不能和旧密码相同</small>");
+        return null;
+        }
+        if(pwd1!=pwd2){
+            $('#error_text').html("<small>两次输入密码不相同，请重新输入</small>");
+            return null;
+        }else{
+            var str_data = $("#changeform input").map(function () {
+                return ($(this).attr("name") + '=' + $(this).val());
+            }).get().join("&");
+            $.ajax({
+                url: "new",
+                dataType:"json",
+        	    type:"POST",
+        	    data:str_data,
+                success: function(data){
+                    if(data["loginFlag"]==-1){
+
+                        $('#error_text').html("<small>输入旧密码错误，请重新输入！</small>");
+                    }else if(data["loginFlag"]==0){
+                    $('#error_text').html("<small>修改密码失败，请重新再试！</small>");
+                }else{
+                   window.location=data["url"];
                 }
                 }
 
