@@ -1,4 +1,4 @@
-#set($layout = "layout/layout.vm")
+#set($layout = "layout/index.vm")
 #set($page_title="注册")
 
 <div class="middle-box text-center loginscreen   animated fadeInDown no-padding">
@@ -11,7 +11,7 @@
                 <h3>欢迎注册文学社平台</h3>
                 <p>创建一个新账户</p>
                 <p class="text-danger text-left"><small>两次密码不相同，请重新输入</small></p>
-                <form class="m-t" role="form" action="login.html">
+                <form class="m-t" role="form" action="login">
                     <div class="form-group">
                         <input type="text" id="username" name="username" class="form-control" placeholder="请输入邮箱进行注册" required="">
 					    <input type="hidden" id="prev_url" name="prev_url" value="$prev_url">
@@ -42,7 +42,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
 
-                    <p class="text-muted text-center"><small>已经有账户了？</small><a href="login.html">点此登录</a>
+                    <p class="text-muted text-center"><small>已经有账户了？</small><a href="login">点此登录</a>
                     </p>
 
                 </form>

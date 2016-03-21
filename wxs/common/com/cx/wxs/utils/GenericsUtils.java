@@ -158,7 +158,7 @@ public class GenericsUtils {
 		try {
 			//如果为传输类，则转换为实体类
 			if(clazz.getName().indexOf("Dto")!=-1){
-				String entityClass = clazz.getName().replace("dto", "entity").replace("Dto", "");
+				String entityClass = clazz.getName().replace("dto", "po").replace("Dto", "");
 				Class class1 = Class.forName(entityClass);
 				if(!class1.getName().equals(clazz.getName())){
 					clazz = class1;

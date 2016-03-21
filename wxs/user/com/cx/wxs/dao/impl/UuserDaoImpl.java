@@ -135,7 +135,7 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getUserId()!=null&&uuserDto.getUserId()>0){
 			StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-			String[] fl = new String[]{"uid"};//过滤掉的字段
+			String[] fl = new String[]{"uid","userId"};//过滤掉的字段
 			Map<String, Object> map = uuserDto.createSetPropertiesVal(uuserDto, "a", fl);
 			Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);		
 			stringBuffer.append(" form "+UUser.class.getName()+" a");
@@ -227,12 +227,16 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 				if(uuser.getPassword().equals(uuserDto.getPassword())||uuser.getPassword()==uuserDto.getPassword()){
 					dto=beanToDto.T1ToD1(uuser, dto);
 					dto.setLoginFlag("1");
+					Date date=new Date();
+					uuser.setLastTime(new Timestamp(date.getTime()));
+					uuser.setLastIp(uuserDto.getIp());
+					this.update(uuser);
 				}else{
 					dto.setLoginFlag("-1");
 				}
 		//		BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
 				
-				return dto;
+ 				return dto;
 			}
 		}
 		return null;
@@ -257,5 +261,6 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		userDto.setImageReplyCount(0);
 		userDto.setGuestbookCount(0);
 	}
+	
 
 }

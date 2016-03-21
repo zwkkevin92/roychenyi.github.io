@@ -623,7 +623,7 @@ public  class BeanBase implements Serializable{
 	public Map<String, Object> getPropertiesValue(Object obj,String... filter){
 		Map<String, Object> mapDto = getPropertiesValue(obj,true);//得到传输类属性集合
 		if(mapDto!=null&&mapDto.size()>0){
-			String className = obj.getClass().getName().replace("dto", "entity").replace("Dto", "");//得到实体类名称
+			String className = obj.getClass().getName().replace("dto", "po").replace("Dto", "");//得到实体类名称
 			try {
 				Class clazz = Class.forName(className);//得到实体类
 				if(!clazz.getName().equals(obj.getClass().getName())){

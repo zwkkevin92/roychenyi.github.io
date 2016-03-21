@@ -1,0 +1,19 @@
+#set($layout = "layout/index.vm")
+#set($page_title="404")
+
+<!--404页面主体-->
+	<div class="middle-box text-center animated fadeInDown">
+        <h1>404</h1>
+        <h3 class="font-bold">页面未找到！</h3>
+
+        <div class="error-desc">
+            抱歉，页面好像被汪星人吃掉了~
+            <form class="form-inline m-t" role="form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="请输入您需要查找的内容 …">
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+        </div>
+    </div>
+<!--404主体结束-->		

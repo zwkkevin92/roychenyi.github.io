@@ -134,6 +134,17 @@ public class ValidateCode {
         return code;  
     }  
     
+    public  String getCkeckCode(){
+    	 StringBuffer randomCode = new StringBuffer(); 
+		 Random random = new Random();  
+	        // 随机产生codeCount个字符的验证码。  
+	        for (int i = 0; i < 6; i++) {  
+	           String strRand = String.valueOf(codeSequence[random.nextInt(codeSequence.length)]);  
+	            randomCode.append(strRand);  
+	        }  
+	     return randomCode.toString();
+    }
+    
     public static void main(String[] avgs){
     	String path="D:/"+new Date().getTime()+".png";  
  //   	String verify = RandomStringUtils.randomNumeric(5);

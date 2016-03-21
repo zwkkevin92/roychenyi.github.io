@@ -11,8 +11,8 @@
 
 <title>${page_title}</title>
 
-<link rel="shortcut icon" type="image/x-icon" mce-fref="$link.getContextURL/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
-<link rel="icon" type="image/x-icon" mce-fref="$link.getContextURL/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
+<link rel="shortcut icon" type="image/x-icon" mce-fref="$link.getContextURL()/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
+<link rel="icon" type="image/x-icon" mce-fref="$link.getContextURL()/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
 
 #bootstrap()
 

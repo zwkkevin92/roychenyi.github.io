@@ -17,10 +17,10 @@
 					 <p id="error_text" class="text-danger text-left"><small>账号或密码错误请检查后输入</small></p>
 					 #end
 					 <p id="error_text" class="text-danger text-left"></p>					 
-                    <form class="m-t" role="form" id="loginform" action="login1" method="post">
+                    <form class="m-t" role="form" id="loginform" action="$link.getContextURL()/login1" method="post">
                         <div class="form-group">
 							<input type="hidden" id="prev_url" name="prev_url" value='$prev_url' />
-                            <input type="email" id="username" name="username" class="form-control" placeholder="账号" required="" onblur="usercheck(this)">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="账号" required="" onblur="usercheck(this)">
                         </div>
                         <div class="form-group">
                             <input type="password" id="password" name="password" class="form-control" placeholder="密码" required="">
@@ -31,11 +31,11 @@
                             <div class="col-lg-7 col-sm-7 col-xs-7 ">
 
                                     <input type="text" class="form-control" id="verifyCode" name="verifyCode"
-                                           placeholder="验证码"  onblur="checkVerifyCode(this.value,this.id);" onfocus="inputVerifyCode('img_result');"  />
+                                           placeholder="验证码"    />
 
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 no-padding">
-                                <img id="CreateCheckCode" alt="验证码" src="servlet/verify.img" onclick="this.src=this.src+'?'"/>
+                                <img id="CreateCheckCode" alt="验证码" src="$link.getContextURL()/servlet/verify.img" onclick="this.src=this.src+'?'"/>
                                 <a href="javascript:document.getElementById('CreateCheckCode').onclick()" >换一张</a>
                             </div>
                             </div>
@@ -43,7 +43,7 @@
                         <button type="button" id="login" class="btn btn-primary block full-width m-b">登 录</button>
 
 
-                        <p class="text-muted text-center"> <a href="login.html"> 忘记密码了？</a> | <a href="register.html">注册一个新账号</a>
+                        <p class="text-muted text-center"> <a href="forgot"> 忘记密码了？</a> | <a href="register">注册一个新账号</a>
                         </p>
 
                     </form>

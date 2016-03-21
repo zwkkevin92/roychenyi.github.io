@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>wxs</display-name>	
-  
-   <!-- 加载spring容器 -->
+	<display-name>wxs</display-name>
+
+	<!-- 加载spring容器 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/spring-*.xml</param-value>
@@ -14,7 +13,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<!-- springmvc前端控制器 -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
@@ -29,75 +28,71 @@
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<!-- 第一种：*.action，访问以.action结尾 由DispatcherServlet进行解析 
-			第二种：/，所以访问的地址都由DispatcherServlet进行解析，对于静态文件的解析需要配置不让DispatcherServlet进行解析 
-			使用此种方式可以实现 RESTful风格的url 
-			第三种：/*，这样配置不对，使用这种配置，最终要转发到一个jsp页面时， 仍然会由DispatcherServlet解析jsp地址，不能根据jsp页面找到handler，会报错。 -->
+		<!-- 第一种：*.action，访问以.action结尾 由DispatcherServlet进行解析 第二种：/，所以访问的地址都由DispatcherServlet进行解析，对于静态文件的解析需要配置不让DispatcherServlet进行解析 
+			使用此种方式可以实现 RESTful风格的url 第三种：/*，这样配置不对，使用这种配置，最终要转发到一个jsp页面时， 仍然会由DispatcherServlet解析jsp地址，不能根据jsp页面找到handler，会报错。 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-   <servlet>  
-    <servlet-name>velocity</servlet-name>  
-    <servlet-class>org.apache.velocity.tools.view.VelocityLayoutServlet </servlet-class>
-    <init-param>  
-            <param-name>org.apache.velocity.toolbox</param-name>  
-            <param-value>WEB-INF/vm/conf/velocity-toolbox.xml</param-value>  
-     </init-param>  
-    <load-on-startup>2</load-on-startup>  
-  </servlet> 
 
-  
-   <servlet-mapping>  
-    <servlet-name>velocity</servlet-name>  
-    <url-pattern>*.vm</url-pattern>  
-  </servlet-mapping> 
-  
-  	<!-- druid监控页面，使用${pageContext.request.contextPath}/druid/index.html访问 -->
+	<servlet>
+		<servlet-name>velocity</servlet-name>
+		<servlet-class>org.apache.velocity.tools.view.VelocityLayoutServlet</servlet-class>
+		<init-param>
+			<param-name>org.apache.velocity.toolbox</param-name>
+			<param-value>WEB-INF/vm/conf/velocity-toolbox.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>velocity</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+	</servlet-mapping>
+
+	<!-- druid监控页面，使用${pageContext.request.contextPath}/druid/index.html访问 -->
 	<servlet>
 		<servlet-name>druidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-	    <load-on-startup>3</load-on-startup>  
+		<load-on-startup>3</load-on-startup>
 	</servlet>
-  <servlet>
-    <description>验证码</description>
-    <display-name>验证码</display-name>
-    <servlet-name>velidateCodeServlet</servlet-name>
-    <servlet-class>com.cx.wxs.servlet.velidateCodeServlet</servlet-class>
-    <load-on-startup>4</load-on-startup>  
-  </servlet>
-  <servlet>
-  <servlet-name>EmailSenderServlet</servlet-name>
-  <servlet-class>com.cx.wxs.servlet.EmailSenderServlet</servlet-class>
-  <init-param>
+	<servlet>
+		<description>验证码</description>
+		<display-name>验证码</display-name>
+		<servlet-name>velidateCodeServlet</servlet-name>
+		<servlet-class>com.cx.wxs.servlet.velidateCodeServlet</servlet-class>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>EmailSenderServlet</servlet-name>
+		<servlet-class>com.cx.wxs.servlet.EmailSenderServlet</servlet-class>
+		<init-param>
 			<param-name>mail-queue-path</param-name>
 			<param-value>/WEB-INF/spool</param-value>
-  </init-param>
-  <init-param>
+		</init-param>
+		<init-param>
 			<param-name>sender</param-name>
 			<param-value>chenyi199290@hotmail.com</param-value>
-  </init-param>
-  <load-on-startup>5</load-on-startup>
-  </servlet>
+		</init-param>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>druidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
-		 
+
 	</servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>velidateCodeServlet</servlet-name>
-    <url-pattern>/servlet/verify.img</url-pattern>
-  </servlet-mapping>
-  
-<!--   <servlet-mappring>
-    <servlet-name>EmailSenderServlet</servlet-name>
-  </servlet-mappring>
-   -->
-	
-	
+	<servlet-mapping>
+		<servlet-name>velidateCodeServlet</servlet-name>
+		<url-pattern>/servlet/verify.img</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet-mappring> <servlet-name>EmailSenderServlet</servlet-name> 
+		</servlet-mappring> -->
+
+
 	<!-- 页面编码设置 -->
 	<filter>
-	    <filter-name>encodingFilter</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
@@ -109,10 +104,10 @@
 		</init-param>
 	</filter>
 	<filter-mapping>
-	    <filter-name>encodingFilter</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- druid数据源Web监控配置 -->
 	<filter>
 		<filter-name>druidWebStatFilter</filter-name>
@@ -139,18 +134,24 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>druidWebStatFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>openSessionInViewFilter</filter-name>
-		<url-pattern>*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
-  
-<!--   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list> -->
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/505</location>
+	</error-page>
+
+	<!-- <welcome-file-list> <welcome-file>index.jsp</welcome-file> </welcome-file-list> -->
 </web-app>

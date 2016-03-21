@@ -141,7 +141,7 @@ public class BeanToDto<T1 extends Serializable,D1 extends Serializable> {
 		Field[] fields=t1.getClass().getDeclaredFields();
 		BeanUtils.copyProperties(t1, d1);
 		for(Field field:fields){
-			System.out.println(field.getGenericType().toString());
+		//	System.out.println(field.getGenericType().toString());
 			if(field.getGenericType().toString().contains("class com.cx.wxs.")){
 				Object o1= invokeMethodGET(t1,field.getName(),null);				
 				if(o1!=null){

@@ -29,6 +29,8 @@ import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
 import org.xbill.DNS.Type;
 
+
+
 /***
  * 邮件发送工具
  * @author 陈义
@@ -115,6 +117,7 @@ public class EmailSender {
 			logger.info("MessagingException---设置收件人异常："+e.getMessage());
 		}
 	}
+	
 	/***
 	 *  设置邮件发送内容
 	 * @param title 邮件标题
@@ -224,9 +227,6 @@ public class EmailSender {
 
 	public static  void main(String[] avg) throws IOException{
      
-	   
-	
-	   
 	}
 }
 

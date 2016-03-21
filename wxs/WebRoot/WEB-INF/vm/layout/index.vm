@@ -18,8 +18,10 @@
 </div>
 #jquery
 <!-- Custom and plugin javascript -->
-<script src="js/plugins/pace/pace.min.js"></script>
-<script src="js/main.js"></script>
+<script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>
+<script src="$link.getContextURL()/js/main.js"></script>
+#if($extjs)
 $extjs
+#end
 </body>	
 </html>
