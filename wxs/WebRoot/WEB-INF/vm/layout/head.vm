@@ -15,4 +15,7 @@
 <link rel="icon" type="image/x-icon" mce-fref="$link.getContextURL()/images/wen.ico" href="$link.getContextURL()/images/wen.ico"/>
 
 #bootstrap()
+#if($extcss)
+$extcss
+#end
 

@@ -1,6 +1,6 @@
 #set($layout = "layout/index.vm")
 #set($page_title="登陆")
-#set($extjs="<!--javascrpt-plugins-layer--><script src='js/plugins/layer/layer.js'></script><script>layer.use('js/plugins/layer/extend/layer.ext.js'); //载入layer拓展模块</script><script src='js/login-check.js'></script>")
+#set($extjs="<!--javascrpt-plugins-layer--><script src='$link.getContextURL()/js/plugins/layer/layer.js'></script><script src='$link.getContextURL()/js/user-check.js'></script>")
 ##页面主体
  <div class="middle-box text-center loginscreen  animated fadeInDown">
                 <div>

@@ -1,5 +1,7 @@
 #set($layout = "layout/index.vm")
 #set($page_title="注册")
+#set($extjs="<!--javascrpt-plugins-layer--><script src='$link.getContextURL()/js/plugins/layer/layer.js'></script><script src='$link.getContextURL()/js/user-check.js'></script>")
+
 
 <div class="middle-box text-center loginscreen   animated fadeInDown no-padding">
             <div>
@@ -10,10 +12,10 @@
 		 </div>  -->
                 <h3>欢迎注册文学社平台</h3>
                 <p>创建一个新账户</p>
-                <p class="text-danger text-left"><small>两次密码不相同，请重新输入</small></p>
-                <form class="m-t" role="form" action="login">
+               <p id="error_text" class="text-danger text-left"></p>
+                <form class="m-t" id="reg_form" role="form" action="register">
                     <div class="form-group">
-                        <input type="text" id="username" name="username" class="form-control" placeholder="请输入邮箱进行注册" required="">
+                        <input type="text" id="reg_username" name="username" class="form-control" placeholder="请输入邮箱进行注册" required="">
 					    <input type="hidden" id="prev_url" name="prev_url" value="$prev_url">
                     </div>
                     <div class="form-group">
@@ -21,7 +23,7 @@
                         <p class="text-info text-left"><small>此昵称为用户专属昵称，一旦设置不可轻易改变</small></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="请输入密码" required="">
+                        <input type="password" id="password1" name="password1" class="form-control" placeholder="请输入密码" required="">
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" class="form-control" placeholder="请再次输入密码" required="">
@@ -37,10 +39,10 @@
                     <div class="form-group text-left">
                         <div class="checkbox i-checks">
                             <label class="padding">
-                                <input type="checkbox"><i></i> 我同意注册协议</label>
+                                <input type="checkbox" id="agreement" checked="true"><i></i> 我同意注册协议</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+                    <button type="button" id="register" name="register" class="btn btn-primary block full-width m-b">注 册</button>
 
                     <p class="text-muted text-center"><small>已经有账户了？</small><a href="login">点此登录</a>
                     </p>

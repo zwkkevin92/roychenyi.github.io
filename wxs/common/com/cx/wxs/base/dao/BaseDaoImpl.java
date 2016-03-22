@@ -83,7 +83,6 @@ public class BaseDaoImpl<T extends Serializable,PK extends Serializable> impleme
 	@Override
 	public void delete(T t) {
 		this.getCurrentSession().delete(t);
-		this.getCurrentSession().flush();
 	}
 
 	@Override
@@ -107,8 +106,7 @@ public class BaseDaoImpl<T extends Serializable,PK extends Serializable> impleme
 	public void update(T t) {
 		
 		this.getCurrentSession().update(t);
-		this.getCurrentSession().flush();
-
+        this.getCurrentSession().flush();
 	}
 
 	@Override
@@ -126,6 +124,7 @@ public class BaseDaoImpl<T extends Serializable,PK extends Serializable> impleme
 	@Override
 	public Integer save(T t) {
 		return Integer.valueOf(this.getCurrentSession().save(t).toString());
+
 	}
 
 	@Override

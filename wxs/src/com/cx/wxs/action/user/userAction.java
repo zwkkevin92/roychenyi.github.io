@@ -2,8 +2,10 @@ package com.cx.wxs.action.user;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.enterprise.inject.Model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -117,7 +119,9 @@ public class userAction {
 		uuser= uuService.login(uuser);
 		session.setAttribute("user",uuser);
 		uuser.setUrl(prev_url);
-
+        if(uuser.getPopedom()!=1){
+        	uuser.setLoginFlag("-2");
+        }
 		//	mv.setViewName("user/login");
 		//		}else{
 		//			uuser.setUrl(prev_url);
@@ -148,16 +152,80 @@ public class userAction {
 		return mv;
 	}
 
+	@ResponseBody 
 	@RequestMapping(value="/register1",method=RequestMethod.POST)
-	public ModelAndView register(HttpServletRequest request,
-			HttpServletResponse response){
-		ModelAndView mv=new ModelAndView();
+	public UUserDto register(HttpServletRequest request,
+			HttpServletResponse response,UUserDto userDto){
 		String prev_url=request.getParameter("prev_url");
-		if(prev_url!=null&&prev_url!=""){
-			mv.setViewName("redirect:"+prev_url);
+		String password=StringUtils.md5(request.getParameter("password"));
+		userDto.setEmail(userDto.getUsername());
+		userDto.setPassword(password);
+		int popedom=(int)((Math.random()*9+1)*100000);
+		userDto.setPopedom(popedom);
+		userDto.setRoleId(0);
+		if(uuService.addUuser(userDto)>0){
+			StringBuffer url = request.getRequestURL();  
+			String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getServletContext().getContextPath()).append("/").toString(); 
+	        tempContextUrl+="register/check";
+			try {
+				tempContextUrl+="?username="+userDto.getUsername()+"&prev_url="+prev_url+"&popedom="+popedom+"&nocahe="+new Date().getTime();
+				// 邮件内容
+				String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，若点击不成功，请充值url地址到浏览器跳转，谢谢合作。<br>地址：<a herf=\""+tempContextUrl+"\">"+tempContextUrl+"</a></p>";
+				Parser html = new Parser();
+				html.setEncoding("UTF-8");
+				html.setInputHTML(email_content);
+				Node[] nodes = html.extractAllNodesThatMatch(
+						HtmlNodeFilters.titleFilter).toNodeArray();
+				String title = "文学社平台注册验证";
+				String[] receivers=new String[]{userDto.getUsername()};
+				emailService.sendEmail(title, receivers, email_content, EmailType.VALIDATE);
+				System.out.println("验证链接已发送！");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+			userDto.setUrl(prev_url);
+			userDto.setLoginFlag("1");
 		}else{
-			mv.setViewName("redirect:register");
-		}
+			userDto.setLoginFlag("-1");
+		}		
+		return userDto;
+	}
+	
+	@RequestMapping(value="register/check")
+	public ModelAndView registerCheck(HttpServletRequest request,
+			HttpServletResponse response){
+		ModelAndView mv=new ModelAndView("user/regcheck");
+	    String username=request.getParameter("username");
+	    Integer popedom=Integer.parseInt(request.getParameter("popedom"));
+	    String prev_url=request.getParameter("prev_url");
+	    UUserDto userDto=new UUserDto();
+	    userDto.setUsername(username);
+	    userDto= uuService.getUuser(userDto);
+	    if(userDto.getPopedom()==1){
+	    	UUserDto user=(UUserDto) request.getSession().getAttribute("user");
+	    	if(user!=null){
+	    		mv.setViewName("redirect:"+prev_url);
+	    		return mv;
+	    	}else{
+	    	mv.addObject("user", userDto);
+	    	return mv;
+	    	}
+	    }
+	    if(userDto.getUserId()!=null&userDto.getPopedom().equals(popedom)){
+	    	userDto.setPopedom(1);
+	    	userDto.setUid(userDto.getUserId());
+	    	if(uuService.updateUuser(userDto)>0){
+	    		userDto.setLoginFlag("1");
+	    		userDto.setUrl(prev_url);
+	    	}else{
+	    		userDto=null;
+	    	}
+	    	
+	    }else{
+	    	userDto=null;
+	    }
+	    mv.addObject("user", userDto); 
 		return mv;
 	}
 
@@ -284,10 +352,8 @@ public class userAction {
 			uuserDto.setIp(ip);
 			Date date=new Date();
 			uuserDto.setLastTime(new Timestamp(date.getTime()));
-			uuserDto.setUid(uuserDto.getUserId());
-		  	int i=uuService.updateUuser(uuserDto);
-		  	System.out.println(i);
-		  	if(i>0){
+			uuserDto.setUid(uuserDto.getUserId());		
+		  	if(uuService.updateUuser(uuserDto)>0){
 		  		uuserDto.setLoginFlag("1");
 		  		session.setAttribute("user", uuserDto);
 		  	}else{
@@ -299,6 +365,8 @@ public class userAction {
 		uuserDto.setUrl(prev_url);
 		return uuserDto;
 	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value="/checkVerifyCode")
@@ -312,5 +380,47 @@ public class userAction {
 		}else{
 			return flag;
 		}
+	}
+	/***
+	 * 验证用户名唯一性和可用性
+	 * @param username
+	 * @return
+	 * @author 陈义
+	 * @date   2016-3-22上午11:11:07
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user/checkusername")
+	public String usernameCheck(String username){
+		UUserDto user=new UUserDto();
+		user.setUsername(username);
+		user=uuService.getUuser(user);
+		String flag="1";
+		if(user==null){
+			flag="1";
+		}else{
+			flag="0";
+		}
+		return flag;
+	}
+	/***
+	 * 验证昵称的唯一性和可用性
+	 * @param nickname
+	 * @return
+	 * @author 陈义
+	 * @date   2016-3-22上午11:11:49
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user/checknickname")
+	public String nicknameCheck(String nickname){
+		UUserDto user=new UUserDto();
+		user.setNickname(nickname);
+		user=uuService.getUuser(user);
+		String flag="0";
+		if(user==null){
+			flag="1";
+		}else{
+			flag="0";
+		}
+		return flag;
 	}
 }

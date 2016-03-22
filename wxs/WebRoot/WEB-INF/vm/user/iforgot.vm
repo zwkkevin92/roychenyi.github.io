@@ -1,7 +1,6 @@
 #set($layout = "layout/index.vm")
 #set($page_title="找回密码")
-#set($extjs="<!--javascrpt-plugins-layer--><script src='$link.getContextURL()/js/plugins/layer/layer.js'></script><script src='$link.getContextURL()/js/login-check.js'></script>")
-
+#set($extjs="<!--javascrpt-plugins-layer--><script src='$link.getContextURL()/js/plugins/layer/layer.js'></script><script src='$link.getContextURL()/js/user-check.js'></script>")
 
 <!--主体部分-->
         <div class="middle-box text-center loginscreen  animated fadeInDown">

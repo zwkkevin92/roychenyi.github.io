@@ -65,6 +65,10 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 				stringBuffer.append(" and a.username=:username");
 				params.put("username",uuserDto.getUsername());
 			}
+			if(uuserDto.getNickname()!=null){
+				stringBuffer.append(" and a.nickname=:nickname");
+				params.put("nickname",uuserDto.getNickname());
+			}
 			List<UUser> list=this.find(stringBuffer.toString(), params);
 			if(list!=null&&list.size()>0){
 				UUser uuser= list.get(0);
@@ -141,10 +145,12 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 			stringBuffer.append(" "+UUser.class.getName()+" a");
 			stringBuffer.append(map.get(StringUtils.SET_HQL));
 			stringBuffer.append(" where a.userId=:uid");
-			params.put("uid",uuserDto.getUid());
-			int i=this.executeHql(stringBuffer.toString(),params);
-			System.out.println(i);
-			return i;
+			if(uuserDto.getUserId()==null){
+				params.put("uid",uuserDto.getUid());
+			}else{
+				params.put("uid",uuserDto.getUserId());			
+			}
+			return this.executeHql(stringBuffer.toString(),params);
 		}
 		return 0;
 	}
