@@ -46,9 +46,9 @@ import com.cx.wxs.utils.clientInfo;
 public class indexAction {
 
 	@Resource
-	UUserService uuService;
+	private UUserService uuService;
 	@Resource
-	EmailService emailService;
+	private EmailService emailService;
 
 
 
@@ -82,10 +82,18 @@ public class indexAction {
 		this.emailService = emailService;
 	}
 
+	/***
+	 * 首页
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-3-23下午9:21:46
+	 */
 	@RequestMapping(value="/")
 	public  ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response){
-		ModelAndView mv=new ModelAndView("user/main");
+		ModelAndView mv=new ModelAndView("main");
 		return mv;
 	}
 

@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cx.wxs.dto.BSiteDto;
+import com.cx.wxs.dto.SysStyleDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.EmailType;
+import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.EmailService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.HtmlNodeFilters;
@@ -29,6 +32,7 @@ import com.cx.wxs.utils.ValidateCode;
 import com.cx.wxs.utils.clientInfo;
 
 /**
+ * 用户登陆、注册、用户验证
  * @author 陈义
  * @date   2016-3-21 下午9:03:08
  */
@@ -36,9 +40,11 @@ import com.cx.wxs.utils.clientInfo;
 public class userAction {
 	
 	@Resource
-	UUserService uuService;
+	private UUserService uuService;
 	@Resource
-	EmailService emailService;
+	private EmailService emailService;
+	@Resource
+	private BSiteService bSiteService;
 
 
 
@@ -72,6 +78,21 @@ public class userAction {
 		this.emailService = emailService;
 	}
 
+	
+
+	/**
+	 * @return the bSiteService
+	 */
+	public BSiteService getbSiteService() {
+		return bSiteService;
+	}
+
+	/**
+	 * @param bSiteService the bSiteService to set
+	 */
+	public void setbSiteService(BSiteService bSiteService) {
+		this.bSiteService = bSiteService;
+	}
 
 	/***
 	 *跳转进入登陆页面 
@@ -97,7 +118,6 @@ public class userAction {
 	 * @date   2016-1-7下午4:28:12
 	 */
 	@RequestMapping(value="/login1")
-
 	public @ResponseBody JSONObject login(HttpServletRequest request,
 			HttpServletResponse response){		
 		String prev_url=request.getParameter("prev_url");
@@ -119,16 +139,13 @@ public class userAction {
 		uuser= uuService.login(uuser);
 		session.setAttribute("user",uuser);
 		uuser.setUrl(prev_url);
-        if(uuser.getPopedom()!=1){
-        	uuser.setLoginFlag("-2");
-        }
-		//	mv.setViewName("user/login");
-		//		}else{
-		//			uuser.setUrl(prev_url);
-		//			uuser.setLoginFlag("0");
-		//		}
-		//		String url=request.getServletPath();
-		//		mv.addObject("flag",flag);
+		if(uuser==null){
+			return null;
+		}else if(uuser.getLoginFlag().equals("1")){
+			if(uuser.getPopedom()!=1){
+				uuser.setLoginFlag("-3");
+			}
+		}
 		JSONObject json=(JSONObject) JSONObject.toJSON(uuser);
 		return json;
 	}
@@ -170,13 +187,13 @@ public class userAction {
 			try {
 				tempContextUrl+="?username="+userDto.getUsername()+"&prev_url="+prev_url+"&popedom="+popedom+"&nocahe="+new Date().getTime();
 				// 邮件内容
-				String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，若点击不成功，请充值url地址到浏览器跳转，谢谢合作。<br>地址：<a herf=\""+tempContextUrl+"\">"+tempContextUrl+"</a></p>";
+				String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，若点击不成功，请充值url地址到浏览器跳转，谢谢合作。<br>地址：<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
 				Parser html = new Parser();
 				html.setEncoding("UTF-8");
 				html.setInputHTML(email_content);
 				Node[] nodes = html.extractAllNodesThatMatch(
 						HtmlNodeFilters.titleFilter).toNodeArray();
-				String title = "文学社平台注册验证";
+				String title = "文学社平台注册激活";
 				String[] receivers=new String[]{userDto.getUsername()};
 				emailService.sendEmail(title, receivers, email_content, EmailType.VALIDATE);
 				System.out.println("验证链接已发送！");
@@ -208,16 +225,33 @@ public class userAction {
 	    		mv.setViewName("redirect:"+prev_url);
 	    		return mv;
 	    	}else{
-	    	mv.addObject("user", userDto);
+	    //	mv.addObject("user", userDto);
 	    	return mv;
 	    	}
 	    }
 	    if(userDto.getUserId()!=null&userDto.getPopedom().equals(popedom)){
+	    	//验证成功
 	    	userDto.setPopedom(1);
 	    	userDto.setUid(userDto.getUserId());
+	    	//开通空间
+	    	BSiteDto bSiteDto=new BSiteDto();
+	    	bSiteDto.setUUserDto(userDto);
+	    	bSiteDto.setName(userDto.getNickname());
+	    	bSiteDto.setTitle(userDto.getNickname()+"的博客");
+	    	bSiteDto.setSiteUrl("/"+userDto.getNickname());
+	    	SysStyleDto styleDto=new SysStyleDto();
+	    	styleDto.setStyleId(1);	    	
+	    	bSiteDto.setSysStyleDto(styleDto);
+	    	bSiteDto.setMode((short)1);
+	    	bSiteDto.setCreateTime(new Timestamp(new Date().getTime()));
+	    	int id=bSiteService.addBSite(bSiteDto);
+	    	if(id>0){
+	    	    bSiteDto.setSiteId(id);
+	    		userDto.setBSiteDto(bSiteDto);
+	    	}
 	    	if(uuService.updateUuser(userDto)>0){
 	    		userDto.setLoginFlag("1");
-	    		userDto.setUrl(prev_url);
+	    		userDto.setUrl(prev_url);    		
 	    	}else{
 	    		userDto=null;
 	    	}
@@ -270,7 +304,8 @@ public class userAction {
 			session.setAttribute("newCheckCode", checkCode);
 			tempContextUrl+="?uid="+user.getUserId()+"&username="+user.getUsername()+"&prev_url="+prev_url+"&newCheckCode="+checkCode+"&nocahe="+new Date().getTime();
 			// 邮件内容
-			String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，<a herf=\""+tempContextUrl+"\">"+tempContextUrl+"</a></p>";
+			
+			String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
 			Parser html = new Parser();
 			html.setEncoding("UTF-8");
 			html.setInputHTML(email_content);
@@ -422,5 +457,9 @@ public class userAction {
 			flag="0";
 		}
 		return flag;
+	}
+	
+	public String sendPasswordNotify(){
+		return null;
 	}
 }

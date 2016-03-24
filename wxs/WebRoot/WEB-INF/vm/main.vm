@@ -1,3 +1,52 @@
-#set($layout = "layout/index.vm")  
-test
-#test.test()
+#set($layout = "layout/indexA.vm") 
+#set($page_title="文学社-首页")
+ <!--主体部分-->
+
+           <section>
+             <div class="row">
+                 <div class="col-md-8">
+                     <div class="ibox">
+                         <div class="ibox-title">社团</div>
+                         <div class="ibox-content">内容</div>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="ibox">
+                         <div class="ibox-title">社团排行榜</div>
+                         <div class="ibox-content">内容</div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+             <section>
+                 <div class="row">
+                     <div class="col-md-8">
+                         <div class="ibox">
+                             <div class="ibox-title">社团</div>
+                             <div class="ibox-content">内容</div>
+                         </div>
+                     </div>
+                     <div class="col-md-4">
+                         <div class="ibox">
+                             <div class="ibox-title">社团排行榜</div>
+                             <div class="ibox-content">内容</div>
+                         </div>
+                     </div>
+                 </div>
+             </section>
+        <section>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="ibox">
+                        <div class="ibox-title">文字</div>
+                        <div class="ibox-content">内容</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ibox">
+                        <div class="ibox-title">文字排行榜</div>
+                        <div class="ibox-content">内容</div>
+                    </div>
+                </div>
+            </div>
+        </section>

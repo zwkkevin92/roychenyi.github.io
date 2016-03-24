@@ -1,0 +1,29 @@
+#set($disable_seachable=true)
+
+#html_doctype()
+<head>
+	#parse("layout/head.vm")
+</head>
+<body class="top-navigation gray-bg" >
+<div id="wrapper">
+<div id="page-wrapper">
+#parse("layout/header.vm")
+#parse("layout/carousel.vm")
+#parse("layout/rank.vm")
+    <div class="wrapper wrapper-content">
+        <div class="container">
+      $screen_content
+        </div>
+	</div>
+#parse("layout/footer.vm")	
+</div>
+</div>
+#jquery
+<!-- Custom and plugin javascript -->
+<script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>
+<script src="$link.getContextURL()/js/main.js"></script>
+#if($extjs)
+$extjs
+#end
+</body>	
+</html>

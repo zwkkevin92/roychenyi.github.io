@@ -9,8 +9,7 @@
 #macro(bootstrap)
    <link href="$link.getContextURL()/css/bootstrap.min.css" rel="stylesheet">
    <link href="$link.getContextURL()/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
-   <link href="$link.getContextURL()/css/animate.css" rel="stylesheet">
-   <link href="$link.getContextURL()/css/style.css?v=1.0" rel="stylesheet">
+   <link href="$link.getContextURL()/css/animate.css" rel="stylesheet">   
 #end
 
 #macro(jquery)

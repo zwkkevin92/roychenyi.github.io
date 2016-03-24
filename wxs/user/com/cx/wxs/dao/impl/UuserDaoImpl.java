@@ -244,8 +244,10 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 				}
 		//		BeanToDto<UUser,UUserDto> beanToDto=new BeanToDto<UUser,UUserDto>();
 				
- 				return dto;
+			}else{
+				dto.setLoginFlag("-2");
 			}
+			return dto;
 		}
 		return null;
 	}

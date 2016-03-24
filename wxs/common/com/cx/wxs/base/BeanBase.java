@@ -661,7 +661,7 @@ public  class BeanBase implements Serializable{
 											//检查dto与实体对象的属性
 											if(key.indexOf("Dto")!=-1&&!(temObject instanceof Collection)){
 												temKey = temKey.replace("Dto", "");
-												Class temClass = Class.forName(temObject.getClass().getName().replace("Dto", "").replace("dto", "entity"));//得到实体类
+												Class temClass = Class.forName(temObject.getClass().getName().replace("Dto", "").replace("dto", "po"));//得到实体类
 												Object newObject = temClass.newInstance();
 												BeanUtils.copyProperties(temObject, newObject);
 												temObject = newObject;

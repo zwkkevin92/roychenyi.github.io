@@ -22,7 +22,7 @@ import com.cx.wxs.utils.BeanToDto;
 @Repository("BSiteDao")
 public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDao{
 
-    private BeanToDto<BSite, BSiteDto> beanToDto;
+    private BeanToDto<BSite, BSiteDto> beanToDto=new BeanToDto<BSite,BSiteDto>();
 
     /**
     * 通过id获取BSiteDto

@@ -14,12 +14,14 @@
                 <p>创建一个新账户</p>
                <p id="error_text" class="text-danger text-left"></p>
                 <form class="m-t" id="reg_form" role="form" action="register">
-                    <div class="form-group">
+                    <div class="form-group has-feedback">
                         <input type="text" id="reg_username" name="username" class="form-control" placeholder="请输入邮箱进行注册" required="">
 					    <input type="hidden" id="prev_url" name="prev_url" value="$prev_url">
+					    <span id="feedback-username" class="form-control-feedback glyphicon"></span>		
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback">
                         <input type="text" id="nickname" name="nickname" class="form-control" placeholder="请输入用户昵称进行注册" required="">
+						<span id="feedback-nickname" class="form-control-feedback glyphicon"></span>	
                         <p class="text-info text-left"><small>此昵称为用户专属昵称，一旦设置不可轻易改变</small></p>
                     </div>
                     <div class="form-group">
