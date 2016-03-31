@@ -73,4 +73,13 @@ public class WWxsServiceImpl implements WWxsService {
         return wWxsDao.deleteWWxs(wWxsDto);
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.WWxsService#getWwxs(com.cx.wxs.dto.WWxsDto)
+	 */
+	@Override
+	public WWxsDto getWwxs(WWxsDto wWxsDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

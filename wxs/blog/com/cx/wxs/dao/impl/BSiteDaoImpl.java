@@ -84,10 +84,10 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
         // TODO Auto-generated method stub
         if(bSiteDto!=null&&bSiteDto.getSiteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"uid"};//过滤掉的字段
+           String[] fl = new String[]{"siteId"};//过滤掉的字段
            Map<String, Object> map = bSiteDto.createSetPropertiesVal(bSiteDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+BSite.class.getName()+" a");
+           stringBuffer.append(" "+BSite.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.siteId=:uid");
            params.put("uid",bSiteDto.getSiteId());

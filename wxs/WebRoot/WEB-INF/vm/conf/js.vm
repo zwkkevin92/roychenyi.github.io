@@ -1,0 +1,8 @@
+#set($JjsURL="$link.getContextURL()/js")
+#set($Jtimer="<script src='$link.getContextURL()/js/timer.js'></script><br>")
+#set($JuserCheck="<script src='$link.getContextURL()/js/user-check.js'></script>")
+#set($Jmian="<script src='$link.getContextURL()/js/mian.js'></script><br>")
+#set($Jlayer="<script src='$link.getContextURL()/js/plugins/layer/layer.js'></script>")
+##cropper
+#set($Jcropper="<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>")
+#set($Jcropper-tool="<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>")

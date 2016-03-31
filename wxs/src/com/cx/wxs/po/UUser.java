@@ -49,6 +49,7 @@ public class UUser implements java.io.Serializable {
 	private String lastIp;
 	private Short keepDay;
 	private Short onlineStatus;
+	private Integer rank;
 	private Integer articleCount;
 	private Integer articleReplyCount;
 	private Integer topicCount;
@@ -57,8 +58,10 @@ public class UUser implements java.io.Serializable {
 	private Integer imageReplyCount;
 	private Integer guestbookCount;
 	private Integer tagCount;
+	private Integer fans;
+	private Integer follows;
 	private Integer popedom;
-	private Integer coidId;
+	private Integer codeId;
 	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
 	private Set<VVote> VVotes = new HashSet<VVote>(0);
 	private Set<DUpvote> DUpvotes = new HashSet<DUpvote>(0);
@@ -127,11 +130,11 @@ public class UUser implements java.io.Serializable {
 			String mobile, Integer provinceId, Integer cityId,
 			Integer schoolId, Integer collegeId, String class_,
 			String portrait, Timestamp regtime, Timestamp lastTime,
-			String lastIp, Short keepDay, Short onlineStatus,
+			String lastIp, Short keepDay, Short onlineStatus,Integer rank,
 			Integer articleCount, Integer articleReplyCount,
 			Integer topicCount, Integer topicReplyCount, Integer imageCount,
 			Integer imageReplyCount, Integer guestbookCount, Integer tagCount,
-			Integer popedom, Integer coidId, Set<DDiary> DDiaries,
+			Integer fans,Integer follows, Integer popedom, Integer codeId, Set<DDiary> DDiaries,
 			Set<VVote> VVotes, Set<DUpvote> DUpvotes, Set<DReply1> DReply1s,
 			Set<IReply2> IReply2sForUserId, Set<SSound> SSounds,
 			Set<USign> USigns, Set<SReply2> SReply2sForCommentator,
@@ -176,6 +179,7 @@ public class UUser implements java.io.Serializable {
 		this.lastIp = lastIp;
 		this.keepDay = keepDay;
 		this.onlineStatus = onlineStatus;
+		this.rank=rank;
 		this.articleCount = articleCount;
 		this.articleReplyCount = articleReplyCount;
 		this.topicCount = topicCount;
@@ -184,8 +188,10 @@ public class UUser implements java.io.Serializable {
 		this.imageReplyCount = imageReplyCount;
 		this.guestbookCount = guestbookCount;
 		this.tagCount = tagCount;
+		this.fans=fans;
+		this.follows=follows;
 		this.popedom = popedom;
-		this.coidId = coidId;
+		this.codeId = codeId;
 		this.DDiaries = DDiaries;
 		this.VVotes = VVotes;
 		this.DUpvotes = DUpvotes;
@@ -232,6 +238,7 @@ public class UUser implements java.io.Serializable {
 		this.BBacklistsForBackId = BBacklistsForBackId;
 	}
 
+	
 	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -462,6 +469,15 @@ public class UUser implements java.io.Serializable {
 	public void setOnlineStatus(Short onlineStatus) {
 		this.onlineStatus = onlineStatus;
 	}
+	
+	@Column(name="rank")
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
 
 	@Column(name = "article_count")
 	public Integer getArticleCount() {
@@ -534,6 +550,27 @@ public class UUser implements java.io.Serializable {
 	public void setTagCount(Integer tagCount) {
 		this.tagCount = tagCount;
 	}
+	
+	@Column(name="fans")
+	public Integer getFans() {
+		return fans;
+	}
+
+	public void setFans(Integer fans) {
+		this.fans = fans;
+	}
+
+	@Column(name="follows")
+	public Integer getFollows() {
+		return follows;
+	}
+
+	/**
+	 * @param follows the follows to set
+	 */
+	public void setFollows(Integer follows) {
+		this.follows = follows;
+	}
 
 	@Column(name = "popedom")
 	public Integer getPopedom() {
@@ -545,12 +582,12 @@ public class UUser implements java.io.Serializable {
 	}
 
 	@Column(name = "coid_id")
-	public Integer getCoidId() {
-		return this.coidId;
+	public Integer getCodeId() {
+		return this.codeId;
 	}
 
-	public void setCoidId(Integer coidId) {
-		this.coidId = coidId;
+	public void setCodeId(Integer codeId) {
+		this.codeId = codeId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")

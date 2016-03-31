@@ -5,27 +5,16 @@ import java.sql.Timestamp;
 
 import com.cx.wxs.dto.USignDto;
 import com.cx.wxs.dto.BSiteDto;
-import com.cx.wxs.dto.SysCollegeDto;
-import com.cx.wxs.dto.SysInvitationCodeDto;
-import com.cx.wxs.dto.SysProvinceDto;
 import com.cx.wxs.dto.SysRankDto;
-import com.cx.wxs.dto.SysCityDto;
-import com.cx.wxs.dto.SysSchoolDto;
 /**
  * @author 陈义
- * @date 2015-12-09 22:36:38
+ * @date 2016-03-31 20:57:42
  */
 public class UUserDto extends BeanBase{
     private Integer userId;
     private USignDto USignDto;
     private BSiteDto BSiteDto;
-    private SysCollegeDto sysCollegeDto;
-    private SysInvitationCodeDto sysInvitationCodeDto;
-    private SysProvinceDto sysProvinceDto;
     private SysRankDto sysRankDto;
-    private SysCityDto sysCityDto;
-    private SysSchoolDto sysSchoolDto;
-    private Integer siteId;
     private String username;
     private String password;
     private String nickname;
@@ -36,6 +25,10 @@ public class UUserDto extends BeanBase{
     private String homepage;
     private String qq;
     private String mobile;
+    private Integer provinceId;
+    private Integer cityId;
+    private Integer schoolId;
+    private Integer collegeId;
     private String class_;
     private String portrait;
     private Timestamp regtime;
@@ -43,6 +36,7 @@ public class UUserDto extends BeanBase{
     private String lastIp;
     private Short keepDay;
     private Short onlineStatus;
+    private Integer rank;
     private Integer articleCount;
     private Integer articleReplyCount;
     private Integer topicCount;
@@ -51,7 +45,10 @@ public class UUserDto extends BeanBase{
     private Integer imageReplyCount;
     private Integer guestbookCount;
     private Integer tagCount;
+    private Integer fans;
+    private Integer follows;
     private Integer popedom;
+    private Integer codeId;
 
     /** default constructor */
     public UUserDto(){
@@ -59,17 +56,11 @@ public class UUserDto extends BeanBase{
     }
 
     /** full constructor */
-    public UUserDto(Integer userId,USignDto USignDto,BSiteDto BSiteDto,SysCollegeDto sysCollegeDto,SysInvitationCodeDto sysInvitationCodeDto,SysProvinceDto sysProvinceDto,SysRankDto sysRankDto,SysCityDto sysCityDto,SysSchoolDto sysSchoolDto,Integer siteId,String username,String password,String nickname,Integer roleId,Short sex,Timestamp birth,String email,String homepage,String qq,String mobile,String class_,String portrait,Timestamp regtime,Timestamp lastTime,String lastIp,Short keepDay,Short onlineStatus,Integer articleCount,Integer articleReplyCount,Integer topicCount,Integer topicReplyCount,Integer imageCount,Integer imageReplyCount,Integer guestbookCount,Integer tagCount,Integer popedom){super();
+    public UUserDto(Integer userId,USignDto USignDto,BSiteDto BSiteDto,SysRankDto sysRankDto,String username,String password,String nickname,Integer roleId,Short sex,Timestamp birth,String email,String homepage,String qq,String mobile,Integer provinceId,Integer cityId,Integer schoolId,Integer collegeId,String class_,String portrait,Timestamp regtime,Timestamp lastTime,String lastIp,Short keepDay,Short onlineStatus,Integer rank,Integer articleCount,Integer articleReplyCount,Integer topicCount,Integer topicReplyCount,Integer imageCount,Integer imageReplyCount,Integer guestbookCount,Integer tagCount,Integer fans,Integer follows,Integer popedom,Integer codeId){super();
         this.userId=userId;
         this.USignDto=USignDto;
         this.BSiteDto=BSiteDto;
-        this.sysCollegeDto=sysCollegeDto;
-        this.sysInvitationCodeDto=sysInvitationCodeDto;
-        this.sysProvinceDto=sysProvinceDto;
         this.sysRankDto=sysRankDto;
-        this.sysCityDto=sysCityDto;
-        this.sysSchoolDto=sysSchoolDto;
-        this.siteId=siteId;
         this.username=username;
         this.password=password;
         this.nickname=nickname;
@@ -80,6 +71,10 @@ public class UUserDto extends BeanBase{
         this.homepage=homepage;
         this.qq=qq;
         this.mobile=mobile;
+        this.provinceId=provinceId;
+        this.cityId=cityId;
+        this.schoolId=schoolId;
+        this.collegeId=collegeId;
         this.class_=class_;
         this.portrait=portrait;
         this.regtime=regtime;
@@ -87,6 +82,7 @@ public class UUserDto extends BeanBase{
         this.lastIp=lastIp;
         this.keepDay=keepDay;
         this.onlineStatus=onlineStatus;
+        this.rank=rank;
         this.articleCount=articleCount;
         this.articleReplyCount=articleReplyCount;
         this.topicCount=topicCount;
@@ -95,8 +91,12 @@ public class UUserDto extends BeanBase{
         this.imageReplyCount=imageReplyCount;
         this.guestbookCount=guestbookCount;
         this.tagCount=tagCount;
+        this.fans=fans;
+        this.follows=follows;
         this.popedom=popedom;
+        this.codeId=codeId;
     }
+
     public Integer getUserId(){
         return userId;
     }
@@ -118,53 +118,11 @@ public class UUserDto extends BeanBase{
         this.BSiteDto=BSiteDto;
     }
 
-    public SysCollegeDto getSysCollegeDto(){
-        return sysCollegeDto;
-    }
-    public void setSysCollegeDto(SysCollegeDto sysCollegeDto){
-        this.sysCollegeDto=sysCollegeDto;
-    }
-
-    public SysInvitationCodeDto getSysInvitationCodeDto(){
-        return sysInvitationCodeDto;
-    }
-    public void setSysInvitationCodeDto(SysInvitationCodeDto sysInvitationCodeDto){
-        this.sysInvitationCodeDto=sysInvitationCodeDto;
-    }
-
-    public SysProvinceDto getSysProvinceDto(){
-        return sysProvinceDto;
-    }
-    public void setSysProvinceDto(SysProvinceDto sysProvinceDto){
-        this.sysProvinceDto=sysProvinceDto;
-    }
-
     public SysRankDto getSysRankDto(){
         return sysRankDto;
     }
     public void setSysRankDto(SysRankDto sysRankDto){
         this.sysRankDto=sysRankDto;
-    }
-
-    public SysCityDto getSysCityDto(){
-        return sysCityDto;
-    }
-    public void setSysCityDto(SysCityDto sysCityDto){
-        this.sysCityDto=sysCityDto;
-    }
-
-    public SysSchoolDto getSysSchoolDto(){
-        return sysSchoolDto;
-    }
-    public void setSysSchoolDto(SysSchoolDto sysSchoolDto){
-        this.sysSchoolDto=sysSchoolDto;
-    }
-
-    public Integer getSiteId(){
-        return siteId;
-    }
-    public void setSiteId(Integer siteId){
-        this.siteId=siteId;
     }
 
     public String getUsername(){
@@ -237,6 +195,34 @@ public class UUserDto extends BeanBase{
         this.mobile=mobile;
     }
 
+    public Integer getProvinceId(){
+        return provinceId;
+    }
+    public void setProvinceId(Integer provinceId){
+        this.provinceId=provinceId;
+    }
+
+    public Integer getCityId(){
+        return cityId;
+    }
+    public void setCityId(Integer cityId){
+        this.cityId=cityId;
+    }
+
+    public Integer getSchoolId(){
+        return schoolId;
+    }
+    public void setSchoolId(Integer schoolId){
+        this.schoolId=schoolId;
+    }
+
+    public Integer getCollegeId(){
+        return collegeId;
+    }
+    public void setCollegeId(Integer collegeId){
+        this.collegeId=collegeId;
+    }
+
     public String getClass_(){
         return class_;
     }
@@ -284,6 +270,13 @@ public class UUserDto extends BeanBase{
     }
     public void setOnlineStatus(Short onlineStatus){
         this.onlineStatus=onlineStatus;
+    }
+
+    public Integer getRank(){
+        return rank;
+    }
+    public void setRank(Integer rank){
+        this.rank=rank;
     }
 
     public Integer getArticleCount(){
@@ -342,11 +335,32 @@ public class UUserDto extends BeanBase{
         this.tagCount=tagCount;
     }
 
+    public Integer getFans(){
+        return fans;
+    }
+    public void setFans(Integer fans){
+        this.fans=fans;
+    }
+
+    public Integer getFollows(){
+        return follows;
+    }
+    public void setFollows(Integer follows){
+        this.follows=follows;
+    }
+
     public Integer getPopedom(){
         return popedom;
     }
     public void setPopedom(Integer popedom){
         this.popedom=popedom;
+    }
+
+    public Integer getCodeId(){
+        return codeId;
+    }
+    public void setCodeId(Integer codeId){
+        this.codeId=codeId;
     }
 
 

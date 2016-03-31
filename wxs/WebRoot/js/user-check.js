@@ -294,22 +294,42 @@ $(document).ready(function () {
         $('#error_text').html("");
     });
     $('#nickname').blur(function(){
+    	if(this.value.indexOf("文学社")>=0){
+            $('#feedback-nickname').addClass('glyphicon-remove');
+            $('#feedback-nickname').parent().addClass('has-error');
+            $('#error_text').html("<small>该昵称中不能包含文学社三个字！</small>");
+            return null;
+        }
+    	if(this.value.length==0){
+    	return null;
+    	}
         $.ajax({
-                url: "user/checknickname?nickname=" + this.value + "&nocahe=" + new Date().getTime(),
+                url: "user/checknickname",
                 type:"POST",
+                data:"nickname=" + this.value + "&nocahe=" + new Date().getTime(),
                 dataType:"json",
                 success:function(data) {
-                    if (data == "1") {
+                	switch (data){
+                	case "-1": $('#feedback-nickname').addClass('glyphicon-remove');
+                        $('#feedback-nickname').parent().addClass('has-error');
+                        $('#error_text').html("<small>该昵称含非法字符，请您使用新的昵称！</small>");
+                        $('#flag').value="0";
+                        break;
+                    case "0":
+                    $('#feedback-nickname').addClass('glyphicon-remove');
+                        $('#feedback-nickname').parent().addClass('has-error');
+                        $('#error_text').html("<small>该昵称已经被使用，请使用其他昵称，谢谢！</small>");
+                        $('#flag').value="0";
+                        break;
+                    case "1":
                         $('#feedback-nickname').addClass('glyphicon-ok');
                         $('#feedback-nickname').parent().removeClass('has-error');
                         $('#error_text').html("");
-                        return ;
-                    } else {
-                        $('#feedback-nickname').addClass('glyphicon-remove');
-                        $('#feedback-nickname').parent().addClass('has-error');
-                        $('#error_text').html("<small>该昵称已经被使用，请使用其他昵称，谢谢！</small>");
+                        $('#flag').value="1";
+                        break;
+                    default :;
 
-                    }
+                	}
                 },
                 error:function(){layer.alert("执行失败！")}
             }
@@ -318,6 +338,18 @@ $(document).ready(function () {
     $('#register').click(function(){
         var pwd1=$('#password').val();
         var pwd2=$('#password1').val();
+        if('#flag'.value=="0"){
+        return ;
+        }
+        if($('#nickname').val().indexOf("文学社")>=0){
+            $('#feedback-nickname').addClass('glyphicon-remove');
+            $('#feedback-nickname').parent().addClass('has-error');
+            $('#error_text').html("<small>该昵称中不能包含文学社三个字！</small>");
+            return null;
+        }
+    	if($('#nickname').val().length==0){
+    	return null;
+    	}
         if($("#agreement").attr("checked")==false){
             $('#error_text').html("<small>请择同意我们的用户协议，否则注册无法完成！谢谢合作！</small>");
             return;

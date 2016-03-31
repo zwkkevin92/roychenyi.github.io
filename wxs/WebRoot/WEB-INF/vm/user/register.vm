@@ -17,6 +17,7 @@
                     <div class="form-group has-feedback">
                         <input type="text" id="reg_username" name="username" class="form-control" placeholder="请输入邮箱进行注册" required="">
 					    <input type="hidden" id="prev_url" name="prev_url" value="$prev_url">
+						<input type="hidden" id="flag" name="flag"/>
 					    <span id="feedback-username" class="form-control-feedback glyphicon"></span>		
                     </div>
                     <div class="form-group has-feedback">

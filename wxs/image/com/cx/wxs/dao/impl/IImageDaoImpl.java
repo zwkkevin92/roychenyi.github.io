@@ -22,7 +22,7 @@ import com.cx.wxs.utils.BeanToDto;
 @Repository("IImageDao")
 public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImageDao{
 
-    private BeanToDto<IImage, IImageDto> beanToDto;
+    private BeanToDto<IImage, IImageDto> beanToDto=new BeanToDto<IImage, IImageDto>();
 
     /**
     * 通过id获取IImageDto
@@ -84,10 +84,10 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
         // TODO Auto-generated method stub
         if(iImageDto!=null&&iImageDto.getImageId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"uid"};//过滤掉的字段
+           String[] fl = new String[]{"imageId"};//过滤掉的字段
            Map<String, Object> map = iImageDto.createSetPropertiesVal(iImageDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+IImage.class.getName()+" a");
+           stringBuffer.append("  "+IImage.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.imageId=:uid");
            params.put("uid",iImageDto.getImageId());

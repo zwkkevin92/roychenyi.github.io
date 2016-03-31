@@ -520,70 +520,105 @@ public class CreateDto {
 			return javaname;
 	 }
 	
+	 public void createAll() throws ClassNotFoundException, IOException{
+		 CreateDto create=new CreateDto();
+			Class c=null;
+			//System.out.println(c.getName());
+			String module="";
+			String popath=System.getProperty("user.dir") + "/src/" + PATH+"/po";
+			File file=new File(popath);
+			String[] javaname=file.list();
+			int m=0; //计数生成的po对应的server、serverImp 、dao、daoImp
+			for(int i=0;i<javaname.length;i++){
+			//	System.out.println(javaname[i]+":"+javaname[i].substring(0,javaname[i].indexOf(".java")));
+				String className=URL+"po."+ javaname[i].substring(0,javaname[i].indexOf(".java"));
+				String name=javaname[i].substring(0,javaname[i].indexOf(".java"));
+				if(name.substring(0,1).equals("B")){
+					module="blog";
+				}else if(name.substring(0,1).equals("D")){
+					module="diary";
+				}else if(name.substring(0,1).equals("I")){
+					module="image";
+				}else if(name.substring(0,1).equals("M")){
+					module="message";
+				}else if(name.substring(0,1).equals("S")){
+					if(name.substring(0,3).equals("Sys")){
+						module="system";
+					}else{
+						module="sound";
+					}
+				}else if(name.substring(0,1).equals("U")){
+					module="user";
+				}else if(name.substring(0,1).equals("V")){
+					module="vote";
+				}else if(name.substring(0,1).equals("W")){
+					module="wxs";
+				}
+				c=Class.forName(className);
+				System.out.println(c.getName());
+				
+	            if(!module.equals("user")){
+	            	 Map<String,Object> map= create.getFields(c);
+	            	 String content= create.createDtoFileContent(c, map);
+	            //	 create.createBeanDto(c, content, module);
+	            	 String content1=create.createDaoFileContent(c);
+	         //   	 create.createBeanDao(c, content1, module);
+	            	 String content2=create.createDaoImplFileContent(c, map);
+	            	 create.createBeanDaoImp(c, content2, module);
+	            	 String content3=create.createServiceFileContent(c);
+	         //   	 create.createService(c, content3, module);
+	            	 String content4=create.createServiceImplContent(c, content3, map);
+	            	 create.createServiceImpl(c, content4, module);
+	            	 m++;
+	            }
+//				System.out.println(content);
+			}
+			System.out.println("计数:"+m);
+		    c=SysLoginRecord.class;
+		    module="system";
+			Map<String,Object> map= create.getFields(c);
+//			String content= create.createDtoFileContent(c, map);
+		    String content1=create.createDaoImplFileContent(c, map);
+//		    System.out.println(content1);
+//			create.creatBeanDto(c, content, module);
+//			System.out.println(content);
+		    String content3=create.createServiceFileContent(c);
+		    System.out.println(content3);
+		 
+	 }
 	public static void main(String[] avg) throws IOException, ClassNotFoundException{
 		CreateDto create=new CreateDto();
-		Class c=null;
-		//System.out.println(c.getName());
-		String module="";
-		String popath=System.getProperty("user.dir") + "/src/" + PATH+"/po";
-		File file=new File(popath);
-		String[] javaname=file.list();
-		int m=0; //计数生成的po对应的server、serverImp 、dao、daoImp
-		for(int i=0;i<javaname.length;i++){
-		//	System.out.println(javaname[i]+":"+javaname[i].substring(0,javaname[i].indexOf(".java")));
-			String className=URL+"po."+ javaname[i].substring(0,javaname[i].indexOf(".java"));
-			String name=javaname[i].substring(0,javaname[i].indexOf(".java"));
-			if(name.substring(0,1).equals("B")){
-				module="blog";
-			}else if(name.substring(0,1).equals("D")){
-				module="diary";
-			}else if(name.substring(0,1).equals("I")){
-				module="image";
-			}else if(name.substring(0,1).equals("M")){
-				module="message";
-			}else if(name.substring(0,1).equals("S")){
-				if(name.substring(0,3).equals("Sys")){
-					module="system";
-				}else{
-					module="sound";
-				}
-			}else if(name.substring(0,1).equals("U")){
-				module="user";
-			}else if(name.substring(0,1).equals("V")){
-				module="vote";
-			}else if(name.substring(0,1).equals("W")){
-				module="wxs";
-			}
-			c=Class.forName(className);
-			System.out.println(c.getName());
-			
-            if(!module.equals("user")){
-            	 Map<String,Object> map= create.getFields(c);
-            	 String content= create.createDtoFileContent(c, map);
-            //	 create.createBeanDto(c, content, module);
-            	 String content1=create.createDaoFileContent(c);
-         //   	 create.createBeanDao(c, content1, module);
-            	 String content2=create.createDaoImplFileContent(c, map);
-            	 create.createBeanDaoImp(c, content2, module);
-            	 String content3=create.createServiceFileContent(c);
-         //   	 create.createService(c, content3, module);
-            	 String content4=create.createServiceImplContent(c, content3, map);
-            	 create.createServiceImpl(c, content4, module);
-            	 m++;
-            }
-//			System.out.println(content);
-		}
-		System.out.println("计数:"+m);
-	    c=SysLoginRecord.class;
-	    module="system";
-		Map<String,Object> map= create.getFields(c);
-//		String content= create.createDtoFileContent(c, map);
-	    String content1=create.createDaoImplFileContent(c, map);
-//	    System.out.println(content1);
-//		create.creatBeanDto(c, content, module);
+		String className="com.cx.wxs.po.SysIllegal";
+		Class c=Class.forName(className);
+		System.out.println(c.getName());
+		String module="system";
+        if(!module.equals("user")){
+        	 Map<String,Object> map= create.getFields(c);
+        	 String content= create.createDtoFileContent(c, map);
+        	 create.createBeanDto(c, content, module);
+        	 String content1=create.createDaoFileContent(c);
+        	 create.createBeanDao(c, content1, module);
+        	 String content2=create.createDaoImplFileContent(c, map);
+        	 create.createBeanDaoImp(c, content2, module);
+        	 String content3=create.createServiceFileContent(c);
+        	 create.createService(c, content3, module);
+        	 String content4=create.createServiceImplContent(c, content3, map);
+        	 create.createServiceImpl(c, content4, module);
+       // 	 m++;
+        }
 //		System.out.println(content);
-	    String content3=create.createServiceFileContent(c);
-	    System.out.println(content3);
+	
+//	System.out.println("计数:"+m);
+//    c=SysLoginRecord.class;
+//    module="system";
+//	Map<String,Object> map= create.getFields(c);
+////	String content= create.createDtoFileContent(c, map);
+//    String content1=create.createDaoImplFileContent(c, map);
+////    System.out.println(content1);
+////	create.creatBeanDto(c, content, module);
+////	System.out.println(content);
+//    String content3=create.createServiceFileContent(c);
+//    System.out.println(content3);
 	}
 
 }

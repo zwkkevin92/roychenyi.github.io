@@ -8,14 +8,21 @@
 <div id="wrapper">
 <div id="page-wrapper">
 #parse("layout/header.vm")
+#if($carousel)
+	#parse("layout/carousel.vm")
+#end
+#if($rank)
+	#parse("layout/rank.vm")
+	#end
     <div class="wrapper wrapper-content">
         <div class="container">
       $screen_content
         </div>
 	</div>
+
+</div>
+</div>
 #parse("layout/footer.vm")	
-</div>
-</div>
 #jquery
 <!-- Custom and plugin javascript -->
 <script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>

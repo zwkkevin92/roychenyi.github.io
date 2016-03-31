@@ -1,6 +1,7 @@
 package com.cx.wxs.action.user;
 
 import java.sql.Timestamp;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -25,9 +26,11 @@ import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.EmailType;
 import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.EmailService;
+import com.cx.wxs.service.SysIllegalService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.HtmlNodeFilters;
 import com.cx.wxs.utils.StringUtils;
+import com.cx.wxs.utils.TemplateUtils;
 import com.cx.wxs.utils.ValidateCode;
 import com.cx.wxs.utils.clientInfo;
 
@@ -45,6 +48,8 @@ public class userAction {
 	private EmailService emailService;
 	@Resource
 	private BSiteService bSiteService;
+	@Resource
+	private SysIllegalService sysIllegalService;
 
 
 
@@ -92,6 +97,21 @@ public class userAction {
 	 */
 	public void setbSiteService(BSiteService bSiteService) {
 		this.bSiteService = bSiteService;
+	}
+	
+
+	/**
+	 * @return the sysIllegalService
+	 */
+	public SysIllegalService getSysIllegalService() {
+		return sysIllegalService;
+	}
+
+	/**
+	 * @param sysIllegalService the sysIllegalService to set
+	 */
+	public void setSysIllegalService(SysIllegalService sysIllegalService) {
+		this.sysIllegalService = sysIllegalService;
 	}
 
 	/***
@@ -187,15 +207,17 @@ public class userAction {
 			try {
 				tempContextUrl+="?username="+userDto.getUsername()+"&prev_url="+prev_url+"&popedom="+popedom+"&nocahe="+new Date().getTime();
 				// 邮件内容
-				String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，若点击不成功，请充值url地址到浏览器跳转，谢谢合作。<br>地址：<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
-				Parser html = new Parser();
-				html.setEncoding("UTF-8");
-				html.setInputHTML(email_content);
-				Node[] nodes = html.extractAllNodesThatMatch(
-						HtmlNodeFilters.titleFilter).toNodeArray();
+				String template=TemplateUtils.getRegisterCheckTemplate();
+				String notify_content = MessageFormat.format(template,userDto.getNickname(),tempContextUrl,tempContextUrl);
+//				String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，若点击不成功，请充值url地址到浏览器跳转，谢谢合作。<br>地址：<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
+//				Parser html = new Parser();
+//				html.setEncoding("UTF-8");
+//				html.setInputHTML(email_content);
+//				Node[] nodes = html.extractAllNodesThatMatch(
+//						HtmlNodeFilters.titleFilter).toNodeArray();
 				String title = "文学社平台注册激活";
 				String[] receivers=new String[]{userDto.getUsername()};
-				emailService.sendEmail(title, receivers, email_content, EmailType.VALIDATE);
+				emailService.sendEmail(title, receivers, notify_content, EmailType.VALIDATE);
 				System.out.println("验证链接已发送！");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -234,20 +256,9 @@ public class userAction {
 	    	userDto.setPopedom(1);
 	    	userDto.setUid(userDto.getUserId());
 	    	//开通空间
-	    	BSiteDto bSiteDto=new BSiteDto();
-	    	bSiteDto.setUUserDto(userDto);
-	    	bSiteDto.setName(userDto.getNickname());
-	    	bSiteDto.setTitle(userDto.getNickname()+"的博客");
-	    	bSiteDto.setSiteUrl("/"+userDto.getNickname());
-	    	SysStyleDto styleDto=new SysStyleDto();
-	    	styleDto.setStyleId(1);	    	
-	    	bSiteDto.setSysStyleDto(styleDto);
-	    	bSiteDto.setMode((short)1);
-	    	bSiteDto.setCreateTime(new Timestamp(new Date().getTime()));
-	    	int id=bSiteService.addBSite(bSiteDto);
-	    	if(id>0){
-	    	    bSiteDto.setSiteId(id);
-	    		userDto.setBSiteDto(bSiteDto);
+            BSiteDto siteDto=openBlog(userDto);
+	    	if(siteDto!=null){
+	    		userDto.setBSiteDto(siteDto);
 	    	}
 	    	if(uuService.updateUuser(userDto)>0){
 	    		userDto.setLoginFlag("1");
@@ -304,16 +315,18 @@ public class userAction {
 			session.setAttribute("newCheckCode", checkCode);
 			tempContextUrl+="?uid="+user.getUserId()+"&username="+user.getUsername()+"&prev_url="+prev_url+"&newCheckCode="+checkCode+"&nocahe="+new Date().getTime();
 			// 邮件内容
-			
-			String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
-			Parser html = new Parser();
-			html.setEncoding("UTF-8");
-			html.setInputHTML(email_content);
-			Node[] nodes = html.extractAllNodesThatMatch(
-					HtmlNodeFilters.titleFilter).toNodeArray();
+			String template=TemplateUtils.getPasswordTipTemplate();
+			String notify_content = MessageFormat.format(template,
+					user.getNickname(), tempContextUrl, tempContextUrl);
+		//	String email_content = "<h1>欢迎验证</h1><p>请点击下面链接进行验证，<a href=\""+tempContextUrl+"\" target=\"_blank\">"+tempContextUrl+"</a></p>";
+//			Parser html = new Parser();
+//			html.setEncoding("UTF-8");
+//			html.setInputHTML(email_content);
+//			Node[] nodes = html.extractAllNodesThatMatch(
+//					HtmlNodeFilters.titleFilter).toNodeArray();
 			String title = "文学社平台重置密码邮箱验证";
 			String[] receivers=new String[]{username};
-			emailService.sendEmail(title, receivers, email_content, EmailType.VALIDATE);
+			emailService.sendEmail(title, receivers, notify_content, EmailType.VALIDATE);
 			System.out.println("验证链接已发送！");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -447,10 +460,16 @@ public class userAction {
 	@ResponseBody
 	@RequestMapping(value="/user/checknickname")
 	public String nicknameCheck(String nickname){
+		//检查是否包含非法字符
+		String flag="0";
+		if(!sysIllegalService.IllegalCheck(nickname)){
+		 flag="-1";
+		return flag;
+		}		
+		//验证用户表中是否有昵称为这个名字的
 		UUserDto user=new UUserDto();
 		user.setNickname(nickname);
 		user=uuService.getUuser(user);
-		String flag="0";
 		if(user==null){
 			flag="1";
 		}else{
@@ -461,5 +480,31 @@ public class userAction {
 	
 	public String sendPasswordNotify(){
 		return null;
+	}
+	/***
+	 * 开通博客
+	 * @param userDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-3-24下午3:23:04
+	 */
+	public  BSiteDto openBlog(UUserDto userDto){
+		BSiteDto bSiteDto=new BSiteDto();
+    	bSiteDto.setUUserDto(userDto);
+    	bSiteDto.setName(userDto.getNickname());
+    	bSiteDto.setTitle(userDto.getNickname()+"的博客");
+    	bSiteDto.setSiteUrl("/"+userDto.getNickname());
+    	SysStyleDto styleDto=new SysStyleDto();
+    	styleDto.setStyleId(1);	    	
+    	bSiteDto.setSysStyleDto(styleDto);
+    	bSiteDto.setMode((short)1);
+    	bSiteDto.setCreateTime(new Timestamp(new Date().getTime()));
+    	int id=bSiteService.addBSite(bSiteDto);
+    	if(id>0){
+    		bSiteDto.setSiteId(id);
+    		return bSiteDto;
+    	}else{
+    		return null;
+    	}
 	}
 }

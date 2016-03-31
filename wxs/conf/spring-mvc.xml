@@ -159,6 +159,13 @@
 		<property name="maxUploadSize">
 			<value>-1</value><!-- -1表示无穷大 -->
 		</property>
+		<!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常-->  
+        <property name="resolveLazily">
+         <value>true</value>    
+         </property>
+         <property name="uploadTempDir">
+         <value>upload/temp</value>
+         </property>
 	</bean>
 
 	<!-- 自定义参数绑定 -->

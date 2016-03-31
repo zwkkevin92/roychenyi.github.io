@@ -6,9 +6,11 @@
                 <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                     <i class="fa fa-reorder"></i>
                 </button>
-                <button aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="user">
-                    <i class="fa fa-user"></i>
-                </button>
+                
+                  #if($user.BSiteDto.logo)
+					
+					<a href="$link.getContextURL()/$user.nickname" aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed no-padding " > <img src="$user.BSiteDto.logo" style="width:30px;hight:30px;"/></a> #else <a aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed" type="button" #if($user) href="$link.getContextURL()/$user.nickname" #else href="$link.getContextURL()/login" #end><i class="fa fa-user"></i></a> #end
+                
 
                 <button  aria-controls="navbar" aria-expanded="false" data-target="#search" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="top-search">
                     <i class="fa fa-search"></i>
@@ -39,9 +41,9 @@
 				#else
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
-                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user">$user.nickname</i> <span class="caret"></span></a>
+                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> #if($user.BSiteDto.logo) <img src="$user.BSiteDto.logo" style="width:24px;hight:24px;"/> #else<i class="fa fa-user"></i> #end $user.nickname<span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
-                            <li><a href="">个人中心</a>
+                            <li><a href="$link.getContextURL()$user.BSiteDto.siteUrl">个人中心</a>
                             </li>
                             <li><a href="">写日志</a>
                             </li>
@@ -49,11 +51,16 @@
                             </li>
 							<li><a href="$link.getContextURL()/change/newpassword">修改密码</a>
                             </li>
+							<li>
+                        <a href="$link.getContextURL()/logout">
+                            <i class="fa fa-sign-out"></i> 退出
+                        </a>
+                    </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="$link.getContextURL()/logout">
-                            <i class="fa fa-sign-out"></i> 退出
+                        <a href="">
+                            <i class="fa fa-cog"></i> 设置
                         </a>
                     </li>
                 </ul>

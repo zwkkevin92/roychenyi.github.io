@@ -17,6 +17,14 @@ public interface WWxsService {
     */
     public WWxsDto getWWxsByID(WWxsDto wWxsDto);
 
+    /***
+     * 通过名字id等信息获取wxs信息
+     * @param wWxsDto
+     * @return
+     * @author 陈义
+     * @date   2016-3-24下午10:06:33
+     */
+    public WWxsDto getWwxs(WWxsDto wWxsDto);
     /**
     * 通过相关信息获取WWxsDtoList信息
     * @author 陈义

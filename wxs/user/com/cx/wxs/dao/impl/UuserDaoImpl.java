@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.UUserDao;
+import com.cx.wxs.dto.SysRankDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.DbType;
 import com.cx.wxs.po.UBook;
@@ -124,6 +125,7 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		// TODO Auto-generated method stub
 		if(uuserDto!=null&&uuserDto.getNickname()!=null&&uuserDto.getUsername()!=null&&uuserDto.getPassword()!=null){
 			UUser uuser=new UUser();
+			setDefault(uuserDto);
 		//	BeanUtils.copyProperties(uuserDto, uuser);
 			uuser=beanToDto.D1ToT1(uuser, uuserDto);
 			return this.save(uuser);
@@ -260,7 +262,7 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 	private void setDefault(UUserDto userDto) {
 		//一以下给定默认值，一般与数据库设置的默认值一致
 		Date date=new Date();
-		userDto.setBirth( new Timestamp(date.getTime()));
+//		userDto.setBirth( new Timestamp(date.getTime()));
 		userDto.setRoleId(1);
 		userDto.setArticleCount(0);
 		userDto.setArticleReplyCount(0);
@@ -270,6 +272,12 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 		userDto.setImageCount(0);
 		userDto.setImageReplyCount(0);
 		userDto.setGuestbookCount(0);
+		userDto.setFans(0);
+		userDto.setFollows(0);
+		SysRankDto sysRankDto=new SysRankDto();
+		sysRankDto.setRankId(1);
+		userDto.setRank(0);
+		userDto.setRegtime(new Timestamp(date.getTime()));
 	}
 	
 

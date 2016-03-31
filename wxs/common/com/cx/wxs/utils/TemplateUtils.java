@@ -27,8 +27,15 @@ public class TemplateUtils {
 	 * @throws FileNotFoundException 
 	 * @date   2016-3-24上午10:27:37
 	 */
-	public String getTemplate(String tmp) {
+	public static String getTemplate(String tmp) {
+		
 //		ServletContext sc = getServlet().getServletContext();
+		 String path=Thread.currentThread().getContextClassLoader().getResource("").toString();  
+	        path=path.replace('/', '\\'); // 将/换成\  
+	        path=path.replace("file:", ""); //去掉file:  
+	        path=path.replace("classes\\", "");
+	        path=path.substring(1);
+	        tmp=path+tmp;
 		File file=new File(tmp);
 		StringBuffer template = new StringBuffer(512);
 		if(file.exists()&&file.isFile()){		
@@ -71,8 +78,8 @@ public class TemplateUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public String getPasswordTipTemplate() {
-		return getTemplate("/WEB-INF/vm/conf/password_tip.html");
+	public static String getPasswordTipTemplate() {
+		return getTemplate("vm/conf/password_tip.html");
 		
 	}
 
@@ -82,8 +89,8 @@ public class TemplateUtils {
 	 * @author 陈义
 	 * @date   2016-3-24上午10:44:51
 	 */
-	public String getRegisterCheckTemplate(){
-		return getTemplate("/WEB-INF/vm/conf/register_check.html");
+	public static String getRegisterCheckTemplate(){
+		return getTemplate("vm/conf/register_check.html");
 	}
 	/***
 	 * 信息提醒，系统提醒网站的内容推荐
@@ -91,7 +98,7 @@ public class TemplateUtils {
 	 * @author 陈义
 	 * @date   2016-3-24上午10:47:58
 	 */
-	public String getInfoRemindTemplate(){
+	public static String getInfoRemindTemplate(){
 		return getTemplate("/WEB-INF/vm/conf/info_remind.html");
 	}
 	/***
@@ -100,13 +107,14 @@ public class TemplateUtils {
 	 * @author 陈义
 	 * @date   2016-3-24上午10:51:31
 	 */
-	public  String getMessageRemindTemplate(){
-		return getTemplate("/WEB-INF/vm/conf/message_remind.html");
+	public static  String getMessageRemindTemplate(){
+		return getTemplate("vm/conf/message_remind.html");
 	}
 	
 	public static void main(String avg[]){
+
 		TemplateUtils templateUtils=new TemplateUtils();
-		String template=templateUtils.getPasswordTipTemplate();
+		String template=templateUtils.getRegisterCheckTemplate();
 		String notify_content = MessageFormat.format(template,
 				"1", "2", "3");
 		System.out.println(notify_content);

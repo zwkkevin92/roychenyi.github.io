@@ -117,4 +117,13 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
         return 0;
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.WWxsDao#getWWDto(com.cx.wxs.dto.WWxsDto)
+	 */
+	@Override
+	public WWxsDto getWWDto(WWxsDto wWxsDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

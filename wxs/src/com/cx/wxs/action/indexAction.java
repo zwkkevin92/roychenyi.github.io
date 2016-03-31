@@ -1,6 +1,7 @@
 package com.cx.wxs.action;
 
 import java.awt.Color;
+import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,9 +27,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.cx.wxs.bean.EmailInfo;
 import com.cx.wxs.dto.UUserDto;
+import com.cx.wxs.dto.WWxsDto;
 import com.cx.wxs.enums.EmailType;
 import com.cx.wxs.service.EmailService;
 import com.cx.wxs.service.UUserService;
+import com.cx.wxs.service.WWxsService;
 import com.cx.wxs.servlet.MailTransportQueue;
 import com.cx.wxs.utils.Globals;
 import com.cx.wxs.utils.HtmlNodeFilters;
@@ -46,26 +49,11 @@ import com.cx.wxs.utils.clientInfo;
 public class indexAction {
 
 	@Resource
-	private UUserService uuService;
+	private UUserService userService;
 	@Resource
 	private EmailService emailService;
-
-
-
-	/**
-	 * @return the uuService
-	 */
-	public UUserService getUuService() {
-		return uuService;
-	}
-
-	/**
-	 * @param uuService the uuService to set
-	 */
-	public void setUuService(UUserService uuService) {
-		this.uuService = uuService;
-	}
 	
+	private WWxsService wxsService;
 	
 
 	/**
@@ -80,6 +68,36 @@ public class indexAction {
 	 */
 	public void setEmailService(EmailService emailService) {
 		this.emailService = emailService;
+	}
+	
+	
+
+	/**
+	 * @return the userService
+	 */
+	public UUserService getUserService() {
+		return userService;
+	}
+
+	/**
+	 * @param userService the userService to set
+	 */
+	public void setUserService(UUserService userService) {
+		this.userService = userService;
+	}
+
+	/**
+	 * @return the wxsService
+	 */
+	public WWxsService getWxsService() {
+		return wxsService;
+	}
+
+	/**
+	 * @param wxsService the wxsService to set
+	 */
+	public void setWxsService(WWxsService wxsService) {
+		this.wxsService = wxsService;
 	}
 
 	/***
@@ -103,13 +121,36 @@ public class indexAction {
 	 * @param vip  专属页面后缀
 	 * @return
 	 * @author 陈义
+	 * @throws UnsupportedEncodingException 
 	 * @date   2016-1-8下午9:20:30
 	 */
 	@RequestMapping(value="/{vip}")
-	public ModelAndView home(@PathVariable(value = "vip") String nickname){
+	public ModelAndView home(@PathVariable(value = "vip") String name) throws UnsupportedEncodingException{
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName("user/main");
-		mv.addObject("nickname", nickname);
+		
+		System.out.println(name);
+		
+		if(name.length()>=3&&name.substring(name.length()-3, name.length()).equals("文学社")){
+			WWxsDto wxsDto=new WWxsDto();
+			wxsDto.setName(name);
+			wxsDto= wxsService.getWwxs(wxsDto);
+			if(wxsDto==null){
+				mv.setViewName("404");
+			}else{
+				mv.setViewName("wxs/main");
+			}
+		}else{ 
+			UUserDto userDto=new UUserDto();
+			userDto.setNickname(name);
+			userDto=userService.getUuser(userDto);
+			if(userDto==null){
+				mv.setViewName("404");
+			}else{
+				mv.setViewName("user/main");
+				mv.addObject("author",userDto);
+			}
+		}
+		mv.addObject("name", name);
 		return mv;
 	}
 	@RequestMapping(value="/404")

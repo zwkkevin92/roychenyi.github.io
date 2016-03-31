@@ -153,6 +153,8 @@ public class BeanToDto<T1 extends Serializable,D1 extends Serializable> {
 						fieldName=first+field.getName().substring(1,(field.getName().length()-3));
 						fieldType=Class.forName("com.cx.wxs.po."+fieldName);
 					}else{
+						String first=field.getName().substring(0,1).toUpperCase();
+						fieldName=first+field.getName().substring(1,field.getName().length());
 						fieldName+="Dto";
 						fieldType=Class.forName("com.cx.wxs.dto."+fieldName);
 					}
@@ -204,6 +206,8 @@ public class BeanToDto<T1 extends Serializable,D1 extends Serializable> {
 							fieldName=first+field.getName().substring(1,(field.getName().length()-3));
 							fieldType=Class.forName("com.cx.wxs.po."+fieldName);
 						}else{
+							String first=field.getName().substring(0,1).toUpperCase();
+							fieldName=first+field.getName().substring(1,field.getName().length());
 							fieldName+="Dto";
 							fieldType=Class.forName("com.cx.wxs.dto."+fieldName+"Dto");
 						}

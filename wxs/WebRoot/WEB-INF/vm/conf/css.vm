@@ -1,0 +1,5 @@
+#set($CcssURL="$link.getContextURL()/css")
+#set($CtimeCircles="<link href='$link.getContextURL()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
+#set($CwangEditor="<link href='$link.getContextURL()/css/wangEditor/wangEditor.min.css' rel='stylesheet' />")
+##cropper
+#set($Ccropper="<link href='$link.getContextURL()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />")
