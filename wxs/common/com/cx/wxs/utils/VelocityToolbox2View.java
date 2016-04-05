@@ -19,7 +19,7 @@ public class VelocityToolbox2View extends VelocityLayoutView{
 	            throws Exception {// Create a
 	                                // ChainedContext
 	                                // instance.
-		 ViewToolContext ctx = new ViewToolContext(this.getVelocityEngine(), request, response, this.getServletContext());
+/*		 ViewToolContext ctx = new ViewToolContext(this.getVelocityEngine(), request, response, this.getServletContext());
          
 	        if(this.getToolboxConfigLocation() != null)
 	        {
@@ -38,8 +38,8 @@ public class VelocityToolbox2View extends VelocityLayoutView{
 	            ctx.putAll(model);
 	        }
 	         
-	        return ctx;
-		 /*     ViewToolContext ctx;
+	        return ctx;*/
+		     ViewToolContext ctx;
 
 	        ctx = new ViewToolContext(getVelocityEngine(), request, response,
 	                getServletContext());
@@ -64,7 +64,7 @@ public class VelocityToolbox2View extends VelocityLayoutView{
 	                        Scope.SESSION));
 	            }
 	        }
-	        return ctx;*/
+	        return ctx;
 	    }
 
 }

@@ -9,7 +9,11 @@
                  <div class="col-md-8">
                      <div class="ibox">
                          <div class="ibox-title">社团</div>
-                         <div class="ibox-content">内容</div>
+                         <div class="ibox-content">
+$test.getBaseUrl($request)
+$test1.getBaseUrl($request)
+$html.image_src($user.portrait)
+						 </div>
                      </div>
                  </div>
                  <div class="col-md-4">

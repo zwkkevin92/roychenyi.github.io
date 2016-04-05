@@ -1,6 +1,8 @@
 package com.cx.wxs.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,22 @@ import com.cx.wxs.utils.StringUtils;
 public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDao{
 	
 	private BeanToDto<USign,USignDto> beanToDto=new BeanToDto<USign,USignDto>();
+	
+	
+	/**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<USign, USignDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<USign, USignDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.dao.UsignDao#getUsignByUserid(com.cx.wxs.dto.USignDto)
 	 */
@@ -56,8 +74,12 @@ public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDa
 			Map<String,Object> params=new HashMap<String,Object>();
 			stringBuffer.append(" from "+USign.class.getName()+" a ");
 			stringBuffer.append(" where a.UUser.userId=:userid ");
-			stringBuffer.append(" order by a.signId desc ");
 			params.put("userid",usignDto.getUUserDto().getUserId());
+			if(usignDto.getStatus()!=null){
+				stringBuffer.append(" and a.status=:status");
+				params.put("status",usignDto.getStatus());
+			}
+			stringBuffer.append(" order by a.signId desc ");
 			List<USign> list=this.find(stringBuffer.toString(),params);
 			if(list!=null&&list.size()>0){
 				USign usign=  list.get(0);
@@ -81,6 +103,10 @@ public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDa
 			stringBuffer.append(" from "+USign.class.getName()+" a ");
 			stringBuffer.append(" where a.UUser.userId=:userid ");
 			params.put("userid",usignDto.getUUserDto().getUserId());
+			if(usignDto.getStatus()!=null){
+				stringBuffer.append(" and a.status=:status");
+				params.put("status", usignDto.getStatus());
+			}
 			List<USignDto> list=new ArrayList<USignDto>();
 			List<USign> list1=new ArrayList<USign>();
 			if(usignDto.getPage()!=null&&usignDto.getRows()!=null){
@@ -108,6 +134,8 @@ public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDa
 		if(usignDto!=null&&usignDto.getUUserDto().getUserId()!=null&&usignDto.getContent()!=null){
 			USign usign=new USign();
 			usign=beanToDto.D1ToT1(usign,usignDto);
+			usign.setStatus((short)1);
+			usign.setCreateTime(new Timestamp(new Date().getTime()));
 		//	BeanUtils.copyProperties(usignDto, usign);
 			return this.save(usign);
 		}

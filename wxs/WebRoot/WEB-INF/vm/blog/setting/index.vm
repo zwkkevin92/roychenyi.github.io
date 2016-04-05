@@ -1,0 +1,166 @@
+#set($layout = "layout/index.vm")
+#set($page_title="基本信息设置-"+$user.nickname+"文学社平台")
+#parse("conf/js.vm")
+#set($extjs=$Jsetting+$Jlayer)
+<div class="row"> 
+    <div class="col-md-4">
+    <div class="ibox">
+        <div class="ibox-content">
+    <ul class="nav nav-pills nav-stacked ">
+        <li class="active"><a href="$link.getContextURL()/$user.nickname/set/index">基本信息</a></li>
+        <li ><a href="$link.getContextURL()/$user.nickname/set/site">空间设置</a></li>
+        <li ><a href="$link.getContextURL()/$user.nickname/set/avatar">用户头像</a></li>
+        <li ><a href="$link.getContextURL()/$user.nickname/set/privacy">隐私设置</a></li>
+        <li class="hidden"><a>消息设置</a></li>
+        <li class="hidden"><a>偏好设置</a></li>
+    </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+<div class="panel-body">
+            <div class="panel-group" id="version">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title text-center">
+                            <a data-toggle="collapse" data-parent="#version" ><apan class="pull-left">用户名</apan>$user.username<code class="pull-right">修改密码</code></a>
+                        </h5>
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title text-center">
+                            <a data-toggle="collapse" data-parent="#version" ><apan class="pull-left">昵称</apan>$user.nickname<code class="pull-right"></code></a>
+                        </h5>
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title text-center">
+                            <a data-toggle="collapse" data-parent="#version" href="#info"><apan class="pull-left">个人资料</apan>完善资料，让大家更了解你<code class="pull-right">收起</code></a>
+                        </h5>
+                    </div>
+                    <div id="info" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form role="form" class="form-horizontal" id="default_info_form" action="$link.getContextURL()/$user.nickname/set/setUserInfo">
+                                <h4 class="text-info">基本信息</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">性别</label>
+                                    <div class="col-sm-9">
+										<input type="hidden" name="userId" value="$user.userId">
+                                        <label class="checkbox-inline">
+                                            <input type="radio" name="sex_rodio" id="boy" value="option1" > 男
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="radio" name="sex_rodio" id="girl" value="option2"> 女
+                                        </label>
+                                        <input type="hidden" name="sex" id="sex" value="$user.sex">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">生日</label>
+                                    <div class="col-sm-9">
+                                        <label class="checkbox-inline">
+                                            <select node-type="birthday_year" name="birthday_y" id="birthday_y">
+                                                <option value=""></option>
+
+                                            </select><span>年</span>
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <select node-type="birthday_month" name="birthday_m" id="birthday_m">
+                                                <option value=""></option>
+
+                                            </select><span>月</span>
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <select node-type="birthday_month" name="birthday_d" id="birthday_d">
+                                                <option value=""></option>
+
+                                            </select><span>日</span>
+                                        </label>
+                                        <input type="hidden" name="birth" id="birth" value="$date.format('yyyy/MM/dd HH:mm:ss',$user.birth)"/>
+                                        <label class='checkbox-inline text-warning hidden' id="birth_error_info"><i class='fa fa-warning'>请输入完整生日</i></label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">血型</label>
+                                    <div class="col-sm-9">
+                                        <label class="checkbox-inline">
+                                            <select name="blood_select" id="blood_select">
+                                                <option value="" selected></option>
+                                                <option value="A" >A型</option>
+                                                <option value="B" >B型</option>
+                                                <option value="0" >O型</option>
+                                                <option value="AB" >AB型</option>
+                                            </select>
+											 <input type="hidden" name="blood" id="blood" #if($user.blood) value="$user.blood" #end>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label ">QQ</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-inline">
+
+                                            <input type="text" name="qq" class="form-control" placeholder="请输入您的QQ" #if($user.qq) value="$user.qq" #end>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden">
+                                    <label class="col-sm-3 control-label">所在地</label>
+                                    <div class="col-sm-9">
+                                        <label class="checkbox-inline">
+                                            <select name="province" >
+                                                <option value="" selected></option>
+                                                <option value="A" >A型</option>
+                                                <option value="AB" >AB型</option>
+                                                <option value="AB" >AB型</option>
+                                                <option value="AB" >AB型</option>
+                                                <option value="AB" >AB型</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label ">个人简介</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-inline">
+
+                                            <textarea name="sign" id="sign" cols="25" rows="3"   class="form-control" >
+                                                </textarea>
+                                            <label class='checkbox-inline text-warning hidden' id="sign_error_info"><i class='fa fa-warning'>您输入的数字超过了36个字，请重新输入</i></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-5 col-sm-offset-3">
+                                        <button type="button" id="defaultInfo" class="btn btn-info">确定</button>&nbsp;&nbsp;
+                                        <button type="reset" class="btn btn-info">取消</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title text-center">
+                            <a data-toggle="collapse" data-parent="#version" href="#tag"><apan class="pull-left">个人标签</apan>标签<code class="pull-right">编辑</code></a>
+                        </h5>
+                    </div>
+                    <div id="tag" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+</div>

@@ -3018,7 +3018,7 @@ video {
 }
 #page-wrapper {
   padding: 0 15px;
-  min-height: 568px;
+  min-height: auto;
   position: relative !important;
 }
 @media (min-width: 768px) {
@@ -6318,7 +6318,7 @@ body.skin-3 {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 220px;
-    min-height: 1024px;
+    min-height: 576px;
   }
   .navbar-static-side {
     z-index: 2001;
@@ -6335,7 +6335,7 @@ body.skin-3 {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 0px;
-    min-height: 1000px;
+    min-height: 576px;
   }
   .body-small .navbar-static-side {
     display: none;

@@ -14,12 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * UUser entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "u_user", catalog = "wxs")
+@Table(name = "u_user", catalog = "wxs", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class UUser implements java.io.Serializable {
 
 	// Fields
@@ -37,6 +38,7 @@ public class UUser implements java.io.Serializable {
 	private String email;
 	private String homepage;
 	private String qq;
+	private String blood;
 	private String mobile;
 	private Integer provinceId;
 	private Integer cityId;
@@ -127,24 +129,24 @@ public class UUser implements java.io.Serializable {
 	public UUser(USign USign, BSite BSite, SysRank sysRank, String username,
 			String password, String nickname, Integer roleId, Short sex,
 			Timestamp birth, String email, String homepage, String qq,
-			String mobile, Integer provinceId, Integer cityId,
+			String blood, String mobile, Integer provinceId, Integer cityId,
 			Integer schoolId, Integer collegeId, String class_,
 			String portrait, Timestamp regtime, Timestamp lastTime,
-			String lastIp, Short keepDay, Short onlineStatus,Integer rank,
+			String lastIp, Short keepDay, Short onlineStatus, Integer rank,
 			Integer articleCount, Integer articleReplyCount,
 			Integer topicCount, Integer topicReplyCount, Integer imageCount,
 			Integer imageReplyCount, Integer guestbookCount, Integer tagCount,
-			Integer fans,Integer follows, Integer popedom, Integer codeId, Set<DDiary> DDiaries,
-			Set<VVote> VVotes, Set<DUpvote> DUpvotes, Set<DReply1> DReply1s,
-			Set<IReply2> IReply2sForUserId, Set<SSound> SSounds,
-			Set<USign> USigns, Set<SReply2> SReply2sForCommentator,
-			Set<BAccess> BAccesses, Set<VUpvote> VUpvotes, Set<IImage> IImages,
-			Set<VReply1> VReply1s, Set<DCatalog> DCatalogs,
-			Set<MAffiche> MAffiches, Set<DReply2> DReply2sForCommentator,
-			Set<WAccess> WAccesses, Set<BSite> BSites, Set<SUpvote> SUpvotes,
-			Set<IReply1> IReply1s, Set<IUpvote> IUpvotes,
-			Set<SysLoginRecord> sysLoginRecords, Set<SBox> SBoxes,
-			Set<VReply2> VReply2sForCommentator,
+			Integer fans, Integer follows, Integer popedom, Integer codeId,
+			Set<DDiary> DDiaries, Set<VVote> VVotes, Set<DUpvote> DUpvotes,
+			Set<DReply1> DReply1s, Set<IReply2> IReply2sForUserId,
+			Set<SSound> SSounds, Set<USign> USigns,
+			Set<SReply2> SReply2sForCommentator, Set<BAccess> BAccesses,
+			Set<VUpvote> VUpvotes, Set<IImage> IImages, Set<VReply1> VReply1s,
+			Set<DCatalog> DCatalogs, Set<MAffiche> MAffiches,
+			Set<DReply2> DReply2sForCommentator, Set<WAccess> WAccesses,
+			Set<BSite> BSites, Set<SUpvote> SUpvotes, Set<IReply1> IReply1s,
+			Set<IUpvote> IUpvotes, Set<SysLoginRecord> sysLoginRecords,
+			Set<SBox> SBoxes, Set<VReply2> VReply2sForCommentator,
 			Set<SReply2> SReply2sForUserId, Set<UFriendGroup> UFriendGroups,
 			Set<MGuestbook> MGuestbooks, Set<IAlbum> IAlbums,
 			Set<SAccess> SAccesses, Set<VReply2> VReply2sForUserId,
@@ -167,6 +169,7 @@ public class UUser implements java.io.Serializable {
 		this.email = email;
 		this.homepage = homepage;
 		this.qq = qq;
+		this.blood = blood;
 		this.mobile = mobile;
 		this.provinceId = provinceId;
 		this.cityId = cityId;
@@ -179,7 +182,7 @@ public class UUser implements java.io.Serializable {
 		this.lastIp = lastIp;
 		this.keepDay = keepDay;
 		this.onlineStatus = onlineStatus;
-		this.rank=rank;
+		this.rank = rank;
 		this.articleCount = articleCount;
 		this.articleReplyCount = articleReplyCount;
 		this.topicCount = topicCount;
@@ -188,8 +191,8 @@ public class UUser implements java.io.Serializable {
 		this.imageReplyCount = imageReplyCount;
 		this.guestbookCount = guestbookCount;
 		this.tagCount = tagCount;
-		this.fans=fans;
-		this.follows=follows;
+		this.fans = fans;
+		this.follows = follows;
 		this.popedom = popedom;
 		this.codeId = codeId;
 		this.DDiaries = DDiaries;
@@ -238,7 +241,6 @@ public class UUser implements java.io.Serializable {
 		this.BBacklistsForBackId = BBacklistsForBackId;
 	}
 
-	
 	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -281,7 +283,7 @@ public class UUser implements java.io.Serializable {
 		this.sysRank = sysRank;
 	}
 
-	@Column(name = "username", nullable = false, length = 20)
+	@Column(name = "username", unique = true, nullable = false, length = 20)
 	public String getUsername() {
 		return this.username;
 	}
@@ -360,6 +362,15 @@ public class UUser implements java.io.Serializable {
 
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+
+	@Column(name = "blood", length = 5)
+	public String getBlood() {
+		return this.blood;
+	}
+
+	public void setBlood(String blood) {
+		this.blood = blood;
 	}
 
 	@Column(name = "mobile", length = 16)
@@ -469,10 +480,10 @@ public class UUser implements java.io.Serializable {
 	public void setOnlineStatus(Short onlineStatus) {
 		this.onlineStatus = onlineStatus;
 	}
-	
-	@Column(name="rank")
+
+	@Column(name = "rank")
 	public Integer getRank() {
-		return rank;
+		return this.rank;
 	}
 
 	public void setRank(Integer rank) {
@@ -550,24 +561,21 @@ public class UUser implements java.io.Serializable {
 	public void setTagCount(Integer tagCount) {
 		this.tagCount = tagCount;
 	}
-	
-	@Column(name="fans")
+
+	@Column(name = "fans")
 	public Integer getFans() {
-		return fans;
+		return this.fans;
 	}
 
 	public void setFans(Integer fans) {
 		this.fans = fans;
 	}
 
-	@Column(name="follows")
+	@Column(name = "follows")
 	public Integer getFollows() {
-		return follows;
+		return this.follows;
 	}
 
-	/**
-	 * @param follows the follows to set
-	 */
 	public void setFollows(Integer follows) {
 		this.follows = follows;
 	}
@@ -581,7 +589,7 @@ public class UUser implements java.io.Serializable {
 		this.popedom = popedom;
 	}
 
-	@Column(name = "coid_id")
+	@Column(name = "code_id")
 	public Integer getCodeId() {
 		return this.codeId;
 	}

@@ -50,7 +50,7 @@ public class SysConfig implements java.io.Serializable {
 		this.configId = configId;
 	}
 
-	@Column(name = "config_name", length = 20)
+	@Column(name = "config_name", length = 50)
 	public String getConfigName() {
 		return this.configName;
 	}
@@ -59,7 +59,7 @@ public class SysConfig implements java.io.Serializable {
 		this.configName = configName;
 	}
 
-	@Column(name = "value", length = 36)
+	@Column(name = "value", length = 50)
 	public String getValue() {
 		return this.value;
 	}

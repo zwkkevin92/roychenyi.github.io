@@ -5,18 +5,28 @@
 	#parse("layout/head.vm")
 </head>
 <body class="top-navigation gray-bg" >
-#parse("layout/header.vm")
 <div id="wrapper">
 <div id="page-wrapper">
-#if($carousel)
-	#parse("layout/carousel.vm")
-#end
-#if($rank)
-	#parse("layout/rank.vm")
-	#end
+#parse("layout/header.vm")
+
     <div class="wrapper wrapper-content">
         <div class="container">
+			<div class="row"> <div class="col-md-4">
+    <div class="ibox">
+        <div class="ibox-content">
+    <ul class="nav nav-pills nav-stacked ">
+        <li class="active"><a>基本信息</a></li>
+        <li ><a>用户头像</a></li>
+        <li><a>隐私设置</a></li>
+        <li><a>消息设置</a></li>
+        <li><a>偏好设置</a></li>
+    </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
       $screen_content
+	  </div>
         </div>
 	</div>
 

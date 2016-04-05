@@ -50,7 +50,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	/**
 	 * 如果系统中存在旧版本的数据，则此值不能修改，否则在进行密码解析的时候出错
 	 */
-    private static final String PASSWORD_CRYPT_KEY = "__jDlog_";
+    private static final String PASSWORD_CRYPT_KEY = "wxs2016_";
 	private final static String DES = "DES";
     private final static String ISO8859_1 = "8859_1";
 	

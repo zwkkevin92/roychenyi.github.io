@@ -6,3 +6,5 @@
 ##cropper
 #set($Jcropper="<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>")
 #set($Jcropper-tool="<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>")
+##etting
+#set($Jsetting="<script src='$link.getContextURL()/js/setting.js'></script>")

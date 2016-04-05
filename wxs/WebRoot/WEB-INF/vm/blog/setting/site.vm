@@ -1,0 +1,22 @@
+#set($layout = "layout/index.vm")
+#set($page_title="空间设置-"+$user.nickname+"文学社平台")
+
+<div class="row"> 
+    <div class="col-md-4">
+    <div class="ibox">
+        <div class="ibox-content">
+    <ul class="nav nav-pills nav-stacked ">
+        <li ><a href="$link.getContextURL()/$user.nickname/set/index">基本信息</a></li>
+        <li class="active"><a href="$link.getContextURL()/$user.nickname/set/site">空间设置</a></li>
+        <li ><a href="$link.getContextURL()/$user.nickname/set/avatar">用户头像</a></li>
+        <li ><a href="$link.getContextURL()/$user.nickname/set/privacy">隐私设置</a></li>
+        <li class="hidden"><a>消息设置</a></li>
+        <li class="hidden"><a>偏好设置</a></li>
+    </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+
+</div>
+</div>

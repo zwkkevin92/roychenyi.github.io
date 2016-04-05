@@ -14,9 +14,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.cx.wxs.dto.UUserDto;
 
 
 
@@ -32,9 +35,11 @@ public class RequestUtils {
 	//定义log
 	final static Log log = LogFactory.getLog(RequestUtils.class);
 	
+	//默认cookie的有效期为七天
+	private static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
 	private static Properties header_map;
-	private static String default_mobile; 
-	static{
+	private static String default_mobile;
+/*	static{
 		InputStream in = RequestUtils.class.getResourceAsStream("mobile_match.properties");
 		header_map = new Properties();
 		try{
@@ -43,7 +48,7 @@ public class RequestUtils {
 		}catch(IOException e){
 			log.error("加载手机号码匹配策略文件/mobile_match.conf失败",e);
 		}
-	}
+	}*/
 
 	public static boolean isMultipart(HttpServletRequest req) {
 		return ((req.getContentType() != null) && (req.getContentType()
@@ -86,6 +91,39 @@ public class RequestUtils {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
+	/**
+	   * 添加一条新的Cookie，默认7天过期时间(单位：秒)
+	   * 
+	   * @param response
+	   * @param name
+	   * @param value
+	   */
+	  public static void setCookie(HttpServletRequest request, HttpServletResponse response, String name,
+	      String value ) {
+	    setCookie(request,response, name, value, COOKIE_MAX_AGE);
+	  }
+	
+	/***
+	 * 删除cookie
+	 * @param request
+	 * @param response
+	 * @param name
+	 * @author 陈义
+	 * @date   2016-4-3上午10:55:20
+	 */
+	  public static void removeCookie(HttpServletRequest request,
+	      HttpServletResponse response, String name) {
+	    if (null == name) {
+	      return;
+	    }
+	    Cookie cookie = getCookie(request, name);
+	    if(null != cookie){
+	      cookie.setPath("/");
+	      cookie.setValue("");
+	      cookie.setMaxAge(0);
+	      response.addCookie(cookie);
+	    }
+	  }
 	
 	/**
 	 * 获取用户访问URL中的根域名
@@ -350,6 +388,15 @@ public class RequestUtils {
 	        ip = req.getRemoteAddr();
 	    }
 	    return ip.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":ip;
+	}
+	
+	public static void setUserInfo(HttpServletRequest request,HttpServletResponse response,UUserDto userDto){
+		HttpSession session= request.getSession();
+		session.setAttribute("user", userDto);
+		if(getCookie(request, "user")==null){
+			String userValue=StringUtils.encryptPassword(userDto.getUserId().toString());
+		setCookie(request, response, "user",userValue);
+		}
 	}
 	
 	

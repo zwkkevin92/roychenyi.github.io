@@ -44,6 +44,7 @@ function check_VerifyCode(E){
                     $('#error_text').html("<small>验证码错误！</small>");
                     $('#feedback-verifyCode').parent().addClass('has-error');
                     $('#feedback-verifyCode').addClass('glyphicon-remove');
+                    
                 }
             },
             error:function(){layer.alert("执行失败！");}
@@ -113,7 +114,7 @@ $(document).ready(function () {
         $('#feedback-verifyCode').parent().remove('has-error');
          $('#error_text').html("");
     });
-//登陆按钮确认事件
+//登陆
     $('#login').click(function() {
     	if($('#username').val()==null||$('#username').val()==""){
     	$('#error_text').html("用户名不能为空");
@@ -122,6 +123,9 @@ $(document).ready(function () {
     	if($('#password').val()==null||$('#password').val()==""){
     	$('#error_text').html("密码不能为空");
     	return ;
+    	}
+    	if($('#error_text').html()!=""){
+    	return;
     	}
         var str_data = $("#loginform input").map(function () {
             return ($(this).attr("name") + '=' + $(this).val());

@@ -29,6 +29,7 @@ import com.cx.wxs.service.EmailService;
 import com.cx.wxs.service.SysIllegalService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.HtmlNodeFilters;
+import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
 import com.cx.wxs.utils.TemplateUtils;
 import com.cx.wxs.utils.ValidateCode;
@@ -152,20 +153,24 @@ public class userAction {
 		String codeSession=(String) request.getSession().getAttribute("verifycode");
 		UUserDto uuser=new UUserDto();
 		//		String flag="1";    //flag:1:登陆成功；-1 ：登陆失败，密码或用户名错误；0：验证码错误
-		//	if(verifyCode.equals(codeSession)){
+   	if(verifyCode.equalsIgnoreCase(codeSession)){
 		uuser.setUsername(username);
 		uuser.setPassword(StringUtils.md5(password));
 		uuser.setIp(ip);
 		uuser= uuService.login(uuser);
-		session.setAttribute("user",uuser);
 		uuser.setUrl(prev_url);
 		if(uuser==null){
 			return null;
 		}else if(uuser.getLoginFlag().equals("1")){
 			if(uuser.getPopedom()!=1){
 				uuser.setLoginFlag("-3");
+			}else{
+				RequestUtils.setUserInfo(request, response, uuser);
 			}
 		}
+		}else{
+			  return null;	
+			}
 		JSONObject json=(JSONObject) JSONObject.toJSON(uuser);
 		return json;
 	}
@@ -177,6 +182,7 @@ public class userAction {
 		ModelAndView  mv=new ModelAndView("redirect:"+prev_url);
 		HttpSession session= request.getSession();
 		session.removeAttribute("user");
+		RequestUtils.removeCookie(request, response, "user");
 		return mv;
 	}
 

@@ -8,7 +8,7 @@ import com.cx.wxs.dto.BSiteDto;
 import com.cx.wxs.dto.SysRankDto;
 /**
  * @author 陈义
- * @date 2016-03-31 20:57:42
+ * @date 2016-04-05 21:16:31
  */
 public class UUserDto extends BeanBase{
     private Integer userId;
@@ -24,6 +24,7 @@ public class UUserDto extends BeanBase{
     private String email;
     private String homepage;
     private String qq;
+    private String blood;
     private String mobile;
     private Integer provinceId;
     private Integer cityId;
@@ -56,7 +57,7 @@ public class UUserDto extends BeanBase{
     }
 
     /** full constructor */
-    public UUserDto(Integer userId,USignDto USignDto,BSiteDto BSiteDto,SysRankDto sysRankDto,String username,String password,String nickname,Integer roleId,Short sex,Timestamp birth,String email,String homepage,String qq,String mobile,Integer provinceId,Integer cityId,Integer schoolId,Integer collegeId,String class_,String portrait,Timestamp regtime,Timestamp lastTime,String lastIp,Short keepDay,Short onlineStatus,Integer rank,Integer articleCount,Integer articleReplyCount,Integer topicCount,Integer topicReplyCount,Integer imageCount,Integer imageReplyCount,Integer guestbookCount,Integer tagCount,Integer fans,Integer follows,Integer popedom,Integer codeId){super();
+    public UUserDto(Integer userId,USignDto USignDto,BSiteDto BSiteDto,SysRankDto sysRankDto,String username,String password,String nickname,Integer roleId,Short sex,Timestamp birth,String email,String homepage,String qq,String blood,String mobile,Integer provinceId,Integer cityId,Integer schoolId,Integer collegeId,String class_,String portrait,Timestamp regtime,Timestamp lastTime,String lastIp,Short keepDay,Short onlineStatus,Integer rank,Integer articleCount,Integer articleReplyCount,Integer topicCount,Integer topicReplyCount,Integer imageCount,Integer imageReplyCount,Integer guestbookCount,Integer tagCount,Integer fans,Integer follows,Integer popedom,Integer codeId){super();
         this.userId=userId;
         this.USignDto=USignDto;
         this.BSiteDto=BSiteDto;
@@ -70,6 +71,7 @@ public class UUserDto extends BeanBase{
         this.email=email;
         this.homepage=homepage;
         this.qq=qq;
+        this.blood=blood;
         this.mobile=mobile;
         this.provinceId=provinceId;
         this.cityId=cityId;
@@ -186,6 +188,13 @@ public class UUserDto extends BeanBase{
     }
     public void setQq(String qq){
         this.qq=qq;
+    }
+
+    public String getBlood(){
+        return blood;
+    }
+    public void setBlood(String blood){
+        this.blood=blood;
     }
 
     public String getMobile(){

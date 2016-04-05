@@ -35,7 +35,6 @@ import com.cx.wxs.service.WWxsService;
 import com.cx.wxs.servlet.MailTransportQueue;
 import com.cx.wxs.utils.Globals;
 import com.cx.wxs.utils.HtmlNodeFilters;
-import com.cx.wxs.utils.MailSender;
 import com.cx.wxs.utils.StringUtils;
 import com.cx.wxs.utils.ValidateCode;
 import com.cx.wxs.utils.clientInfo;

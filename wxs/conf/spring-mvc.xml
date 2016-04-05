@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
 	<context:annotation-config />
 	<context:component-scan base-package="com.cx.wxs." />
-<mvc:annotation-driven>
+ <mvc:annotation-driven  conversion-service="conversionService" >
 		<mvc:message-converters register-defaults="true">
 			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
 		<property name="supportedMediaTypes">  
@@ -176,9 +176,30 @@
 			<list>
 				<!-- 日期类型转换 -->
 				<bean class="com.cx.wxs.utils.DateConverter" />
+				<bean class="com.cx.wxs.utils.TimestampConverter" />
 			</list>
 		</property>
 
 	</bean>
+	
+	<!-- 拦截器配置 -->  
+    <mvc:interceptors>  
+      <!-- session超时 -->  
+      <mvc:interceptor>  
+        <mvc:mapping path="/*"/>  
+        <bean class="com.cx.wxs.Interceptor.userCookieInterceptor">  
+          <property name="allowUrls">  
+            <list>  
+              <!-- 如果请求中包含以下路径，则不进行拦截 -->  
+              <value>/fonts</value>  
+              <value>/js</value>  
+              <value>/css</value>  
+              <value>/upload</value>  
+              <value>/images</value>  
+            </list>  
+          </property>  
+        </bean>  
+      </mvc:interceptor>  
+    </mvc:interceptors>  
 
 </beans>
