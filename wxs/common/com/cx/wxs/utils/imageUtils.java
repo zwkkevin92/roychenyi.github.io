@@ -105,9 +105,10 @@ public class imageUtils {
 	 * @author 陈义
 	 * @date   2016-3-30下午4:59:36
 	 */
-	private static String getFormatName(Object o) {
+	private static String getFormatName(String src) {
         try {
-            ImageInputStream iis = ImageIO.createImageInputStream(o);
+        	File file=new File(src);
+            ImageInputStream iis = ImageIO.createImageInputStream(file);
             Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
             if (!iter.hasNext()) {
                 return null;
@@ -293,7 +294,7 @@ public class imageUtils {
 	 public static BufferedImage Rotate(Image src, int angel) {  
 	        int src_width = src.getWidth(null);  
 	        int src_height = src.getHeight(null); 
-	      //  angel=angel>0?angel:(360-angel);
+	        angel=angel>0?angel:(360+angel);
 	        // calculate the new image size  
 	        Rectangle rect_des = CalcRotatedSize(new Rectangle(new Dimension(  
 	                src_width, src_height)), angel);  
@@ -378,6 +379,7 @@ public class imageUtils {
 			return true;
 		}catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -476,7 +478,7 @@ public class imageUtils {
 	                g.dispose();
 	                itemp = image;
 	            }
-	            ImageIO.write((BufferedImage) itemp, "JPEG", new File(result));
+	            ImageIO.write((BufferedImage) itemp, "jpg", new File(result));
 	            return true;
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -630,7 +632,11 @@ public class imageUtils {
 	    
 
      public static void main(String[] args) {
-		String src="D:/0.jpg";
+		String src="D:/12.jpg";
+		System.out.println(imageUtils.getFormatName(src));
+		imageUtils.convert(src, "jpg", src);
+		System.out.println(imageUtils.getFormatName(src));
+		imageUtils.scale2(src, "D://14scale2.jpg", 7800,5600, true);
 		/*		imageUtils.cutImage(src, "D://1cut.jpg", -10, 40, 100000, 560);
 		imageUtils.rotateImage(src, "D:/2rotate.jpg", -30);
 		imageUtils.rotateImage(src, "D:/2rotate1.png", 30);

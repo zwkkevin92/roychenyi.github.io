@@ -1,0 +1,69 @@
+#set($disable_seachable=true)
+
+#html_doctype()
+<head>
+	#parse("layout/head.vm")
+	#if($author.username==$user.username&&$author.BSiteDto.logo)
+		<link href='$link.getContextURL()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />
+	#end
+</head>
+<body class="top-navigation gray-bg" >
+#parse("layout/header.vm")
+<div id="wrapper">
+<div id="page-wrapper">
+    <div class="wrapper wrapper-content">
+        <div class="container">
+			<div class="row">
+                <div class="headarea white-bg" style="background-image: url($link.getContextURL()/images/head_bg.jpg);">
+<div class="pull-right">统计</div>
+                        <div class="blog_titil">
+							<div>#if($author.username==$user.username) 
+							<div id="face-photo" class="avatar-view"  title="点击更新头像"><img class="img-circle" #if($author.BSiteDto.logo)  src="$link.getContextURL()/$author.BSiteDto.logo" #else src="$link.getContextURL()/images/face.png" #end title="$author.nickname" /></div>	
+						    #else
+								<img class="img-circle" #if($author.BSiteDto.logo)  src="$author.BSiteDto.logo" title="$author.nickname" #else src="images/face.png" #end   style="width: 100px;height: 100px;"/>
+							#end
+                            
+							</div>
+							<h1 class="no-margins">$author.nickname</h1>
+                            <h3 class="no-margins"><small class="text-info">#if($author.USignDto) $author.USignDto.content #end</small></h3>
+							#if($author.BSiteDto)
+                            <h3 class="no-margins"><small><a href="$link.getContextURL()$author.BSiteDto.siteUrl">$link.getContextURL()$author.BSiteDto.siteUrl</a></small></h3>
+							#end
+                        </div>
+                        <div class="navbar navbar-default blog_nav">
+                            <ul class="nav  navbar-top-links navbar-right ">
+                                <li><a style="">主页</a></li>|
+                                <li><a style="">文字</a></li>|
+                                <li><a style="">图片</a></li>|
+                                <li><a style="">关于我</a></li>
+                            </ul>
+                        </div>
+                    <div class="pull-right">统计</div>
+                </div>
+				
+            </div>
+      $screen_content
+        </div>
+	</div>
+
+</div>
+</div>
+#parse("layout/footer.vm")	
+#jquery
+#if($author.username==$user.username&&$author.BSiteDto.logo)
+
+#parse("layout/user/l_avatar.vm")
+
+#end
+<!-- Custom and plugin javascript -->
+<script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>
+<script src="$link.getContextURL()/js/main.js"></script>
+#if($author.username==$user.username&&$author.BSiteDto.logo)
+	<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>
+	<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>
+	#end
+#if($extjs)
+$extjs
+#end
+</body>	
+</html>

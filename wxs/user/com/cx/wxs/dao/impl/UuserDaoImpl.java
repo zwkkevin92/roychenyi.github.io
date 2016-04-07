@@ -262,7 +262,6 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 	private void setDefault(UUserDto userDto) {
 		//一以下给定默认值，一般与数据库设置的默认值一致
 		Date date=new Date();
-//		userDto.setBirth( new Timestamp(date.getTime()));
 		userDto.setRoleId(1);
 		userDto.setArticleCount(0);
 		userDto.setArticleReplyCount(0);

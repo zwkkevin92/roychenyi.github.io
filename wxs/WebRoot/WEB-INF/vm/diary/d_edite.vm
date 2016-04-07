@@ -1,0 +1,45 @@
+#set($layout = "layout/user/l_user.vm")
+#set($page_title="文字编写-"+"$user.nickname")
+
+#parse("conf/js.vm")
+#set($extjs=$JwangEditor+$Jeditor)
+#parse("conf/css.vm")
+#set($extcss=$CwangEditor)
+
+<!--文字编辑器-->
+ <div class="ibox">
+                            <form class="form-group">
+                            <div class="ibox-title">写日志
+                            <div class="pull-right">草稿箱|帮助</div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="form-group">
+                                    <input type="text" id="text-title" name="text-title" class="form-control" placeholder="文章标题" required=""/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="textarea" id="textarea"/>
+                                    <div id="textarea1" style="height:400px;max-height:500px;">
+                                        <p>测试，加载编辑框</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    分类：
+                                    <select  name="textCatalog">
+                                        <option>个人日记</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input  type="radio" name="textType"/>小说
+                                    <input type="radio" name="textType"/>散文
+                                    <input type="radio" name="textType"/>诗歌
+                                    <input type="radio"   name="textType"/>随笔
+                                    <input type="radio" name="textType"/>杂文
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" onclick="testText()">发布</button>
+                                   &nbsp; <button type="button" class="btn btn-primary" onclick="testText()">存草稿</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>

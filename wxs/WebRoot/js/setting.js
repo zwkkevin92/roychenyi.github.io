@@ -6,9 +6,9 @@ $(document).ready(function () {
 
 //设置性别的转换
     var sex_value= $('#sex').val();
-    if(sex_value==1){
+    if(sex_value=="1"){
         $('#boy').attr("checked","checked");
-    }else if(sex_value==0){
+    }else if(sex_value=="0"){
         $('#girl').attr("checked","checked");
     }
 

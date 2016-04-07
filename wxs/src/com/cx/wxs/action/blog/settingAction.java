@@ -1,5 +1,8 @@
 package com.cx.wxs.action.blog;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,12 +118,19 @@ public class settingAction {
 	public UUserDto setUserInfo(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,UUserDto userDto){
 		userDto.setNickname(vip);
 		String signstr=request.getParameter("sign");
-		if(signstr!=null){
-			USignDto uSignDto=new USignDto();
+		USignDto uSignDto=new USignDto();
+		Date date=new Date();
+		if(signstr!=null&&signstr!=""){
 			uSignDto.setUUserDto(userDto);
 			uSignDto.setContent(signstr);
-			uSignService.setUserSign(uSignDto);
+			uSignDto.setStatus((short)1);
+			int signId= uSignService.setUserSign(uSignDto);
+			if(signId>0){
+				uSignDto.setSignId(signId);
+				userDto.setUSignDto(uSignDto);
+			}
 		}
+		userDto.setLastTime(new Timestamp(date.getTime()));
 		if(uUserService.updateUuser(userDto)>0){
 			userDto=uUserService.getUuser(userDto);
 			userDto.setLoginFlag("1");

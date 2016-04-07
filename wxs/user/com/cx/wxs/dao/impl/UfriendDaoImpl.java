@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.UFriendDao;
@@ -23,6 +24,7 @@ import com.cx.wxs.utils.StringUtils;
  * @author 陈义
  * @date   2015-12-8 下午4:16:50
  */
+@Repository("UFriendDao")
 public class UFriendDaoImpl extends BaseDaoImpl<UFriend,Integer> implements UFriendDao{
 
 

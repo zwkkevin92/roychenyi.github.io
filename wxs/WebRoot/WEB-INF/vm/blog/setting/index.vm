@@ -1,7 +1,8 @@
 #set($layout = "layout/index.vm")
-#set($page_title="基本信息设置-"+$user.nickname+"文学社平台")
+#set($page_title="基本信息设置-"+$user.nickname)
 #parse("conf/js.vm")
 #set($extjs=$Jsetting+$Jlayer)
+
 <div class="row"> 
     <div class="col-md-4">
     <div class="ibox">
@@ -10,7 +11,7 @@
         <li class="active"><a href="$link.getContextURL()/$user.nickname/set/index">基本信息</a></li>
         <li ><a href="$link.getContextURL()/$user.nickname/set/site">空间设置</a></li>
         <li ><a href="$link.getContextURL()/$user.nickname/set/avatar">用户头像</a></li>
-        <li ><a href="$link.getContextURL()/$user.nickname/set/privacy">隐私设置</a></li>
+        <li class="hidden"><a href="$link.getContextURL()/$user.nickname/set/privacy">隐私设置</a></li>
         <li class="hidden"><a>消息设置</a></li>
         <li class="hidden"><a>偏好设置</a></li>
     </ul>
@@ -56,7 +57,7 @@
                                         <label class="checkbox-inline">
                                             <input type="radio" name="sex_rodio" id="girl" value="option2"> 女
                                         </label>
-                                        <input type="hidden" name="sex" id="sex" value="$user.sex">
+                                        <input type="hidden" name="sex" id="sex" #if($user.sex) value="$user.sex" #end>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -138,7 +139,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5 col-sm-offset-3">
                                         <button type="button" id="defaultInfo" class="btn btn-info">确定</button>&nbsp;&nbsp;
-                                        <button type="reset" class="btn btn-info">取消</button>
+                                        <button type="reset" class="btn btn-info hidden">取消</button>
                                     </div>
                                 </div>
                             </form>

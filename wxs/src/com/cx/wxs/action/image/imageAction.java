@@ -119,13 +119,15 @@ public class imageAction {
 				 
 				 boolean[] flag=new boolean[6];
 				 //旋转后剪裁图片
+				 imageUtils.convert(src+".jpg", "jpg", src+".jpg");
 				 flag[0]=imageUtils.cutAndRotateImage(src+".jpg", src+"_s.jpg", x, y, width, height, degree);
 				 //缩放图片,生成不同大小的图片，应用于不同的大小的头像显示
 				 flag[1]= imageUtils.scale2(src+"_s.jpg", src+"_s_200.jpg", 200, 200, true);
 				 flag[2]= imageUtils.scale2(src+"_s.jpg", src+"_s_100.jpg", 100, 100, true);
 				 flag[3]= imageUtils.scale2(src+"_s.jpg", src+"_s_50.jpg", 50, 50, true);
 				 flag[4]= imageUtils.scale2(src+"_s.jpg", src+"_s_30.jpg", 30, 30, true);
-				 flag[5]= imageUtils.scale2(file.getPath(), src+"_200.jpg", 200, 200, true);
+				 //生成预览图
+				 flag[5]= imageUtils.scale2(src+".jpg", src+"_200.jpg", 200, 200, true);
 				 
 				 if(flag[0]&&flag[1]&&flag[2]&&flag[3]&&flag[4]&&flag[5]){
 					 //图像处理完成，将数据写入数据库中

@@ -92,6 +92,8 @@ public class SessionFilter extends OncePerRequestFilter {
 		Cookie cookie=RequestUtils.getCookie(request, "user");
 		HttpSession session=request.getSession();
 		UUserDto userDto=(UUserDto) session.getAttribute("user");
+		String url=request.getRequestURL().toString();
+		
 		if(cookie!=null&&userDto==null){
 	//		ApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
 			UUserDto user = new UUserDto();
@@ -104,6 +106,14 @@ public class SessionFilter extends OncePerRequestFilter {
 		//	UUserService userService=GlobalContext.getBean("")
 			user=userService.getUuser(user);
 			session.setAttribute("user", user);
+		}
+		userDto=(UUserDto) session.getAttribute("user");
+		if(userDto!=null&&(url.contains("login")||url.contains("register"))){
+			request.getSession().setAttribute("goUrl", request.getRequestURL()+"?"+request.getQueryString());
+            //跳转到login.jsp
+			System.out.println(request.getSession().getAttribute("goUrl"));
+            //跳转到首页
+			response.sendRedirect(request.getContextPath());
 		}
 		filterchain.doFilter(request, response);
 	}

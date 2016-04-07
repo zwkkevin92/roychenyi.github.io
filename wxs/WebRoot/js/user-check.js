@@ -127,12 +127,13 @@ $(document).ready(function () {
     	if($('#error_text').html()!=""){
     	return;
     	}
+    	var url=$('#loginform').attr('action')
         var str_data = $("#loginform input").map(function () {
             return ($(this).attr("name") + '=' + $(this).val());
         }).get().join("&");
 
         $.ajax({
-            url: "login1",
+            url: url,
             type: "POST",
             data: str_data,
             dataType:"json",
@@ -157,12 +158,12 @@ $(document).ready(function () {
     });
     //忘记密码时，验证按钮点击事件
     $('#check').click(function(){
-
+        var url=$('#forgotform').attr("action");
         var str_data = $("#forgotform input").map(function () {
             return ($(this).attr("name") + '=' + $(this).val());
         }).get().join("&");
         $.ajax({
-            url:"forgot/result",
+            url:url,
             dataType:"json",
             type:"POST",
             data:str_data,
@@ -184,7 +185,7 @@ $(document).ready(function () {
                 }
             },
             error: function(data){
-                $('#error_text').html("<small>该邮箱没有注册，请点击注册或者重新输入邮箱！</small>");
+                $('#error_text').html("<small>错误，请刷新页面了再试！</small>");
             }
         });
 
@@ -197,11 +198,12 @@ $(document).ready(function () {
             $('#error_text').html("<small>两次输入密码不相同，请重新输入</small>");
             return null
         }else{
+        	 var url=$('#changeform').attr("action");
             var str_data = $("#changeform input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
             $.ajax({
-                url: "change",
+                url: url,
                 dataType:"json",
                 type:"POST",
                 data:str_data,
@@ -231,11 +233,12 @@ $(document).ready(function () {
             $('#error_text').html("<small>两次输入密码不相同，请重新输入</small>");
             return null;
         }else{
+        	 var url=$('#changeform').attr("action");
             var str_data = $("#changeform input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
             $.ajax({
-                url: "new",
+                url: url,
                 dataType:"json",
                 type:"POST",
                 data:str_data,
@@ -362,11 +365,12 @@ $(document).ready(function () {
             $('#error_text').html("<small>两次输入密码不相同，请重新输入</small>");
             return ;
         }else{
+        	var url=$('#reg_form').attr('action')
             var str_data = $("#reg_form input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
             $.ajax({
-                url: "register1",
+                url: url,
                 dataType:"json",
                 type:"POST",
                 data:str_data,
@@ -394,5 +398,7 @@ $(document).ready(function () {
         }
 
     });
-
+    $(".form-group").find("input").focus(function(){
+        $('#error_text').html("");
+    });
 });

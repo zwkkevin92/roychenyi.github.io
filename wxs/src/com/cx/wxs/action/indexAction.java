@@ -51,7 +51,7 @@ public class indexAction {
 	private UUserService userService;
 	@Resource
 	private EmailService emailService;
-	
+	@Resource
 	private WWxsService wxsService;
 	
 
@@ -130,6 +130,7 @@ public class indexAction {
 		System.out.println(name);
 		
 		if(name.length()>=3&&name.substring(name.length()-3, name.length()).equals("文学社")){
+			System.out.println("进入文学社判断");
 			WWxsDto wxsDto=new WWxsDto();
 			wxsDto.setName(name);
 			wxsDto= wxsService.getWwxs(wxsDto);
@@ -162,5 +163,17 @@ public class indexAction {
 		ModelAndView mv=new ModelAndView("500");
 		return mv;
 	}
-
+     
+	public boolean setAuthor(ModelAndView mv,String name){
+		UUserDto userDto=new UUserDto();
+		userDto.setNickname(name);
+		userDto=userService.getUuser(userDto);
+		if(userDto==null){
+			return false;
+		}else{
+			
+			mv.addObject("author",userDto);
+			return true;
+		}
+	}
 }

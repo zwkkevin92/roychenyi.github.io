@@ -1,5 +1,5 @@
 #set($layout = "layout/index.vm")
-#set($page_title="隐私设置-"+$user.nickname+"文学社平台")
+#set($page_title="隐私设置-"+$user.nickname)
 
 <div class="row"> 
     <div class="col-md-4">
@@ -17,6 +17,42 @@
     </div>
 </div>
 <div class="col-md-8">
+<div class="ibox">
+            <div class="ibox-title">隐私设置</div>
+            <div class="ibox-content">
+                <form role="form" class="form-horizontal" action="">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">是否允许日志评论</label>
+                        <div class="col-sm-8">
+                            <label class="checkbox-inline">
+                                <input type="radio" name="reply_rodio" id="reply_yes" value="1" > 是
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="reply_rodio" id="reply_no" value="0"> 否
+                            </label>
+                            <input type="hidden" name="content_reply" id="content_reply" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">是否关闭空间</label>
+                        <div class="col-sm-8">
+                            <label class="checkbox-inline">
+                                <input type="radio" name="on|off_rodio" id="on" value="1" > 是
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="on|off_rodio" id="off" value="0"> 否
+                            </label>
+                            <input type="hidden" name="on|off" id="on|off" value="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5 col-sm-offset-3">
+                            <button type="submit" class="btn btn-info">确定</button>
 
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 </div>
 </div>

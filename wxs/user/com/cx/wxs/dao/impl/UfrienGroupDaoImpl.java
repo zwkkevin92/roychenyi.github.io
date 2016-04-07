@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.UFriendGroupDao;
@@ -20,6 +21,7 @@ import com.cx.wxs.utils.StringUtils;
  * @author 陈义
  * @date   2015-12-8 下午8:22:00
  */
+@Repository("UFrienGroupDao") 
 public class UFrienGroupDaoImpl extends BaseDaoImpl<UFriendGroup, Integer> implements UFriendGroupDao{
 
 	private BeanToDto<UFriendGroup,UFriendGroupDto> beanToDto=new BeanToDto<UFriendGroup,UFriendGroupDto>();

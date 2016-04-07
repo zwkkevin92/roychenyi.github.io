@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Repository;
 
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
@@ -22,6 +23,7 @@ import com.cx.wxs.utils.StringUtils;
  * @author 陈义
  * @date   2015-12-8 下午9:54:04
  */
+@Repository("UUsignDao") 
 public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDao{
 	
 	private BeanToDto<USign,USignDto> beanToDto=new BeanToDto<USign,USignDto>();
@@ -134,8 +136,9 @@ public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDa
 		if(usignDto!=null&&usignDto.getUUserDto().getUserId()!=null&&usignDto.getContent()!=null){
 			USign usign=new USign();
 			usign=beanToDto.D1ToT1(usign,usignDto);
-			usign.setStatus((short)1);
-			usign.setCreateTime(new Timestamp(new Date().getTime()));
+			
+//			usign.setStatus((short)1);
+//			usign.setCreateTime(new Timestamp(new Date().getTime()));
 		//	BeanUtils.copyProperties(usignDto, usign);
 			return this.save(usign);
 		}
@@ -149,15 +152,15 @@ public class USignDaoImpl extends BaseDaoImpl<USign, Integer> implements USignDa
 	@Override
 	public Integer updateSign(USignDto usignDto) {
 		// TODO Auto-generated method stub
-		if(usignDto!=null&&usignDto.getUid()!=null){
+		if(usignDto!=null&&usignDto.getSignId()!=null){
 			StringBuffer stringBuffer=new StringBuffer(DbType.UPDATE.toString());
-			String[] fl=new String[]{"uid"};
+			String[] fl=new String[]{"uid","signId"};
 			Map<String,Object> map=usignDto.createSetPropertiesVal(usignDto, "a", fl);
-			Map<String,Object> params=new HashMap<String,Object>();
-			stringBuffer.append(" from "+USign.class.getName()+" a ");
+			Map<String,Object> params=(Map<String, Object>) map.get(StringUtils.PARAMS);	
+			stringBuffer.append("  "+USign.class.getName()+" a ");
 			stringBuffer.append(map.get(StringUtils.SET_HQL));
 			stringBuffer.append(" where a.signId=:uid ");
-			params.put("uid",usignDto.getUid());
+			params.put("uid",usignDto.getSignId());
 			return this.executeHql(stringBuffer.toString(),params);
 		}
 		return 0;

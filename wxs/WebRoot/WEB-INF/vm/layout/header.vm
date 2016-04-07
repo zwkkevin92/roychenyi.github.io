@@ -9,7 +9,7 @@
                 
                   #if($user.BSiteDto.logo)
 					
-					<a href="$link.getContextURL()/$user.nickname" aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed no-padding " > <img src="$user.BSiteDto.logo" style="width:30px;hight:30px;"/></a> #else <a aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed" type="button" #if($user) href="$link.getContextURL()/$user.nickname" #else href="$link.getContextURL()/login" #end><i class="fa fa-user"></i></a> #end
+					<a href="$link.getContextURL()/$user.nickname" aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed no-padding " > <img src="$link.getContextURL()/$user.BSiteDto.logo" style="width:30px;hight:30px;"/></a> #else <a aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed" type="button" #if($user) href="$link.getContextURL()/$user.nickname" #else href="$link.getContextURL()/login" #end><i class="fa fa-user"></i></a> #end
                 
 
                 <button  aria-controls="navbar" aria-expanded="false" data-target="#search" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="top-search">
@@ -41,11 +41,11 @@
 				#else
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
-                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> #if($user.BSiteDto.logo) <img src="$user.BSiteDto.logo" style="width:24px;hight:24px;"/> #else<i class="fa fa-user"></i> #end $user.nickname<span class="caret"></span></a>
+                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> #if($user.BSiteDto.logo) <img src="$link.getContextURL()/$user.BSiteDto.logo" style="width:24px;hight:24px;"/> #else<i class="fa fa-user"></i> #end $user.nickname<span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
                             <li><a href="$link.getContextURL()$user.BSiteDto.siteUrl">个人中心</a>
                             </li>
-                            <li><a href="">写日志</a>
+                            <li><a href="$link.getContextURL()/$user.nickname/article/article_add"><i class="fa fa-edit"></i>写日志</a>
                             </li>
                             <li><a href="">消息</a>
                             </li>

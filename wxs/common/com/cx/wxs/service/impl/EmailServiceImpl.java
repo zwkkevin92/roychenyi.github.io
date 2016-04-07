@@ -2,12 +2,16 @@ package com.cx.wxs.service.impl;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cx.wxs.bean.EmailDto;
 import com.cx.wxs.bean.EmailInfo;
+import com.cx.wxs.dao.SysConfigDao;
+import com.cx.wxs.dto.SysConfigDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.EmailType;
 import com.cx.wxs.service.EmailService;
@@ -21,6 +25,8 @@ import com.cx.wxs.utils.EmailSender;
  */
 @Service("emailService")
 public class EmailServiceImpl implements EmailService{
+	@Autowired
+	private SysConfigDao sysConfigDao;
 
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.service.EmailService#sendEmail(com.cx.wxs.dto.UUserDto, com.cx.wxs.bean.EmailInfo)
@@ -75,22 +81,38 @@ public class EmailServiceImpl implements EmailService{
 	@Override
 	public EmailDto getEmail() {
 		// TODO Auto-generated method stub
-		String path="/email.properties";
-		InputStream in = getClass().getResourceAsStream(path);
-		Properties properties=new Properties();
+//		String path="/email.properties";
+//		InputStream in = getClass().getResourceAsStream(path);
+//		Properties properties=new Properties();
+		SysConfigDto sysConfigDto=new SysConfigDto();
+		sysConfigDto.setConfigName("system_email");
+		List<SysConfigDto> sysConfigDtos=sysConfigDao.getSysConfigList(sysConfigDto);
+		
 		EmailDto emailDto=new EmailDto();
-		try{
-		properties.load(in);
-	    emailDto.setEuser(properties.getProperty("mail.username"));
-	    emailDto.setEpwd(properties.getProperty("mail.password"));
-	    emailDto.setSmtp(properties.getProperty("mail.smtp"));
-	    emailDto.setPort(Integer.parseInt(properties.getProperty("mail.port")));
-	    return emailDto;
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
+		for(SysConfigDto configDto:sysConfigDtos){
+			if(configDto.getConfigName().contains("username")){
+				emailDto.setEuser(configDto.getValue());
+			}else if(configDto.getConfigName().contains("password")){
+				emailDto.setEpwd(configDto.getValue());
+			}else if(configDto.getConfigName().contains("smtp")){
+				emailDto.setSmtp(configDto.getValue());
+			}else if(configDto.getConfigName().contains("port")){
+				emailDto.setPort(Integer.parseInt(configDto.getValue()));
+			}
 		}
+		return emailDto;
+//		try{
+//		properties.load(in);
+//	    emailDto.setEuser(properties.getProperty("mail.username"));
+//	    emailDto.setEpwd(properties.getProperty("mail.password"));
+//	    emailDto.setSmtp(properties.getProperty("mail.smtp"));
+//	    emailDto.setPort(Integer.parseInt(properties.getProperty("mail.port")));
+//	    return emailDto;
+//		}catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//			return null;
+//		}
 	}
 	
 	public static void main(String[] avg){

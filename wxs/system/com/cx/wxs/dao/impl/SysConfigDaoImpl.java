@@ -22,9 +22,25 @@ import com.cx.wxs.utils.BeanToDto;
 @Repository("SysConfigDao")
 public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements SysConfigDao{
 
-    private BeanToDto<SysConfig, SysConfigDto> beanToDto;
+    private BeanToDto<SysConfig, SysConfigDto> beanToDto=new BeanToDto<SysConfig,SysConfigDto>();
+    
+    
 
     /**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<SysConfig, SysConfigDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<SysConfig, SysConfigDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
+
+	/**
     * 通过id获取SysConfigDto
     * @author 陈义
     * @date 2016-01-19 14:41:50
@@ -55,7 +71,25 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     */
     @Override
     public List<SysConfigDto> getSysConfigList(SysConfigDto sysConfigDto){
-        return null;
+        if(sysConfigDto!=null){
+        	StringBuffer stringBuffer=new StringBuffer();
+			Map<String,Object> params=new HashMap<String,Object>();
+			stringBuffer.append("from "+SysConfig.class.getName()+" a ");
+			stringBuffer.append(" where 1=1 ");
+		    stringBuffer.append(" and ( a.configName =:configName1 or a.configName like :configName2 )");
+		    params.put("configName1",sysConfigDto.getConfigName());
+		    params.put("configName2","%"+sysConfigDto.getConfigName()+"%");
+		    List<SysConfigDto> sysConfigDtos=new ArrayList<SysConfigDto>();
+		    List<SysConfig> sysConfigs=new ArrayList<SysConfig>();
+		    sysConfigs=this.find(stringBuffer.toString(),params);
+		    for(SysConfig sysConfig:sysConfigs){
+		    	SysConfigDto configDto=beanToDto.T1ToD1(sysConfig, new SysConfigDto());
+		    	sysConfigDtos.add(configDto);
+		    }
+		    return sysConfigDtos;
+		    
+        }
+    	return null;
     }
 
     /**
@@ -84,10 +118,10 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
         // TODO Auto-generated method stub
         if(sysConfigDto!=null&&sysConfigDto.getConfigId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"uid"};//过滤掉的字段
+           String[] fl = new String[]{"uid","configId"};//过滤掉的字段
            Map<String, Object> map = sysConfigDto.createSetPropertiesVal(sysConfigDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+SysConfig.class.getName()+" a");
+           stringBuffer.append("  "+SysConfig.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.configId=:uid");
            params.put("uid",sysConfigDto.getConfigId());

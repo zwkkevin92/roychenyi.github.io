@@ -86,7 +86,7 @@ public class USignServiceImpl implements USignService {
 		//先把其他的签名档变成普通的
 		List<USignDto> signList=uSignDao.getUsignList(uSignDto);
 		for(USignDto signDto:signList){
-			signDto.setStatus((short)0);
+			signDto.setStatus((short)0);			
 			uSignDao.updateSign(signDto);
 		}
 		Integer usinId=uSignDao.addSign(uSignDto);
