@@ -6,9 +6,9 @@ $(document).ready(function () {
 
 //设置性别的转换
     var sex_value= $('#sex').val();
-    if(sex_value=="1"){
+    if(sex_value==1){
         $('#boy').attr("checked","checked");
-    }else if(sex_value=="0"){
+    }else if(sex_value==0){
         $('#girl').attr("checked","checked");
     }
 
@@ -220,7 +220,52 @@ $(document).ready(function () {
             $('#sign_error_info').addClass("hidden");
         }
     });
-
+//
+//    $('#info').on('show.bs.collapse', function () {
+//        $('#info').prev().children(".panel-title").find("a").find("code").html("收起");
+//
+//    });
+//    $('#info').on('hide.bs.collapse', function () {
+//        $('#info').prev().children(".panel-title").find("a").find("code").html("编辑");
+//        //	 $('#collapseexample').prev().children(".panel-title").find("a").append("<code class='pull-right'>编辑</code>");
+//        //   alert('嘿，当您展开时会提示本警告');
+//    });
+//    $('#tag').on('show.bs.collapse', function () {
+//        $('#tag').prev().children(".panel-title").find("a").find("code").html("收起");
+//
+//    });
+//    $('#tag').on('hide.bs.collapse', function () {
+//        $('#tag').prev().children(".panel-title").find("a").find("code").html("编辑");
+//        //	 $('#collapseexample').prev().children(".panel-title").find("a").append("<code class='pull-right'>编辑</code>");
+//        //   alert('嘿，当您展开时会提示本警告');
+//    });
+//    $('#title').on('show.bs.collapse', function () {
+//        $('#title').prev().children(".panel-title").find("a").find("code").html("收起");
+//
+//    });
+//    $('#title').on('hide.bs.collapse', function () {
+//        $('#title').prev().children(".panel-title").find("a").find("code").html("编辑");
+//        //	 $('#collapseexample').prev().children(".panel-title").find("a").append("<code class='pull-right'>编辑</code>");
+//        //   alert('嘿，当您展开时会提示本警告');
+//    });
+//    $('#pull').on('show.bs.collapse', function () {
+//        $('#pull').prev().children(".panel-title").find("a").find("code").html("收起");
+//
+//    });
+//    $('#pull').on('hide.bs.collapse', function () {
+//        $('#pull').prev().children(".panel-title").find("a").find("code").html("编辑");
+//        //	 $('#collapseexample').prev().children(".panel-title").find("a").append("<code class='pull-right'>编辑</code>");
+//        //   alert('嘿，当您展开时会提示本警告');
+//    });
+//    $('#catalog').on('show.bs.collapse', function () {
+//        $('#catalog').prev().children(".panel-title").find("a").find("code").html("收起");
+//
+//    });
+//    $('#catalog').on('hide.bs.collapse', function () {
+//        $('#catalog').prev().children(".panel-title").find("a").find("code").html("编辑");
+//        //	 $('#collapseexample').prev().children(".panel-title").find("a").append("<code class='pull-right'>编辑</code>");
+//        //   alert('嘿，当您展开时会提示本警告');
+//    });
     $('.panel-collapse').on('show.bs.collapse', function () {
         $(this).prev().children(".panel-title").find("a").find("code").html("收起");
 
@@ -274,6 +319,8 @@ $(document).ready(function () {
         } );
     });
 
+
+
     function submitStart() {
         layer.load();
     }
@@ -283,10 +330,31 @@ $(document).ready(function () {
     function submitFail(msg){
         layer.alert(msg);
     }
+
+
+//设置文章是否可投递
+    var pull_status_value= $('#pull_status').val();
+    if(pull_status_value==1){
+        $('#pull_yes').attr("checked","checked");
+    }else if(sex_value==0){
+        $('#pull_no').attr("checked","checked");
+    }
+
+    $("input[name=pull_rodio]").click(function(){
+        switch($("input[name=sex_rodio]:checked").attr("id")){
+            case "pull_yes":
+                $('#pull_status').val("1");
+                break;
+            case "pull_no":
+                $('#pull_status').val("0");
+                break;
+            default:
+                break;
+        }
+    });
     var CATALOG_GROUP_ITEM="<a class='pull-right' title='delete' href='javascript:;'  >删除</a>&nbsp;&nbsp;<a class='pull-right' href='javascript:;'  title='edite' >编辑</a>";
     var CATALOG_FORM="<form role='form' id='catalog-change_form' class='form-horizontal' ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control'></div> <button name='sure' class='btn btn-info'>确定</button>&nbsp;&nbsp;<button name='reset' class='btn btn-info'>取消</button></div></form>";
-   
-    //目录管理
+//目录管理
     //目录删除
     $("#catalog div ul.list-group li div").find("a[title='delete']").click(function(){
 
@@ -392,5 +460,6 @@ $('#catalog_add').click(function(){
             $("#catalog_new").addClass("hidden");
         }
     });
+
 
 });

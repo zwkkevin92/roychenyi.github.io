@@ -12,7 +12,7 @@
 <body class="top-navigation gray-bg" >
 
 <div id="wrapper">
-<div id="page-wrapper">
+<div id="page-wrapper" style="background: url(images/head_bg.jpg) no-repeat 0 0;background-color: #E2E2E2;">
 <!-- 导航栏 -->
 <header>
     <!--主导航-->
@@ -22,9 +22,9 @@
                 <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                     <i class="fa fa-reorder"></i>
                 </button>
-                <button aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="user">
+                <a aria-controls="navbar" aria-expanded="false" data-target="#navbar1" data-toggle="collapse" class="navbar-toggle collapsed " type="button" >
                     <i class="fa fa-user"></i>
-                </button>
+                </a>
 
                 <button  aria-controls="navbar" aria-expanded="false" data-target="#search" data-toggle="collapse" class="navbar-toggle collapsed" type="button" id="top-search">
                     <i class="fa fa-search"></i>
@@ -95,16 +95,16 @@
 </header>
 <!--主体部分-->
 
-    <div class="wrapper wrapper-content">
+    <div class="wrapper wrapper-content" >
         <div class="container">
 
             <div class="row">
-                <div class="headarea white-bg" style="background-image: url(images/head_bg.jpg);">
+                <div class="headarea " >
 <div class="pull-right">统计</div>
                         <div class="blog_titil">
-                            <img class="img-circle"  src="images/head_face1.jpg" style="width: 100px;height: 100px;"/>
+                            <img class="img-circle" id="top-face"  src="images/head_face1.jpg" style="width: 100px;height: 100px;"/>
                             <h1 >用户名</h1>
-                            <h3><small>主页链接</small></h3>
+                            <h3 class="no-margins"><small>主页链接</small></h3>
                         </div>
                         <div class="navbar navbar-default blog_nav">
                             <ul class="nav  navbar-top-links navbar-right ">
@@ -122,12 +122,29 @@
                     <div class="ibox">
                     <div class="ibox-title">个人资料</div>
                     <div class="ibox-content">
-                        用户头像<br>
-                        用户名
+                        <!--<p><img id="user-face"  src="images/head_face1.jpg" style="width:170px;height: 170px;"></p>-->
+                        <h1 class="text-center">用户名</h1>
+                        <p class="text-center"><a class="btn btn-success">关注</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-success">消息</a></p>
+                        <div id="data">
+                            <p>性别</p>
+                            <p>等级：</p>
+                            <p>粉丝：</p>
+                            <p>关注：</p>
+                            <p>日志：</p>
+                            <p>评论：</p>
+                            <p>点赞：</p>
+                            <p class="pull-right"><a>更多<i class="fa fa-angle-double-right"></i></a></p>
+                        </div>
                     </div>
-                    </div>
+                        </div>
                     <div class="ibox">
                         <div class="ibox-title">用户好友</div>
+                        <div class="ibox-content">
+                            测试
+                        </div>
+                    </div>
+                    <div class="ibox">
+                        <div class="ibox-title">最近访客</div>
                         <div class="ibox-content">
                             测试
                         </div>
@@ -167,6 +184,9 @@
 
 <a href="javascript:scrollTo(0,0)" id="gotop" title="回到顶部" style="display:none;"><i class="fa fa-angle-up fa-4x"></i><span>top</span></a>
 
+
+</div>
+</div>
 <footer>
     <div class="footer" >
         <div class="row">
@@ -180,14 +200,11 @@
         </div>
     </div>
 </footer>
-</div>
-</div>
-
 <!-- Mainly scripts -->
 <script src="js/jquery-2.1.4.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>          <!--创建手风琴效果的可折叠菜单-->
-<!--   <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>   <!--一个支持把内容放在一个盒子里面，固定一个高度，超出的则使用滚动-->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>   <!--一个支持把内容放在一个盒子里面，固定一个高度，超出的则使用滚动-->
 
 <!-- Custom and plugin javascript -->
 <script src="js/plugins/pace/pace.min.js"></script>
