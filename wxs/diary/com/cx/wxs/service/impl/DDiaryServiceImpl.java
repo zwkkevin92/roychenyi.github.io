@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cx.wxs.dao.DDiaryDao;
+import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.service.DDiaryService;
 
@@ -72,5 +73,14 @@ public class DDiaryServiceImpl implements DDiaryService {
     public Integer deleteDDiary(DDiaryDto dDiaryDto){
         return dDiaryDao.deleteDDiary(dDiaryDto);
     }
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DDiaryService#diaryMove1(com.cx.wxs.dto.DCatalogDto)
+	 */
+	@Override
+	public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto) {
+		// TODO Auto-generated method stub
+		return dDiaryDao.diaryMove(diaryDto,catalogDto);
+	}
 
 }

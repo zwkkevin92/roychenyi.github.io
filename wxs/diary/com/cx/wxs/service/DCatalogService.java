@@ -16,6 +16,10 @@ public interface DCatalogService {
     * @date 2015-12-13 19:01:59
     */
     public DCatalogDto getDCatalogByID(DCatalogDto dCatalogDto);
+    /**
+     * 通过分类名字获取分类
+     */
+    public DCatalogDto getDCatalog(DCatalogDto dCatalogDto);
 
     /**
     * 通过相关信息获取DCatalogDtoList信息

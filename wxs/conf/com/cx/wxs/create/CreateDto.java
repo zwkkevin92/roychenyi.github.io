@@ -255,7 +255,7 @@ public class CreateDto {
 			           +BLANK_8+BLANK_2+"StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());"+RT_1+BLANK_8+BLANK_2+"Map<String,Object> params=new HashMap<String,Object>();"+RT_1
 			           +BLANK_8+BLANK_2+"stringBuffer.append(\"  \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(\" where a."+map.get("id")+"=:uid \");"+RT_1
 					   +BLANK_8+BLANK_2+"params.put(\"uid\","+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"());"+RT_1
-			           +BLANK_8+BLANK_2+className+BLANK_1+lowerName+"= new "+className+"();"+RT_1+BLANK_8+BLANK_2+"BeanUtils.copyProperties("+lowerName+"Dto, "+lowerName+");"+RT_1
+			      //     +BLANK_8+BLANK_2+className+BLANK_1+lowerName+"= new "+className+"();"+RT_1+BLANK_8+BLANK_2+"BeanUtils.copyProperties("+lowerName+"Dto, "+lowerName+");"+RT_1
 						+BLANK_8+BLANK_2+"return this.executeHql(stringBuffer.toString(),params);"+RT_1+BLANK_8+"}"+RT_1);		
 		stringBuffer.append(BLANK_8+"return 0;"+RT_1+BLANK_4+"}"+RT_2);
 		stringBuffer.append("}");

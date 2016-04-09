@@ -2,6 +2,7 @@ package com.cx.wxs.dao;
 
 import java.util.List;
 
+import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.po.DDiary;
 import com.cx.wxs.base.dao.IBaseDao;
@@ -45,5 +46,7 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDDiary(DDiaryDto dDiaryDto);
+    
+    public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto);
 
 }

@@ -536,6 +536,7 @@ public class userAction {
     		DCatalogDto catalogDto=new DCatalogDto();
     		catalogDto.setUUserDto(userDto);
     		catalogDto.setCatalogName("个人日记");
+    		catalogDto.setCatalogType(1);
     		catalogDto.setCreateTime(new Timestamp(date.getTime()));
     		dCatalogService.addDCatalog(catalogDto);
     		//空间配置：添加允许投稿

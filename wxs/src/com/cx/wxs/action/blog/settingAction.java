@@ -25,6 +25,7 @@ import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.DCatalogService;
+import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.USignService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.RequestUtils;
@@ -46,6 +47,8 @@ public class settingAction extends BaseAction{
 	private BConfigService bConfigService;
 	@Resource 
 	private DCatalogService dCatalogService;
+	@Resource
+	private DDiaryService diaryService;
 	
 //	/**
 //	 * @return the dCatalogService
@@ -238,8 +241,8 @@ public class settingAction extends BaseAction{
 		UUserDto userDto=getUserDtoByNickname(vip);
 		configDto.setBSiteDto(userDto.getBSiteDto());
 		Date date=new Date();
-		configDto.setCreateTime(new Timestamp(date.getTime()));
 		if(configId==null){
+			configDto.setCreateTime(new Timestamp(date.getTime()));
 		    configId=bConfigService.addBConfig(configDto);
 		    if(configId>0){
 		    configDto.setBconfigId(configId);
@@ -248,7 +251,8 @@ public class settingAction extends BaseAction{
 		    	configDto.setStatusFlag("-1");
 		    }
 		}else{
-			
+			configDto.setBconfigId(configId);
+			configDto.setLastTime(new Timestamp(date.getTime()));
 			if(bConfigService.updateBConfig(configDto)>0){
 				configDto.setStatusFlag("1");
 			}else{
@@ -269,7 +273,24 @@ public class settingAction extends BaseAction{
 	 */
 	@RequestMapping(value="/setCatalog")
 	@ResponseBody
-	public DCatalogDto setDCatalog(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,DCatalogDto catalogDto){
+	public DCatalogDto setCatalog(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,DCatalogDto catalogDto){
+		String status=request.getParameter("status");
+		if(status!=null&&status.equals("delete")){
+			//更新日志表，把该日志表的里的日志移至个人日记中
+			DDiaryDto diaryDto=new DDiaryDto();
+			diaryDto.setUUserDto(catalogDto.getUUserDto());
+			diaryDto.setDCatalogDto(catalogDto);
+			DCatalogDto catalogDto2=new DCatalogDto();
+			catalogDto2.setUUserDto(catalogDto.getUUserDto());
+			catalogDto2.setCatalogName("个人日记");
+			int moveNum= diaryService.diaryMove(diaryDto, catalogDto2);
+			if(dCatalogService.deleteDCatalog(catalogDto)>0){
+				catalogDto.setStatusFlag("1");
+			}else{
+				catalogDto.setStatusFlag("2");
+			}
+			return catalogDto;
+		}
 		Date date=new Date();
 		UUserDto userDto=getUserDtoByNickname(vip);
 		catalogDto.setUUserDto(userDto);
@@ -291,5 +312,6 @@ public class settingAction extends BaseAction{
 		}
 		return catalogDto;
 	}
+	
 
 }

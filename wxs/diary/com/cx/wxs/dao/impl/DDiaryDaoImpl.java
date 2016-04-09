@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.DDiaryDao;
+import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.enums.DbType;
 import com.cx.wxs.po.DDiary;
@@ -117,11 +118,38 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
            stringBuffer.append(" from "+DDiary.class.getName()+" a");
            stringBuffer.append(" where a.diaryId=:uid ");
            params.put("uid",dDiaryDto.getDiaryId());
-           DDiary dDiary= new DDiary();
-           BeanUtils.copyProperties(dDiaryDto, dDiary);
            return this.executeHql(stringBuffer.toString(),params);
         }
         return 0;
     }
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DDiaryDao#diaryMove1(com.cx.wxs.dto.DCatalogDto)
+	 */
+
+	@Override
+	public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto) {
+		// TODO Auto-generated method stub
+		if(catalogDto.getCatalogId()!=null&&diaryDto.getDCatalogDto()!=null&&diaryDto.getUUserDto()!=null){
+			 StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
+	           Map<String, Object> params = new HashMap<String, Object>();
+	           stringBuffer.append(" from "+DDiary.class.getName()+" a");
+	           //移动后的目录
+	           stringBuffer.append(" set a.DCatalog.catalogId:catalogId1");
+	           params.put("catalogId1",catalogDto.getCatalogId());
+	           //移动前的目录
+	           stringBuffer.append(" where a.DCatalog.catalogId:catalogId2");
+	           params.put("catalogId2",catalogDto.getCatalogId());
+	           //日志所属作者
+	           stringBuffer.append(" and a.UUser.userId:userId");
+	           params.put("userId",diaryDto.getUUserDto().getUserId());
+	           if(diaryDto.getDiaryId()!=null){
+	           stringBuffer.append(" and a.diaryId=:uid");
+	           params.put("uid",diaryDto.getDiaryId());
+	           }
+	           return this.executeHql(stringBuffer.toString(),params);
+		}
+		return null;
+	}
 
 }

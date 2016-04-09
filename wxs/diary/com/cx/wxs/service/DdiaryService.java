@@ -2,6 +2,7 @@ package com.cx.wxs.service;
 
 import java.util.List;
 
+import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 
 /**
@@ -44,5 +45,14 @@ public interface DDiaryService {
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDDiary(DDiaryDto dDiaryDto);
+    /***
+     * 把日志移动到个人日记中
+     * @return
+     * @author 陈义
+     * @date   2016-4-9下午9:36:06
+     */
+    public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto);
+    
+    
 
 }

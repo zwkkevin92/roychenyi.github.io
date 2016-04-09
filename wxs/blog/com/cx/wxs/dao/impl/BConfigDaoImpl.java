@@ -60,7 +60,7 @@ public class BConfigDaoImpl extends BaseDaoImpl<BConfig, Integer> implements BCo
 	 */
 	@Override
 	public BConfigDto getBConfig(BConfigDto bConfigDto) {
-		if(bConfigDto!=null&&bConfigDto.getBconfigId()!=null){
+		if(bConfigDto!=null){
 	           StringBuffer stringBuffer=new StringBuffer();
 	           Map<String,Object> params=new HashMap<String, Object>();
 	           stringBuffer.append("from  "+BConfig.class.getName()+"  a where a.BSite.siteId=:siteId");

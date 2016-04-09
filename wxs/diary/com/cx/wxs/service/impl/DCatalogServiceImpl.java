@@ -32,6 +32,12 @@ public class DCatalogServiceImpl implements DCatalogService {
     public DCatalogDto getDCatalogByID(DCatalogDto dCatalogDto){
         return dCatalogDao.getDCatalogByID(dCatalogDto);
     }
+    /**
+     * 通过分类名字获取分类
+     */
+    public DCatalogDto getDCatalog(DCatalogDto dCatalogDto){
+    	return dCatalogDao.getDCatalog(dCatalogDto);
+    }
 
     /**
     * 通过相关信息获取DCatalogDtoList信息

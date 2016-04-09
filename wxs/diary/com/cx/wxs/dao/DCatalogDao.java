@@ -45,5 +45,13 @@ public interface DCatalogDao extends IBaseDao<DCatalog,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDCatalog(DCatalogDto dCatalogDto);
+    /***
+     * 获取catalog
+     * @param dCatalogDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-9下午10:11:08
+     */
+    public DCatalogDto getDCatalog(DCatalogDto dCatalogDto);
 
 }
