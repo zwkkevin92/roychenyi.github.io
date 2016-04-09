@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WWxsDao")
 public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
 
-    private BeanToDto<WWxs, WWxsDto> beanToDto;
+    private BeanToDto<WWxs, WWxsDto> beanToDto=new BeanToDto<WWxs, WWxsDto>();
 
+    public BeanToDto<WWxs, WWxsDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WWxs, WWxsDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WWxsDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WWxsDto getWWxsByID(WWxsDto wWxsDto){
@@ -51,7 +58,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 通过相关数据获取WWxsDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WWxsDto> getWWxsList(WWxsDto wWxsDto){
@@ -61,7 +68,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 添加一个新的WWxs到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWWxs(WWxsDto wWxsDto){
@@ -77,7 +84,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 更新WWxs
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWWxs(WWxsDto wWxsDto){
@@ -99,7 +106,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
     /**
     * 删除WWxs
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWWxs(WWxsDto wWxsDto){
@@ -123,6 +130,19 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
 	@Override
 	public WWxsDto getWWDto(WWxsDto wWxsDto) {
 		// TODO Auto-generated method stub
+		if(wWxsDto!=null&&wWxsDto.getName()!=null){	        
+	           StringBuffer stringBuffer=new StringBuffer();
+	           Map<String,Object> params=new HashMap<String, Object>();
+	           stringBuffer.append("from  "+WWxs.class.getName()+"  a where a.name=:name");
+	           params.put("name",wWxsDto.getName());
+	           List<WWxs> list=this.find(stringBuffer.toString(), params);
+	           if(list!=null&&list.size()>0){
+	            WWxs t1= list.get(0);
+	            WWxsDto    dto=new    WWxsDto();
+	            dto=beanToDto.T1ToD1(t1,dto);
+	            return dto;
+	            }
+		}
 		return null;
 	}
 

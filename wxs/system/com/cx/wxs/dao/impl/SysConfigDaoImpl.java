@@ -17,33 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysConfigDao")
 public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements SysConfigDao{
 
-    private BeanToDto<SysConfig, SysConfigDto> beanToDto=new BeanToDto<SysConfig,SysConfigDto>();
-    
-    
+    private BeanToDto<SysConfig, SysConfigDto> beanToDto=new BeanToDto<SysConfig, SysConfigDto>();
 
+    public BeanToDto<SysConfig, SysConfigDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysConfig, SysConfigDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
-	 * @return the beanToDto
-	 */
-	public BeanToDto<SysConfig, SysConfigDto> getBeanToDto() {
-		return beanToDto;
-	}
-
-	/**
-	 * @param beanToDto the beanToDto to set
-	 */
-	public void setBeanToDto(BeanToDto<SysConfig, SysConfigDto> beanToDto) {
-		this.beanToDto = beanToDto;
-	}
-
-	/**
     * 通过id获取SysConfigDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysConfigDto getSysConfigByID(SysConfigDto sysConfigDto){
@@ -67,35 +58,17 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 通过相关数据获取SysConfigDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysConfigDto> getSysConfigList(SysConfigDto sysConfigDto){
-        if(sysConfigDto!=null){
-        	StringBuffer stringBuffer=new StringBuffer();
-			Map<String,Object> params=new HashMap<String,Object>();
-			stringBuffer.append("from "+SysConfig.class.getName()+" a ");
-			stringBuffer.append(" where 1=1 ");
-		    stringBuffer.append(" and ( a.configName =:configName1 or a.configName like :configName2 )");
-		    params.put("configName1",sysConfigDto.getConfigName());
-		    params.put("configName2","%"+sysConfigDto.getConfigName()+"%");
-		    List<SysConfigDto> sysConfigDtos=new ArrayList<SysConfigDto>();
-		    List<SysConfig> sysConfigs=new ArrayList<SysConfig>();
-		    sysConfigs=this.find(stringBuffer.toString(),params);
-		    for(SysConfig sysConfig:sysConfigs){
-		    	SysConfigDto configDto=beanToDto.T1ToD1(sysConfig, new SysConfigDto());
-		    	sysConfigDtos.add(configDto);
-		    }
-		    return sysConfigDtos;
-		    
-        }
-    	return null;
+        return null;
     }
 
     /**
     * 添加一个新的SysConfig到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysConfig(SysConfigDto sysConfigDto){
@@ -111,17 +84,17 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 更新SysConfig
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysConfig(SysConfigDto sysConfigDto){
         // TODO Auto-generated method stub
         if(sysConfigDto!=null&&sysConfigDto.getConfigId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"uid","configId"};//过滤掉的字段
+           String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysConfigDto.createSetPropertiesVal(sysConfigDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append("  "+SysConfig.class.getName()+" a");
+           stringBuffer.append(" form "+SysConfig.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.configId=:uid");
            params.put("uid",sysConfigDto.getConfigId());
@@ -133,7 +106,7 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     /**
     * 删除SysConfig
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysConfig(SysConfigDto sysConfigDto){

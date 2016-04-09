@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysInvitationCodeDao")
 public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Integer> implements SysInvitationCodeDao{
 
-    private BeanToDto<SysInvitationCode, SysInvitationCodeDto> beanToDto;
+    private BeanToDto<SysInvitationCode, SysInvitationCodeDto> beanToDto=new BeanToDto<SysInvitationCode, SysInvitationCodeDto>();
 
+    public BeanToDto<SysInvitationCode, SysInvitationCodeDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysInvitationCode, SysInvitationCodeDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysInvitationCodeDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysInvitationCodeDto getSysInvitationCodeByID(SysInvitationCodeDto sysInvitationCodeDto){
@@ -51,7 +58,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 通过相关数据获取SysInvitationCodeDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysInvitationCodeDto> getSysInvitationCodeList(SysInvitationCodeDto sysInvitationCodeDto){
@@ -61,7 +68,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 添加一个新的SysInvitationCode到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
@@ -77,7 +84,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 更新SysInvitationCode
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){
@@ -99,7 +106,7 @@ public class SysInvitationCodeDaoImpl extends BaseDaoImpl<SysInvitationCode, Int
     /**
     * 删除SysInvitationCode
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysInvitationCode(SysInvitationCodeDto sysInvitationCodeDto){

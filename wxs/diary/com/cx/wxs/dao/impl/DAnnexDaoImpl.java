@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("DAnnexDao")
 public class DAnnexDaoImpl extends BaseDaoImpl<DAnnex, Integer> implements DAnnexDao{
 
-    private BeanToDto<DAnnex, DAnnexDto> beanToDto;
+    private BeanToDto<DAnnex, DAnnexDto> beanToDto=new BeanToDto<DAnnex, DAnnexDto>();
 
+    public BeanToDto<DAnnex, DAnnexDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<DAnnex, DAnnexDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取DAnnexDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public DAnnexDto getDAnnexByID(DAnnexDto dAnnexDto){
@@ -51,7 +58,7 @@ public class DAnnexDaoImpl extends BaseDaoImpl<DAnnex, Integer> implements DAnne
     /**
     * 通过相关数据获取DAnnexDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public List<DAnnexDto> getDAnnexList(DAnnexDto dAnnexDto){
@@ -61,7 +68,7 @@ public class DAnnexDaoImpl extends BaseDaoImpl<DAnnex, Integer> implements DAnne
     /**
     * 添加一个新的DAnnex到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer addDAnnex(DAnnexDto dAnnexDto){
@@ -77,7 +84,7 @@ public class DAnnexDaoImpl extends BaseDaoImpl<DAnnex, Integer> implements DAnne
     /**
     * 更新DAnnex
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer updateDAnnex(DAnnexDto dAnnexDto){
@@ -99,7 +106,7 @@ public class DAnnexDaoImpl extends BaseDaoImpl<DAnnex, Integer> implements DAnne
     /**
     * 删除DAnnex
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer deleteDAnnex(DAnnexDto dAnnexDto){

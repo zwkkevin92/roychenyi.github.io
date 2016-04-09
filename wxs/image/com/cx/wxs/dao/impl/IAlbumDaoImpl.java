@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("IAlbumDao")
 public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbumDao{
 
-    private BeanToDto<IAlbum, IAlbumDto> beanToDto;
+    private BeanToDto<IAlbum, IAlbumDto> beanToDto=new BeanToDto<IAlbum, IAlbumDto>();
 
+    public BeanToDto<IAlbum, IAlbumDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<IAlbum, IAlbumDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取IAlbumDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public IAlbumDto getIAlbumByID(IAlbumDto iAlbumDto){
@@ -51,7 +58,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 通过相关数据获取IAlbumDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<IAlbumDto> getIAlbumList(IAlbumDto iAlbumDto){
@@ -61,7 +68,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 添加一个新的IAlbum到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addIAlbum(IAlbumDto iAlbumDto){
@@ -77,7 +84,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 更新IAlbum
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateIAlbum(IAlbumDto iAlbumDto){
@@ -99,7 +106,7 @@ public class IAlbumDaoImpl extends BaseDaoImpl<IAlbum, Integer> implements IAlbu
     /**
     * 删除IAlbum
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteIAlbum(IAlbumDto iAlbumDto){

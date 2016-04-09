@@ -220,7 +220,10 @@ public class CreateDto {
 		stringBuffer.append(IMPORT+BLANK_1+BASE_DAO_IMPL_NAME+RT_1+IMPORT+BLANK_1+DAO_URL+"."+className+"Dao;"+RT_1+IMPORT+BLANK_1+DTO_URL+"."+className+"Dto;"+RT_1+IMPORT+BLANK_1+"com.cx.wxs.enums.DbType;"+RT_1+IMPORT+BLANK_1+PO_URL+"."+getLastChar(c.getName())+";"+RT_1+IMPORT+BLANK_1+"com.cx.wxs.utils.StringUtils;"+RT_2);
 		stringBuffer.append(IMPORT+BLANK_1+"com.cx.wxs.utils.BeanToDto;"+RT_2);
 		stringBuffer.append(ANNOTATION+"@Repository(\""+className+"Dao\")"+RT_1+"public class"+BLANK_1+className+"DaoImpl"+BLANK_1+"extends BaseDaoImpl<"+className+", Integer> implements"+BLANK_1+className+"Dao{"+RT_2);
-		stringBuffer.append(BLANK_4+"private BeanToDto<"+className+", "+className+"Dto> beanToDto;"+RT_2);
+		stringBuffer.append(BLANK_4+"private BeanToDto<"+className+", "+className+"Dto> beanToDto=new BeanToDto<"+className+", "+className+"Dto>();"+RT_2);
+		stringBuffer.append(BLANK_4+"public BeanToDto<"+className+", "+className+"Dto> getBeanToDto(){"+RT_1+BLANK_8+"return beanToDto;"+RT_1+BLANK_4+"}"+RT_1);
+		stringBuffer.append(RT_1+BLANK_4+"public void setBeanToDto(BeanToDto<"+className+", "+className+"Dto> beanToDto) {"+RT_1+BLANK_8+"this.beanToDto = beanToDto;"+RT_1+BLANK_4+"}"+RT_1);
+		
 		stringBuffer.append(getAnnotation("通过id获取"+className+"Dto")+BLANK_4+"public"+BLANK_1+className+"Dto"+BLANK_1+"get"+className+"ByID("+className+"Dto"+BLANK_1+lowerName+"Dto"+"){"+RT_1);
 		
 		stringBuffer.append(BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"()!=null"+"){"+RT_1); 
@@ -242,7 +245,7 @@ public class CreateDto {
 		stringBuffer.append(BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"()!=null){"+RT_1
 				+BLANK_8+BLANK_2+"StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());"+RT_1+BLANK_8+BLANK_2+"String[] fl = new String[]{\"uid\"};//过滤掉的字段"+RT_1
 				+BLANK_8+BLANK_2+"Map<String, Object> map = "+lowerName+"Dto.createSetPropertiesVal("+lowerName+"Dto, \"a\", fl);"+RT_1+BLANK_8+BLANK_2+"Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);"+RT_1
-				+BLANK_8+BLANK_2+"stringBuffer.append(\" form \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(map.get(StringUtils.SET_HQL));"+RT_1
+				+BLANK_8+BLANK_2+"stringBuffer.append(\" from \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(map.get(StringUtils.SET_HQL));"+RT_1
 				+BLANK_8+BLANK_2+"stringBuffer.append(\" where a."+map.get("id")+"=:uid\");"+RT_1+BLANK_8+BLANK_2+"params.put(\"uid\","+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"());"+RT_1+BLANK_8+BLANK_2+"return this.executeHql(stringBuffer.toString(),params);"+RT_1+BLANK_8+"}"+RT_1
 				);		
 		stringBuffer.append(BLANK_8+"return 0;"+RT_1+BLANK_4+"}"+RT_2);
@@ -250,7 +253,7 @@ public class CreateDto {
 
 	   stringBuffer.append(BLANK_1+BLANK_8+"// TODO Auto-generated method stub"+RT_1+BLANK_8+"if("+lowerName+"Dto!=null&&"+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"()!=null){"+RT_1
 			           +BLANK_8+BLANK_2+"StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());"+RT_1+BLANK_8+BLANK_2+"Map<String,Object> params=new HashMap<String,Object>();"+RT_1
-			           +BLANK_8+BLANK_2+"stringBuffer.append(\" from \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(\" where a."+map.get("id")+"=:uid \");"+RT_1
+			           +BLANK_8+BLANK_2+"stringBuffer.append(\"  \"+"+className+".class.getName()+\" a\");"+RT_1+BLANK_8+BLANK_2+"stringBuffer.append(\" where a."+map.get("id")+"=:uid \");"+RT_1
 					   +BLANK_8+BLANK_2+"params.put(\"uid\","+lowerName+"Dto.get"+StringUtils.firstUpperCase((String)map.get("id"))+"());"+RT_1
 			           +BLANK_8+BLANK_2+className+BLANK_1+lowerName+"= new "+className+"();"+RT_1+BLANK_8+BLANK_2+"BeanUtils.copyProperties("+lowerName+"Dto, "+lowerName+");"+RT_1
 						+BLANK_8+BLANK_2+"return this.executeHql(stringBuffer.toString(),params);"+RT_1+BLANK_8+"}"+RT_1);		
@@ -568,7 +571,7 @@ public class CreateDto {
 	            	 String content3=create.createServiceFileContent(c);
 	         //   	 create.createService(c, content3, module);
 	            	 String content4=create.createServiceImplContent(c, content3, map);
-	            	 create.createServiceImpl(c, content4, module);
+	        //    	 create.createServiceImpl(c, content4, module);
 	            	 m++;
 	            }
 //				System.out.println(content);
@@ -588,24 +591,25 @@ public class CreateDto {
 	 }
 	public static void main(String[] avg) throws IOException, ClassNotFoundException{
 		CreateDto create=new CreateDto();
-		String className="com.cx.wxs.po.SysIllegal";
-		Class c=Class.forName(className);
-		System.out.println(c.getName());
-		String module="system";
-        if(!module.equals("user")){
-        	 Map<String,Object> map= create.getFields(c);
-        	 String content= create.createDtoFileContent(c, map);
-        	 create.createBeanDto(c, content, module);
-        	 String content1=create.createDaoFileContent(c);
-        	 create.createBeanDao(c, content1, module);
-        	 String content2=create.createDaoImplFileContent(c, map);
-        	 create.createBeanDaoImp(c, content2, module);
-        	 String content3=create.createServiceFileContent(c);
-        	 create.createService(c, content3, module);
-        	 String content4=create.createServiceImplContent(c, content3, map);
-        	 create.createServiceImpl(c, content4, module);
-       // 	 m++;
-        }
+		create.createAll();
+//		String className="com.cx.wxs.po.SysIllegal";
+//		Class c=Class.forName(className);
+//		System.out.println(c.getName());
+//		String module="system";
+//        if(!module.equals("user")){
+//        	 Map<String,Object> map= create.getFields(c);
+//        	 String content= create.createDtoFileContent(c, map);
+//        	 create.createBeanDto(c, content, module);
+//        	 String content1=create.createDaoFileContent(c);
+//        	 create.createBeanDao(c, content1, module);
+//        	 String content2=create.createDaoImplFileContent(c, map);
+//        	 create.createBeanDaoImp(c, content2, module);
+//        	 String content3=create.createServiceFileContent(c);
+//        	 create.createService(c, content3, module);
+//        	 String content4=create.createServiceImplContent(c, content3, map);
+//        	 create.createServiceImpl(c, content4, module);
+//       // 	 m++;
+//        }
 //		System.out.println(content);
 	
 //	System.out.println("计数:"+m);

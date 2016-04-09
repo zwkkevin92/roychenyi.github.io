@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("MReplyDao")
 public class MReplyDaoImpl extends BaseDaoImpl<MReply, Integer> implements MReplyDao{
 
-    private BeanToDto<MReply, MReplyDto> beanToDto;
+    private BeanToDto<MReply, MReplyDto> beanToDto=new BeanToDto<MReply, MReplyDto>();
 
+    public BeanToDto<MReply, MReplyDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<MReply, MReplyDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取MReplyDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public MReplyDto getMReplyByID(MReplyDto mReplyDto){
@@ -51,7 +58,7 @@ public class MReplyDaoImpl extends BaseDaoImpl<MReply, Integer> implements MRepl
     /**
     * 通过相关数据获取MReplyDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<MReplyDto> getMReplyList(MReplyDto mReplyDto){
@@ -61,7 +68,7 @@ public class MReplyDaoImpl extends BaseDaoImpl<MReply, Integer> implements MRepl
     /**
     * 添加一个新的MReply到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addMReply(MReplyDto mReplyDto){
@@ -77,7 +84,7 @@ public class MReplyDaoImpl extends BaseDaoImpl<MReply, Integer> implements MRepl
     /**
     * 更新MReply
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateMReply(MReplyDto mReplyDto){
@@ -99,7 +106,7 @@ public class MReplyDaoImpl extends BaseDaoImpl<MReply, Integer> implements MRepl
     /**
     * 删除MReply
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteMReply(MReplyDto mReplyDto){

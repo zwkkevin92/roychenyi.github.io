@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("IReply2Dao")
 public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IReply2Dao{
 
-    private BeanToDto<IReply2, IReply2Dto> beanToDto;
+    private BeanToDto<IReply2, IReply2Dto> beanToDto=new BeanToDto<IReply2, IReply2Dto>();
 
+    public BeanToDto<IReply2, IReply2Dto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<IReply2, IReply2Dto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取IReply2Dto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public IReply2Dto getIReply2ByID(IReply2Dto iReply2Dto){
@@ -51,7 +58,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 通过相关数据获取IReply2DtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<IReply2Dto> getIReply2List(IReply2Dto iReply2Dto){
@@ -61,7 +68,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 添加一个新的IReply2到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addIReply2(IReply2Dto iReply2Dto){
@@ -77,7 +84,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 更新IReply2
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateIReply2(IReply2Dto iReply2Dto){
@@ -99,7 +106,7 @@ public class IReply2DaoImpl extends BaseDaoImpl<IReply2, Integer> implements IRe
     /**
     * 删除IReply2
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteIReply2(IReply2Dto iReply2Dto){

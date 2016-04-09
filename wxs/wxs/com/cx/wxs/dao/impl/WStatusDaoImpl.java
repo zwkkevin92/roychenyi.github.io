@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WStatusDao")
 public class WStatusDaoImpl extends BaseDaoImpl<WStatus, Integer> implements WStatusDao{
 
-    private BeanToDto<WStatus, WStatusDto> beanToDto;
+    private BeanToDto<WStatus, WStatusDto> beanToDto=new BeanToDto<WStatus, WStatusDto>();
 
+    public BeanToDto<WStatus, WStatusDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WStatus, WStatusDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WStatusDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WStatusDto getWStatusByID(WStatusDto wStatusDto){
@@ -51,7 +58,7 @@ public class WStatusDaoImpl extends BaseDaoImpl<WStatus, Integer> implements WSt
     /**
     * 通过相关数据获取WStatusDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WStatusDto> getWStatusList(WStatusDto wStatusDto){
@@ -61,7 +68,7 @@ public class WStatusDaoImpl extends BaseDaoImpl<WStatus, Integer> implements WSt
     /**
     * 添加一个新的WStatus到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWStatus(WStatusDto wStatusDto){
@@ -77,7 +84,7 @@ public class WStatusDaoImpl extends BaseDaoImpl<WStatus, Integer> implements WSt
     /**
     * 更新WStatus
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWStatus(WStatusDto wStatusDto){
@@ -99,7 +106,7 @@ public class WStatusDaoImpl extends BaseDaoImpl<WStatus, Integer> implements WSt
     /**
     * 删除WStatus
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWStatus(WStatusDto wStatusDto){

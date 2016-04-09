@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("IAccessDao")
 public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAccessDao{
 
-    private BeanToDto<IAccess, IAccessDto> beanToDto;
+    private BeanToDto<IAccess, IAccessDto> beanToDto=new BeanToDto<IAccess, IAccessDto>();
 
+    public BeanToDto<IAccess, IAccessDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<IAccess, IAccessDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取IAccessDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public IAccessDto getIAccessByID(IAccessDto iAccessDto){
@@ -51,7 +58,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 通过相关数据获取IAccessDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<IAccessDto> getIAccessList(IAccessDto iAccessDto){
@@ -61,7 +68,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 添加一个新的IAccess到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addIAccess(IAccessDto iAccessDto){
@@ -77,7 +84,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 更新IAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateIAccess(IAccessDto iAccessDto){
@@ -99,7 +106,7 @@ public class IAccessDaoImpl extends BaseDaoImpl<IAccess, Integer> implements IAc
     /**
     * 删除IAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteIAccess(IAccessDto iAccessDto){

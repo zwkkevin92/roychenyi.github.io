@@ -113,9 +113,11 @@ public class SessionFilter extends OncePerRequestFilter {
             //跳转到login.jsp
 			System.out.println(request.getSession().getAttribute("goUrl"));
             //跳转到首页
+			System.out.println(request.getContextPath());
+			
 			response.sendRedirect(request.getContextPath());
 		}
-		filterchain.doFilter(request, response);
+		filterchain.doFilter(request, response); 
 	}
 	
 	 

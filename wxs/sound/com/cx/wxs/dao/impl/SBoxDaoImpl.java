@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SBoxDao")
 public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
 
-    private BeanToDto<SBox, SBoxDto> beanToDto;
+    private BeanToDto<SBox, SBoxDto> beanToDto=new BeanToDto<SBox, SBoxDto>();
 
+    public BeanToDto<SBox, SBoxDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SBox, SBoxDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SBoxDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SBoxDto getSBoxByID(SBoxDto sBoxDto){
@@ -51,7 +58,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 通过相关数据获取SBoxDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SBoxDto> getSBoxList(SBoxDto sBoxDto){
@@ -61,7 +68,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 添加一个新的SBox到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSBox(SBoxDto sBoxDto){
@@ -77,7 +84,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 更新SBox
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSBox(SBoxDto sBoxDto){
@@ -99,7 +106,7 @@ public class SBoxDaoImpl extends BaseDaoImpl<SBox, Integer> implements SBoxDao{
     /**
     * 删除SBox
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSBox(SBoxDto sBoxDto){

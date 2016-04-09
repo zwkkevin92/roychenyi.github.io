@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("VCountDao")
 public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCountDao{
 
-    private BeanToDto<VCount, VCountDto> beanToDto;
+    private BeanToDto<VCount, VCountDto> beanToDto=new BeanToDto<VCount, VCountDto>();
 
+    public BeanToDto<VCount, VCountDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<VCount, VCountDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取VCountDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public VCountDto getVCountByID(VCountDto vCountDto){
@@ -51,7 +58,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 通过相关数据获取VCountDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<VCountDto> getVCountList(VCountDto vCountDto){
@@ -61,7 +68,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 添加一个新的VCount到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addVCount(VCountDto vCountDto){
@@ -77,7 +84,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 更新VCount
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateVCount(VCountDto vCountDto){
@@ -99,7 +106,7 @@ public class VCountDaoImpl extends BaseDaoImpl<VCount, Integer> implements VCoun
     /**
     * 删除VCount
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteVCount(VCountDto vCountDto){

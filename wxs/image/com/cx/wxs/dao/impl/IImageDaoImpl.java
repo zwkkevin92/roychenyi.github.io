@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("IImageDao")
 public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImageDao{
 
     private BeanToDto<IImage, IImageDto> beanToDto=new BeanToDto<IImage, IImageDto>();
 
+    public BeanToDto<IImage, IImageDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<IImage, IImageDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取IImageDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public IImageDto getIImageByID(IImageDto iImageDto){
@@ -51,7 +58,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 通过相关数据获取IImageDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<IImageDto> getIImageList(IImageDto iImageDto){
@@ -61,7 +68,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 添加一个新的IImage到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addIImage(IImageDto iImageDto){
@@ -77,17 +84,17 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 更新IImage
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateIImage(IImageDto iImageDto){
         // TODO Auto-generated method stub
         if(iImageDto!=null&&iImageDto.getImageId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"imageId"};//过滤掉的字段
+           String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = iImageDto.createSetPropertiesVal(iImageDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append("  "+IImage.class.getName()+" a");
+           stringBuffer.append(" form "+IImage.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.imageId=:uid");
            params.put("uid",iImageDto.getImageId());
@@ -99,7 +106,7 @@ public class IImageDaoImpl extends BaseDaoImpl<IImage, Integer> implements IImag
     /**
     * 删除IImage
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteIImage(IImageDto iImageDto){

@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("MGuestbookDao")
 public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implements MGuestbookDao{
 
-    private BeanToDto<MGuestbook, MGuestbookDto> beanToDto;
+    private BeanToDto<MGuestbook, MGuestbookDto> beanToDto=new BeanToDto<MGuestbook, MGuestbookDto>();
 
+    public BeanToDto<MGuestbook, MGuestbookDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<MGuestbook, MGuestbookDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取MGuestbookDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public MGuestbookDto getMGuestbookByID(MGuestbookDto mGuestbookDto){
@@ -51,7 +58,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 通过相关数据获取MGuestbookDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<MGuestbookDto> getMGuestbookList(MGuestbookDto mGuestbookDto){
@@ -61,7 +68,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 添加一个新的MGuestbook到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addMGuestbook(MGuestbookDto mGuestbookDto){
@@ -77,7 +84,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 更新MGuestbook
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateMGuestbook(MGuestbookDto mGuestbookDto){
@@ -99,7 +106,7 @@ public class MGuestbookDaoImpl extends BaseDaoImpl<MGuestbook, Integer> implemen
     /**
     * 删除MGuestbook
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteMGuestbook(MGuestbookDto mGuestbookDto){

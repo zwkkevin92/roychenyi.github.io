@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("VReply2Dao")
 public class VReply2DaoImpl extends BaseDaoImpl<VReply2, Integer> implements VReply2Dao{
 
-    private BeanToDto<VReply2, VReply2Dto> beanToDto;
+    private BeanToDto<VReply2, VReply2Dto> beanToDto=new BeanToDto<VReply2, VReply2Dto>();
 
+    public BeanToDto<VReply2, VReply2Dto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<VReply2, VReply2Dto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取VReply2Dto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public VReply2Dto getVReply2ByID(VReply2Dto vReply2Dto){
@@ -51,7 +58,7 @@ public class VReply2DaoImpl extends BaseDaoImpl<VReply2, Integer> implements VRe
     /**
     * 通过相关数据获取VReply2DtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<VReply2Dto> getVReply2List(VReply2Dto vReply2Dto){
@@ -61,7 +68,7 @@ public class VReply2DaoImpl extends BaseDaoImpl<VReply2, Integer> implements VRe
     /**
     * 添加一个新的VReply2到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addVReply2(VReply2Dto vReply2Dto){
@@ -77,7 +84,7 @@ public class VReply2DaoImpl extends BaseDaoImpl<VReply2, Integer> implements VRe
     /**
     * 更新VReply2
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateVReply2(VReply2Dto vReply2Dto){
@@ -99,7 +106,7 @@ public class VReply2DaoImpl extends BaseDaoImpl<VReply2, Integer> implements VRe
     /**
     * 删除VReply2
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteVReply2(VReply2Dto vReply2Dto){

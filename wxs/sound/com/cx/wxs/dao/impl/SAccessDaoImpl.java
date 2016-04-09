@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SAccessDao")
 public class SAccessDaoImpl extends BaseDaoImpl<SAccess, Integer> implements SAccessDao{
 
-    private BeanToDto<SAccess, SAccessDto> beanToDto;
+    private BeanToDto<SAccess, SAccessDto> beanToDto=new BeanToDto<SAccess, SAccessDto>();
 
+    public BeanToDto<SAccess, SAccessDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SAccess, SAccessDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SAccessDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SAccessDto getSAccessByID(SAccessDto sAccessDto){
@@ -51,7 +58,7 @@ public class SAccessDaoImpl extends BaseDaoImpl<SAccess, Integer> implements SAc
     /**
     * 通过相关数据获取SAccessDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SAccessDto> getSAccessList(SAccessDto sAccessDto){
@@ -61,7 +68,7 @@ public class SAccessDaoImpl extends BaseDaoImpl<SAccess, Integer> implements SAc
     /**
     * 添加一个新的SAccess到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSAccess(SAccessDto sAccessDto){
@@ -77,7 +84,7 @@ public class SAccessDaoImpl extends BaseDaoImpl<SAccess, Integer> implements SAc
     /**
     * 更新SAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSAccess(SAccessDto sAccessDto){
@@ -99,7 +106,7 @@ public class SAccessDaoImpl extends BaseDaoImpl<SAccess, Integer> implements SAc
     /**
     * 删除SAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSAccess(SAccessDto sAccessDto){

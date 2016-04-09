@@ -25,6 +25,22 @@ import com.cx.wxs.utils.StringUtils;
 public class UFrienGroupDaoImpl extends BaseDaoImpl<UFriendGroup, Integer> implements UFriendGroupDao{
 
 	private BeanToDto<UFriendGroup,UFriendGroupDto> beanToDto=new BeanToDto<UFriendGroup,UFriendGroupDto>();
+	
+	
+	/**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<UFriendGroup, UFriendGroupDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<UFriendGroup, UFriendGroupDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.dao.UfriendGroupDao#getUfriendGroupByID(com.cx.wxs.dto.UFriendGroupDto)
 	 */

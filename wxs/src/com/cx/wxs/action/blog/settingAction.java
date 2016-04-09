@@ -2,6 +2,7 @@ package com.cx.wxs.action.blog;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cx.wxs.action.BaseAction;
+import com.cx.wxs.dto.BConfigDto;
+import com.cx.wxs.dto.BSiteDto;
+import com.cx.wxs.dto.DCatalogDto;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.USignDto;
 import com.cx.wxs.dto.UUserDto;
+import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.BSiteService;
+import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.USignService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.RequestUtils;
@@ -26,13 +35,42 @@ import com.cx.wxs.utils.RequestUtils;
  */
 @Controller
 @RequestMapping("/{vip}/set")
-public class settingAction {
+public class settingAction extends BaseAction{
 	@Resource
 	private BSiteService bSiteService;
 	@Resource
 	private UUserService uUserService;
 	@Resource
 	private USignService uSignService;
+	@Resource
+	private BConfigService bConfigService;
+	@Resource 
+	private DCatalogService dCatalogService;
+	
+//	/**
+//	 * @return the dCatalogService
+//	 */
+//	public DCatalogService getdCatalogService() {
+//		return dCatalogService;
+//	}
+//	/**
+//	 * @param dCatalogService the dCatalogService to set
+//	 */
+//	public void setdCatalogService(DCatalogService dCatalogService) {
+//		this.dCatalogService = dCatalogService;
+//	}
+	/**
+	 * @return the bConfigService
+	 */
+//	public BConfigService getbConfigService() {
+//		return bConfigService;
+//	}
+//	/**
+//	 * @param bConfigService the bConfigService to set
+//	 */
+//	public void setbConfigService(BConfigService bConfigService) {
+//		this.bConfigService = bConfigService;
+//	}
 	/**
 	 * @return the bSiteService
 	 */
@@ -85,10 +123,23 @@ public class settingAction {
 	public ModelAndView toSettingSite(@PathVariable("vip") String vip,
 			HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv=new ModelAndView("blog/setting/site");
+		System.out.println(vip);
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
 		if(userDto==null){
 			mv.setViewName("404");
+			return mv;
 		}
+		//允许投稿
+		BConfigDto allow_pullConfig=new BConfigDto();
+		allow_pullConfig.setBSiteDto(userDto.getBSiteDto());
+		allow_pullConfig.setConfigKey("allow_pull");
+		allow_pullConfig=bConfigService.getBConfig(allow_pullConfig);
+		mv.addObject("allow_pullConfig", allow_pullConfig);
+		//文章目录
+		DCatalogDto catalogDto=new DCatalogDto();
+		catalogDto.setUUserDto(userDto);
+		List<DCatalogDto> cataLogList=dCatalogService.getDCatalogList(catalogDto);
+		mv.addObject("catalogList", cataLogList);
 		return mv;
 	}
 	
@@ -113,6 +164,16 @@ public class settingAction {
 		}
 		return mv;
 	}
+	/**
+	 * 更新用户信息
+	 * @param vip
+	 * @param request
+	 * @param response
+	 * @param userDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-9上午10:51:09
+	 */
 	@RequestMapping(value="/setUserInfo")
 	@ResponseBody
 	public UUserDto setUserInfo(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,UUserDto userDto){
@@ -133,12 +194,102 @@ public class settingAction {
 		userDto.setLastTime(new Timestamp(date.getTime()));
 		if(uUserService.updateUuser(userDto)>0){
 			userDto=uUserService.getUuser(userDto);
-			userDto.setLoginFlag("1");
+			userDto.setStatusFlag("1");
 			RequestUtils.setUserInfo(request, response, userDto);
 		}else{
-			userDto.setLoginFlag("-1");
+			userDto.setStatusFlag("-1");
 		}
 		return userDto;
+	}
+	/***
+	 * 更新站点信息
+	 * @param vip
+	 * @param request
+	 * @param response
+	 * @param siteDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-9上午10:51:59
+	 */
+	@RequestMapping(value="/updateSiteInfo")
+	@ResponseBody
+	public BSiteDto updateSiteInfo(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,BSiteDto siteDto){
+		if(bSiteService.updateBSite(siteDto)>0){
+			siteDto.setStatusFlag("1");
+			UUserDto userDto=getUserDtoByNickname(vip); 
+			RequestUtils.setUserInfo(request, response, userDto);
+		}else{
+			siteDto.setStatusFlag("-1");
+		}
+		return siteDto;
+	}
+	/***
+	 * 更新或添加是否允许投稿设置
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-9上午10:52:17
+	 */
+	@RequestMapping(value="/pullConfig")
+	@ResponseBody
+	public BConfigDto allowPull(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,Integer configId){
+		BConfigDto configDto=new BConfigDto();
+		configDto.setConfigKey(request.getParameter("configKey"));
+		configDto.setValue(request.getParameter("pull_status"));
+		UUserDto userDto=getUserDtoByNickname(vip);
+		configDto.setBSiteDto(userDto.getBSiteDto());
+		Date date=new Date();
+		configDto.setCreateTime(new Timestamp(date.getTime()));
+		if(configId==null){
+		    configId=bConfigService.addBConfig(configDto);
+		    if(configId>0){
+		    configDto.setBconfigId(configId);
+		    configDto.setStatusFlag("1");	    
+		    }else{
+		    	configDto.setStatusFlag("-1");
+		    }
+		}else{
+			
+			if(bConfigService.updateBConfig(configDto)>0){
+				configDto.setStatusFlag("1");
+			}else{
+				configDto.setStatusFlag("-1");
+			}
+		}
+		return configDto;
+	}
+	/***
+	 * 更新或者添加新的分章分类
+	 * @param vip
+	 * @param request
+	 * @param response
+	 * @param catalogDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-9下午2:25:32
+	 */
+	@RequestMapping(value="/setCatalog")
+	@ResponseBody
+	public DCatalogDto setDCatalog(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,DCatalogDto catalogDto){
+		Date date=new Date();
+		UUserDto userDto=getUserDtoByNickname(vip);
+		catalogDto.setUUserDto(userDto);
+		catalogDto.setCreateTime(new Timestamp(date.getTime()));
+		if(catalogDto.getCatalogId()==null){
+			int catalogId= dCatalogService.addDCatalog(catalogDto);
+			if(catalogId>0){
+				catalogDto.setCatalogId(catalogId);
+				catalogDto.setStatusFlag("1");
+			}else{
+				catalogDto.setStatusFlag("-1");
+			}
+		}else{
+			if(dCatalogService.updateDCatalog(catalogDto)>0){
+				catalogDto.setStatusFlag("1");
+			}else{
+				catalogDto.setStatusFlag("-1");
+			}
+		}
+		return catalogDto;
 	}
 
 }

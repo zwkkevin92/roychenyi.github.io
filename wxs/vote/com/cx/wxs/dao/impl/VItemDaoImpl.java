@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("VItemDao")
 public class VItemDaoImpl extends BaseDaoImpl<VItem, Integer> implements VItemDao{
 
-    private BeanToDto<VItem, VItemDto> beanToDto;
+    private BeanToDto<VItem, VItemDto> beanToDto=new BeanToDto<VItem, VItemDto>();
 
+    public BeanToDto<VItem, VItemDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<VItem, VItemDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取VItemDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public VItemDto getVItemByID(VItemDto vItemDto){
@@ -51,7 +58,7 @@ public class VItemDaoImpl extends BaseDaoImpl<VItem, Integer> implements VItemDa
     /**
     * 通过相关数据获取VItemDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<VItemDto> getVItemList(VItemDto vItemDto){
@@ -61,7 +68,7 @@ public class VItemDaoImpl extends BaseDaoImpl<VItem, Integer> implements VItemDa
     /**
     * 添加一个新的VItem到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addVItem(VItemDto vItemDto){
@@ -77,7 +84,7 @@ public class VItemDaoImpl extends BaseDaoImpl<VItem, Integer> implements VItemDa
     /**
     * 更新VItem
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateVItem(VItemDto vItemDto){
@@ -99,7 +106,7 @@ public class VItemDaoImpl extends BaseDaoImpl<VItem, Integer> implements VItemDa
     /**
     * 删除VItem
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteVItem(VItemDto vItemDto){

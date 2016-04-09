@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("MAfficheDao")
 public class MAfficheDaoImpl extends BaseDaoImpl<MAffiche, Integer> implements MAfficheDao{
 
-    private BeanToDto<MAffiche, MAfficheDto> beanToDto;
+    private BeanToDto<MAffiche, MAfficheDto> beanToDto=new BeanToDto<MAffiche, MAfficheDto>();
 
+    public BeanToDto<MAffiche, MAfficheDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<MAffiche, MAfficheDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取MAfficheDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public MAfficheDto getMAfficheByID(MAfficheDto mAfficheDto){
@@ -51,7 +58,7 @@ public class MAfficheDaoImpl extends BaseDaoImpl<MAffiche, Integer> implements M
     /**
     * 通过相关数据获取MAfficheDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<MAfficheDto> getMAfficheList(MAfficheDto mAfficheDto){
@@ -61,7 +68,7 @@ public class MAfficheDaoImpl extends BaseDaoImpl<MAffiche, Integer> implements M
     /**
     * 添加一个新的MAffiche到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addMAffiche(MAfficheDto mAfficheDto){
@@ -77,7 +84,7 @@ public class MAfficheDaoImpl extends BaseDaoImpl<MAffiche, Integer> implements M
     /**
     * 更新MAffiche
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateMAffiche(MAfficheDto mAfficheDto){
@@ -99,7 +106,7 @@ public class MAfficheDaoImpl extends BaseDaoImpl<MAffiche, Integer> implements M
     /**
     * 删除MAffiche
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteMAffiche(MAfficheDto mAfficheDto){

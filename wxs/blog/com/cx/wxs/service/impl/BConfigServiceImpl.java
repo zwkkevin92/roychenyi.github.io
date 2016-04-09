@@ -34,6 +34,13 @@ public class BConfigServiceImpl implements BConfigService {
     }
 
     /**
+     * 通过configKey 和siteId或许configDto信息
+     */
+    @Override
+    public BConfigDto getBConfig(BConfigDto bConfigDto){
+    	return bConfigDao.getBConfig(bConfigDto);
+    }
+    /**
     * 通过相关信息获取BConfigDtoList信息
     * @author 陈义
     * @date 2016-01-19 14:41:49

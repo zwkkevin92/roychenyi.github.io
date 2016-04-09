@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cx.wxs.dto.BConfigDto;
 import com.cx.wxs.dto.BSiteDto;
+import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.SysStyleDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.EmailType;
+import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.BSiteService;
+import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.EmailService;
 import com.cx.wxs.service.SysIllegalService;
 import com.cx.wxs.service.UUserService;
@@ -51,8 +55,27 @@ public class userAction {
 	private BSiteService bSiteService;
 	@Resource
 	private SysIllegalService sysIllegalService;
+	@Resource
+	private BConfigService bConfigService;
+	@Resource
+	private DCatalogService dCatalogService;
+
+	
 
 
+	/**
+	 * @return the bConfigService
+	 */
+	public BConfigService getbConfigService() {
+		return bConfigService;
+	}
+
+	/**
+	 * @param bConfigService the bConfigService to set
+	 */
+	public void setbConfigService(BConfigService bConfigService) {
+		this.bConfigService = bConfigService;
+	}
 
 	/**
 	 * @return the uuService
@@ -161,9 +184,9 @@ public class userAction {
 		uuser.setUrl(prev_url);
 		if(uuser==null){
 			return null;
-		}else if(uuser.getLoginFlag().equals("1")){
+		}else if(uuser.getStatusFlag().equals("1")){
 			if(uuser.getPopedom()!=1){
-				uuser.setLoginFlag("-3");
+				uuser.setStatusFlag("-3");
 			}else{
 				RequestUtils.setUserInfo(request, response, uuser);
 			}
@@ -230,9 +253,9 @@ public class userAction {
 				return null;
 			}
 			userDto.setUrl(prev_url);
-			userDto.setLoginFlag("1");
+			userDto.setStatusFlag("1");
 		}else{
-			userDto.setLoginFlag("-1");
+			userDto.setStatusFlag("-1");
 		}		
 		return userDto;
 	}
@@ -267,7 +290,7 @@ public class userAction {
 	    		userDto.setBSiteDto(siteDto);
 	    	}
 	    	if(uuService.updateUuser(userDto)>0){
-	    		userDto.setLoginFlag("1");
+	    		userDto.setStatusFlag("1");
 	    		userDto.setUrl(prev_url);    		
 	    	}else{
 	    		userDto=null;
@@ -375,12 +398,12 @@ public class userAction {
 		uuserDto.setUid(uuserDto.getUserId());
 		uuserDto.setPassword(password);
 		if(uuService.updateUuser(uuserDto)>0){
-			uuserDto.setLoginFlag("1");
+			uuserDto.setStatusFlag("1");
 			uuserDto.setUrl(prev_rul);
 //			HttpSession session=request.getSession();
 //			session.setAttribute("user", uuserDto);			
 		}else{
-			uuserDto.setLoginFlag("-1");
+			uuserDto.setStatusFlag("-1");
 		}
 		return uuserDto;
 	}
@@ -408,13 +431,13 @@ public class userAction {
 			uuserDto.setLastTime(new Timestamp(date.getTime()));
 			uuserDto.setUid(uuserDto.getUserId());		
 		  	if(uuService.updateUuser(uuserDto)>0){
-		  		uuserDto.setLoginFlag("1");
+		  		uuserDto.setStatusFlag("1");
 		  		session.setAttribute("user", uuserDto);
 		  	}else{
-		  		uuserDto.setLoginFlag("0");
+		  		uuserDto.setStatusFlag("0");
 		  	}
 		}else{
-			uuserDto.setLoginFlag("-1");
+			uuserDto.setStatusFlag("-1");
 		}
 		uuserDto.setUrl(prev_url);
 		return uuserDto;
@@ -495,6 +518,7 @@ public class userAction {
 	 * @date   2016-3-24下午3:23:04
 	 */
 	public  BSiteDto openBlog(UUserDto userDto){
+		Date date=new Date();
 		BSiteDto bSiteDto=new BSiteDto();
     	bSiteDto.setUUserDto(userDto);
     	bSiteDto.setName(userDto.getNickname());
@@ -504,10 +528,23 @@ public class userAction {
     	styleDto.setStyleId(1);	    	
     	bSiteDto.setSysStyleDto(styleDto);
     	bSiteDto.setMode((short)1);
-    	bSiteDto.setCreateTime(new Timestamp(new Date().getTime()));
+    	bSiteDto.setCreateTime(new Timestamp(date.getTime()));
     	int id=bSiteService.addBSite(bSiteDto);
     	if(id>0){
     		bSiteDto.setSiteId(id);
+    		//日志分类添加一个默认分类：个人日记
+    		DCatalogDto catalogDto=new DCatalogDto();
+    		catalogDto.setUUserDto(userDto);
+    		catalogDto.setCatalogName("个人日记");
+    		catalogDto.setCreateTime(new Timestamp(date.getTime()));
+    		dCatalogService.addDCatalog(catalogDto);
+    		//空间配置：添加允许投稿
+    		BConfigDto configDto=new BConfigDto();
+    		configDto.setBSiteDto(bSiteDto);
+    		configDto.setConfigKey("allow_pull");
+    		configDto.setValue("1");
+    		configDto.setCreateTime(new Timestamp(date.getTime()));
+    		bConfigService.addBConfig(configDto);
     		return bSiteDto;
     	}else{
     		return null;

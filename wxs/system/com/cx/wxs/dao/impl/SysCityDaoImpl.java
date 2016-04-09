@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysCityDao")
 public class SysCityDaoImpl extends BaseDaoImpl<SysCity, Integer> implements SysCityDao{
 
-    private BeanToDto<SysCity, SysCityDto> beanToDto;
+    private BeanToDto<SysCity, SysCityDto> beanToDto=new BeanToDto<SysCity, SysCityDto>();
 
+    public BeanToDto<SysCity, SysCityDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysCity, SysCityDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysCityDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysCityDto getSysCityByID(SysCityDto sysCityDto){
@@ -51,7 +58,7 @@ public class SysCityDaoImpl extends BaseDaoImpl<SysCity, Integer> implements Sys
     /**
     * 通过相关数据获取SysCityDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysCityDto> getSysCityList(SysCityDto sysCityDto){
@@ -61,7 +68,7 @@ public class SysCityDaoImpl extends BaseDaoImpl<SysCity, Integer> implements Sys
     /**
     * 添加一个新的SysCity到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysCity(SysCityDto sysCityDto){
@@ -77,7 +84,7 @@ public class SysCityDaoImpl extends BaseDaoImpl<SysCity, Integer> implements Sys
     /**
     * 更新SysCity
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysCity(SysCityDto sysCityDto){
@@ -99,7 +106,7 @@ public class SysCityDaoImpl extends BaseDaoImpl<SysCity, Integer> implements Sys
     /**
     * 删除SysCity
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysCity(SysCityDto sysCityDto){

@@ -19,6 +19,7 @@ import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.DbType;
 import com.cx.wxs.po.UBook;
 import com.cx.wxs.po.UUser;
+import com.cx.wxs.utils.BeanToDto;
 import com.cx.wxs.utils.StringUtils;
 
 /**
@@ -27,6 +28,23 @@ import com.cx.wxs.utils.StringUtils;
  */
 @Repository("UbookDao")
 public class UBookDaoImpl extends BaseDaoImpl<UBook, Integer> implements UBookDao{
+
+	private BeanToDto<UBook, UBookDto> beanToDto=new BeanToDto<UBook,UBookDto>();
+	
+	
+	/**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<UBook, UBookDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<UBook, UBookDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.dao.UbookDao#getUBook(com.cx.wxs.dto.UBookDto)

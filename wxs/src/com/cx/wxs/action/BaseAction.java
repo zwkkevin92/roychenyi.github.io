@@ -30,7 +30,14 @@ public class BaseAction {
 	public void setUserService(UUserService userService) {
 		this.userService = userService;
 	}
-	
+	/***
+	 * 设置站点的作者信息
+	 * @param mv
+	 * @param name
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-9上午10:51:30
+	 */
 	public boolean setAuthor(ModelAndView mv,String name){
 		UUserDto userDto=new UUserDto();
 		userDto.setNickname(name);
@@ -42,6 +49,13 @@ public class BaseAction {
 			mv.addObject("author",userDto);
 			return true;
 		}
+	}
+	
+	public UUserDto getUserDtoByNickname(String name){
+		UUserDto userDto=new UUserDto();
+		userDto.setNickname(name);
+		userDto=userService.getUuser(userDto);
+		return userDto;
 	}
 
 }

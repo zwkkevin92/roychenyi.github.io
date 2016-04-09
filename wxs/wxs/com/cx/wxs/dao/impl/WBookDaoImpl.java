@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WBookDao")
 public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDao{
 
-    private BeanToDto<WBook, WBookDto> beanToDto;
+    private BeanToDto<WBook, WBookDto> beanToDto=new BeanToDto<WBook, WBookDto>();
 
+    public BeanToDto<WBook, WBookDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WBook, WBookDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WBookDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WBookDto getWBookByID(WBookDto wBookDto){
@@ -51,7 +58,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 通过相关数据获取WBookDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WBookDto> getWBookList(WBookDto wBookDto){
@@ -61,7 +68,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 添加一个新的WBook到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWBook(WBookDto wBookDto){
@@ -77,7 +84,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 更新WBook
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWBook(WBookDto wBookDto){
@@ -99,7 +106,7 @@ public class WBookDaoImpl extends BaseDaoImpl<WBook, Integer> implements WBookDa
     /**
     * 删除WBook
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWBook(WBookDto wBookDto){

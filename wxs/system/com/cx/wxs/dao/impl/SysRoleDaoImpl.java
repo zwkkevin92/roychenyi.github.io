@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysRoleDao")
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements SysRoleDao{
 
-    private BeanToDto<SysRole, SysRoleDto> beanToDto;
+    private BeanToDto<SysRole, SysRoleDto> beanToDto=new BeanToDto<SysRole, SysRoleDto>();
 
+    public BeanToDto<SysRole, SysRoleDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysRole, SysRoleDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysRoleDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysRoleDto getSysRoleByID(SysRoleDto sysRoleDto){
@@ -51,7 +58,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 通过相关数据获取SysRoleDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysRoleDto> getSysRoleList(SysRoleDto sysRoleDto){
@@ -61,7 +68,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 添加一个新的SysRole到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysRole(SysRoleDto sysRoleDto){
@@ -77,7 +84,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 更新SysRole
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysRole(SysRoleDto sysRoleDto){
@@ -99,7 +106,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, Integer> implements Sys
     /**
     * 删除SysRole
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysRole(SysRoleDto sysRoleDto){

@@ -60,7 +60,7 @@ public  class BeanBase implements Serializable{
    private Boolean isUsers=false;//是否查询用户信息
    private Boolean isFortyLogin=false;
    private String url;  //获取前一个页面的URL
-   private String loginFlag; //-1：不成功；0：待验证；1：成功
+   private String statusFlag; //返回值的状态标识 -1：不成功；0：待验证；1：成功
 
 	//**************验证信息参数******************/
 
@@ -190,7 +190,7 @@ public  class BeanBase implements Serializable{
 	 * @param isUsers
 	 * @param isFortyLogin
 	 * @param url
-	 * @param loginFlag
+	 * @param statusFlag
 	 * @param validateNum
 	 * @param validateCode
 	 * @param validateMark
@@ -204,7 +204,7 @@ public  class BeanBase implements Serializable{
 			String group, String order, Integer pageCount, String batch,
 			String field, String ip, String local, String msg,
 			Boolean isSucceed, Object object, Integer uid, Boolean isUsers,
-			Boolean isFortyLogin, String url, String loginFlag,
+			Boolean isFortyLogin, String url, String statusFlag,
 			String validateNum, String validateCode, String validateMark,
 			String validateType, BigDecimal rOWNUM_, String search) {
 		super();
@@ -226,7 +226,7 @@ public  class BeanBase implements Serializable{
 		this.isUsers = isUsers;
 		this.isFortyLogin = isFortyLogin;
 		this.url = url;
-		this.loginFlag = loginFlag;
+		this.statusFlag = statusFlag;
 		this.validateNum = validateNum;
 		this.validateCode = validateCode;
 		this.validateMark = validateMark;
@@ -443,17 +443,17 @@ public  class BeanBase implements Serializable{
 
 
 	/**
-	 * @return the loginFlag
+	 * @return the statusFlag
 	 */
-	public String getLoginFlag() {
-		return loginFlag;
+	public String getStatusFlag() {
+		return statusFlag;
 	}
 
 	/**
-	 * @param loginFlag the loginFlag to set
+	 * @param statusFlag the statusFlag to set
 	 */
-	public void setLoginFlag(String loginFlag) {
-		this.loginFlag = loginFlag;
+	public void setStatusFlag(String statusFlag) {
+		this.statusFlag = statusFlag;
 	}
 
 	/**

@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WAccessDao")
 public class WAccessDaoImpl extends BaseDaoImpl<WAccess, Integer> implements WAccessDao{
 
-    private BeanToDto<WAccess, WAccessDto> beanToDto;
+    private BeanToDto<WAccess, WAccessDto> beanToDto=new BeanToDto<WAccess, WAccessDto>();
 
+    public BeanToDto<WAccess, WAccessDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WAccess, WAccessDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WAccessDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WAccessDto getWAccessByID(WAccessDto wAccessDto){
@@ -51,7 +58,7 @@ public class WAccessDaoImpl extends BaseDaoImpl<WAccess, Integer> implements WAc
     /**
     * 通过相关数据获取WAccessDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WAccessDto> getWAccessList(WAccessDto wAccessDto){
@@ -61,7 +68,7 @@ public class WAccessDaoImpl extends BaseDaoImpl<WAccess, Integer> implements WAc
     /**
     * 添加一个新的WAccess到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWAccess(WAccessDto wAccessDto){
@@ -77,7 +84,7 @@ public class WAccessDaoImpl extends BaseDaoImpl<WAccess, Integer> implements WAc
     /**
     * 更新WAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWAccess(WAccessDto wAccessDto){
@@ -99,7 +106,7 @@ public class WAccessDaoImpl extends BaseDaoImpl<WAccess, Integer> implements WAc
     /**
     * 删除WAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWAccess(WAccessDto wAccessDto){

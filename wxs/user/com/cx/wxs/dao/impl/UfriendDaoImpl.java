@@ -28,7 +28,22 @@ import com.cx.wxs.utils.StringUtils;
 public class UFriendDaoImpl extends BaseDaoImpl<UFriend,Integer> implements UFriendDao{
 
 
-	private BeanToDto<UFriend, UFriendDto> beanToDto;
+	private BeanToDto<UFriend, UFriendDto> beanToDto=new BeanToDto<UFriend,UFriendDto>();
+	
+	/**
+	 * @return the beanToDto
+	 */
+	public BeanToDto<UFriend, UFriendDto> getBeanToDto() {
+		return beanToDto;
+	}
+
+	/**
+	 * @param beanToDto the beanToDto to set
+	 */
+	public void setBeanToDto(BeanToDto<UFriend, UFriendDto> beanToDto) {
+		this.beanToDto = beanToDto;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.dao.UfriendDao#getUfriendByID(com.cx.wxs.dto.UFriendDto)
 	 */

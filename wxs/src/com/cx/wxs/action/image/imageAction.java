@@ -161,7 +161,7 @@ public class imageAction {
 						 userDto.setPortrait(resourcePath+"/"+date.getTime()+"_s_30.jpg");
 						 uUserService.updateUuser(userDto);
 						 userDto=uUserService.getUuser(userDto);
-						 imageDto.setLoginFlag("1");
+						 imageDto.setStatusFlag("1");
 						 return imageDto;
 					 }
 				 }

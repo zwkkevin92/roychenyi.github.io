@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysSchoolDao")
 public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements SysSchoolDao{
 
-    private BeanToDto<SysSchool, SysSchoolDto> beanToDto;
+    private BeanToDto<SysSchool, SysSchoolDto> beanToDto=new BeanToDto<SysSchool, SysSchoolDto>();
 
+    public BeanToDto<SysSchool, SysSchoolDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysSchool, SysSchoolDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysSchoolDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysSchoolDto getSysSchoolByID(SysSchoolDto sysSchoolDto){
@@ -51,7 +58,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 通过相关数据获取SysSchoolDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysSchoolDto> getSysSchoolList(SysSchoolDto sysSchoolDto){
@@ -61,7 +68,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 添加一个新的SysSchool到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysSchool(SysSchoolDto sysSchoolDto){
@@ -77,7 +84,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 更新SysSchool
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysSchool(SysSchoolDto sysSchoolDto){
@@ -99,7 +106,7 @@ public class SysSchoolDaoImpl extends BaseDaoImpl<SysSchool, Integer> implements
     /**
     * 删除SysSchool
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysSchool(SysSchoolDto sysSchoolDto){

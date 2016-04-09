@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-03-24 21:47:22
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysIllegalDao")
 public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implements SysIllegalDao{
 
-    private BeanToDto<SysIllegal, SysIllegalDto> beanToDto =new  BeanToDto<SysIllegal,SysIllegalDto>();
+    private BeanToDto<SysIllegal, SysIllegalDto> beanToDto=new BeanToDto<SysIllegal, SysIllegalDto>();
 
+    public BeanToDto<SysIllegal, SysIllegalDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysIllegal, SysIllegalDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysIllegalDto
     * @author 陈义
-    * @date 2016-03-24 21:47:22
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysIllegalDto getSysIllegalByID(SysIllegalDto sysIllegalDto){
@@ -51,43 +58,17 @@ public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implemen
     /**
     * 通过相关数据获取SysIllegalDtoList
     * @author 陈义
-    * @date 2016-03-24 21:47:22
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysIllegalDto> getSysIllegalList(SysIllegalDto sysIllegalDto){
-
-    	StringBuffer stringBuffer=new StringBuffer();
-		Map<String,Object> params=new HashMap<String,Object>();
-		stringBuffer.append("from "+SysIllegal.class.getName()+" a");
-		stringBuffer.append(" where 1=1 ");
-		if(sysIllegalDto!=null&&sysIllegalDto.getWord()!=null){
-			stringBuffer.append(" and (a.word =:word or a.word like :word1)");
-			params.put("word", sysIllegalDto.getWord());
-			params.put("word1","%"+sysIllegalDto.getWord()+"%");
-		}
-		if(sysIllegalDto!=null&&sysIllegalDto.getNullify()!=null){
-			stringBuffer.append(" and a.nullify =:nullify");
-			params.put("nullify",sysIllegalDto.getNullify());
-		}
-		List<SysIllegalDto> list=new ArrayList<SysIllegalDto>(); 
-		List<SysIllegal> list1=new ArrayList<SysIllegal>();
-		if(sysIllegalDto.getPage()!=null&&sysIllegalDto.getRows()!=null){
-			list1=this.find(stringBuffer.toString(),params,sysIllegalDto.getPage(),sysIllegalDto.getRows());
-		}else{
-			list1=this.find(stringBuffer.toString(),params);
-		}
-		for(SysIllegal sysIllegal:list1){
-			SysIllegalDto dto=beanToDto.T1ToD1(sysIllegal, new SysIllegalDto());
-			list.add(dto);
-		}
-		return list;
-
+        return null;
     }
 
     /**
     * 添加一个新的SysIllegal到数据库
     * @author 陈义
-    * @date 2016-03-24 21:47:22
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysIllegal(SysIllegalDto sysIllegalDto){
@@ -103,7 +84,7 @@ public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implemen
     /**
     * 更新SysIllegal
     * @author 陈义
-    * @date 2016-03-24 21:47:22
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysIllegal(SysIllegalDto sysIllegalDto){
@@ -113,7 +94,7 @@ public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implemen
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysIllegalDto.createSetPropertiesVal(sysIllegalDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append("  "+SysIllegal.class.getName()+" a ");
+           stringBuffer.append(" form "+SysIllegal.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.illegalId=:uid");
            params.put("uid",sysIllegalDto.getIllegalId());
@@ -125,7 +106,7 @@ public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implemen
     /**
     * 删除SysIllegal
     * @author 陈义
-    * @date 2016-03-24 21:47:22
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysIllegal(SysIllegalDto sysIllegalDto){
@@ -148,7 +129,7 @@ public class SysIllegalDaoImpl extends BaseDaoImpl<SysIllegal, Integer> implemen
 	 */
 	@Override
 	public SysIllegalDto getSysIllegal(SysIllegalDto sysIllegalDto) {
-        // TODO Auto-generated method stub
+		 // TODO Auto-generated method stub
         if(sysIllegalDto!=null&&sysIllegalDto.getWord()!=null){
            StringBuffer stringBuffer=new StringBuffer();
            Map<String,Object> params=new HashMap<String, Object>();

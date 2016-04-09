@@ -138,7 +138,7 @@ $(document).ready(function () {
             data: str_data,
             dataType:"json",
             success: function (data) {
-            	 var flag=data["loginFlag"];
+            	 var flag=data["statusFlag"];
             	 switch (flag){
             	 	case "-3":
             	 	$('#error_text').html("<small>登陆失败:账户为进行邮箱验证，请进入邮箱验证</small>");break;
@@ -208,7 +208,7 @@ $(document).ready(function () {
                 type:"POST",
                 data:str_data,
                 success: function(data){
-                    if(data["loginFlag"]==-1){
+                    if(data["statusFlag"]==-1){
 
                         $('#error_text').html("<small>修改密码失败！</small>");
                     }else{
@@ -243,10 +243,10 @@ $(document).ready(function () {
                 type:"POST",
                 data:str_data,
                 success: function(data){
-                    if(data["loginFlag"]==-1){
+                    if(data["statusFlag"]==-1){
 
                         $('#error_text').html("<small>输入旧密码错误，请重新输入！</small>");
-                    }else if(data["loginFlag"]==0){
+                    }else if(data["statusFlag"]==0){
                         $('#error_text').html("<small>修改密码失败，请重新再试！</small>");
                     }else{
                         window.location=data["url"];
@@ -375,10 +375,10 @@ $(document).ready(function () {
                 type:"POST",
                 data:str_data,
                 success: function(data){
-                    if(data["loginFlag"]==-1){
+                    if(data["statusFlag"]==-1){
 
                         $('#error_text').html("<small>注册失败，请重新再试！</small>");
-                    }else if(data["loginFlag"]==1){
+                    }else if(data["statusFlag"]==1){
                         var _mail = $("#reg_username").val().split('@')[1];    //获取邮箱域
                         for (var j in hash){
                             if(j == _mail){

@@ -168,7 +168,7 @@
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/505</location>
+		<location>/500</location>
 	</error-page>
 
 	<!-- <welcome-file-list> <welcome-file>index.jsp</welcome-file> </welcome-file-list> -->

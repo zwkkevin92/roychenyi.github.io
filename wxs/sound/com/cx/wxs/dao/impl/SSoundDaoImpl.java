@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SSoundDao")
 public class SSoundDaoImpl extends BaseDaoImpl<SSound, Integer> implements SSoundDao{
 
-    private BeanToDto<SSound, SSoundDto> beanToDto;
+    private BeanToDto<SSound, SSoundDto> beanToDto=new BeanToDto<SSound, SSoundDto>();
 
+    public BeanToDto<SSound, SSoundDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SSound, SSoundDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SSoundDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SSoundDto getSSoundByID(SSoundDto sSoundDto){
@@ -51,7 +58,7 @@ public class SSoundDaoImpl extends BaseDaoImpl<SSound, Integer> implements SSoun
     /**
     * 通过相关数据获取SSoundDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SSoundDto> getSSoundList(SSoundDto sSoundDto){
@@ -61,7 +68,7 @@ public class SSoundDaoImpl extends BaseDaoImpl<SSound, Integer> implements SSoun
     /**
     * 添加一个新的SSound到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSSound(SSoundDto sSoundDto){
@@ -77,7 +84,7 @@ public class SSoundDaoImpl extends BaseDaoImpl<SSound, Integer> implements SSoun
     /**
     * 更新SSound
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSSound(SSoundDto sSoundDto){
@@ -99,7 +106,7 @@ public class SSoundDaoImpl extends BaseDaoImpl<SSound, Integer> implements SSoun
     /**
     * 删除SSound
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSSound(SSoundDto sSoundDto){

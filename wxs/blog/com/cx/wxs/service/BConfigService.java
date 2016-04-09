@@ -16,6 +16,14 @@ public interface BConfigService {
     * @date 2015-12-13 19:01:59
     */
     public BConfigDto getBConfigByID(BConfigDto bConfigDto);
+    /**
+     * 通过用户的configkey和siteId获取用户的信息
+     * @param bConfigDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-9下午2:44:57
+     */
+    public BConfigDto getBConfig(BConfigDto bConfigDto);
 
     /**
     * 通过相关信息获取BConfigDtoList信息

@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WLinkDao")
 public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDao{
 
-    private BeanToDto<WLink, WLinkDto> beanToDto;
+    private BeanToDto<WLink, WLinkDto> beanToDto=new BeanToDto<WLink, WLinkDto>();
 
+    public BeanToDto<WLink, WLinkDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WLink, WLinkDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WLinkDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WLinkDto getWLinkByID(WLinkDto wLinkDto){
@@ -51,7 +58,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 通过相关数据获取WLinkDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WLinkDto> getWLinkList(WLinkDto wLinkDto){
@@ -61,7 +68,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 添加一个新的WLink到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWLink(WLinkDto wLinkDto){
@@ -77,7 +84,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 更新WLink
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWLink(WLinkDto wLinkDto){
@@ -99,7 +106,7 @@ public class WLinkDaoImpl extends BaseDaoImpl<WLink, Integer> implements WLinkDa
     /**
     * 删除WLink
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWLink(WLinkDto wLinkDto){

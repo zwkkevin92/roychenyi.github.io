@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("VAccessDao")
 public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAccessDao{
 
-    private BeanToDto<VAccess, VAccessDto> beanToDto;
+    private BeanToDto<VAccess, VAccessDto> beanToDto=new BeanToDto<VAccess, VAccessDto>();
 
+    public BeanToDto<VAccess, VAccessDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<VAccess, VAccessDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取VAccessDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public VAccessDto getVAccessByID(VAccessDto vAccessDto){
@@ -51,7 +58,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 通过相关数据获取VAccessDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<VAccessDto> getVAccessList(VAccessDto vAccessDto){
@@ -61,7 +68,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 添加一个新的VAccess到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addVAccess(VAccessDto vAccessDto){
@@ -77,7 +84,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 更新VAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateVAccess(VAccessDto vAccessDto){
@@ -99,7 +106,7 @@ public class VAccessDaoImpl extends BaseDaoImpl<VAccess, Integer> implements VAc
     /**
     * 删除VAccess
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteVAccess(VAccessDto vAccessDto){

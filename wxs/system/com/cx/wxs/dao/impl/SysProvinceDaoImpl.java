@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysProvinceDao")
 public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implements SysProvinceDao{
 
-    private BeanToDto<SysProvince, SysProvinceDto> beanToDto;
+    private BeanToDto<SysProvince, SysProvinceDto> beanToDto=new BeanToDto<SysProvince, SysProvinceDto>();
 
+    public BeanToDto<SysProvince, SysProvinceDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysProvince, SysProvinceDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysProvinceDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysProvinceDto getSysProvinceByID(SysProvinceDto sysProvinceDto){
@@ -51,7 +58,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 通过相关数据获取SysProvinceDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysProvinceDto> getSysProvinceList(SysProvinceDto sysProvinceDto){
@@ -61,7 +68,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 添加一个新的SysProvince到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysProvince(SysProvinceDto sysProvinceDto){
@@ -77,7 +84,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 更新SysProvince
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysProvince(SysProvinceDto sysProvinceDto){
@@ -99,7 +106,7 @@ public class SysProvinceDaoImpl extends BaseDaoImpl<SysProvince, Integer> implem
     /**
     * 删除SysProvince
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysProvince(SysProvinceDto sysProvinceDto){

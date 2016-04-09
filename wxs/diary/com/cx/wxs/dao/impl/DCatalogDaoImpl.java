@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("DCatalogDao")
 public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements DCatalogDao{
 
-    private BeanToDto<DCatalog, DCatalogDto> beanToDto;
+    private BeanToDto<DCatalog, DCatalogDto> beanToDto=new BeanToDto<DCatalog, DCatalogDto>();
 
+    public BeanToDto<DCatalog, DCatalogDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<DCatalog, DCatalogDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取DCatalogDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public DCatalogDto getDCatalogByID(DCatalogDto dCatalogDto){
@@ -51,17 +58,33 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
     /**
     * 通过相关数据获取DCatalogDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public List<DCatalogDto> getDCatalogList(DCatalogDto dCatalogDto){
-        return null;
+    	// TODO Auto-generated method stub
+        if(dCatalogDto!=null){
+           StringBuffer stringBuffer=new StringBuffer();
+           Map<String,Object> params=new HashMap<String, Object>();
+           stringBuffer.append("from  "+DCatalog.class.getName()+"  a where a.UUser.userId=:id");
+           params.put("id",dCatalogDto.getUUserDto().getUserId());
+           List<DCatalog> list=this.find(stringBuffer.toString(), params);
+           List<DCatalogDto> list2=new ArrayList<DCatalogDto>();
+           if(list!=null&&list.size()>0){
+        	   for(DCatalog catalog:list ){
+        		   DCatalogDto dto=beanToDto.T1ToD1(catalog, new DCatalogDto());
+        		   list2.add(dto);
+        	   }
+        	   return list2;
+           }
+        }
+    	return null;
     }
 
     /**
     * 添加一个新的DCatalog到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer addDCatalog(DCatalogDto dCatalogDto){
@@ -77,7 +100,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
     /**
     * 更新DCatalog
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer updateDCatalog(DCatalogDto dCatalogDto){
@@ -99,7 +122,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
     /**
     * 删除DCatalog
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer deleteDCatalog(DCatalogDto dCatalogDto){

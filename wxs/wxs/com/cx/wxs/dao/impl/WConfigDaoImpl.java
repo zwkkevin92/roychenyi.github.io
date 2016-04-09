@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("WConfigDao")
 public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WConfigDao{
 
-    private BeanToDto<WConfig, WConfigDto> beanToDto;
+    private BeanToDto<WConfig, WConfigDto> beanToDto=new BeanToDto<WConfig, WConfigDto>();
 
+    public BeanToDto<WConfig, WConfigDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<WConfig, WConfigDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取WConfigDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public WConfigDto getWConfigByID(WConfigDto wConfigDto){
@@ -51,7 +58,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 通过相关数据获取WConfigDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<WConfigDto> getWConfigList(WConfigDto wConfigDto){
@@ -61,7 +68,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 添加一个新的WConfig到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addWConfig(WConfigDto wConfigDto){
@@ -77,7 +84,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 更新WConfig
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateWConfig(WConfigDto wConfigDto){
@@ -99,7 +106,7 @@ public class WConfigDaoImpl extends BaseDaoImpl<WConfig, Integer> implements WCo
     /**
     * 删除WConfig
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteWConfig(WConfigDto wConfigDto){

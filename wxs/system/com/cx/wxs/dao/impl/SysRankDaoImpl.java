@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysRankDao")
 public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements SysRankDao{
 
-    private BeanToDto<SysRank, SysRankDto> beanToDto;
+    private BeanToDto<SysRank, SysRankDto> beanToDto=new BeanToDto<SysRank, SysRankDto>();
 
+    public BeanToDto<SysRank, SysRankDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysRank, SysRankDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysRankDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysRankDto getSysRankByID(SysRankDto sysRankDto){
@@ -51,7 +58,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 通过相关数据获取SysRankDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysRankDto> getSysRankList(SysRankDto sysRankDto){
@@ -61,7 +68,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 添加一个新的SysRank到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysRank(SysRankDto sysRankDto){
@@ -77,7 +84,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 更新SysRank
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysRank(SysRankDto sysRankDto){
@@ -99,7 +106,7 @@ public class SysRankDaoImpl extends BaseDaoImpl<SysRank, Integer> implements Sys
     /**
     * 删除SysRank
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysRank(SysRankDto sysRankDto){

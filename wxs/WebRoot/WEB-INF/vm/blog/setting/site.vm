@@ -29,21 +29,21 @@
                     </div>
                     <div id="title" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <form class="form-horizontal" id="title_form" action="">
+                            <form class="form-horizontal" id="title_form" action="$link.getContextURL()/$user.nickname/set/updateSiteInfo">
                                 <h5>您个人空间的标题，最长不得超过10个字</h5>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标题</label>
                                     <div class="col-sm-9">
                                         <div class="checkbox-inline">
-
-                                            <input type="text" name="title" class="form-control" placeholder="请输入标题，长度10">
+											<input type="hidden" name="siteId" value="$user.BSiteDto.siteId">
+                                            <input type="text" name="title" class="form-control" placeholder="请输入标题，长度10" #if($user.BSiteDto.title) value="$user.BSiteDto.title" #end>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-5 col-sm-offset-3">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-spinner fa-spin"></i>确定</button>&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-info">确定</button>
 
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div id="pull" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <form class="form-horizontal" id="pull_form" action="">
+                            <form class="form-horizontal" id="pull_form" action="$link.getContextURL()/$user.nickname/set/pullConfig">
                                 <h5>系统默认您的文章为可投递状态(即您可以投递你的文章到文学社或平台首页)，您可以通过下面的选择进行修改</h5>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">投递状态</label>
@@ -70,14 +70,15 @@
                                         <label class="checkbox-inline">
                                             <input type="radio" name="pull_rodio" id="pull_no" value="0"> 否
                                         </label>
-                                        <input type="hidden" name="configId" value="">
-                                        <input type="hidden" name="pull_status" id="pull_status" value="1">
+                                        <input type="hidden" name="configId" #if($allow_pullConfig.configId) value="$allow_pullConfig.configId" #end>
+										<input type="hidden" name="configKey" value="allow_pull"/>
+                                        <input type="hidden" name="pull_status" id="pull_status" #if($allow_pullConfig.value) value="$allow_pullConfig.value" #else value="1" #end>
 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-5 col-sm-offset-3">
-                                        <button type="button" class="btn btn-info"><i class="fa fa-spinner fa-spin"></i>确定</button>&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-info">确定</button>
 
                                     </div>
                                 </div>
@@ -91,25 +92,24 @@
                             <a data-toggle="collapse" data-parent="#version" href="#catalog"><apan class="pull-left">文章分类</apan>目录<code class="pull-right">编辑</code></a>
                         </h5>
                     </div>
-                    <div id="catalog" class="panel-collapse collapse in">
+                    <div id="catalog" class="panel-collapse collapse">
                             <div class="panel-body">
 
                                 <h4 class="text-info">文章目录管理</h4>
                                <ul class="list-group">
-                                   <li class="list-group-item" id="1">个人日记(此分类不支持编辑及删除)</li>
-                                   <li class="list-group-item" id="2">私密日记（此分类不支持编辑及删除）</li>
-                                   <li class="list-group-item" id="3">
-                                    <form  class="form-horizontal hidden" action="" ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value="众说纷纭"></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
+								#foreach($catalog in $catalogList)
+									#if($catalog.catalogName=="个人日记")
+										<li class="list-group-item" id="$catalog.catalogId">个人日记(此分类不支持编辑及删除)</li>
+									#else
+										<li class="list-group-item" id="$catalog.catalogId">
+                                    <form  class="form-horizontal hidden" action="$link.getContextURL()/$user.nickname/set/setCatalog?catalogId=$catalog.catalogId" ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value="$catalog.catalogName"></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
 
-                                    <div class=""><span>众说纷纭</span><a class="pull-right" title="delete" href="javascript:;"  >删除</a>&nbsp;&nbsp;<a class="pull-right" href="javascript:;"  title="edite" >编辑</a>
+                                    <div class=""><span>$catalog.catalogName</span><a class="pull-right" title="delete" href="javascript:;"  >删除</a>&nbsp;&nbsp;<a class="pull-right" href="javascript:;"  title="edite" >编辑</a>
                                     </div>
                                    </li>
-                                   <li class="list-group-item " id="4">
-                                       <form  class="form-horizontal hidden" action="" ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value="众说纷纭2"></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
-
-                                       <div><span>众说纷纭2</span><a class="pull-right" title="delete" href="javascript:;"  >删除</a>&nbsp;&nbsp;<a class="pull-right" href="javascript:;"  title="edite" >编辑</a>
-                                       </div>
-                                   </li>
+									#end
+								#end
+                                 
                                    <li class="list-group-item hidden" id="catalog_new" >
                                        <form  class="form-horizontal" action="" ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value=""></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
                                    </li>

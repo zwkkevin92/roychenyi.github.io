@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysLoginRecordDao")
 public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> implements SysLoginRecordDao{
 
-    private BeanToDto<SysLoginRecord, SysLoginRecordDto> beanToDto;
+    private BeanToDto<SysLoginRecord, SysLoginRecordDto> beanToDto=new BeanToDto<SysLoginRecord, SysLoginRecordDto>();
 
+    public BeanToDto<SysLoginRecord, SysLoginRecordDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysLoginRecord, SysLoginRecordDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysLoginRecordDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysLoginRecordDto getSysLoginRecordByID(SysLoginRecordDto sysLoginRecordDto){
@@ -51,7 +58,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 通过相关数据获取SysLoginRecordDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysLoginRecordDto> getSysLoginRecordList(SysLoginRecordDto sysLoginRecordDto){
@@ -61,7 +68,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 添加一个新的SysLoginRecord到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
@@ -77,7 +84,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 更新SysLoginRecord
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){
@@ -99,7 +106,7 @@ public class SysLoginRecordDaoImpl extends BaseDaoImpl<SysLoginRecord, Integer> 
     /**
     * 删除SysLoginRecord
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysLoginRecord(SysLoginRecordDto sysLoginRecordDto){

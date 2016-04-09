@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("DReply1Dao")
 public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DReply1Dao{
 
-    private BeanToDto<DReply1, DReply1Dto> beanToDto;
+    private BeanToDto<DReply1, DReply1Dto> beanToDto=new BeanToDto<DReply1, DReply1Dto>();
 
+    public BeanToDto<DReply1, DReply1Dto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<DReply1, DReply1Dto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取DReply1Dto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
@@ -51,7 +58,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 通过相关数据获取DReply1DtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public List<DReply1Dto> getDReply1List(DReply1Dto dReply1Dto){
@@ -61,7 +68,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 添加一个新的DReply1到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer addDReply1(DReply1Dto dReply1Dto){
@@ -77,7 +84,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 更新DReply1
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer updateDReply1(DReply1Dto dReply1Dto){
@@ -99,7 +106,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     /**
     * 删除DReply1
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer deleteDReply1(DReply1Dto dReply1Dto){

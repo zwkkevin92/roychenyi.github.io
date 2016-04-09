@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysCollegeDao")
 public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implements SysCollegeDao{
 
-    private BeanToDto<SysCollege, SysCollegeDto> beanToDto;
+    private BeanToDto<SysCollege, SysCollegeDto> beanToDto=new BeanToDto<SysCollege, SysCollegeDto>();
 
+    public BeanToDto<SysCollege, SysCollegeDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysCollege, SysCollegeDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysCollegeDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysCollegeDto getSysCollegeByID(SysCollegeDto sysCollegeDto){
@@ -51,7 +58,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 通过相关数据获取SysCollegeDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysCollegeDto> getSysCollegeList(SysCollegeDto sysCollegeDto){
@@ -61,7 +68,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 添加一个新的SysCollege到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysCollege(SysCollegeDto sysCollegeDto){
@@ -77,7 +84,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 更新SysCollege
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysCollege(SysCollegeDto sysCollegeDto){
@@ -99,7 +106,7 @@ public class SysCollegeDaoImpl extends BaseDaoImpl<SysCollege, Integer> implemen
     /**
     * 删除SysCollege
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysCollege(SysCollegeDto sysCollegeDto){

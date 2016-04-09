@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysTypeDao")
 public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements SysTypeDao{
 
-    private BeanToDto<SysType, SysTypeDto> beanToDto;
+    private BeanToDto<SysType, SysTypeDto> beanToDto=new BeanToDto<SysType, SysTypeDto>();
 
+    public BeanToDto<SysType, SysTypeDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysType, SysTypeDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysTypeDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysTypeDto getSysTypeByID(SysTypeDto sysTypeDto){
@@ -51,7 +58,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 通过相关数据获取SysTypeDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysTypeDto> getSysTypeList(SysTypeDto sysTypeDto){
@@ -61,7 +68,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 添加一个新的SysType到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysType(SysTypeDto sysTypeDto){
@@ -77,7 +84,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 更新SysType
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysType(SysTypeDto sysTypeDto){
@@ -99,7 +106,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     /**
     * 删除SysType
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysType(SysTypeDto sysTypeDto){

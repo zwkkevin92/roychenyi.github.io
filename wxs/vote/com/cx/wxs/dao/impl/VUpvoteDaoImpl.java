@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("VUpvoteDao")
 public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUpvoteDao{
 
-    private BeanToDto<VUpvote, VUpvoteDto> beanToDto;
+    private BeanToDto<VUpvote, VUpvoteDto> beanToDto=new BeanToDto<VUpvote, VUpvoteDto>();
 
+    public BeanToDto<VUpvote, VUpvoteDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<VUpvote, VUpvoteDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取VUpvoteDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public VUpvoteDto getVUpvoteByID(VUpvoteDto vUpvoteDto){
@@ -51,7 +58,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 通过相关数据获取VUpvoteDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<VUpvoteDto> getVUpvoteList(VUpvoteDto vUpvoteDto){
@@ -61,7 +68,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 添加一个新的VUpvote到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addVUpvote(VUpvoteDto vUpvoteDto){
@@ -77,7 +84,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 更新VUpvote
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateVUpvote(VUpvoteDto vUpvoteDto){
@@ -99,7 +106,7 @@ public class VUpvoteDaoImpl extends BaseDaoImpl<VUpvote, Integer> implements VUp
     /**
     * 删除VUpvote
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteVUpvote(VUpvoteDto vUpvoteDto){

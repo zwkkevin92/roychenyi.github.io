@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("DDiaryDao")
 public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiaryDao{
 
-    private BeanToDto<DDiary, DDiaryDto> beanToDto;
+    private BeanToDto<DDiary, DDiaryDto> beanToDto=new BeanToDto<DDiary, DDiaryDto>();
 
+    public BeanToDto<DDiary, DDiaryDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<DDiary, DDiaryDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取DDiaryDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public DDiaryDto getDDiaryByID(DDiaryDto dDiaryDto){
@@ -51,7 +58,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 通过相关数据获取DDiaryDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public List<DDiaryDto> getDDiaryList(DDiaryDto dDiaryDto){
@@ -61,7 +68,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 添加一个新的DDiary到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer addDDiary(DDiaryDto dDiaryDto){
@@ -77,7 +84,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 更新DDiary
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer updateDDiary(DDiaryDto dDiaryDto){
@@ -99,7 +106,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     /**
     * 删除DDiary
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer deleteDDiary(DDiaryDto dDiaryDto){

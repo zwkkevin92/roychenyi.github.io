@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("BSiteDao")
 public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDao{
 
-    private BeanToDto<BSite, BSiteDto> beanToDto=new BeanToDto<BSite,BSiteDto>();
+    private BeanToDto<BSite, BSiteDto> beanToDto=new BeanToDto<BSite, BSiteDto>();
 
+    public BeanToDto<BSite, BSiteDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<BSite, BSiteDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取BSiteDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public BSiteDto getBSiteByID(BSiteDto bSiteDto){
@@ -51,7 +58,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 通过相关数据获取BSiteDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public List<BSiteDto> getBSiteList(BSiteDto bSiteDto){
@@ -61,7 +68,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 添加一个新的BSite到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer addBSite(BSiteDto bSiteDto){
@@ -77,17 +84,17 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 更新BSite
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer updateBSite(BSiteDto bSiteDto){
         // TODO Auto-generated method stub
         if(bSiteDto!=null&&bSiteDto.getSiteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"siteId"};//过滤掉的字段
+           String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = bSiteDto.createSetPropertiesVal(bSiteDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" "+BSite.class.getName()+" a");
+           stringBuffer.append(" from  "+BSite.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.siteId=:uid");
            params.put("uid",bSiteDto.getSiteId());
@@ -99,7 +106,7 @@ public class BSiteDaoImpl extends BaseDaoImpl<BSite, Integer> implements BSiteDa
     /**
     * 删除BSite
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:18
     */
     @Override
     public Integer deleteBSite(BSiteDto bSiteDto){

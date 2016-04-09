@@ -17,6 +17,14 @@ public interface BConfigDao extends IBaseDao<BConfig,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public BConfigDto getBConfigByID(BConfigDto bConfigDto);
+    /**
+     * 获取BconfigDto
+     * @param bConfigDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-9下午2:35:37
+     */
+    public BConfigDto getBConfig(BConfigDto bConfigDto);
 
     /**
     * 通过相关数据获取BConfigDtoList

@@ -253,9 +253,9 @@ $(document).ready(function () {
             },
 
             success: function (data) {
-                if(data["loginFlag"]==-1){
+                if(data["statusFlag"]==-1){
                     layer.alert("信息更新失败！");
-                }else if(data["loginFlag"]==1){
+                }else if(data["statusFlag"]==1){
                     layer.tips("信息更新成功","#defaultInfo",{
                         tips:[1],
                         time:3000
@@ -273,20 +273,85 @@ $(document).ready(function () {
 
         } );
     });
-
+//提交开始
     function submitStart() {
         layer.load();
     }
+    //提交结束
     function submitEnd(){
         layer.closeAll('loading')
     }
+    //提交失败
     function submitFail(msg){
         layer.alert(msg);
     }
+    //表单提交
+    function form_submit(e){
+        var url = $(e).attr('action');
+        var arr = $(e).serializeArray();
+
+        var data_str = $.param(arr);
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data_str,
+            dataType:"json",
+            beforeSend: function () {
+                submitStart();
+            },
+
+            success: function (data) {
+                if(data["statusFlag"]==-1){
+                    layer.msg("信息更新失败！",{icon: 2});
+                }else if(data["statusFlag"]==1){
+                    layer.msg('更新成功！', {icon: 1});
+                }
+            },
+
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                submitFail(textStatus || errorThrown);
+            },
+
+            complete: function () {
+                submitEnd();
+            }
+
+        });
+    }
+    //修改空间标题
+    $('#title_form').submit(function(){
+      form_submit(this);
+      return false;
+    });
+    //设置文章是否可投递
+    var pull_status_value= $('#pull_status').val();
+    if(pull_status_value=="1"){
+        $('#pull_yes').attr("checked","checked");
+    }else if(pull_status_value=="0"){
+        $('#pull_no').attr("checked","checked");
+    }
+
+    $("input[name=pull_rodio]").click(function(){
+        switch($("input[name=sex_rodio]:checked").attr("id")){
+            case "pull_yes":
+                $('#pull_status').val("1");
+                break;
+            case "pull_no":
+                $('#pull_status').val("0");
+                break;
+            default:
+                break;
+        }
+    });
+     $("#pull_form").submit(function(){
+        form_submit(this);
+        return false;
+    });
+
     var CATALOG_GROUP_ITEM="<a class='pull-right' title='delete' href='javascript:;'  >删除</a>&nbsp;&nbsp;<a class='pull-right' href='javascript:;'  title='edite' >编辑</a>";
     var CATALOG_FORM="<form role='form' id='catalog-change_form' class='form-horizontal' ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control'></div> <button name='sure' class='btn btn-info'>确定</button>&nbsp;&nbsp;<button name='reset' class='btn btn-info'>取消</button></div></form>";
    
-    //目录管理
+//目录管理
     //目录删除
     $("#catalog div ul.list-group li div").find("a[title='delete']").click(function(){
 
@@ -331,7 +396,8 @@ $(document).ready(function () {
     function sureClick(e){
       //  alert($(e).prev().find("input[type='text']"));
        var catalog_name= $(e).prev().find("input[type='text']").val();
-        if(catalog_name==""){
+
+        if($(e).parent().parent().next().find("span").length>0&&catalog_name==""){
             layer.alert("请输入文章分类名称",{title:"提示",icon:0},function(index){
                 $(e).prev().find("input[type='text']").focus();
                 layer.close(index);
@@ -359,10 +425,11 @@ $('#catalog_add').click(function(){
         if(catalog_name==""){
            layer.alert("请输入文章分类名称",{title:"提示",icon:0},function(index){
                $("#catalog_new form").find("input[type='text']").focus();
+               $("#catalog_new form").removeClass("hidden");
                layer.close(index);
            });
 
-            $("#catalog_new form").removeClass("hidden");
+
             return ;
         }else {
             var id = Math.random() * 1000;
@@ -392,5 +459,6 @@ $('#catalog_add').click(function(){
             $("#catalog_new").addClass("hidden");
         }
     });
+
 
 });

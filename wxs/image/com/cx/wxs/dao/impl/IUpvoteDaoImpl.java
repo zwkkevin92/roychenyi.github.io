@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("IUpvoteDao")
 public class IUpvoteDaoImpl extends BaseDaoImpl<IUpvote, Integer> implements IUpvoteDao{
 
-    private BeanToDto<IUpvote, IUpvoteDto> beanToDto;
+    private BeanToDto<IUpvote, IUpvoteDto> beanToDto=new BeanToDto<IUpvote, IUpvoteDto>();
 
+    public BeanToDto<IUpvote, IUpvoteDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<IUpvote, IUpvoteDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取IUpvoteDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public IUpvoteDto getIUpvoteByID(IUpvoteDto iUpvoteDto){
@@ -51,7 +58,7 @@ public class IUpvoteDaoImpl extends BaseDaoImpl<IUpvote, Integer> implements IUp
     /**
     * 通过相关数据获取IUpvoteDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<IUpvoteDto> getIUpvoteList(IUpvoteDto iUpvoteDto){
@@ -61,7 +68,7 @@ public class IUpvoteDaoImpl extends BaseDaoImpl<IUpvote, Integer> implements IUp
     /**
     * 添加一个新的IUpvote到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addIUpvote(IUpvoteDto iUpvoteDto){
@@ -77,7 +84,7 @@ public class IUpvoteDaoImpl extends BaseDaoImpl<IUpvote, Integer> implements IUp
     /**
     * 更新IUpvote
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateIUpvote(IUpvoteDto iUpvoteDto){
@@ -99,7 +106,7 @@ public class IUpvoteDaoImpl extends BaseDaoImpl<IUpvote, Integer> implements IUp
     /**
     * 删除IUpvote
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteIUpvote(IUpvoteDto iUpvoteDto){

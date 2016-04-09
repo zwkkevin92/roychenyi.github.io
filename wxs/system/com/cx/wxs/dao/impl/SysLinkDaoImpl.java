@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("SysLinkDao")
 public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements SysLinkDao{
 
-    private BeanToDto<SysLink, SysLinkDto> beanToDto;
+    private BeanToDto<SysLink, SysLinkDto> beanToDto=new BeanToDto<SysLink, SysLinkDto>();
 
+    public BeanToDto<SysLink, SysLinkDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<SysLink, SysLinkDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取SysLinkDto
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public SysLinkDto getSysLinkByID(SysLinkDto sysLinkDto){
@@ -51,7 +58,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 通过相关数据获取SysLinkDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<SysLinkDto> getSysLinkList(SysLinkDto sysLinkDto){
@@ -61,7 +68,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 添加一个新的SysLink到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addSysLink(SysLinkDto sysLinkDto){
@@ -77,7 +84,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 更新SysLink
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateSysLink(SysLinkDto sysLinkDto){
@@ -99,7 +106,7 @@ public class SysLinkDaoImpl extends BaseDaoImpl<SysLink, Integer> implements Sys
     /**
     * 删除SysLink
     * @author 陈义
-    * @date 2016-01-19 14:41:50
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteSysLink(SysLinkDto sysLinkDto){

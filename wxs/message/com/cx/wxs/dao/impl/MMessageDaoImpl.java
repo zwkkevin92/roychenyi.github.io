@@ -17,17 +17,24 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-01-19 14:41:49
+ * @date 2016-04-09 16:11:18
  */
 @Repository("MMessageDao")
 public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements MMessageDao{
 
-    private BeanToDto<MMessage, MMessageDto> beanToDto;
+    private BeanToDto<MMessage, MMessageDto> beanToDto=new BeanToDto<MMessage, MMessageDto>();
 
+    public BeanToDto<MMessage, MMessageDto> getBeanToDto(){
+        return beanToDto;
+    }
+
+    public void setBeanToDto(BeanToDto<MMessage, MMessageDto> beanToDto) {
+        this.beanToDto = beanToDto;
+    }
     /**
     * 通过id获取MMessageDto
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public MMessageDto getMMessageByID(MMessageDto mMessageDto){
@@ -51,7 +58,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 通过相关数据获取MMessageDtoList
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public List<MMessageDto> getMMessageList(MMessageDto mMessageDto){
@@ -61,7 +68,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 添加一个新的MMessage到数据库
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer addMMessage(MMessageDto mMessageDto){
@@ -77,7 +84,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 更新MMessage
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer updateMMessage(MMessageDto mMessageDto){
@@ -99,7 +106,7 @@ public class MMessageDaoImpl extends BaseDaoImpl<MMessage, Integer> implements M
     /**
     * 删除MMessage
     * @author 陈义
-    * @date 2016-01-19 14:41:49
+    * @date 2016-04-09 16:11:19
     */
     @Override
     public Integer deleteMMessage(MMessageDto mMessageDto){
