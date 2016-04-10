@@ -1,7 +1,7 @@
 #set($layout = "layout/index.vm")
 #set($page_title="基本信息设置-"+$user.nickname)
 #parse("conf/js.vm")
-#set($extjs=$Jsetting+$Jlayer)
+#set($extjs=$Jsetting+$Jlayer+$Jcookie)
 
 <div class="row"> 
     <div class="col-md-4">

@@ -65,7 +65,13 @@ public class clientInfo {
 		
 		return request.getHeader("User-Agent");
 	}
-	
+	/***
+	 * 判断是手机还是PC
+	 * @param request
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-10下午8:12:37
+	 */
 	public static boolean isMoblie(HttpServletRequest request){
 		boolean isMoblie = false;
 		String[] mobileAgents = { "iphone", "android", "phone", "mobile", "wap", "netfront", "java", "opera mobi",

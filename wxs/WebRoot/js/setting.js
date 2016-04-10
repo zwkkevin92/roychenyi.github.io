@@ -232,46 +232,7 @@ $(document).ready(function () {
     });
     $("#defaultInfo").click(function(){
         this.$default_info_form=$('#default_info_form');
-        var url = this.$default_info_form.attr('action'),
-
-            _this = this;
-        var arr = this.$default_info_form.serializeArray();
-
-        var data_str = $.param(arr);
-
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:data_str,
-            dataType:"json",
-            contentType:"application/x-www-form-urlencoded",
-            processData: false,
-
-
-            beforeSend: function () {
-                submitStart();
-            },
-
-            success: function (data) {
-                if(data["statusFlag"]==-1){
-                    layer.alert("信息更新失败！");
-                }else if(data["statusFlag"]==1){
-                    layer.tips("信息更新成功","#defaultInfo",{
-                        tips:[1],
-                        time:3000
-                    });
-                }
-            },
-
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                submitFail(textStatus || errorThrown);
-            },
-
-            complete: function () {
-                submitEnd();
-            }
-
-        } );
+        form_submit(this.$default_info_form);
     });
 //提交开始
     function submitStart() {
@@ -291,37 +252,18 @@ $(document).ready(function () {
         var arr = $(e).serializeArray();
 
         var data_str = $.param(arr);
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:data_str,
-            dataType:"json",
-            beforeSend: function () {
-                submitStart();
-            },
-
-            success: function (data) {
-                if(data["statusFlag"]==-1){
-                    layer.msg("信息更新失败！",{icon: 2});
-                }else if(data["statusFlag"]==1){
-                    layer.msg('更新成功！', {icon: 1});
-                }
-            },
-
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                submitFail(textStatus || errorThrown);
-            },
-
-            complete: function () {
-                submitEnd();
-            }
-
-        });
+        check(url,data_str)
+        var a= $.cookie("flag");
+        if(a=="true"){
+            layer.msg("更新成功！",{icon:1,time:1000});
+        }else{
+            layer.msg("更新失败！",{icon:2,time:1000});
+        }
     }
     //修改空间标题
     $('#title_form').submit(function(){
-      form_submit(this);
-      return false;
+        form_submit(this);
+        return false;
     });
     //设置文章是否可投递
     var pull_status_value= $('#pull_status').val();
@@ -343,14 +285,14 @@ $(document).ready(function () {
                 break;
         }
     });
-     $("#pull_form").submit(function(){
+    $("#pull_form").submit(function(){
         form_submit(this);
         return false;
     });
 
     var CATALOG_GROUP_ITEM="<a class='pull-right' title='delete' href='javascript:;'  >删除</a>&nbsp;&nbsp;<a class='pull-right' href='javascript:;'  title='edite' >编辑</a>";
     var CATALOG_FORM="<form role='form' id='catalog-change_form' class='form-horizontal' ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control'></div> <button name='sure' class='btn btn-info'>确定</button>&nbsp;&nbsp;<button name='reset' class='btn btn-info'>取消</button></div></form>";
-   
+
 //目录管理
     //目录删除
     $("#catalog div ul.list-group li div").find("a[title='delete']").click(function(){
@@ -365,44 +307,40 @@ $(document).ready(function () {
     });
     //取消按钮
     $("#catalog div ul.list-group li form").find("input[name='reset']").click(function(){
+        var catalogName= $(this).parent().parent().next().find("span").html();
+        $(this).parent().parent().find("input[type='text']").val(catalogName);
         resetClick();
     });
     //确认按钮
     $("#catalog div ul.list-group li form").find("input[name='sure']").click(function(){
-        sureClick(this)
+
+        sureClick(this);
+        return false;
     });
+    //检查目录重名
+    function checkName(){
+        var e= $("#catalog div ul.list-group li form").find("input[name='catalogName']");
+        var url=$(e).data("url");
+        var data_str="catalogName="+$(e).val();
+        return check(url,data_str);
+
+    }
+
     //删除按钮
     function deleteClick(e){
         layer.confirm("确定要删除吗？(如果你确定删除,该目录下的文章将转存到个人日记中。)",{title:"提示"},function(index){
             var url=$(e).data("url");
-            $.ajax({
-                url:url,
-                type:"POST",
-                dataType:"json",
-                beforeSend: function () {
-                    submitStart();
-                },
+            check(url,"")
+            var a= $.cookie("flag");
+            if(a=="true"){
+                layer.msg('删除成功！', {icon:1,time:1000});
+                $(e).parent().parent().remove();
 
-                success: function (data) {
-                    if(data["statusFlag"]==-1){
-                        layer.msg("信息更新失败！",{icon: 2});
-                        return false;
-                    }else if(data["statusFlag"]==1){
-                        layer.msg('更新成功！', {icon: 1});
-                        $(e).parent().parent().remove();
-                        return false;
-                    }
-                },
 
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    submitFail(textStatus || errorThrown);
-                    return false;
-                },
+            }else{
+                layer.msg("删除失败！",{icon:2,time:1000});
 
-                complete: function () {
-                    submitEnd();
-                }
-            });
+            }
 
             layer.close(index);
         });
@@ -418,29 +356,97 @@ $(document).ready(function () {
 
     //取消事件
     function resetClick(){
+        //   var catalogName =$('#catalog div ul li div span').html();
+        //   $('#catalog div ul li form.form-horizontal').find("input[type='text']").val(catalogName);
         $('#catalog div ul li form.form-horizontal').addClass("hidden");
         $('#catalog div ul li div').removeClass("hidden");
     }
+
+
     //确认事件
     function sureClick(e){
         //  alert($(e).prev().find("input[type='text']"));
         var catalog_name= $(e).prev().find("input[type='text']").val();
+        var catalog_name_url=$(e).prev().find("input[type='text']").data("url");
+        if($(e).parent().parent().next().find("span").length>0){
+            if(catalog_name==""){
+                layer.alert("请输入文章分类名称",{title:"提示",icon:0},function(index){
+                    $(e).prev().find("input[type='text']").focus();
+                    layer.close(index);
+                });
 
-        if($(e).parent().parent().next().find("span").length>0&&catalog_name==""){
-            layer.alert("请输入文章分类名称",{title:"提示",icon:0},function(index){
-                $(e).prev().find("input[type='text']").focus();
-                layer.close(index);
-            });
+                $("#catalog_new form").removeClass("hidden");
+                return ;
+            }else{
+            	var catalog_name1=$(e).parent().parent().next().find("span").html();
+            	if(catalog_name1==catalog_name){
+            	  resetClick();
+            	  return false;
+            	}
+            	if(strlen(catalog_name)>12){
+            	  layer.alert("对不起，您的分类名称不能超过12个字母/6个汉字!",{icon:5});
+                    return false;
+            	}
+                catalog_name_url+="&catalogName="+catalog_name;
+                check(catalog_name_url,"");
+                var b= $.cookie("flag");
+                if(flag){
+                    layer.alert("您输入的分类名称与其他的重复，请检查后重新输入!",{icon:5});
+                    return false;
+                }
+                var form_e=$(e).parent().parent();
 
-            $("#catalog_new form").removeClass("hidden");
-            return ;
+                var url = $(form_e).attr('action');
+                var arr = $(form_e).serializeArray();
+
+                var data_str = $.param(arr);
+                check(url,data_str)
+                var a= $.cookie("flag");
+                if(flag){
+                    layer.msg('更新成功！', {icon: 1,time:1000});
+                    $(e).parent().parent().next().find("span").html(catalog_name);
+                    resetClick();
+                    return false;
+                }else{
+                    layer.msg("信息更新失败！",{icon: 2,time:1000});
+                    return false;
+                }
+                /* $.ajax({
+                 url:url,
+                 type:"POST",
+                 data:data_str,
+                 dataType:"json",
+                 beforeSend: function () {
+                 submitStart();
+                 },
+
+                 success: function (data) {
+                 if(data["statusFlag"]==-1){
+                 layer.msg("信息更新失败！",{icon: 2,time:1000});
+                 return false;
+                 }else if(data["statusFlag"]==1){
+                 layer.msg('更新成功！', {icon: 1,time:1000});
+                 $(e).parent().parent().next().find("span").html(data["catalogName"]);
+                 resetClick();
+
+                 }
+
+                 },
+
+                 error: function (XMLHttpRequest, textStatus, errorThrown) {
+                 submitFail(textStatus || errorThrown);
+                 return false;
+                 },
+
+                 complete: function () {
+                 submitEnd();
+                 }
+
+                 });*/
+
+            }
         }
-        var form_e=$(e).parent().parent();
-        var flag=form_submit(form_e);
-        if(flag) {
-            $(e).parent().parent().next().find("span").html(catalog_name);
-            resetClick();
-        }
+        return false;
     }
 
 //添加分类
@@ -450,6 +456,7 @@ $(document).ready(function () {
     });
     //添加取消
     $("#catalog_new form").find("input[name='reset']").click(function(){
+        $("#catalog_new form").find("input[type='text']").val("");
         $("#catalog_new").addClass("hidden");
     });
     //添加确认
@@ -464,9 +471,61 @@ $(document).ready(function () {
             });
             return false;
         }
+        if(strlen(catalog_name)>12){
+            	  layer.alert("对不起，您的分类名称不能超过12个字母/6个汉字!",{icon:5});
+                    return false;
+         }
+        var catalog_name_url=$(this).find("input[type='text']").data("url");
+        var catalog_name_data="catalogName="+catalog_name;
+        check(catalog_name_url,catalog_name_data);
+        var b= $.cookie("flag");
+        if(flag){
+            layer.alert("您输入的分类名称与其他的重复，请检查后重新输入!",{icon:5});
+            return false;
+        }
         var url = $(this).attr('action');
         var arr = $(this).serializeArray();
         var data_str = $.param(arr);
+        /*check(url,data_str)
+         var a= $.cookie("flag");
+         if(a=="true"){
+         layer.msg('添加成功！', {icon: 1,time:1000});
+         catalog_name=data["catalogName"];
+         var catalog_id=data["catalogId"];
+         url+="?catalogId="+catalog_id;
+         var item_html = "<li class='list-group-item' id='" + catalog_id + "'><form  class='form-horizontal hidden' action='"+url+"' ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value='" + catalog_name + "'></div> <input type='button' name='sure' class='btn btn-info' value='确定' /> &nbsp;&nbsp;<input type='button' name='reset' class='btn btn-info' value='取消'/></div></form>"
+         + "<div><span>" + catalog_name + "</span>" + "<a class='pull-right' title='delete' href='javascript:;' data-url'"+url+"&status=delete'  >删除</a>&nbsp;&nbsp;<a class='pull-right' href='javascript:;'  title='edite' >编辑</a>" + "</div></li>";
+         $("#catalog_new").before(item_html);
+         //目录删除
+         $("#catalog div ul.list-group li div").find("a[title='delete']").click(function(){
+
+         deleteClick(this);
+         resetClick()
+         return false;
+         });
+         //目录编辑
+         $("#catalog div ul.list-group li div").find("a[title='edite']").click(function(){
+         resetClick();
+         editeClick(this);
+         return false;
+         });
+         //取消按钮
+         $("#catalog div ul.list-group li form").find("input[name='reset']").click(function(){
+         resetClick();
+         return false;
+         });
+         //确认按钮
+         $("#catalog div ul.list-group li form").find("input[name='sure']").click(function(){
+         sureClick(this);
+         return false;
+         });
+         $("#catalog_new form").find("input[type='text']").val("");
+         $("#catalog_new").addClass("hidden");
+         return false;
+         }else{
+         layer.msg("信息添加失败！",{icon: 2,time:1000});
+         return false;
+         }*/
         $.ajax({
             url:url,
             type:"POST",
@@ -478,34 +537,44 @@ $(document).ready(function () {
 
             success: function (data) {
                 if(data["statusFlag"]==-1){
-                    layer.msg("信息添加失败！",{icon: 2});
+                    layer.msg("信息添加失败！",{icon: 2,time:1000});
                     return false;
                 }else if(data["statusFlag"]==1){
-                    layer.msg('添加成功！', {icon: 1});
+                    layer.msg('添加成功！', {icon: 1,time:1000});
                     catalog_name=data["catalogName"];
                     var catalog_id=data["catalogId"];
-                    url+="?catalogId="+catalog_id;
-                    var item_html = "<li class='list-group-item' id='" + catalog_id + "'><form  class='form-horizontal hidden' action='"+url+"' ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value='" + catalog_name + "'></div> <input type='button' name='sure' class='btn btn-info' value='确定' /> &nbsp;&nbsp;<input type='button' name='reset' class='btn btn-info' value='取消'/></div></form>"
+                    //分类名验证链接
+                    var url2=url+"&catalogName="+catalog_name;
+                    url+="&catalogId="+catalog_id;
+                    var item_html = "<li class='list-group-item' id='" + catalog_id + "'><form  class='form-horizontal hidden' action='"+url+"' ><div class='form-group'><div class='col-sm-5'><input type='text' name='catalogName' data-url='"+catalog_name_url+"' class='form-control' value='" + catalog_name + "'></div> <input type='button' name='sure' class='btn btn-info' value='确定' /> &nbsp;&nbsp;<input type='button' name='reset' class='btn btn-info' value='取消'/></div></form>"
                         + "<div><span>" + catalog_name + "</span>" + "<a class='pull-right' title='delete' href='javascript:;' data-url'"+url+"&status=delete'  >删除</a>&nbsp;&nbsp;<a class='pull-right' href='javascript:;'  title='edite' >编辑</a>" + "</div></li>";
                     $("#catalog_new").before(item_html);
                     //目录删除
-                    $("#catalog div ul.list-group li div").find("a[title='delete']").click(function () {
+                    //目录删除
+                    $("#catalog div ul.list-group li div").find("a[title='delete']").click(function(){
 
                         deleteClick(this);
                         resetClick()
                     });
                     //目录编辑
-                    $("#catalog div ul.list-group li div").find("a[title='edite']").click(function () {
+                    $("#catalog div ul.list-group li div").find("a[title='edite']").click(function(){
                         resetClick();
                         editeClick(this);
                     });
                     //取消按钮
-                    $("#catalog div ul.list-group li form").find("input[name='reset']").click(function () {
+                    $("#catalog div ul.list-group li form").find("input[name='reset']").click(function(){
+                        var catalogName= $(e).parent().parent().next().find("span").html();
+                        $(e).parent().parent().find("input[type='text']").val(catalogName);
                         resetClick();
                     });
                     //确认按钮
-                    $("#catalog div ul.list-group li form").find("input[name='sure']").click(function () {
-                        sureClick(this)
+                    $("#catalog div ul.list-group li form").find("input[name='sure']").click(function(){
+                       /* if(checkName()=="flase"){
+                            layer.alert("您输入的分类名称与其他的重复，请检查后重新输入！",{icon:5});
+                            return false;
+                        }*/
+                        sureClick(this);
+                        return false;
                     });
                     $("#catalog_new form").find("input[type='text']").val("");
                     $("#catalog_new").addClass("hidden");
@@ -524,5 +593,55 @@ $(document).ready(function () {
         });
         return false;
     });
+var flag;
+    function check(url,data_str){
+        var a=false;
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data_str,
+            dataType:"json",
+            async: false,
+            beforeSend: function () {
+                submitStart();
+            },
+
+            success: function (data) {
+                if(data["statusFlag"]==-1){
+                    $.cookie("flag","false");  
+                    flag=false;
+                }else if(data["statusFlag"]==1){
+                    $.cookie("flag","true");
+                    flag=true;
+                }
+            },
+
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                submitFail(textStatus || errorThrown);
+                a=false;
+            },
+
+            complete: function () {
+                submitEnd();
+            }
+
+        });
+        return a;
+    }
+    
+    function strlen(str){
+    var len = 0;
+    for (var i=0; i<str.length; i++) { 
+     var c = str.charCodeAt(i); 
+    //单字节加1 
+     if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+       len++; 
+     } 
+     else { 
+      len+=2; 
+     } 
+    } 
+    return len;
+}
 
 });

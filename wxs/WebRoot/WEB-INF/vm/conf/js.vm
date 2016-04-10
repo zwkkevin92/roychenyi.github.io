@@ -17,3 +17,5 @@
 ##wangEditor
 #set($JwangEditor="<script src='$link.getContextURL()/js/plugins/wangEditor/wangEditor.min.js'></script>")
 #set($Jeditor="<script src='$link.getContextURL()/js/plugins/wangEditor/edite.js'></script>")
+##cookie
+#set($Jcookie="<script src='$link.getContextURL()/js/plugins/cookie/jquery.cookie.js'></script>")

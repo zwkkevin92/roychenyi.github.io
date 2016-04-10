@@ -35,6 +35,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     /**
      * 通过分类名字获取分类
      */
+    @Override
     public DCatalogDto getDCatalog(DCatalogDto dCatalogDto){
     	return dCatalogDao.getDCatalog(dCatalogDto);
     }

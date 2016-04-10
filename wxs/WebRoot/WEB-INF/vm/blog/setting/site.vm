@@ -1,7 +1,7 @@
 #set($layout = "layout/index.vm")
 #set($page_title="空间设置-"+$user.nickname)
 #parse("conf/js.vm")
-#set($extjs=$Jsetting+$Jlayer)
+#set($extjs=$Jsetting+$Jlayer+$Jcookie)
 
 <div class="row"> 
     <div class="col-md-4">
@@ -102,7 +102,7 @@
 										<li class="list-group-item" id="$catalog.catalogId">个人日记(此分类不支持编辑及删除)</li>
 									#else
 										<li class="list-group-item" id="$catalog.catalogId">
-                                    <form  class="form-horizontal hidden" action="$link.getContextURL()/$user.nickname/set/setCatalog?UUserDto.userId=$user.userId&catalogId=$catalog.catalogId" ><div class='form-group'><div class='col-sm-5'><input type='text' class='form-control' value="$catalog.catalogName"></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
+                                    <form  class="form-horizontal hidden" action="$link.getContextURL()/$user.nickname/set/setCatalog?UUserDto.userId=$user.userId&catalogId=$catalog.catalogId" ><div class='form-group'><div class='col-sm-5'><input type='text' name='catalogName' data-url='$link.getContextURL()/$user.nickname/set/checkCatalog?UUserDto.userId=$user.userId' class='form-control' value="$catalog.catalogName"></div> <input type="button" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
 
                                     <div class=""><span>$catalog.catalogName</span><a class="pull-right" title="delete" href="javascript:;" data-url="$link.getContextURL()/$user.nickname/set/setCatalog?UUserDto.userId=$user.userId&catalogId=$catalog.catalogId&status=delete"  >删除</a>&nbsp;&nbsp;<a class="pull-right" href="javascript:;"  title="edite" >编辑</a>
                                     </div>
@@ -111,8 +111,8 @@
 								#end
                                  
                                    <li class="list-group-item hidden" id="catalog_new" >
-                                       <form  class="form-horizontal" action="$link.getContextURL()/$user.nickname/set/setCatalog?UUserDto.userId=$user.userId" ><div class='form-group'><div class='col-sm-5'><input type='text' name='catalogName' class='form-control' value=''></div> <input type="submit" name='sure' class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
-                                   </li>
+                                     <form  class="form-horizontal" action="$link.getContextURL()/$user.nickname/set/setCatalog?UUserDto.userId=$user.userId" ><div class='form-group'><div class='col-sm-5'><input type='text' name='catalogName' data-url='$link.getContextURL()/$user.nickname/set/checkCatalog?UUserDto.userId=$user.userId' class='form-control' value=''></div> <input type="submit"  class='btn btn-info' value="确定" /> &nbsp;&nbsp;<input type="button" name='reset' class='btn btn-info' value="取消"/></div></form>
+									</li>
                                </ul>
                                 <a id="catalog_add" class="text-danger" href="javascript:;">添加分类</a>
                                 <p><p>

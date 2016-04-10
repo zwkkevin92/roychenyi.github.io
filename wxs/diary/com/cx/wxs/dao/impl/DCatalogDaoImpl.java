@@ -54,7 +54,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
 		}
 		return null;
 	}
-	
+	@Override
 	public DCatalogDto getDCatalog(DCatalogDto dCatalogDto){
 		// TODO Auto-generated method stub
 
@@ -134,7 +134,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
 			String[] fl = new String[]{"uid"};//过滤掉的字段
 			Map<String, Object> map = dCatalogDto.createSetPropertiesVal(dCatalogDto, "a", fl);
 			Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-			stringBuffer.append(" form "+DCatalog.class.getName()+" a");
+			stringBuffer.append(" from "+DCatalog.class.getName()+" a");
 			stringBuffer.append(map.get(StringUtils.SET_HQL));
 			stringBuffer.append(" where a.catalogId=:uid");
 			params.put("uid",dCatalogDto.getCatalogId());

@@ -135,13 +135,13 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 	           Map<String, Object> params = new HashMap<String, Object>();
 	           stringBuffer.append(" from "+DDiary.class.getName()+" a");
 	           //移动后的目录
-	           stringBuffer.append(" set a.DCatalog.catalogId:catalogId1");
+	           stringBuffer.append(" set a.DCatalog.catalogId=:catalogId1");
 	           params.put("catalogId1",catalogDto.getCatalogId());
 	           //移动前的目录
-	           stringBuffer.append(" where a.DCatalog.catalogId:catalogId2");
+	           stringBuffer.append(" where a.DCatalog.catalogId=:catalogId2");
 	           params.put("catalogId2",catalogDto.getCatalogId());
 	           //日志所属作者
-	           stringBuffer.append(" and a.UUser.userId:userId");
+	           stringBuffer.append(" and a.UUser.userId=:userId");
 	           params.put("userId",diaryDto.getUUserDto().getUserId());
 	           if(diaryDto.getDiaryId()!=null){
 	           stringBuffer.append(" and a.diaryId=:uid");

@@ -22,6 +22,7 @@ import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.GlobalContext;
 import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
+import com.cx.wxs.utils.clientInfo;
 
 /**
  * @author 陈义
@@ -88,6 +89,14 @@ public class SessionFilter extends OncePerRequestFilter {
 	          } 
 		System.out.println("进入Filter.....");
 		System.out.println(request.getRequestURI());
+		String ip=clientInfo.getIpAddr(request);
+		String clientAgent=clientInfo.getAgent(request);
+		boolean isMoblie=clientInfo.isMoblie(request);
+		short clientType=(short) (isMoblie?0:1);
+		request.setAttribute("ip", ip);
+		request.setAttribute("clientIp", ip);
+		request.setAttribute("clientAgent", clientAgent);
+		request.setAttribute("clientType", clientType);
 		//获取userid
 		Cookie cookie=RequestUtils.getCookie(request, "user");
 		HttpSession session=request.getSession();
@@ -108,6 +117,11 @@ public class SessionFilter extends OncePerRequestFilter {
 			session.setAttribute("user", user);
 		}
 		userDto=(UUserDto) session.getAttribute("user");
+		if(userDto!=null){
+			request.setAttribute("uid", userDto.getUserId());
+		}
+		
+		System.out.println("uid:"+request.getAttribute("uid")); 
 		if(userDto!=null&&(url.contains("login")||url.contains("register"))){
 			request.getSession().setAttribute("goUrl", request.getRequestURL()+"?"+request.getQueryString());
             //跳转到login.jsp

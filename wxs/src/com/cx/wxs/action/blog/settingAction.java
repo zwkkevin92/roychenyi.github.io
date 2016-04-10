@@ -50,67 +50,7 @@ public class settingAction extends BaseAction{
 	@Resource
 	private DDiaryService diaryService;
 	
-//	/**
-//	 * @return the dCatalogService
-//	 */
-//	public DCatalogService getdCatalogService() {
-//		return dCatalogService;
-//	}
-//	/**
-//	 * @param dCatalogService the dCatalogService to set
-//	 */
-//	public void setdCatalogService(DCatalogService dCatalogService) {
-//		this.dCatalogService = dCatalogService;
-//	}
-	/**
-	 * @return the bConfigService
-	 */
-//	public BConfigService getbConfigService() {
-//		return bConfigService;
-//	}
-//	/**
-//	 * @param bConfigService the bConfigService to set
-//	 */
-//	public void setbConfigService(BConfigService bConfigService) {
-//		this.bConfigService = bConfigService;
-//	}
-	/**
-	 * @return the bSiteService
-	 */
-	public BSiteService getbSiteService() {
-		return bSiteService;
-	}
-	/**
-	 * @param bSiteService the bSiteService to set
-	 */
-	public void setbSiteService(BSiteService bSiteService) {
-		this.bSiteService = bSiteService;
-	}
-	/**
-	 * @return the uUserService
-	 */
-	public UUserService getuUserService() {
-		return uUserService;
-	}
-	/**
-	 * @param uUserService the uUserService to set
-	 */
-	public void setuUserService(UUserService uUserService) {
-		this.uUserService = uUserService;
-	}
-	
-	/**
-	 * @return the uSignService
-	 */
-	public USignService getuSignService() {
-		return uSignService;
-	}
-	/**
-	 * @param uSignService the uSignService to set
-	 */
-	public void setuSignService(USignService uSignService) {
-		this.uSignService = uSignService;
-	}
+
 	
 	@RequestMapping(value="/index")
 	public ModelAndView toSettingIndex(@PathVariable("vip") String vip,
@@ -283,19 +223,20 @@ public class settingAction extends BaseAction{
 			DCatalogDto catalogDto2=new DCatalogDto();
 			catalogDto2.setUUserDto(catalogDto.getUUserDto());
 			catalogDto2.setCatalogName("个人日记");
+			catalogDto2=dCatalogService.getDCatalog(catalogDto2);
 			int moveNum= diaryService.diaryMove(diaryDto, catalogDto2);
 			if(dCatalogService.deleteDCatalog(catalogDto)>0){
 				catalogDto.setStatusFlag("1");
 			}else{
-				catalogDto.setStatusFlag("2");
+				catalogDto.setStatusFlag("-1");
 			}
 			return catalogDto;
 		}
 		Date date=new Date();
 		UUserDto userDto=getUserDtoByNickname(vip);
 		catalogDto.setUUserDto(userDto);
-		catalogDto.setCreateTime(new Timestamp(date.getTime()));
 		if(catalogDto.getCatalogId()==null){
+			catalogDto.setCreateTime(new Timestamp(date.getTime()));
 			int catalogId= dCatalogService.addDCatalog(catalogDto);
 			if(catalogId>0){
 				catalogDto.setCatalogId(catalogId);
@@ -309,6 +250,20 @@ public class settingAction extends BaseAction{
 			}else{
 				catalogDto.setStatusFlag("-1");
 			}
+		}
+		return catalogDto;
+	}
+	@RequestMapping(value="/checkCatalog")
+	@ResponseBody
+	public DCatalogDto checkCatalogName(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,DCatalogDto catalogDto){
+		System.out.println(request.getParameter("uid"));
+		catalogDto.setCatalogId(null);
+		catalogDto=dCatalogService.getDCatalog(catalogDto);
+		if(catalogDto!=null){
+			catalogDto.setStatusFlag("1");
+		}else{
+			catalogDto=new DCatalogDto();
+			catalogDto.setStatusFlag("-1");
 		}
 		return catalogDto;
 	}
