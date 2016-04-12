@@ -1,6 +1,8 @@
 package com.cx.wxs.filter;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -19,6 +21,7 @@ import com.cx.wxs.dao.UUserDao;
 import com.cx.wxs.dao.impl.UUserDaoImpl;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.UUserService;
+import com.cx.wxs.servlet.MyRequestWrapper;
 import com.cx.wxs.utils.GlobalContext;
 import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
@@ -121,7 +124,7 @@ public class SessionFilter extends OncePerRequestFilter {
 			request.setAttribute("uid", userDto.getUserId());
 		}
 		
-		System.out.println("uid:"+request.getAttribute("uid")); 
+		
 		if(userDto!=null&&(url.contains("login")||url.contains("register"))){
 			request.getSession().setAttribute("goUrl", request.getRequestURL()+"?"+request.getQueryString());
             //跳转到login.jsp
@@ -131,7 +134,17 @@ public class SessionFilter extends OncePerRequestFilter {
 			
 			response.sendRedirect(request.getContextPath());
 		}
-		filterchain.doFilter(request, response); 
+		Map<String,String[]> m = new HashMap<String,String[]>(request.getParameterMap());  
+		if(userDto!=null){
+		m.put("uid", new String[]{""+userDto.getUserId()});  
+		}
+		m.put("ip",new String[]{ip});
+		m.put("clientIp",new String[]{ip});
+		m.put("clientAgent",new String[]{clientAgent});
+		m.put("clientType",new String[]{clientType+""});
+		//request=new MyRequestWrapper(request,m);
+	   // System.out.println(request.getParameter("ip")+request.getParameter("catalogName"));
+		filterchain.doFilter(new MyRequestWrapper(request,m), response); 
 	}
 	
 	 

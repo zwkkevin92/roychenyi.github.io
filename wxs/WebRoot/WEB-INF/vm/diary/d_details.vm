@@ -1,0 +1,10 @@
+#set($layout = "layout/user/l_user.vm")
+#set($page_title=$diary.title+"-"+$user.nickname)
+
+<!--日志预览-->
+ <div class="ibox">
+	<div class="ibox-content">
+		<div><a><h2 class="text-center">$diary.title</h2></a><div class="pulll_right">上一篇$prev_diary.title|$next_diary.title</div></div>
+		$diary.content
+	</div>
+	</div>

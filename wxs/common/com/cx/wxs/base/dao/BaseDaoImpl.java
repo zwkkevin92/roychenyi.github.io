@@ -531,6 +531,8 @@ public class BaseDaoImpl<T extends Serializable,PK extends Serializable> impleme
 	@Override
 	public T get(String hql) {
 		Query query = this.getCurrentSession().createQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(1);
 		List<T> list = query.list();
 		if(list!=null&&list.size()>0){
 			return list.get(0);
@@ -550,6 +552,8 @@ public class BaseDaoImpl<T extends Serializable,PK extends Serializable> impleme
 				}
 			}
 		}
+		query.setFirstResult(0);
+		query.setMaxResults(1);
 		List<T> l = query.list();
 		if (l != null && l.size() > 0) {
 			return l.get(0);

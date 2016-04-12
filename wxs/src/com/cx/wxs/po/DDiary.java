@@ -25,12 +25,14 @@ public class DDiary implements java.io.Serializable {
 	// Fields
 
 	private Integer diaryId;
+	private SysType sysType;
 	private UUser UUser;
 	private BSite BSite;
 	private DCatalog DCatalog;
 	private String title;
 	private String content;
-	private Integer drarySize;
+	private String txt;
+	private Integer diarySize;
 	private Integer replyCount;
 	private Integer viewCount;
 	private Short clientType;
@@ -74,22 +76,24 @@ public class DDiary implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DDiary(UUser UUser, BSite BSite, DCatalog DCatalog, String title,
-			String content, Integer drarySize, Integer replyCount,
-			Integer viewCount, Short clientType, String clientIp,
-			String clientAgent, Timestamp writeTime, Timestamp lastReadTime,
-			Timestamp lastReplyTime, Timestamp modifyTime, Short replyNotify,
-			Short moodLevel, Short locked, Short contribute, Short role,
-			String tag, Integer annexId, Integer ext1, Integer ext2,
-			Integer ext3, Integer ext4, Set<DAnnex> DAnnexes,
-			Set<DUpvote> DUpvotes, Set<DAccess> DAccesses,
-			Set<DReply1> DReply1s, Set<BTag> BTags) {
+	public DDiary(SysType sysType, UUser UUser, BSite BSite, DCatalog DCatalog,
+			String title, String content, String txt, Integer diarySize,
+			Integer replyCount, Integer viewCount, Short clientType,
+			String clientIp, String clientAgent, Timestamp writeTime,
+			Timestamp lastReadTime, Timestamp lastReplyTime,
+			Timestamp modifyTime, Short replyNotify, Short moodLevel,
+			Short locked, Short contribute, Short role, String tag,
+			Integer annexId, Integer ext1, Integer ext2, Integer ext3,
+			Integer ext4, Set<DAnnex> DAnnexes, Set<DUpvote> DUpvotes,
+			Set<DAccess> DAccesses, Set<DReply1> DReply1s, Set<BTag> BTags) {
+		this.sysType = sysType;
 		this.UUser = UUser;
 		this.BSite = BSite;
 		this.DCatalog = DCatalog;
 		this.title = title;
 		this.content = content;
-		this.drarySize = drarySize;
+		this.txt = txt;
+		this.diarySize = diarySize;
 		this.replyCount = replyCount;
 		this.viewCount = viewCount;
 		this.clientType = clientType;
@@ -130,6 +134,16 @@ public class DDiary implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id")
+	public SysType getSysType() {
+		return this.sysType;
+	}
+
+	public void setSysType(SysType sysType) {
+		this.sysType = sysType;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	public UUser getUUser() {
 		return this.UUser;
@@ -140,7 +154,7 @@ public class DDiary implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "site_id", nullable = false)
+	@JoinColumn(name = "site_id")
 	public BSite getBSite() {
 		return this.BSite;
 	}
@@ -177,13 +191,22 @@ public class DDiary implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "drary_size")
-	public Integer getDrarySize() {
-		return this.drarySize;
+	@Column(name = "txt", length = 65535)
+	public String getTxt() {
+		return this.txt;
 	}
 
-	public void setDrarySize(Integer drarySize) {
-		this.drarySize = drarySize;
+	public void setTxt(String txt) {
+		this.txt = txt;
+	}
+
+	@Column(name = "diary_size")
+	public Integer getDiarySize() {
+		return this.diarySize;
+	}
+
+	public void setDiarySize(Integer diarySize) {
+		this.diarySize = diarySize;
 	}
 
 	@Column(name = "reply_count")

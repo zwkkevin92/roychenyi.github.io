@@ -96,10 +96,25 @@ $(document).ready(function () {
     })
 
 
-    $("[data-toggle=popover]")
-        .popover();
+    $("[data-toggle=popover]").popover();
+    //关闭点击触发导航栏下拉，实现鼠标移入触发
+    $(document).off('click.bs.dropdown.data-api');
+    dropdownOpen();
 });
 
+/**
+ * 鼠标划过就展开子菜单，免得需要点击才能展开
+ */
+function dropdownOpen() {
+
+	var $dropdownLi = $('li.dropdown');
+
+	$dropdownLi.mouseover(function() {
+		$(this).addClass('open');
+	}).mouseout(function() {
+		$(this).removeClass('open');
+	});
+}
 
 // For demo purpose - animation css script
 function animationHover(element, animation){
@@ -163,4 +178,17 @@ function WinMove() {
         })
         .disableSelection();
 };
+
+//提交开始
+    function submitStart() {
+        layer.load();
+    }
+    //提交结束
+    function submitEnd(){
+        layer.closeAll('loading')
+    }
+    //提交失败
+    function submitFail(msg){
+        layer.alert(msg);
+    }
 

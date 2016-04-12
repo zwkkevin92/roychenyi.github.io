@@ -95,7 +95,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dDiaryDto.createSetPropertiesVal(dDiaryDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+DDiary.class.getName()+" a");
+           stringBuffer.append(" from "+DDiary.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.diaryId=:uid");
            params.put("uid",dDiaryDto.getDiaryId());
@@ -148,6 +148,41 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 	           params.put("uid",diaryDto.getDiaryId());
 	           }
 	           return this.executeHql(stringBuffer.toString(),params);
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DDiaryDao#getCurrentDiarys(com.cx.wxs.dto.DDiaryDto)
+	 */
+	@Override
+	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
+		// TODO Auto-generated method stub
+		if(diaryDto!=null&&diaryDto.getDiaryId()!=null){
+		List<DDiaryDto> list=new ArrayList<DDiaryDto>();
+		DDiary diary1=this.findByFK(diaryDto.getDiaryId());
+		DDiary diary2=new DDiary();
+		DDiary diary3=new DDiary();
+		StringBuffer stringBuffer=new StringBuffer(" from "+DDiary.class.getName()+"  a ");
+		Map<String,Object> params=new HashMap<String, Object>();
+        params.put("id",diaryDto.getDiaryId());
+        params.put("userId",diaryDto.getUUserDto().getUserId());
+		String hql1=stringBuffer.toString()+" where a.diaryId<:id and a.UUser.userId=:userId order by diaryId desc ";
+		diary2=this.get(hql1, params);
+		String hql2=stringBuffer.toString()+" where a.diaryId>:id and a.UUser.userId=:userId  ";
+		diary3=this.get(hql2,params);
+		list.add(beanToDto.T1ToD1(diary1, new DDiaryDto()));
+		if(diary2!=null){
+		list.add(beanToDto.T1ToD1(diary2, new DDiaryDto()));
+		}else{
+			list.add(new DDiaryDto());
+		}
+		if(diary3!=null){
+		list.add(beanToDto.T1ToD1(diary3, new DDiaryDto()));
+		}else{
+			list.add(new DDiaryDto());
+		}
+		return list;
 		}
 		return null;
 	}

@@ -3,21 +3,24 @@ package com.cx.wxs.dto;
 import com.cx.wxs.base.BeanBase;
 import java.sql.Timestamp;
 
+import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.dto.BSiteDto;
 import com.cx.wxs.dto.DCatalogDto;
 /**
  * @author 陈义
- * @date 2015-12-09 22:36:38
+ * @date 2016-04-11 17:04:44
  */
 public class DDiaryDto extends BeanBase{
     private Integer diaryId;
+    private SysTypeDto sysTypeDto;
     private UUserDto UUserDto;
     private BSiteDto BSiteDto;
     private DCatalogDto DCatalogDto;
     private String title;
     private String content;
-    private Integer drarySize;
+    private String txt;
+    private Integer diarySize;
     private Integer replyCount;
     private Integer viewCount;
     private Short clientType;
@@ -45,14 +48,16 @@ public class DDiaryDto extends BeanBase{
     }
 
     /** full constructor */
-    public DDiaryDto(Integer diaryId,UUserDto UUserDto,BSiteDto BSiteDto,DCatalogDto DCatalogDto,String title,String content,Integer drarySize,Integer replyCount,Integer viewCount,Short clientType,String clientIp,String clientAgent,Timestamp writeTime,Timestamp lastReadTime,Timestamp lastReplyTime,Timestamp modifyTime,Short replyNotify,Short moodLevel,Short locked,Short contribute,Short role,String tag,Integer annexId,Integer ext1,Integer ext2,Integer ext3,Integer ext4){super();
+    public DDiaryDto(Integer diaryId,SysTypeDto sysTypeDto,UUserDto UUserDto,BSiteDto BSiteDto,DCatalogDto DCatalogDto,String title,String content,String txt,Integer diarySize,Integer replyCount,Integer viewCount,Short clientType,String clientIp,String clientAgent,Timestamp writeTime,Timestamp lastReadTime,Timestamp lastReplyTime,Timestamp modifyTime,Short replyNotify,Short moodLevel,Short locked,Short contribute,Short role,String tag,Integer annexId,Integer ext1,Integer ext2,Integer ext3,Integer ext4){super();
         this.diaryId=diaryId;
+        this.sysTypeDto=sysTypeDto;
         this.UUserDto=UUserDto;
         this.BSiteDto=BSiteDto;
         this.DCatalogDto=DCatalogDto;
         this.title=title;
         this.content=content;
-        this.drarySize=drarySize;
+        this.txt=txt;
+        this.diarySize=diarySize;
         this.replyCount=replyCount;
         this.viewCount=viewCount;
         this.clientType=clientType;
@@ -74,11 +79,19 @@ public class DDiaryDto extends BeanBase{
         this.ext3=ext3;
         this.ext4=ext4;
     }
+
     public Integer getDiaryId(){
         return diaryId;
     }
     public void setDiaryId(Integer diaryId){
         this.diaryId=diaryId;
+    }
+
+    public SysTypeDto getSysTypeDto(){
+        return sysTypeDto;
+    }
+    public void setSysTypeDto(SysTypeDto sysTypeDto){
+        this.sysTypeDto=sysTypeDto;
     }
 
     public UUserDto getUUserDto(){
@@ -116,11 +129,18 @@ public class DDiaryDto extends BeanBase{
         this.content=content;
     }
 
-    public Integer getDrarySize(){
-        return drarySize;
+    public String getTxt(){
+        return txt;
     }
-    public void setDrarySize(Integer drarySize){
-        this.drarySize=drarySize;
+    public void setTxt(String txt){
+        this.txt=txt;
+    }
+
+    public Integer getDiarySize(){
+        return diarySize;
+    }
+    public void setDiarySize(Integer diarySize){
+        this.diarySize=diarySize;
     }
 
     public Integer getReplyCount(){

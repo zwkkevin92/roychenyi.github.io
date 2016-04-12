@@ -46,7 +46,23 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDDiary(DDiaryDto dDiaryDto);
-    
+    /**
+     * 移动日志的目录
+     * @param diaryDto
+     * @param catalogDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-12下午4:22:37
+     */
     public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto);
+
+    /***
+     * 获取当前的日志及前后两篇日志
+     * @param diaryDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-12下午4:23:58
+     */
+    public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto);
 
 }

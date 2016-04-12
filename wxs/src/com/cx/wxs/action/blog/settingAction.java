@@ -256,7 +256,7 @@ public class settingAction extends BaseAction{
 	@RequestMapping(value="/checkCatalog")
 	@ResponseBody
 	public DCatalogDto checkCatalogName(@PathVariable("vip") String vip,HttpServletRequest request,HttpServletResponse response,DCatalogDto catalogDto){
-		System.out.println(request.getParameter("uid"));
+		System.out.println("ip="+request.getParameter("uid"));
 		catalogDto.setCatalogId(null);
 		catalogDto=dCatalogService.getDCatalog(catalogDto);
 		if(catalogDto!=null){

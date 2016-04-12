@@ -83,4 +83,13 @@ public class DDiaryServiceImpl implements DDiaryService {
 		return dDiaryDao.diaryMove(diaryDto,catalogDto);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DDiaryService#getCurrentDiarys(com.cx.wxs.dto.DDiaryDto)
+	 */
+	@Override
+	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
+		// TODO Auto-generated method stub
+		return dDiaryDao.getCurrentDiarys(diaryDto);
+	}
+
 }

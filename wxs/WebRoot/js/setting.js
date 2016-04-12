@@ -234,18 +234,7 @@ $(document).ready(function () {
         this.$default_info_form=$('#default_info_form');
         form_submit(this.$default_info_form);
     });
-//提交开始
-    function submitStart() {
-        layer.load();
-    }
-    //提交结束
-    function submitEnd(){
-        layer.closeAll('loading')
-    }
-    //提交失败
-    function submitFail(msg){
-        layer.alert(msg);
-    }
+
     //表单提交
     function form_submit(e){
         var url = $(e).attr('action');

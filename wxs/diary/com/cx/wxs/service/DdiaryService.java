@@ -52,6 +52,14 @@ public interface DDiaryService {
      * @date   2016-4-9下午9:36:06
      */
     public Integer diaryMove(DDiaryDto diaryDto,DCatalogDto catalogDto);
+    /***
+     * 获取当前的日志和前后两篇日志
+     * @param diaryDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-12下午4:53:25
+     */
+    public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto);
     
     
 

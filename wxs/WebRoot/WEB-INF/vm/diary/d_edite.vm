@@ -2,42 +2,55 @@
 #set($page_title="文字编写-"+"$user.nickname")
 
 #parse("conf/js.vm")
-#set($extjs=$JwangEditor+$Jeditor)
+#set($extjs=$JwangEditor+$Jeditor+$Jlayer)
 #parse("conf/css.vm")
 #set($extcss=$CwangEditor)
 
 <!--文字编辑器-->
  <div class="ibox">
-                            <form class="form-group">
+                            <form class="form-horizontal" id="article_add_form" data-url="$link.getContextURL()/$user.nickname/article/details" action="$link.getContextURL()/$user.nickname/article/article_save">
                             <div class="ibox-title">写日志
                             <div class="pull-right">草稿箱|帮助</div>
                             </div>
                             <div class="ibox-content">
                                 <div class="form-group">
-                                    <input type="text" id="text-title" name="text-title" class="form-control" placeholder="文章标题" required=""/>
+                                    <input type="text" id="title" name="title" class="form-control" placeholder="文章标题" required=""/>
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" name="textarea" id="textarea"/>
                                     <div id="textarea1" style="height:400px;max-height:500px;">
-                                        <p>测试，加载编辑框</p>
+                                        
                                     </div>
+                                </div>
+								<div class="form-group">
+                                   
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="contribute" #if($contribute.value==0) value="0" #else value="1" checked #end >
+                                        <span>允许投稿到我的社团和首页</span>
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     分类：
-                                    <select  name="textCatalog">
-                                        <option>个人日记</option>
+                                    <select  name="DCatalogDto.catalogId">
+										#foreach($catalog in $catalogList)
+											 <option value="$catalog.catalogId">$catalog.catalogName</option>
+										#end
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input  type="radio" name="textType"/>小说
-                                    <input type="radio" name="textType"/>散文
-                                    <input type="radio" name="textType"/>诗歌
-                                    <input type="radio"   name="textType"/>随笔
-                                    <input type="radio" name="textType"/>杂文
+									文章类型：
+									<select name="sysTypeDto.typeId">
+										<option ></option>
+                                    #foreach($sysType in $sysTypeList)
+                                        <option value="$sysType.typeId">$sysType.name</option>
+									#end
+                                    </select>
+									（请选择文章类型，这样便于系统更好的把您的文章分类）
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-primary" onclick="testText()">发布</button>
+                                    <button type="submit" class="btn btn-primary" onclick="testText()">发布</button>
                                    &nbsp; <button type="button" class="btn btn-primary" onclick="testText()">存草稿</button>
                                 </div>
                             </div>

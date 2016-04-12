@@ -62,6 +62,25 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
     */
     @Override
     public List<SysTypeDto> getSysTypeList(SysTypeDto sysTypeDto){
+    	if(sysTypeDto!=null){
+    		StringBuffer stringBuffer=new StringBuffer();
+			Map<String,Object> params=new HashMap<String,Object>();
+			stringBuffer.append(" from "+SysType.class.getName()+" a ");
+			stringBuffer.append(" where 1=1 ");
+			if(sysTypeDto.getParentId()!=null){
+			stringBuffer.append(" and a.parentId=:parentId");
+			params.put("parentId", sysTypeDto.getParentId());
+			}
+			List<SysTypeDto> list=new ArrayList<SysTypeDto>();
+			List<SysType> list1=new ArrayList<SysType>();
+			list1=this.find(stringBuffer.toString(),params);
+			for(SysType sysType:list1){
+				SysTypeDto sysTypeDto2=beanToDto.T1ToD1(sysType, new SysTypeDto());
+				list.add(sysTypeDto2);
+			}
+			return list;
+			
+    	}
         return null;
     }
 
@@ -94,7 +113,7 @@ public class SysTypeDaoImpl extends BaseDaoImpl<SysType, Integer> implements Sys
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = sysTypeDto.createSetPropertiesVal(sysTypeDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+SysType.class.getName()+" a");
+           stringBuffer.append(" from "+SysType.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.typeId=:uid");
            params.put("uid",sysTypeDto.getTypeId());

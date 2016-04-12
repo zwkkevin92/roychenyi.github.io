@@ -26,6 +26,7 @@ public class userCookieInterceptor implements HandlerInterceptor {
 			HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("拦截器。。。。。2");
 
 	}
 
@@ -36,6 +37,7 @@ public class userCookieInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 			Object arg2, ModelAndView arg3) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("拦截器。。。。1");
 
 	}
 
