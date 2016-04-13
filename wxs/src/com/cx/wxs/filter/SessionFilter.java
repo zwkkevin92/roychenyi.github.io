@@ -136,7 +136,7 @@ public class SessionFilter extends OncePerRequestFilter {
 		}
 		Map<String,String[]> m = new HashMap<String,String[]>(request.getParameterMap());  
 		if(userDto!=null){
-		m.put("uid", new String[]{""+userDto.getUserId()});  
+		m.put("uid", new String[]{userDto.getUserId().toString()});  
 		}
 		m.put("ip",new String[]{ip});
 		m.put("clientIp",new String[]{ip});
@@ -144,7 +144,11 @@ public class SessionFilter extends OncePerRequestFilter {
 		m.put("clientType",new String[]{clientType+""});
 		//request=new MyRequestWrapper(request,m);
 	   // System.out.println(request.getParameter("ip")+request.getParameter("catalogName"));
-		filterchain.doFilter(new MyRequestWrapper(request,m), response); 
+		if(requestUrl.contains("image")){
+			filterchain.doFilter(request, response);
+		}else{
+		filterchain.doFilter(new MyRequestWrapper(request,m), response);
+		}
 	}
 	
 	 

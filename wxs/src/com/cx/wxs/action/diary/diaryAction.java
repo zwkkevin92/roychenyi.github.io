@@ -138,6 +138,7 @@ public class diaryAction extends BaseAction{
 		diaryDto.setUUserDto(author);
 		List<DDiaryDto> list=diaryService.getCurrentDiarys(diaryDto);
 		//如果访问者和作者不是同一人，那么访问量+1
+		if(userDto!=null){
 		if(!userDto.getUserId().equals(author.getUserId())){
 			if(diaryDto.getViewCount()==null){
 			diaryDto.setViewCount(1);
@@ -147,11 +148,14 @@ public class diaryAction extends BaseAction{
 			diaryService.updateDDiary(diaryDto);			
 		}else{
 			author.setIsUsers(true);
+		}}else{
+			author.setIsUsers(false);
+		
 		}
 		mv.addObject("author", author);
 		mv.addObject("diary",list.get(0));
-		mv.addObject("prev_diary",list.get(1));
-		mv.addObject("next_diary",list.get(2));
+		mv.addObject("prev_diary",list.get(2));
+		mv.addObject("next_diary",list.get(1));
 		return mv;
 	}
 

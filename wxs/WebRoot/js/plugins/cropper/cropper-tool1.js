@@ -262,7 +262,7 @@ $(function () {
 
             success: function (data) {
                 console.log(data);
-                if (data["loginFlag"]==1) {
+                if (data["statusFlag"]==1) {
                     layer.tips("头像更新成功","#upload",{
                         tips:[1],
                         time:3000

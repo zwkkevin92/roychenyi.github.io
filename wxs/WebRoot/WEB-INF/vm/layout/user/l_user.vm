@@ -3,7 +3,7 @@
 #html_doctype()
 <head>
 	#parse("layout/head.vm")
-	#if($author.username==$user.username&&$author.BSiteDto.logo)
+	#if($author.username==$user.username)
 		<link href='$link.getContextURL()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />
 	#end
 </head>
@@ -20,7 +20,7 @@
 							<div>#if($author.username==$user.username) 
 							<div id="face-photo" class="avatar-view"  title="点击更新头像"><img class="img-circle" #if($author.BSiteDto.logo)  src="$link.getContextURL()/$author.BSiteDto.logo" #else src="$link.getContextURL()/images/face.png" #end title="$author.nickname" /></div>	
 						    #else
-								<img class="img-circle" #if($author.BSiteDto.logo)  src="$author.BSiteDto.logo" title="$author.nickname" #else src="images/face.png" #end   style="width: 100px;height: 100px;"/>
+								<img class="img-circle" #if($author.BSiteDto.logo)  src="$link.getContextURL()/$author.BSiteDto.logo" title="$author.nickname" #else src="$link.getContextURL()/images/face.png" #end   style="width: 100px;height: 100px;"/>
 							#end
                             
 							</div>
@@ -58,7 +58,7 @@
 <!-- Custom and plugin javascript -->
 <script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>
 <script src="$link.getContextURL()/js/main.js"></script>
-#if($author.username==$user.username&&$author.BSiteDto.logo)
+#if($author.username==$user.username)
 	<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>
 	<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>
 	#end

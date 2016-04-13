@@ -3018,7 +3018,7 @@ video {
 }
 #page-wrapper {
   padding: 0 15px;
-  min-height: auto;
+  min-height: 568px;
   position: relative !important;
 }
 @media (min-width: 768px) {
@@ -3060,7 +3060,7 @@ ol.unstyled {
   bottom: 0;
   left: 0;
   padding: 10px 20px;
-/*   position: absolute; */
+  /*position: absolute;*/
   right: 0;
 }
 .footer.fixed_full {
@@ -4433,12 +4433,15 @@ dd.project-people {
 .chat-user-name {
   padding: 10px;
 }
-.chat-user {
+.chat-user { 
+  width:100px;
+  height:100px;
+  text-align:center;
   padding: 8px 10px;
   border-bottom: 1px solid #e7eaec;
 }
 .chat-user a {
-  color: inherit;
+  /* color: inherit; */
 }
 .chat-view {
   z-index: 20012;
@@ -4456,9 +4459,10 @@ dd.project-people {
 .chat-view .ibox-content {
   padding: 0;
 }
-.chat-message {
+.chat-message,.chat-message-right {
   padding: 10px 20px;
 }
+
 .message-avatar {
   height: 48px;
   width: 48px;
@@ -4466,11 +4470,11 @@ dd.project-people {
   border-radius: 4px;
   margin-top: 1px;
 }
-.chat-discussion .chat-message:nth-child(2n+1) .message-avatar {
+.chat-discussion .chat-message .message-avatar {
   float: left;
   margin-right: 10px;
 }
-.chat-discussion .chat-message:nth-child(2n) .message-avatar {
+.chat-discussion .chat-message-right .message-avatar {
   float: right;
   margin-left: 10px;
 }
@@ -4483,17 +4487,17 @@ dd.project-people {
   position: relative;
   border-radius: 4px;
 }
-.chat-discussion .chat-message:nth-child(2n+1) .message-date {
+.chat-discussion .chat-message .message-date {
   float: right;
 }
-.chat-discussion .chat-message:nth-child(2n) .message-date {
+.chat-discussion .chat-message-right .message-date {
   float: left;
 }
-.chat-discussion .chat-message:nth-child(2n+1) .message {
+.chat-discussion .chat-message .message {
   text-align: left;
   margin-left: 55px;
 }
-.chat-discussion .chat-message:nth-child(2n) .message {
+.chat-discussion .chat-message-right .message {
   text-align: right;
   margin-right: 55px;
 }
@@ -4505,9 +4509,10 @@ dd.project-people {
   display: block;
 }
 .chat-discussion {
-  background: #eee;
-  padding: 15px;
-  height: 400px;
+  /*background: #eee;*/
+  padding: 10px;
+  padding-left: 0;
+/*  height: 400px;*/
   overflow-y: auto;
 }
 .chat-users {
@@ -4597,6 +4602,7 @@ dd.project-people {
   text-align: center;
   margin: 40px 0 100px 0;
 }
+
 .article .ibox-content {
   padding: 40px;
 }
@@ -6318,7 +6324,7 @@ body.skin-3 {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 220px;
-    min-height: 576px;
+    min-height: 1024px;
   }
   .navbar-static-side {
     z-index: 2001;
@@ -6335,7 +6341,7 @@ body.skin-3 {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 0px;
-    min-height: 576px;
+    min-height: 1000px;
   }
   .body-small .navbar-static-side {
     display: none;
@@ -6435,7 +6441,7 @@ body.skin-3 {
     bottom: 60px;
     right: 15px;
     color: transparent;
-    background-color: #01A7F3;
+    background-color: #e6e6e6;
     overflow: hidden;
     font: 0/0 arial;
     cursor: pointer;
@@ -6498,6 +6504,11 @@ body.skin-3 {
 .blog_nav >ul >li>a{
     padding: 10px;
 }
+
+.article_tool >span >a{
+    margin:0 10px;
+}
+
 
 .avatar-view {
     display: block;

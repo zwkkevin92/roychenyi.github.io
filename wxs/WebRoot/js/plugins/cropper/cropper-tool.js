@@ -259,6 +259,7 @@
                 type: 'post',
                 data: data,
                 dataType: 'json',
+//                charset:"UTF-8",
                 processData: false,
                 contentType: false,
 
@@ -292,7 +293,7 @@
             console.log(data);
 
             if ($.isPlainObject(data)) {
-                if (data["loginFlag"]==1) {
+                if (data["statusFlag"]==1) {
                     this.url = data["ext3"];
 
                     if (this.support.datauri || this.uploaded) {

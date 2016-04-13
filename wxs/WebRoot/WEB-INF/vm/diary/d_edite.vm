@@ -50,8 +50,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" onclick="testText()">发布</button>
-                                   &nbsp; <button type="button" class="btn btn-primary" onclick="testText()">存草稿</button>
+                                    <button type="submit" class="btn btn-primary" >发布</button>
+                                   &nbsp; <button type="button" class="btn btn-primary" >存草稿</button>
                                 </div>
                             </div>
                             </form>

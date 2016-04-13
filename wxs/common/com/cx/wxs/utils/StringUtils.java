@@ -26,6 +26,8 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -160,6 +162,20 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	public static void main(String[] args) throws Exception{
 		System.out.println(md5("123456"));
 		System.out.println(getPinyin("成长"));
+		System.out.println(isAsciiOrDigit("a23AC123"));
+		String name="123";
+		  String regex="(.*)([a-zA-Z]+)(\\d+)(.*)";
+		  String regex1="(.*)([a-zA-Z]+)(.*)";
+	        Pattern pattern = Pattern.compile(regex);
+	        Matcher match=pattern.matcher(name);
+	        boolean b=match.matches();
+	        pattern =Pattern.compile(regex1);
+	        match=pattern.matcher(name);
+	        boolean a=match.matches();
+	        System.out.println(b);
+	        System.out.println(a);
+	        System.out.println(a&b);
+	        System.out.println(compressLength("12::：3陈义agbc",8)); 
 	}
 
 	/**
@@ -669,17 +685,24 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return
      */
     public static boolean isAsciiOrDigit(String name){
-        for(int i=0;i<name.length();i++){
+      /*  for(int i=0;i<name.length();i++){
             char ch = name.charAt(i);
             if(!isAscii(ch))
             	return false;
-        }
-        return true;
+        }*/
+        String regex="(.*)([a-zA-Z]+)(\\d+)(.*)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher match=pattern.matcher(name);
+        boolean b=match.matches();
+       
+        return b;
     }
     
     public static boolean isAscii(char ch){
     	return (ch >='a' && ch <='z') || (ch >='A' && ch <='Z') || (ch >='0' && ch <='9');
     }
+    
+   
     
     /**
 	 * 方法说明：判空为空
@@ -884,7 +907,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * 10进制加法，添加1
 	 * @param value
 	 * @return 返回value+1
-	 * @author Ou
 	 * 2013-3-14
 	 */
 	public static String add10System(String value) {
@@ -895,7 +917,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * 10进制加法，添加1
 	 * @param value
 	 * @return 返回value+1
-	 * @author Ou
 	 * 2013-3-14
 	 */
 	public static String addStrSystem(String value,final String KEY_SET){
@@ -1689,6 +1710,30 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
 	public static String firstLowerCase(String str){
 		return str.substring(0,1).toLowerCase()+str.substring(1);
+	}
+	
+	public static String compressLength(String str,int subSLength){
+		if (str == null)    
+            return "";    
+        else{   
+            int tempSubLength = subSLength;//截取字节数  
+            String subStr = str.substring(0, str.length()<subSLength ? str.length() : subSLength);//截取的子串    
+         try{   int subStrByetsL = subStr.getBytes("GBK").length;//截取子串的字节长度   
+            //int subStrByetsL = subStr.getBytes().length;//截取子串的字节长度   
+            // 说明截取的字符串中包含有汉字    
+            while (subStrByetsL > tempSubLength){    
+                int subSLengthTemp = --subSLength;  
+                subStr = str.substring(0, subSLengthTemp>str.length() ? str.length() : subSLengthTemp);    
+                subStrByetsL = subStr.getBytes("GBK").length;  
+                //subStrByetsL = subStr.getBytes().length;  
+            }    
+            return subStr; 
+         }catch (Exception e) {
+			// TODO: handle exception
+        	 e.printStackTrace();
+		}
+		return str+"...";
+        }
 	}
 	 
 }

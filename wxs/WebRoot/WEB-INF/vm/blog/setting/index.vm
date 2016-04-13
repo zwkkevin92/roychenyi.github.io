@@ -81,7 +81,7 @@
 
                                             </select><span>日</span>
                                         </label>
-                                        <input type="hidden" name="birth" id="birth" value="$date.format('yyyy/MM/dd HH:mm:ss',$user.birth)"/>
+                                        <input type="hidden" name="birth" id="birth" #if($user.birth) value="$date.format('yyyy/MM/dd HH:mm:ss',$user.birth)" #end/>
                                         <label class='checkbox-inline text-warning hidden' id="birth_error_info"><i class='fa fa-warning'>请输入完整生日</i></label>
                                     </div>
 
