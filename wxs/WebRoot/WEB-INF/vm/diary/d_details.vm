@@ -1,5 +1,5 @@
 #set($layout = "layout/user/l_user.vm")
-#set($page_title=$diary.title+"-"+$user.nickname)
+#set($page_title=$diary.title+"-"+$author.nickname)
 
 #parse("conf/js.vm")
 #set($extjs=$JwangEditor+$Jeditor+$Jlayer)
@@ -7,25 +7,21 @@
 #set($extcss=$CwangEditor)
 
 <!--日志详情-->
-	 <div class="ibox">
+	 <div class="article">
 
                             <div class="ibox-title"><p><input type="hidden" name="dairy_id" value="$diary.diaryId"><h2>$diary.title <small><a href="" class="pull-right  text-info">返回文章列表</a></small></h2></p>
 									<span><small class="small text-info">$date.format('yyyy/MM/dd HH:mm:ss',$diary.writeTime)</small></span>
-                                <div class="article_tool">
-									<span><a href="javascript:;" ><i class="fa fa-thumbs-o-up"></i>点赞</a><a href="#comment"><i class="fa fa-comment-o"></i>评论</a><a href="javascript:;"> <i class="fa fa-star-o text-warning"></i>收藏</a><a><i class="fa fa-warning text-warning"></i>举报</a></span><span class="pull-right">#if($prev_diary.title)<a href="$link.getContextURL()/$user.nickname/article/details/$prev_diary.diaryId">上一篇：$StringUtils.compressLength($prev_diary.title,12)</a> #else <a>已经是第一篇了</a> #end|#if($next_diary.title)<a href="$link.getContextURL()/$user.nickname/article/details/$next_diary.diaryId">下一篇:$StringUtils.compressLength($next_diary.title,12)</a>#else <a>已经是最后一篇了</a> #end</span></div>
-                            </div>
-                            <div class="ibox-content">
+                                #parse("layout/user/l_article_tool.vm")
+							</div>	
+                            <div class="article-content">
 
-                                <h2 id="title" class="article-title">$diary.title</h2>
-
+                                
                                 <div id="content">
                                     $diary.content
                                 </div>
                             </div>
                             <div class="ibox-content ">
-                               <div class="article_tool">
-									<span><a href="javascript:;" ><i class="fa fa-thumbs-o-up"></i>点赞</a><a href="#comment"><i class="fa fa-comment-o"></i>评论</a><a href="javascript:;"> <i class="fa fa-star-o text-warning"></i>收藏</a><a><i class="fa fa-warning text-warning"></i>举报</a><span class="small">$date.format('yyyy/MM/dd HH:mm:ss',$diary.writeTime)</span></span><span class="pull-right">#if($prev_diary.title)<a href="$link.getContextURL()/$user.nickname/article/details/$prev_diary.diaryId">上一篇：$StringUtils.compressLength($prev_diary.title,12)</a> #else <a>已经是第一篇了</a> #end|#if($next_diary.title)<a href="$link.getContextURL()/$user.nickname/article/details/$next_diary.diaryId">下一篇:$StringUtils.compressLength($next_diary.title,12)</a>#else <a>已经是最后一篇了</a> #end</span>
-                                </div>
+                               #parse("layout/user/l_article_tool.vm")
 								<div>分类|标签|原创</div>
                                 <div><h4>签名档：</h4>
                                     <p>#if($author.USignDto.content) $author.USignDto.content #end</p>

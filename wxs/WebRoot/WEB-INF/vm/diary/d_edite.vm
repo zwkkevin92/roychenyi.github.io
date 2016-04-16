@@ -14,26 +14,45 @@
                             </div>
                             <div class="ibox-content">
                                 <div class="form-group">
-                                    <input type="text" id="title" name="title" class="form-control" placeholder="文章标题" required=""/>
+									#if($diary)
+                                    <input type="hidden" name="diaryId" id="diaryId" value="$diary.diaryId"/>
+									<input type="text" id="title" name="title" class="form-control" placeholder="文章标题" value="$diary.title"/>
+                                    #else
+                                    <input type="text" id="title" name="title" class="form-control" placeholder="文章标题" />
+									#end
+									#if($diary.ext2&&$diary.ext2!=0)
+									<input type="hidden" name="diaryId1" id="diaryId1" value="$diary.ext2"/>
+									<input type="hidden" name="coverFlag" value="1"/>
+									#end
                                 </div>
                                 <div class="form-group">
-                                    <input type="hidden" name="textarea" id="textarea"/>
-                                    <div id="textarea1" style="height:400px;max-height:500px;">
-                                        
+									
+									<div id="textarea1" style="height:400px;max-height:500px;">
+                                       #if($diary.content)
+										$diary.content
+										#end
                                     </div>
                                 </div>
 								<div class="form-group">
                                    
                                     <label class="checkbox-inline">
+										#if($diary.contribute)
+											<input type="checkbox" name="contribute" #if($diary.contribute==0) value="0" #else value="1" checked #end >
+										#else
                                         <input type="checkbox" name="contribute" #if($contribute.value==0) value="0" #else value="1" checked #end >
-                                        <span>允许投稿到我的社团和首页</span>
+                                        #end
+										<span>允许投稿到我的社团和首页</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     分类：
                                     <select  name="DCatalogDto.catalogId">
 										#foreach($catalog in $catalogList)
+											#if($catalog.catalogId==$diary.DCatalogDto.catalogId)
+											<option value="$catalog.catalogId" selected>$catalog.catalogName</option>	
+											#else
 											 <option value="$catalog.catalogId">$catalog.catalogName</option>
+											 #end
 										#end
                                         
                                     </select>
@@ -43,7 +62,11 @@
 									<select name="sysTypeDto.typeId">
 										<option ></option>
                                     #foreach($sysType in $sysTypeList)
+										#if($sysType.typeId==$diary.sysTypeDto.typeId)
+											<option value="$sysType.typeId" selected>$sysType.name</option>
+										#else
                                         <option value="$sysType.typeId">$sysType.name</option>
+										#end
 									#end
                                     </select>
 									（请选择文章类型，这样便于系统更好的把您的文章分类）
@@ -51,7 +74,8 @@
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary" >发布</button>
-                                   &nbsp; <button type="button" class="btn btn-primary" >存草稿</button>
+                                    <button type="button" id="draft_save" data-url="$link.getContextURL()/$user.nickname/article/article_draft_save" class="btn btn-default pull-right" >存草稿</button>
+								  <span class="pull-right">&nbsp; &nbsp;</span> <button type="button" id="preview" data-url="" class="btn btn-default pull-right" >预览</button>
                                 </div>
                             </div>
                             </form>

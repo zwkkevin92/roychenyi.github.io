@@ -139,7 +139,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 	           params.put("catalogId1",catalogDto.getCatalogId());
 	           //移动前的目录
 	           stringBuffer.append(" where a.DCatalog.catalogId=:catalogId2");
-	           params.put("catalogId2",catalogDto.getCatalogId());
+	           params.put("catalogId2",diaryDto.getDCatalogDto().getCatalogId());
 	           //日志所属作者
 	           stringBuffer.append(" and a.UUser.userId=:userId");
 	           params.put("userId",diaryDto.getUUserDto().getUserId());
@@ -158,20 +158,26 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 	@Override
 	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
 		// TODO Auto-generated method stub
-		if(diaryDto!=null&&diaryDto.getDiaryId()!=null){
+		if(diaryDto!=null&&diaryDto.getDiaryId()!=null&&diaryDto.getUUserDto().getUserId()!=null){
 		List<DDiaryDto> list=new ArrayList<DDiaryDto>();
-		DDiary diary1=this.findByFK(diaryDto.getDiaryId());
+		DDiary diary1=new DDiary();
 		DDiary diary2=new DDiary();
 		DDiary diary3=new DDiary();
-		StringBuffer stringBuffer=new StringBuffer(" from "+DDiary.class.getName()+"  a ");
+		StringBuffer stringBuffer=new StringBuffer(" from "+DDiary.class.getName()+"  a where a.role=1");
 		Map<String,Object> params=new HashMap<String, Object>();
         params.put("id",diaryDto.getDiaryId());
         params.put("userId",diaryDto.getUUserDto().getUserId());
-		String hql1=stringBuffer.toString()+" where a.diaryId<:id and a.UUser.userId=:userId order by diaryId desc ";
+        String hql0=stringBuffer.toString()+" and a.diaryId=:id and a.UUser.userId=:userId";
+        diary1=this.get(hql0,params);
+		String hql1=stringBuffer.toString()+" and a.diaryId<:id and a.UUser.userId=:userId order by diaryId desc ";
 		diary2=this.get(hql1, params);
-		String hql2=stringBuffer.toString()+" where a.diaryId>:id and a.UUser.userId=:userId  ";
+		String hql2=stringBuffer.toString()+" and a.diaryId>:id and a.UUser.userId=:userId  ";
 		diary3=this.get(hql2,params);
+		if(diary1!=null){
 		list.add(beanToDto.T1ToD1(diary1, new DDiaryDto()));
+		}else{
+		    list.add(new DDiaryDto());
+		}
 		if(diary2!=null){
 		list.add(beanToDto.T1ToD1(diary2, new DDiaryDto()));
 		}else{

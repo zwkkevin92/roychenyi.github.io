@@ -1,0 +1,18 @@
+#set($layout = "layout/user/l_user.vm")
+#set($page_title="未找到相关文章-"+$author.nickname)
+
+	<div class="middle-box text-center animated fadeInDown">
+        <h1></h1>
+        <h3 class="font-bold">抱歉，该用户该篇文章已经删除或已经转为私密日志</h3>
+		<h3>您可以选择上一篇或下一篇浏览该用户的其他文章</h3>
+		<h3>#if($prev_diary.title)<a href="$link.getContextURL()/$author.nickname/article/details/$prev_diary.diaryId">上一篇：$StringUtils.compressLength($prev_diary.title,12)</a> #else <a>已经是第一篇了</a> #end|#if($next_diary.title)<a href="$link.getContextURL()/$author.nickname/article/details/$next_diary.diaryId">下一篇:$StringUtils.compressLength($next_diary.title,12)</a>#else <a>已经是最后一篇了</a> #end</h3>
+        <h3>没有您喜欢的吗？你可以使用导航栏或者下面的的搜索功能，搜索你喜欢的文章</h3>
+		<div class="error-desc">
+            <form class="form-inline m-t" role="form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="请输入您需要查找的内容 …">
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+        </div>
+    </div>

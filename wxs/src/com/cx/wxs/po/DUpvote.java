@@ -27,6 +27,7 @@ public class DUpvote implements java.io.Serializable {
 	private String clientIp;
 	private Short clientType;
 	private Timestamp time;
+	private Timestamp updateTime;
 	private Short status;
 
 	// Constructors
@@ -43,13 +44,15 @@ public class DUpvote implements java.io.Serializable {
 
 	/** full constructor */
 	public DUpvote(DDiary DDiary, UUser UUser, String clientAgent,
-			String clientIp, Short clientType, Timestamp time, Short status) {
+			String clientIp, Short clientType, Timestamp time,
+			Timestamp updateTime, Short status) {
 		this.DDiary = DDiary;
 		this.UUser = UUser;
 		this.clientAgent = clientAgent;
 		this.clientIp = clientIp;
 		this.clientType = clientType;
 		this.time = time;
+		this.updateTime = updateTime;
 		this.status = status;
 	}
 
@@ -119,6 +122,15 @@ public class DUpvote implements java.io.Serializable {
 
 	public void setTime(Timestamp time) {
 		this.time = time;
+	}
+
+	@Column(name = "update_time", length = 19)
+	public Timestamp getUpdateTime() {
+		return this.updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	@Column(name = "status")

@@ -4603,9 +4603,62 @@ dd.project-people {
   margin: 40px 0 100px 0;
 }
 
-.article .ibox-content {
-  padding: 40px;
+.article .article-content {
+	background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px; 
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0px;
+  min-height:380px;
 }
+
+.article_tool{
+    width: 100%;
+    height: 20px;
+    background-color: inherit;
+}
+.article_tool >ul{
+    padding: 0px;
+    height: auto;
+    width: auto;
+    background-color: inherit;
+    list-style-type:none;
+    margin: 0px;
+}
+.article_tool >ul >li{
+
+    list-style-type:none;
+    float:left;
+  
+}
+.article_tool ul li.active{
+    background-color: #FFFFFF; /* 背景色 */
+    color: #f8ac59; /* 文字颜色 */
+
+}
+.article_tool ul li a, .article_tool ul li a:visited{
+    color: #337ab7;;
+    display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
+    line-height: 1.35em; /* 行高 */
+      padding: 0px 10px; /* 内部填充的距离 */
+    text-decoration: none; /* 不显示超链接下划线 */
+    white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
+}
+.article_tool ul li a:hover
+{
+    background-color: #bfcbd6; /* 背景色 */
+    color: #f8ac59; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+.article_tool li a:active
+{
+    background-color: #000000; /* 背景色 */
+    color: #f8ac59; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+
 /* ISSUE TRACKER */
 .issue-tracker .btn-link {
   color: #1ab394;

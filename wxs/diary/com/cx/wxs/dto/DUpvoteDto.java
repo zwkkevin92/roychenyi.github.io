@@ -7,7 +7,7 @@ import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.UUserDto;
 /**
  * @author 陈义
- * @date 2015-12-09 22:36:38
+ * @date 2016-04-16 09:21:44
  */
 public class DUpvoteDto extends BeanBase{
     private Integer dupvoteId;
@@ -17,6 +17,7 @@ public class DUpvoteDto extends BeanBase{
     private String clientIp;
     private Short clientType;
     private Timestamp time;
+    private Timestamp updateTime;
     private Short status;
 
     /** default constructor */
@@ -25,7 +26,7 @@ public class DUpvoteDto extends BeanBase{
     }
 
     /** full constructor */
-    public DUpvoteDto(Integer dupvoteId,DDiaryDto DDiaryDto,UUserDto UUserDto,String clientAgent,String clientIp,Short clientType,Timestamp time,Short status){super();
+    public DUpvoteDto(Integer dupvoteId,DDiaryDto DDiaryDto,UUserDto UUserDto,String clientAgent,String clientIp,Short clientType,Timestamp time,Timestamp updateTime,Short status){super();
         this.dupvoteId=dupvoteId;
         this.DDiaryDto=DDiaryDto;
         this.UUserDto=UUserDto;
@@ -33,8 +34,10 @@ public class DUpvoteDto extends BeanBase{
         this.clientIp=clientIp;
         this.clientType=clientType;
         this.time=time;
+        this.updateTime=updateTime;
         this.status=status;
     }
+
     public Integer getDupvoteId(){
         return dupvoteId;
     }
@@ -82,6 +85,13 @@ public class DUpvoteDto extends BeanBase{
     }
     public void setTime(Timestamp time){
         this.time=time;
+    }
+
+    public Timestamp getUpdateTime(){
+        return updateTime;
+    }
+    public void setUpdateTime(Timestamp updateTime){
+        this.updateTime=updateTime;
     }
 
     public Short getStatus(){

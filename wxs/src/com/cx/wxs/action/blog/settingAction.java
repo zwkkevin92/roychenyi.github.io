@@ -225,6 +225,7 @@ public class settingAction extends BaseAction{
 			catalogDto2.setCatalogName("个人日记");
 			catalogDto2=dCatalogService.getDCatalog(catalogDto2);
 			int moveNum= diaryService.diaryMove(diaryDto, catalogDto2);
+			
 			if(dCatalogService.deleteDCatalog(catalogDto)>0){
 				catalogDto.setStatusFlag("1");
 			}else{

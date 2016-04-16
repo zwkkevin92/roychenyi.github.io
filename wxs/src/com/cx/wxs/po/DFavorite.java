@@ -12,15 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * DAccess entity. @author MyEclipse Persistence Tools
+ * DFavorite entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "d_access", catalog = "wxs")
-public class DAccess implements java.io.Serializable {
+@Table(name = "d_favorite", catalog = "wxs")
+public class DFavorite implements java.io.Serializable {
 
 	// Fields
 
-	private Long daccessId;
+	private Integer dfavoriteId;
 	private DDiary DDiary;
 	private UUser UUser;
 	private String clientAgent;
@@ -33,17 +33,17 @@ public class DAccess implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public DAccess() {
+	public DFavorite() {
 	}
 
 	/** minimal constructor */
-	public DAccess(DDiary DDiary, UUser UUser) {
+	public DFavorite(DDiary DDiary, UUser UUser) {
 		this.DDiary = DDiary;
 		this.UUser = UUser;
 	}
 
 	/** full constructor */
-	public DAccess(DDiary DDiary, UUser UUser, String clientAgent,
+	public DFavorite(DDiary DDiary, UUser UUser, String clientAgent,
 			String clientIp, Short clientType, Timestamp time,
 			Timestamp updateTime, Short status) {
 		this.DDiary = DDiary;
@@ -59,13 +59,13 @@ public class DAccess implements java.io.Serializable {
 	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "daccess_id", unique = true, nullable = false)
-	public Long getDaccessId() {
-		return this.daccessId;
+	@Column(name = "dfavorite_id", unique = true, nullable = false)
+	public Integer getDfavoriteId() {
+		return this.dfavoriteId;
 	}
 
-	public void setDaccessId(Long daccessId) {
-		this.daccessId = daccessId;
+	public void setDfavoriteId(Integer dfavoriteId) {
+		this.dfavoriteId = dfavoriteId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

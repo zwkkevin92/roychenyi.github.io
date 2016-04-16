@@ -7,10 +7,10 @@ import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.UUserDto;
 /**
  * @author 陈义
- * @date 2016-04-16 17:31:58
+ * @date 2016-04-16 09:22:44
  */
-public class DAccessDto extends BeanBase{
-    private Long daccessId;
+public class DFavoriteDto extends BeanBase{
+    private Integer dfavoriteId;
     private DDiaryDto DDiaryDto;
     private UUserDto UUserDto;
     private String clientAgent;
@@ -21,13 +21,13 @@ public class DAccessDto extends BeanBase{
     private Short status;
 
     /** default constructor */
-    public DAccessDto(){
+    public DFavoriteDto(){
 
     }
 
     /** full constructor */
-    public DAccessDto(Long daccessId,DDiaryDto DDiaryDto,UUserDto UUserDto,String clientAgent,String clientIp,Short clientType,Timestamp time,Timestamp updateTime,Short status){super();
-        this.daccessId=daccessId;
+    public DFavoriteDto(Integer dfavoriteId,DDiaryDto DDiaryDto,UUserDto UUserDto,String clientAgent,String clientIp,Short clientType,Timestamp time,Timestamp updateTime,Short status){super();
+        this.dfavoriteId=dfavoriteId;
         this.DDiaryDto=DDiaryDto;
         this.UUserDto=UUserDto;
         this.clientAgent=clientAgent;
@@ -38,11 +38,11 @@ public class DAccessDto extends BeanBase{
         this.status=status;
     }
 
-    public Long getDaccessId(){
-        return daccessId;
+    public Integer getDfavoriteId(){
+        return dfavoriteId;
     }
-    public void setDaccessId(Long daccessId){
-        this.daccessId=daccessId;
+    public void setDfavoriteId(Integer dfavoriteId){
+        this.dfavoriteId=dfavoriteId;
     }
 
     public DDiaryDto getDDiaryDto(){

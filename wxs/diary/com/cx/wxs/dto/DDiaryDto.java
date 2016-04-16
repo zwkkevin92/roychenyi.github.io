@@ -9,7 +9,7 @@ import com.cx.wxs.dto.BSiteDto;
 import com.cx.wxs.dto.DCatalogDto;
 /**
  * @author 陈义
- * @date 2016-04-11 17:04:44
+ * @date 2016-04-16 09:17:32
  */
 public class DDiaryDto extends BeanBase{
     private Integer diaryId;
@@ -23,6 +23,8 @@ public class DDiaryDto extends BeanBase{
     private Integer diarySize;
     private Integer replyCount;
     private Integer viewCount;
+    private Integer upvoteCount;
+    private Integer favoriteCount;
     private Short clientType;
     private String clientIp;
     private String clientAgent;
@@ -48,7 +50,7 @@ public class DDiaryDto extends BeanBase{
     }
 
     /** full constructor */
-    public DDiaryDto(Integer diaryId,SysTypeDto sysTypeDto,UUserDto UUserDto,BSiteDto BSiteDto,DCatalogDto DCatalogDto,String title,String content,String txt,Integer diarySize,Integer replyCount,Integer viewCount,Short clientType,String clientIp,String clientAgent,Timestamp writeTime,Timestamp lastReadTime,Timestamp lastReplyTime,Timestamp modifyTime,Short replyNotify,Short moodLevel,Short locked,Short contribute,Short role,String tag,Integer annexId,Integer ext1,Integer ext2,Integer ext3,Integer ext4){super();
+    public DDiaryDto(Integer diaryId,SysTypeDto sysTypeDto,UUserDto UUserDto,BSiteDto BSiteDto,DCatalogDto DCatalogDto,String title,String content,String txt,Integer diarySize,Integer replyCount,Integer viewCount,Integer upvoteCount,Integer favoriteCount,Short clientType,String clientIp,String clientAgent,Timestamp writeTime,Timestamp lastReadTime,Timestamp lastReplyTime,Timestamp modifyTime,Short replyNotify,Short moodLevel,Short locked,Short contribute,Short role,String tag,Integer annexId,Integer ext1,Integer ext2,Integer ext3,Integer ext4){super();
         this.diaryId=diaryId;
         this.sysTypeDto=sysTypeDto;
         this.UUserDto=UUserDto;
@@ -60,6 +62,8 @@ public class DDiaryDto extends BeanBase{
         this.diarySize=diarySize;
         this.replyCount=replyCount;
         this.viewCount=viewCount;
+        this.upvoteCount=upvoteCount;
+        this.favoriteCount=favoriteCount;
         this.clientType=clientType;
         this.clientIp=clientIp;
         this.clientAgent=clientAgent;
@@ -155,6 +159,20 @@ public class DDiaryDto extends BeanBase{
     }
     public void setViewCount(Integer viewCount){
         this.viewCount=viewCount;
+    }
+
+    public Integer getUpvoteCount(){
+        return upvoteCount;
+    }
+    public void setUpvoteCount(Integer upvoteCount){
+        this.upvoteCount=upvoteCount;
+    }
+
+    public Integer getFavoriteCount(){
+        return favoriteCount;
+    }
+    public void setFavoriteCount(Integer favoriteCount){
+        this.favoriteCount=favoriteCount;
     }
 
     public Short getClientType(){

@@ -35,6 +35,8 @@ public class DDiary implements java.io.Serializable {
 	private Integer diarySize;
 	private Integer replyCount;
 	private Integer viewCount;
+	private Integer upvoteCount;
+	private Integer favoriteCount;
 	private Short clientType;
 	private String clientIp;
 	private String clientAgent;
@@ -54,6 +56,7 @@ public class DDiary implements java.io.Serializable {
 	private Integer ext3;
 	private Integer ext4;
 	private Set<DAnnex> DAnnexes = new HashSet<DAnnex>(0);
+	private Set<DFavorite> DFavorites = new HashSet<DFavorite>(0);
 	private Set<DUpvote> DUpvotes = new HashSet<DUpvote>(0);
 	private Set<DAccess> DAccesses = new HashSet<DAccess>(0);
 	private Set<DReply1> DReply1s = new HashSet<DReply1>(0);
@@ -66,10 +69,8 @@ public class DDiary implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public DDiary(UUser UUser, BSite BSite, DCatalog DCatalog, String title,
-			String content) {
+	public DDiary(UUser UUser, DCatalog DCatalog, String title, String content) {
 		this.UUser = UUser;
-		this.BSite = BSite;
 		this.DCatalog = DCatalog;
 		this.title = title;
 		this.content = content;
@@ -78,13 +79,14 @@ public class DDiary implements java.io.Serializable {
 	/** full constructor */
 	public DDiary(SysType sysType, UUser UUser, BSite BSite, DCatalog DCatalog,
 			String title, String content, String txt, Integer diarySize,
-			Integer replyCount, Integer viewCount, Short clientType,
-			String clientIp, String clientAgent, Timestamp writeTime,
-			Timestamp lastReadTime, Timestamp lastReplyTime,
-			Timestamp modifyTime, Short replyNotify, Short moodLevel,
-			Short locked, Short contribute, Short role, String tag,
-			Integer annexId, Integer ext1, Integer ext2, Integer ext3,
-			Integer ext4, Set<DAnnex> DAnnexes, Set<DUpvote> DUpvotes,
+			Integer replyCount, Integer viewCount, Integer upvoteCount,
+			Integer favoriteCount, Short clientType, String clientIp,
+			String clientAgent, Timestamp writeTime, Timestamp lastReadTime,
+			Timestamp lastReplyTime, Timestamp modifyTime, Short replyNotify,
+			Short moodLevel, Short locked, Short contribute, Short role,
+			String tag, Integer annexId, Integer ext1, Integer ext2,
+			Integer ext3, Integer ext4, Set<DAnnex> DAnnexes,
+			Set<DFavorite> DFavorites, Set<DUpvote> DUpvotes,
 			Set<DAccess> DAccesses, Set<DReply1> DReply1s, Set<BTag> BTags) {
 		this.sysType = sysType;
 		this.UUser = UUser;
@@ -96,6 +98,8 @@ public class DDiary implements java.io.Serializable {
 		this.diarySize = diarySize;
 		this.replyCount = replyCount;
 		this.viewCount = viewCount;
+		this.upvoteCount = upvoteCount;
+		this.favoriteCount = favoriteCount;
 		this.clientType = clientType;
 		this.clientIp = clientIp;
 		this.clientAgent = clientAgent;
@@ -115,6 +119,7 @@ public class DDiary implements java.io.Serializable {
 		this.ext3 = ext3;
 		this.ext4 = ext4;
 		this.DAnnexes = DAnnexes;
+		this.DFavorites = DFavorites;
 		this.DUpvotes = DUpvotes;
 		this.DAccesses = DAccesses;
 		this.DReply1s = DReply1s;
@@ -225,6 +230,24 @@ public class DDiary implements java.io.Serializable {
 
 	public void setViewCount(Integer viewCount) {
 		this.viewCount = viewCount;
+	}
+
+	@Column(name = "upvote_count")
+	public Integer getUpvoteCount() {
+		return this.upvoteCount;
+	}
+
+	public void setUpvoteCount(Integer upvoteCount) {
+		this.upvoteCount = upvoteCount;
+	}
+
+	@Column(name = "favorite_count")
+	public Integer getFavoriteCount() {
+		return this.favoriteCount;
+	}
+
+	public void setFavoriteCount(Integer favoriteCount) {
+		this.favoriteCount = favoriteCount;
 	}
 
 	@Column(name = "client_type")
@@ -396,6 +419,15 @@ public class DDiary implements java.io.Serializable {
 
 	public void setDAnnexes(Set<DAnnex> DAnnexes) {
 		this.DAnnexes = DAnnexes;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
+	public Set<DFavorite> getDFavorites() {
+		return this.DFavorites;
+	}
+
+	public void setDFavorites(Set<DFavorite> DFavorites) {
+		this.DFavorites = DFavorites;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
