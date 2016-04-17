@@ -46,4 +46,5 @@ public interface DAccessDao extends IBaseDao<DAccess,Integer>{
     */
     public Integer deleteDAccess(DAccessDto dAccessDto);
 
+
 }

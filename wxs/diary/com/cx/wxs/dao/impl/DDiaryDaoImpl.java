@@ -43,7 +43,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
         if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null){
            StringBuffer stringBuffer=new StringBuffer();
            Map<String,Object> params=new HashMap<String, Object>();
-           stringBuffer.append("from  "+DDiary.class.getName()+"  a where a.diaryId=:id");
+           stringBuffer.append("from  "+DDiary.class.getName()+"  a where a.diaryId=:id and a.role<>-2");
            params.put("id",dDiaryDto.getDiaryId());
            List<DDiary> list=this.find(stringBuffer.toString(), params);
            if(list!=null&&list.size()>0){

@@ -74,18 +74,14 @@ $(document).ready(function () {
        data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=1";
        var dairyId=$(this).find("input[name='diaryId']").val();
        var diaryId1=$(this).find("input[name='diaryId1']").val();
-       var coverFlag=$(this).find("input[name='coverFlag']").val();
-       if(coverFlag=="1"){
+       var draft_box=$(this).find("input[name='draft_box']").val();
+       if(draft_box=="1"){
        layer.confirm("您正要发布的文章列表里有对应的文章存在，你现在要",{
           btn: ['发表为新文章','覆盖该原文章'] //按钮
           },function(){
           diary_save(url,data_str,_this)
           },function(){
-          	$(_this).find("input[name='coverFlag']").val("2");
-          	var arr2=$(_this).serializeArray();
-          data_str="coverFlag=2&title="+$(_this).find("input[name='title']");
-          data_str+="&dairyId="+$(_this).find("input[name='diaryId']")+"&dairyId1="+$(_this).find("input[name='diaryId1']")
-          data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=1";
+          data_str+="&coverFlag=1";
           diary_save(url,data_str,_this)
           });
           return false;

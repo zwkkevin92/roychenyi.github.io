@@ -22,6 +22,7 @@ import com.cx.wxs.dto.BConfigDto;
 import com.cx.wxs.dto.DAccessDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
+import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.po.DAccess;
@@ -30,6 +31,7 @@ import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.DAccessService;
 import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.DDiaryService;
+import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.clientInfo;
@@ -55,6 +57,8 @@ public class diaryAction extends BaseDiaryAction{
 	private SysTypeService sysTypeService;
 	@Resource
 	private DAccessService accessService;
+	@Resource
+	private DUpvoteService upvoteService;
 	/***
 	 * 跳转到更新日志的界面
 	 * @param vip
@@ -90,15 +94,15 @@ public class diaryAction extends BaseDiaryAction{
 			diaryDto.setStatusFlag("-1");
 		}else if(diaryDto.getDiaryId()!=null){
 			if(diaryId1!=null){
-			if(coverFlag!=null&&coverFlag.equals("2")){				
+			if(coverFlag!=null&&coverFlag.equals("1")){				
 				diaryDto.setRole((short)-2);
 				diaryService.updateDDiary(diaryDto);
 				diaryDto.setDiaryId(diaryId1);
 			}else{
-				DDiaryDto diaryDto3=new DDiaryDto();
+			/*	DDiaryDto diaryDto3=new DDiaryDto();
 				diaryDto3.setDiaryId(diaryId1);
 				diaryDto3.setRole((short)-2);
-				diaryService.updateDDiary(diaryDto3);
+				diaryService.updateDDiary(diaryDto3);*/
 			}
 			}
 			diaryDto.setModifyTime(new Timestamp(date.getTime()));
@@ -143,7 +147,11 @@ public class diaryAction extends BaseDiaryAction{
 			diaryDto.setDiaryId(diaryId);
 			diaryDto.setUUserDto(userDto);
 			diaryDto=diaryService.getDDiaryByID(diaryDto);
+			if(diaryDto==null){
+				mv.setViewName("diary/d_no_details");
+			}else{
 			getDiarySetting(userDto, mv);
+			}
 			mv.addObject("author", userDto);
 			mv.addObject("diary",diaryDto);
 		}else{
@@ -239,6 +247,8 @@ public class diaryAction extends BaseDiaryAction{
 			diaryService.updateDDiary(diaryDto);			
 			if(userDto!=null){
 				if(!userDto.getUserId().equals(author.getUserId())){
+					//设置访问记录过期
+					
 					//用户已经登录，且登录用户与文章作者不是同一人，则写入访问列表
 					DAccessDto accessDto=new DAccessDto();
 					accessDto.setUUserDto(userDto);
@@ -250,6 +260,7 @@ public class diaryAction extends BaseDiaryAction{
 					accessDto.setClientAgent(clientAgent);
 					accessDto.setClientType((short)(isMoblie?1:0)); 
 					accessDto.setTime(new Timestamp(date.getTime()));
+					accessDto.setStatus((short)1);  //1：未过期，0：过期
 					accessService.addDAccess(accessDto);
 					author.setIsUsers(false);	
 				}else{
@@ -290,9 +301,26 @@ public class diaryAction extends BaseDiaryAction{
 	 * @date   2016-4-16下午4:18:21
 	 */
 	@RequestMapping(value="/article_upvote/{diaryId}")
-	public DDiaryDto articleUpvote(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+	public DUpvoteDto articleUpvote(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
-		return diaryDto;
+		DUpvoteDto upvoteDto=new DUpvoteDto();
+		UUserDto userDto1=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto1==null){
+			upvoteDto.setStatusFlag("-2");   //未登录
+		}else{
+			//作者信息
+			UUserDto userDto2=getUserDtoByNickname(vip);
+			upvoteDto.setUUserDto(userDto2);
+			diaryDto.setDiaryId(diaryId);
+			upvoteDto.setDDiaryDto(diaryDto);
+			DUpvoteDto upvoteDto2=upvoteService.getDUpvote(upvoteDto);
+			if(upvoteDto2!=null){
+				//取消赞
+			}else{
+				//点赞
+			}
+		}
+		return upvoteDto;
 	}
 	/**
 	 * 文章收藏

@@ -22,7 +22,7 @@
 									#end
 									#if($diary.ext2&&$diary.ext2!=0)
 									<input type="hidden" name="diaryId1" id="diaryId1" value="$diary.ext2"/>
-									<input type="hidden" name="coverFlag" value="1"/>
+									<input type="hidden" name="draft_box" value="1"/>
 									#end
                                 </div>
                                 <div class="form-group">

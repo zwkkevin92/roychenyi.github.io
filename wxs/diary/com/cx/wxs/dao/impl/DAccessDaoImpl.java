@@ -74,6 +74,17 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     public Integer addDAccess(DAccessDto dAccessDto){
          // TODO Auto-generated method stub
         if(dAccessDto!=null){
+        	//当写入新的访问记录之前，设置之前的访问记录过期，update status=1
+           StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
+           Map<String, Object> params =new HashMap<String, Object>();
+           stringBuffer.append(" from "+DAccess.class.getName()+" a ");
+           stringBuffer.append(" set a.status=0 ,a.updateTime=:updateTime");
+           stringBuffer.append(" where a.status=1 and a.DDiary.diaryId=:diaryId and a.UUser.userId=:userId");
+           params.put("updateTime",dAccessDto.getTime());
+           params.put("diaryId", dAccessDto.getDDiaryDto().getDiaryId());
+           params.put("userId",dAccessDto.getUUserDto().getUserId());
+           this.update(stringBuffer.toString(), params);
+           //添加新的访问记录
            DAccess dAccess= new DAccess();
            dAccess=beanToDto.D1ToT1(dAccess, dAccessDto);
            return this.save(dAccess);

@@ -16,6 +16,14 @@ public interface DUpvoteService {
     * @date 2015-12-13 19:01:59
     */
     public DUpvoteDto getDUpvoteByID(DUpvoteDto dUpvoteDto);
+    /**
+     * 通过相信关系获取upvote 信息
+     * @param dUpvoteDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-17上午10:56:42
+     */
+    public DUpvoteDto getDUpvote(DUpvoteDto dUpvoteDto);
 
     /**
     * 通过相关信息获取DUpvoteDtoList信息

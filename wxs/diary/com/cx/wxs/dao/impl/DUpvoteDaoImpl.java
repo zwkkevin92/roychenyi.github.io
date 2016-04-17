@@ -54,6 +54,26 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
         }
         return null;
     }
+    @Override
+    public DUpvoteDto getDUpvote(DUpvoteDto dUpvoteDto){
+    	 // TODO Auto-generated method stub
+        if(dUpvoteDto!=null){
+           StringBuffer stringBuffer=new StringBuffer();
+           Map<String,Object> params=new HashMap<String, Object>();
+           stringBuffer.append("from  "+DUpvote.class.getName()+"  a where a.status=1 ");
+           stringBuffer.append(" and a.UUser.userId=:userId and a.DDiary.diaryId=:diaryId");
+           params.put("userId",dUpvoteDto.getUUserDto().getUserId());
+           params.put("diaryId",dUpvoteDto.getDDiaryDto().getDiaryId());
+           List<DUpvote> list=this.find(stringBuffer.toString(), params);
+           if(list!=null&&list.size()>0){
+            DUpvote t1= list.get(0);
+            DUpvoteDto    dto=new    DUpvoteDto();
+            dto=beanToDto.T1ToD1(t1,dto);
+            return dto;
+            }
+        }
+        return null;
+    }
 
     /**
     * 通过相关数据获取DUpvoteDtoList

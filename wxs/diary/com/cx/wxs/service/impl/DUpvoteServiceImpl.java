@@ -32,6 +32,10 @@ public class DUpvoteServiceImpl implements DUpvoteService {
     public DUpvoteDto getDUpvoteByID(DUpvoteDto dUpvoteDto){
         return dUpvoteDao.getDUpvoteByID(dUpvoteDto);
     }
+    @Override
+    public DUpvoteDto getDUpvote(DUpvoteDto dUpvoteDto){
+    	return dUpvoteDao.getDUpvote(dUpvoteDto);
+    }
 
     /**
     * 通过相关信息获取DUpvoteDtoList信息

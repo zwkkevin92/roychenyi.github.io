@@ -17,6 +17,14 @@ public interface DUpvoteDao extends IBaseDao<DUpvote,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public DUpvoteDto getDUpvoteByID(DUpvoteDto dUpvoteDto);
+    /**
+     * 更具相关信息获取upvote信息
+     * @param dUpvoteDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-17上午10:58:11
+     */
+    public DUpvoteDto getDUpvote(DUpvoteDto dUpvoteDto);
 
     /**
     * 通过相关数据获取DUpvoteDtoList
