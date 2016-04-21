@@ -65,4 +65,5 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
      */
     public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto);
 
+    public Integer getDiaryCount(DDiaryDto dDiaryDto);
 }

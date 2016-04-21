@@ -32,6 +32,11 @@ public class DFavoriteServiceImpl implements DFavoriteService {
     public DFavoriteDto getDFavoriteByID(DFavoriteDto dFavoriteDto){
         return dFavoriteDao.getDFavoriteByID(dFavoriteDto);
     }
+    
+    @Override
+    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto){
+    	return dFavoriteDao.getDFADFavorite(dFavoriteDto);
+    }
 
     /**
     * 通过相关信息获取DFavoriteDtoList信息

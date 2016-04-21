@@ -49,5 +49,9 @@ public class BaseDiaryAction extends BaseAction{
 		mv.addObject("sysTypeList", sysTypeList);
 	}
 	
+	public void getDcatolog(DCatalogDto catalogDto,ModelAndView mv){
+		List<DCatalogDto> catalogDtos=catalogService.getDCatalogList(catalogDto);
+		mv.addObject("catalogs", catalogDtos);
+	}
 
 }

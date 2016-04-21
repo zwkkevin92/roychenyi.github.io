@@ -18,6 +18,14 @@ public interface DFavoriteDao extends IBaseDao<DFavorite,Integer>{
     */
     
     public DFavoriteDto getDFavoriteByID(DFavoriteDto dFavoriteDto);
+    /**
+     * 通过相关信息获取favoriteDto
+     * @param dFavoriteDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-19下午6:54:07
+     */
+    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto);
 
     /**
     * 通过相关数据获取DFavoriteDtoList

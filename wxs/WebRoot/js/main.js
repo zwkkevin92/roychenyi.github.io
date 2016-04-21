@@ -191,4 +191,66 @@ function WinMove() {
     function submitFail(msg){
         layer.alert(msg);
     }
+    //ajax 提交函数，不带成功处理函数
+     function ajax(url,data_str){
+        
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data_str,
+            dataType:"json",
+            async: false,
+            beforeSend: function () {
+                submitStart();
+            },
+
+            success: function (data) {
+                if(data["statusFlag"]==-1){
+                    
+                    flag=false;
+                }else if(data["statusFlag"]==1){
+                    $.cookie("flag","true");
+                    flag=true;
+                }
+            },
+
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                submitFail(textStatus || errorThrown);
+                a=false;
+            },
+
+            complete: function () {
+                submitEnd();
+            }
+
+        });
+       return false;
+    }
+    //ajax带成功处理函数
+     function ajax1(url,data_str,success_function){
+        var a=false;
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:data_str,
+            dataType:"json",
+            async: false,
+            beforeSend: function () {
+                submitStart();
+            },
+
+            success: success_function(data),
+
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                submitFail(textStatus || errorThrown);
+                a=false;
+            },
+
+            complete: function () {
+                submitEnd();
+            }
+
+        });
+        return a;
+    }
 

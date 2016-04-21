@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cx.wxs.dao.DCatalogDao;
+import com.cx.wxs.dao.DDiaryDao;
 import com.cx.wxs.dto.DCatalogDto;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.service.DCatalogService;
 
 /**
@@ -18,6 +20,8 @@ import com.cx.wxs.service.DCatalogService;
 public class DCatalogServiceImpl implements DCatalogService {
     @Autowired
     private DCatalogDao dCatalogDao;
+    @Autowired
+    private DDiaryDao dDiaryDao;
 
     public void setDCatalogDao(DCatalogDao dCatalogDao){
         this.dCatalogDao=dCatalogDao;
@@ -47,7 +51,16 @@ public class DCatalogServiceImpl implements DCatalogService {
     */
     @Override
     public List<DCatalogDto> getDCatalogList(DCatalogDto dCatalogDto){
-        return dCatalogDao.getDCatalogList(dCatalogDto);
+    	List<DCatalogDto> list=dCatalogDao.getDCatalogList(dCatalogDto);
+    	for(DCatalogDto catalogDto:list){
+    		DDiaryDto diaryDto=new DDiaryDto();
+    		diaryDto.setDCatalogDto(catalogDto);
+    		diaryDto.setUUserDto(catalogDto.getUUserDto());
+    		int count=dDiaryDao.getDiaryCount(diaryDto);
+    		catalogDto.setArticleCount(count);
+    		dCatalogDao.updateDCatalog(catalogDto);
+    	}
+    	return dCatalogDao.getDCatalogList(dCatalogDto);
     }
 
     /**

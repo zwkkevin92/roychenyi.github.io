@@ -54,6 +54,27 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
         }
         return null;
     }
+    /**
+     * @author 陈义
+     * @date 2016-04-19 19:02:44
+     */
+    @Override
+    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto){
+    	if(dFavoriteDto!=null){
+    		StringBuffer stringBuffer=new StringBuffer();
+            Map<String,Object> params=new HashMap<String, Object>();
+            stringBuffer.append("from  "+DFavorite.class.getName()+"  a where a.status=1");
+            stringBuffer.append(" and a.DDiary.diaryId=:diaryId and a.UUser.userId");
+            params.put("diaryId",dFavoriteDto.getDDiaryDto().getDiaryId());
+            params.put("userId",dFavoriteDto.getUUserDto().getUserId());
+            List<DFavorite> list=this.find(stringBuffer.toString(), params);
+            if(list!=null&&list.size()>0){
+            	DFavorite dFavorite=list.get(0);
+            	dFavoriteDto=beanToDto.T1ToD1(dFavorite, new DFavoriteDto());
+            }
+    	}
+    	return null;
+    }
 
     /**
     * 通过相关数据获取DFavoriteDtoList

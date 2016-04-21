@@ -63,6 +63,35 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     */
     @Override
     public List<DDiaryDto> getDDiaryList(DDiaryDto dDiaryDto){
+    	if(dDiaryDto!=null&&dDiaryDto.getUUserDto()!=null){
+    		StringBuffer stringBuffer=new StringBuffer();
+            Map<String,Object> params=new HashMap<String, Object>();
+            stringBuffer.append("from  "+DDiary.class.getName()+" a ");
+            stringBuffer.append(" where a.UUser.userId=:userId");
+            params.put("userId",dDiaryDto.getUUserDto().getUserId());
+            if(dDiaryDto.getRole()!=null){
+            	stringBuffer.append(" and a.role =:role");
+            	params.put("role",dDiaryDto.getRole());
+            }else{
+            	stringBuffer.append(" and a.role=1");
+            }
+            //逆向排序
+            stringBuffer.append(" order by a.diaryId desc ");
+            List<DDiary> list=new ArrayList<DDiary>();
+            List<DDiaryDto> list1=new ArrayList<DDiaryDto>();
+            if(dDiaryDto.getRows()!=null&&dDiaryDto.getPage()!=null){
+            	list=this.find(stringBuffer.toString(), params, dDiaryDto.getPage(), dDiaryDto.getRows());
+            }else{
+            	list=this.find(stringBuffer.toString(), params);
+            }
+            if(list!=null&&list.size()>0){
+            	for(DDiary diary:list){
+            		DDiaryDto dto=beanToDto.T1ToD1(diary, new DDiaryDto());
+            		list1.add(dto);
+            	}
+            	return list1;
+            }
+    	}
         return null;
     }
 
@@ -191,6 +220,33 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 		return list;
 		}
 		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DDiaryDao#getDiaryCount(com.cx.wxs.dto.DDiaryDto)
+	 */
+	@Override
+	public Integer getDiaryCount(DDiaryDto dDiaryDto) {
+		// TODO Auto-generated method stub
+		if(dDiaryDto!=null&&dDiaryDto.getUUserDto()!=null){
+			StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
+			Map<String,Object> params=new HashMap<String, Object>();
+			stringBuffer.append(" from "+DDiary.class.getName()+" a where 1=1 ");
+			stringBuffer.append(" and a.UUser.userId=:userId");
+			params.put("userId",dDiaryDto.getUUserDto().getUserId());
+			if(dDiaryDto.getDCatalogDto()!=null){
+			stringBuffer.append(" and a.DCatalog.catalogId=:catalogId");
+			params.put("catalogId",dDiaryDto.getDCatalogDto().getCatalogId());
+			}
+			if(dDiaryDto.getRole()!=null){
+				stringBuffer.append(" and a.role=:role");
+				params.put("role",dDiaryDto.getRole());
+			}else{
+				stringBuffer.append(" and a.role=1");
+			}
+			return this.count(stringBuffer.toString(), params);
+		}
+		return 0;
 	}
 
 }

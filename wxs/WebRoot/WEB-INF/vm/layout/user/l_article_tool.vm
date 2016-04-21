@@ -3,7 +3,7 @@
 
 <ul >
                                         <li id="d_view"><a  href="javascript:;"><i class="fa fa-eye"></i>阅读#if($diary.viewCount)($diary.viewCount)#else (0) #end</a></li>
-                                        <li id="d_upvote"><a data-url="" href="javascript:;" ><i class="text-warning fa fa-thumbs-o-up"></i>点赞#if($diary.upvoteCount)($dairy.upvoteCount)#else (0) #end</a></li>
+                                        <li id="d_upvote"><a data-url="$link.getContextURL()/$author.nickname/article/article_upvote/$diary.diaryId" href="javascript:;" ><i class="text-warning fa fa-thumbs-o-up"></i>点赞#if($diary.upvoteCount)($dairy.upvoteCount)#else (0) #end</a></li>
 										<li id="d_comment"><a href="#comment"><i class="fa fa-comment-o"></i>评论#if($diary.replyCount)($dairy.replyCount)#else (0) #end</a></li>
 										#if($user.userId!=$author.userId)
 										<li id="d_favorite"><a data-url="" href="javascript:;"> <i class="fa fa-star-o text-warning"></i>收藏#if($diary.favoriteCount)($dairy.favoriteCount)#else (0) #end</a></li>

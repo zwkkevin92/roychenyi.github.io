@@ -22,6 +22,7 @@ import com.cx.wxs.dto.BConfigDto;
 import com.cx.wxs.dto.DAccessDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
+import com.cx.wxs.dto.DFavoriteDto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
@@ -31,6 +32,7 @@ import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.DAccessService;
 import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.DDiaryService;
+import com.cx.wxs.service.DFavoriteService;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.service.UUserService;
@@ -59,6 +61,8 @@ public class diaryAction extends BaseDiaryAction{
 	private DAccessService accessService;
 	@Resource
 	private DUpvoteService upvoteService;
+	@Resource
+	private DFavoriteService favoriteService;
 	/***
 	 * 跳转到更新日志的界面
 	 * @param vip
@@ -125,9 +129,7 @@ public class diaryAction extends BaseDiaryAction{
 			diaryDto.setContribute(contribute);
 			diaryDto.setBSiteDto(userDto.getBSiteDto());
 			diaryDto.setUUserDto(userDto);
-
 			diaryDto.setWriteTime(new Timestamp(date.getTime()));
-
 			int diaryId= diaryService.addDDiary(diaryDto);
 			if(diaryId>0){
 				diaryDto.setDiaryId(diaryId);
@@ -213,7 +215,25 @@ public class diaryAction extends BaseDiaryAction{
 	@RequestMapping(value="/article_list")
 	public ModelAndView articleList(@PathVariable("vip") String vip,
 			HttpServletRequest request,HttpServletResponse reqResponse){
-		ModelAndView mv=new ModelAndView("diary/d_edite");
+		ModelAndView mv=new ModelAndView("diary/d_list");
+		UUserDto userDto=getUserDtoByNickname(vip);
+		if(userDto==null){
+			mv.setViewName("404");
+		}else{
+			//获取用户信息
+			DDiaryDto diaryDto=new DDiaryDto();
+			diaryDto.setUUserDto(userDto);
+			diaryDto.setPage(1);
+			diaryDto.setRows(10);
+			diaryDto.setRole((short)1);
+			List<DDiaryDto> diaryDtos=diaryService.getDDiaryList(diaryDto);
+			//获取用户的列表
+			DCatalogDto catalogDto=new DCatalogDto();
+			catalogDto.setUUserDto(userDto);
+			this.getDcatolog(catalogDto, mv);
+			mv.addObject("author", userDto);
+			mv.addObject("diarys",diaryDtos);
+		}
 		return mv;
 	}
 	@RequestMapping(value="/details/{diaryId}")
@@ -285,8 +305,19 @@ public class diaryAction extends BaseDiaryAction{
 	 * @date   2016-4-16下午4:17:28
 	 */
 	@RequestMapping(value="/article_delete/{diaryId}")
+	@ResponseBody
 	public DDiaryDto  articleDelete(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
+		diaryDto.setDiaryId(diaryId);
+		Date date=new Date();
+		diaryDto=diaryService.getDDiaryByID(diaryDto);
+		diaryDto.setRole((short)-1);
+		diaryDto.setModifyTime(new Timestamp(date.getTime()));
+		if(diaryService.updateDDiary(diaryDto)>0){
+			diaryDto.setStatusFlag("1");
+		}else{
+			diaryDto.setStatusFlag("-1");
+		}
 		return diaryDto;
 	}
 	/**
@@ -310,14 +341,39 @@ public class diaryAction extends BaseDiaryAction{
 		}else{
 			//作者信息
 			UUserDto userDto2=getUserDtoByNickname(vip);
-			upvoteDto.setUUserDto(userDto2);
-			diaryDto.setDiaryId(diaryId);
-			upvoteDto.setDDiaryDto(diaryDto);
+			Date date=new Date();
+			upvoteDto.setUUserDto(userDto1);
+			diaryDto.setDiaryId(diaryId);		
+			diaryDto=diaryService.getDDiaryByID(diaryDto);
+			upvoteDto.setDDiaryDto(diaryDto);			
 			DUpvoteDto upvoteDto2=upvoteService.getDUpvote(upvoteDto);
 			if(upvoteDto2!=null){
 				//取消赞
+				diaryDto.setUpvoteCount(diaryDto.getUpvoteCount()-1);  //点赞数量减一
+				diaryService.updateDDiary(diaryDto);
+				upvoteDto2.setStatus((short)0);
+				upvoteDto2.setUpdateTime(new Timestamp(date.getTime()));
+				if(upvoteService.updateDUpvote(upvoteDto2)>0){
+				upvoteDto=upvoteDto2;
+				upvoteDto.setStatusFlag("0");
+				}else{
+					upvoteDto.setStatusFlag("-1");
+				}
 			}else{
 				//点赞
+				if(diaryDto.getUpvoteCount()==null){
+					diaryDto.setUpvoteCount(1);
+				}else{
+					diaryDto.setUpvoteCount(diaryDto.getUpvoteCount()+1);
+				}
+				diaryService.updateDDiary(diaryDto);
+				upvoteDto.setTime(new Timestamp(date.getTime())); //添加时间
+				int upvoteId=upvoteService.addDUpvote(upvoteDto);
+				if(upvoteId>0){
+					diaryDto.setStatusFlag("1");
+				}else{
+					diaryDto.setStatusFlag("-1");
+				}
 			}
 		}
 		return upvoteDto;
@@ -334,9 +390,51 @@ public class diaryAction extends BaseDiaryAction{
 	 * @date   2016-4-16下午4:18:42
 	 */
 	@RequestMapping(value="/article_favorite/{diaryId}")
-	public DDiaryDto articleFavorite(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+	@ResponseBody
+	public DFavoriteDto articleFavorite(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
-		return diaryDto;
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		UUserDto userDto1=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto1==null){
+			favoriteDto.setStatusFlag("-2");			
+		}else{
+			Date date=new Date();
+			diaryDto.setDiaryId(diaryId);
+			diaryDto=diaryService.getDDiaryByID(diaryDto);
+			favoriteDto.setDDiaryDto(diaryDto);
+			favoriteDto.setUUserDto(userDto1);
+			DFavoriteDto favoriteDto2=favoriteService.getDFADFavorite(favoriteDto);
+			if(favoriteDto2!=null){
+				//取消收藏
+				diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()-1);
+				diaryService.updateDDiary(diaryDto);
+				favoriteDto2.setStatus((short)0);
+				favoriteDto2.setUpdateTime(new Timestamp(date.getTime()));
+				if(favoriteService.updateDFavorite(favoriteDto2)>0){
+					favoriteDto=favoriteDto2;
+					favoriteDto.setStatusFlag("0");
+				}else{
+					favoriteDto.setStatusFlag("-1");
+				}
+			}else{
+				//确认收藏
+				if(diaryDto.getFavoriteCount()==null){
+					diaryDto.setFavoriteCount(1);
+				}else{
+					diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()+1);
+				}
+				diaryService.updateDDiary(diaryDto);
+				favoriteDto.setTime(new Timestamp(date.getTime()));
+				int favoriteId= favoriteService.addDFavorite(favoriteDto);
+				if(favoriteId>0){
+					favoriteDto.setStatusFlag("1");
+					favoriteDto.setDfavoriteId(favoriteId);
+				}else{
+					favoriteDto.setStatusFlag("-1");
+				}
+			}
+		}
+		return favoriteDto;
 	}
 
 }

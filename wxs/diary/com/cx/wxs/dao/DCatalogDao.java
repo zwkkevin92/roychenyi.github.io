@@ -54,4 +54,5 @@ public interface DCatalogDao extends IBaseDao<DCatalog,Integer>{
      */
     public DCatalogDto getDCatalog(DCatalogDto dCatalogDto);
 
+
 }
