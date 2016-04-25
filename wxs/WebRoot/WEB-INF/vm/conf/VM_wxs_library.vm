@@ -6,18 +6,21 @@
 <html lang="zh">	
 #end
 
+#macro(rootUrl)
+$link.getRoot()#end
+
 #macro(bootstrap)
-   <link href="$link.getContextURL()/css/bootstrap.min.css" rel="stylesheet">
-   <link href="$link.getContextURL()/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
-   <link href="$link.getContextURL()/css/animate.css" rel="stylesheet">   
+   <link href="#rootUrl()/css/bootstrap.min.css" rel="stylesheet">
+   <link href="#rootUrl()/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+   <link href="#rootUrl()/css/animate.css" rel="stylesheet">   
 #end
 
 #macro(jquery)
 <!-- Mainly scripts -->
-<script src="$link.getContextURL()/js/jquery-2.1.4.min.js"></script>
-<script src="$link.getContextURL()/js/bootstrap.min.js"></script>
-<script src="$link.getContextURL()/js/plugins/metisMenu/jquery.metisMenu.js"></script>          <!--创建手风琴效果的可折叠菜单-->
-<script src="$link.getContextURL()/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<script src="#rootUrl()/js/jquery-2.1.4.min.js"></script>
+<script src="#rootUrl()/js/bootstrap.min.js"></script>
+<script src="#rootUrl()/js/plugins/metisMenu/jquery.metisMenu.js"></script>          <!--创建手风琴效果的可折叠菜单-->
+<script src="#rootUrl()/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
 #end
 
  

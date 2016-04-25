@@ -1,15 +1,17 @@
 #set($layout = "layout/index.vm")
 #set($page_title="注册验证结果页")
-#set($extcss="<link href='$link.getContextURL()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
+#parse("conf/css.vm")
+#set($extcss=$CtimeCircles)
+##set($extcss="<link href='#rootUrl()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
 
-#set($extjs="<script src='$link.getContextURL()/js/plugins/TimeCircles/TimeCircles.js'></script><br><script src='$link.getContextURL()/js/timer.js'></script>"
-+"<script>setInterval(function(){window.location='$link.getContextURL()/login';},1000*5);</script>")
+set($extjs="<script src='#rootUrl()/js/plugins/TimeCircles/TimeCircles.js'></script><br><script src='#rootUrl()/js/timer.js'></script>"
++"<script>setInterval(function(){window.location='#rootUrl()/login';},1000*5);</script>")
 
 <!--验证成功界面-->
 	<div class="middle-box text-center animated fadeInDown">
 		#if($user)
 			     <h3>欢迎登陆:$user.nickname</h3>
-        <h5 class="text-success">您已经验证成功,5秒后您将自动跳转到登陆界面<br>或者您点击<a href="$link.getContextURL()/login" > 登陆</a>按钮进行登陆</h5>
+        <h5 class="text-success">您已经验证成功,5秒后您将自动跳转到登陆界面<br>或者您点击<a href="#rootUrl()/login" > 登陆</a>按钮进行登陆</h5>
         <div>
          <div id="CountDownTimer" data-timer="5" style="width: 400px; height: 400px;"></div>
          </div>

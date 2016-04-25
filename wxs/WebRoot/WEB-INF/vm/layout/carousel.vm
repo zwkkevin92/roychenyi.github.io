@@ -43,7 +43,7 @@
 
                     <div class="item">
 
-                        <img src="images/slide-01.jpg" >
+                        <img src="#rootUrl()/images/slide-01.jpg" >
 
                         </img>
 

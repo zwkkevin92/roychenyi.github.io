@@ -46,19 +46,19 @@
 											#if($user)
 											#if($user.BSiteDto.logo)
                                             <div class="chat-user text-center">
-                                                <img class="img-container" src="$link.getContextURL()/$user.BSiteDto.logo">
+                                                <img class="img-container" src="#rootUrl()/$user.BSiteDto.logo">
                                             </div>
 											#else
 										    <div class="chat-user text-center">
-                                                <img class="img-container" src="$link.getContextURL()/images/face.png">
+                                                <img class="img-container" src="#rootUrl()/images/face.png">
                                             </div>
 											#end
 											<div class="chat-user-name">$user.nickname</div>
 											#else
 											<div class="chat-user">
 												<p>您还没有登陆，请先登陆了再进行评论</p>
-												<a class="text-info" href="$link.getContextURL()/login">登陆</a>
-                                                <a class="text-info" href="$link.getContextURL()/register">注册</a>
+												<a class="text-info" href="#rootUrl()/login">登陆</a>
+                                                <a class="text-info" href="#rootUrl()/register">注册</a>
 											</div>
 											#end
 											

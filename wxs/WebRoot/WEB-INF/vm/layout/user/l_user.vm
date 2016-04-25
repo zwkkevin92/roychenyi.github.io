@@ -4,7 +4,7 @@
 <head>
 	#parse("layout/head.vm")
 	#if($author.username==$user.username)
-		<link href='$link.getContextURL()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />
+		<link href='#rootUrl()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />
 	#end
 </head>
 <body class="top-navigation gray-bg" >
@@ -14,20 +14,20 @@
     <div class="wrapper wrapper-content">
         <div class="container">
 			<div class="row">
-                <div class="headarea white-bg" style="background-image: url($link.getContextURL()/images/head_bg.jpg);">
+                <div class="headarea white-bg" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
 <div class="pull-right">统计</div>
                         <div class="blog_titil">
 							<div>#if($author.username==$user.username) 
-							<div id="face-photo" class="avatar-view"  title="点击更新头像"><img class="img-circle" #if($author.BSiteDto.logo)  src="$link.getContextURL()/$author.BSiteDto.logo" #else src="$link.getContextURL()/images/face.png" #end title="$author.nickname" /></div>	
+							<div id="face-photo" class="avatar-view"  title="点击更新头像"><img class="img-circle" #if($author.BSiteDto.logo)  src="#rootUrl()/$author.BSiteDto.logo" #else src="#rootUrl()/images/face.png" #end title="$author.nickname" /></div>	
 						    #else
-								<img class="img-circle" #if($author.BSiteDto.logo)  src="$link.getContextURL()/$author.BSiteDto.logo" title="$author.nickname" #else src="$link.getContextURL()/images/face.png" #end   style="width: 100px;height: 100px;"/>
+								<img class="img-circle" #if($author.BSiteDto.logo)  src="#rootUrl()/$author.BSiteDto.logo" title="$author.nickname" #else src="#rootUrl()/images/face.png" #end   style="width: 100px;height: 100px;"/>
 							#end
                             
 							</div>
 							<h1 class="no-margins">$author.nickname</h1>
                             <h3 class="no-margins"><small class="text-info">#if($author.USignDto) $author.USignDto.content #end</small></h3>
 							#if($author.BSiteDto)
-                            <h3 class="no-margins"><small><a href="$link.getContextURL()$author.BSiteDto.siteUrl">$link.getContextURL()$author.BSiteDto.siteUrl</a></small></h3>
+                            <h3 class="no-margins"><small><a href="#rootUrl()$author.BSiteDto.siteUrl">#rootUrl()$author.BSiteDto.siteUrl</a></small></h3>
 							#end
                         </div>
                         <div class="navbar navbar-default blog_nav">
@@ -56,11 +56,11 @@
 
 #end
 <!-- Custom and plugin javascript -->
-<script src="$link.getContextURL()/js/plugins/pace/pace.min.js"></script>
-<script src="$link.getContextURL()/js/main.js"></script>
+<script src="#rootUrl()/js/plugins/pace/pace.min.js"></script>
+<script src="#rootUrl()/js/main.js"></script>
 #if($author.username==$user.username)
-	<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>
-	<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>
+	<script src='#rootUrl()/js/plugins/cropper/cropper.min.js'></script>
+	<script src='#rootUrl()/js/plugins/cropper/cropper-tool.js'></script>
 	#end
 #if($extjs)
 $extjs

@@ -1,8 +1,8 @@
 ##css的基本路径
-#set($CcssURL="$link.getContextURL()/css")
+#set($CcssURL="#rootUrl()/css")
 ##timeCircles 时间倒计时
-#set($CtimeCircles="<link href='$link.getContextURL()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
+#set($CtimeCircles="<link href='#rootUrl()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
 ##wangEditor
-#set($CwangEditor="<link href='$link.getContextURL()/css/wangEditor/wangEditor.min.css' rel='stylesheet' />")
+#set($CwangEditor="<link href='#rootUrl()/css/wangEditor/wangEditor.min.css' rel='stylesheet' />")
 ##cropper
-#set($Ccropper="<link href='$link.getContextURL()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />")
+#set($Ccropper="<link href='#rootUrl()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />")

@@ -92,14 +92,6 @@ public class SessionFilter extends OncePerRequestFilter {
 	          } 
 		System.out.println("进入Filter.....");
 		System.out.println(request.getRequestURI());
-		String ip=clientInfo.getIpAddr(request);
-		String clientAgent=clientInfo.getAgent(request);
-		boolean isMoblie=clientInfo.isMoblie(request);
-		short clientType=(short) (isMoblie?0:1);
-		request.setAttribute("ip", ip);
-		request.setAttribute("clientIp", ip);
-		request.setAttribute("clientAgent", clientAgent);
-		request.setAttribute("clientType", clientType);
 		//获取userid
 		Cookie cookie=RequestUtils.getCookie(request, "user");
 		HttpSession session=request.getSession();
@@ -112,7 +104,6 @@ public class SessionFilter extends OncePerRequestFilter {
 			
 			int i=Integer.parseInt(StringUtils.decryptPassword(cookie.getValue()));
 			user.setUserId(i);
-			UUserDao userDao=new UUserDaoImpl();
 			ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());  
 			UUserService userService=(UUserService) ctx.getBean("UuserService");
 		//	UUserService userService=GlobalContext.getBean("")
@@ -138,17 +129,22 @@ public class SessionFilter extends OncePerRequestFilter {
 		if(userDto!=null){
 		m.put("uid", new String[]{userDto.getUserId().toString()});  
 		}
+		String ip=clientInfo.getIpAddr(request);
+		String clientAgent=clientInfo.getAgent(request);
+		boolean isMoblie=clientInfo.isMoblie(request);
+		short clientType=(short) (isMoblie?0:1);
 		m.put("ip",new String[]{ip});
 		m.put("clientIp",new String[]{ip});
 		m.put("clientAgent",new String[]{clientAgent});
 		m.put("clientType",new String[]{clientType+""});
 		//request=new MyRequestWrapper(request,m);
 	   // System.out.println(request.getParameter("ip")+request.getParameter("catalogName"));
-		if(requestUrl.contains("image")){
+	/*	if(requestUrl.contains("image")){
 			filterchain.doFilter(request, response);
 		}else{
 		filterchain.doFilter(new MyRequestWrapper(request,m), response);
-		}
+		}*/
+		filterchain.doFilter(request, response);
 	}
 	
 	 

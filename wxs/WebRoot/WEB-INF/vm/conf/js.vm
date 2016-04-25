@@ -1,21 +1,21 @@
 ##js目录
-#set($JjsURL="$link.getContextURL()/js")
+#set($JjsURL="#rootUrl()/js")
 ##定时器
-#set($Jtimer="<script src='$link.getContextURL()/js/timer.js'></script><br>")
+#set($Jtimer="<script src='#rootUrl()/js/timer.js'></script><br>")
 ##用户检查
-#set($JuserCheck="<script src='$link.getContextURL()/js/user-check.js'></script>")
+#set($JuserCheck="<script src='#rootUrl()/js/user-check.js'></script>")
 ##主函数
-#set($Jmian="<script src='$link.getContextURL()/js/mian.js'></script><br>")
+#set($Jmian="<script src='#rootUrl()/js/mian.js'></script><br>")
 ##layer
-#set($Jlayer="<script src='$link.getContextURL()/js/plugins/layer/layer.js'></script>")
+#set($Jlayer="<script src='#rootUrl()/js/plugins/layer/layer.js'></script>")
 ##cropper
-#set($Jcropper="<script src='$link.getContextURL()/js/plugins/cropper/cropper.min.js'></script>")
-#set($Jcropper-tool="<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool.js'></script>")
-#set($Jcropper-tool1="<script src='$link.getContextURL()/js/plugins/cropper/cropper-tool1.js'></script>")
+#set($Jcropper="<script src='#rootUrl()/js/plugins/cropper/cropper.min.js'></script>")
+#set($Jcropper-tool="<script src='#rootUrl()/js/plugins/cropper/cropper-tool.js'></script>")
+#set($Jcropper-tool1="<script src='#rootUrl()/js/plugins/cropper/cropper-tool1.js'></script>")
 ##setting
-#set($Jsetting="<script src='$link.getContextURL()/js/setting.js'></script>")
+#set($Jsetting="<script src='#rootUrl()/js/setting.js'></script>")
 ##wangEditor
-#set($JwangEditor="<script src='$link.getContextURL()/js/plugins/wangEditor/wangEditor.min.js'></script>")
-#set($Jeditor="<script src='$link.getContextURL()/js/plugins/wangEditor/edite.js'></script>")
+#set($JwangEditor="<script src='#rootUrl()/js/plugins/wangEditor/wangEditor.min.js'></script>")
+#set($Jeditor="<script src='#rootUrl()/js/plugins/wangEditor/edite.js'></script>")
 ##cookie
-#set($Jcookie="<script src='$link.getContextURL()/js/plugins/cookie/jquery.cookie.js'></script>")
+#set($Jcookie="<script src='#rootUrl()/js/plugins/cookie/jquery.cookie.js'></script>")

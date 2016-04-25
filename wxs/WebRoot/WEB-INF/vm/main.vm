@@ -10,9 +10,11 @@
                      <div class="ibox">
                          <div class="ibox-title">社团</div>
                          <div class="ibox-content">
-$test.getBaseUrl($request)
-$test1.getBaseUrl($request)
-$html.image_src($user.portrait)
+$test.getBaseUrl($request)<br>
+$test1.getBaseUrl($request)<br>
+$html.image_src($user.portrait)<br>
+#rootUrl()<br>
+	$link.getContextURL()
 						 </div>
                      </div>
                  </div>
