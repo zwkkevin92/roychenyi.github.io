@@ -31,7 +31,7 @@
                         <li class="list-group-item"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
                             #if($user.userId==$author.userId)
                         <span class="pull-right dropdown">&nbsp;
-							<a class="dropdown-toggle active" data-toggle="data-toggle"><i class="fa fa-edit"></i>编辑<span class="caret"></span></a>
+							<a class="dropdown-toggle active" data-toggle="data-toggle">编辑<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a>编辑</a></li>
                                             <li id="d_delete"><a data-url="#rootUrl()/$author.nickname/article/article_delete/$diary.diaryId" href="javascript:;">删除</a></li>

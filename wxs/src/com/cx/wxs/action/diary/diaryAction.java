@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
@@ -36,6 +37,7 @@ import com.cx.wxs.service.DFavoriteService;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.service.UUserService;
+import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.clientInfo;
 
 /**
@@ -213,8 +215,8 @@ public class diaryAction extends BaseDiaryAction{
 		return  diaryDto;
 	}
 	@RequestMapping(value="/article_list")
-	public ModelAndView articleList(@PathVariable("vip") String vip,
-			HttpServletRequest request,HttpServletResponse reqResponse){
+	public ModelAndView articleList(@PathVariable("vip") String vip,Integer page,
+			HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv=new ModelAndView("diary/d_list");
 		UUserDto userDto=getUserDtoByNickname(vip);
 		if(userDto==null){
@@ -223,12 +225,17 @@ public class diaryAction extends BaseDiaryAction{
 			//获取日志列表
 			DDiaryDto diaryDto=new DDiaryDto();
 			diaryDto.setUUserDto(userDto);
-			diaryDto.setPage(1);
+			if(page!=null){
+			    diaryDto.setPage(page);	
+			}else{
+				diaryDto.setPage(1);
+			}
 			diaryDto.setRows(10);
 			diaryDto.setRole((short)1);
 			List<DDiaryDto> diaryDtos=diaryService.getDDiaryList(diaryDto);
 			//分页信息
 			diaryDto=diaryService.getPageInfo(diaryDto);
+			this.setCookie_page(diaryDto, request, response);
 			//获取文章分类
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
@@ -236,6 +243,7 @@ public class diaryAction extends BaseDiaryAction{
 			mv.addObject("page",diaryDto);
 			mv.addObject("author", userDto);
 			mv.addObject("diarys",diaryDtos);
+
 		}
 		return mv;
 	}
@@ -318,6 +326,14 @@ public class diaryAction extends BaseDiaryAction{
 		diaryDto.setModifyTime(new Timestamp(date.getTime()));
 		if(diaryService.updateDDiary(diaryDto)>0){
 			diaryDto.setStatusFlag("1");
+			String basePath=RequestUtils.getDomain(request);
+			String url=basePath+"/"+vip+"/article/article_list";
+			Cookie cookie= RequestUtils.getCookie(request, "page");
+			if(cookie!=null&&!cookie.getValue().equals("1")){
+				int page=Integer.parseInt(cookie.getValue());
+				url+="?page="+page;
+			}
+			diaryDto.setUrl(url);
 		}else{
 			diaryDto.setStatusFlag("-1");
 		}

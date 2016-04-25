@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.velocity.tools.generic.LinkTool;
 
 import com.cx.wxs.dto.UUserDto;
 
@@ -155,6 +156,13 @@ public class RequestUtils {
 		}
 	};
 	
+	public static String getDomain(HttpServletRequest request){
+		//测试
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		return basePath;
+	}
+	
 	public static void main(String[] args){
 		String host = "127.0.0.1";
 		System.out.println("DOMAIN: " + getDomainOfServerName(host));		
@@ -165,6 +173,9 @@ public class RequestUtils {
 		host = "sky.net.my";
 		System.out.println("DOMAIN: " + getDomainOfServerName(host));
 		host="www.baidu.com/12345?a=b";
+		System.out.println("DOMAIN:"+getDomainOfServerName(host));
+		host="www.m.baidu.com.cn";
+		System.out.println("DOMAIN:"+getDomainOfServerName(host));	
 		
 	}
 

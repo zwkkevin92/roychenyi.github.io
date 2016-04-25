@@ -209,7 +209,8 @@ $(document).ready(function () {
                     if(data["statusFlag"]==-1){
                         layer.msg("删除失败，请重新再试!",{icon:2,time:1000});
                     }else if(data["statusFlag"]==1){
-                        window.location.href="" ;
+                    	
+                        window.location.href=data["url"]; ;
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
