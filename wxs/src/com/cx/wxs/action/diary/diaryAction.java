@@ -220,17 +220,20 @@ public class diaryAction extends BaseDiaryAction{
 		if(userDto==null){
 			mv.setViewName("404");
 		}else{
-			//获取用户信息
+			//获取日志列表
 			DDiaryDto diaryDto=new DDiaryDto();
 			diaryDto.setUUserDto(userDto);
 			diaryDto.setPage(1);
 			diaryDto.setRows(10);
 			diaryDto.setRole((short)1);
 			List<DDiaryDto> diaryDtos=diaryService.getDDiaryList(diaryDto);
-			//获取用户的列表
+			//分页信息
+			diaryDto=diaryService.getPageInfo(diaryDto);
+			//获取文章分类
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
 			this.getDcatolog(catalogDto, mv);
+			mv.addObject("page",diaryDto);
 			mv.addObject("author", userDto);
 			mv.addObject("diarys",diaryDtos);
 		}

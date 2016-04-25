@@ -54,7 +54,7 @@ $link.getRoot()#end
  
 #macro(show_msg_box $__msg)
 <div class="msgbox">
-	${__msg}<br/><br/><a href="#" onclick="history.go(-1);return false;">������ҳ</a>&nbsp;<a href="$dlog.root()/">������ҳ</a>
+	${__msg}<br/><br/><a href="#" onclick="history.go(-1);return false;">上一页</a>&nbsp;<a href="$dlog.root()/">回到首页</a>
 </div>
 <div class="spacer_1"></div>
 #end

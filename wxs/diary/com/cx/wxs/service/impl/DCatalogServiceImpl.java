@@ -52,15 +52,27 @@ public class DCatalogServiceImpl implements DCatalogService {
     @Override
     public List<DCatalogDto> getDCatalogList(DCatalogDto dCatalogDto){
     	List<DCatalogDto> list=dCatalogDao.getDCatalogList(dCatalogDto);
+    	List<DCatalogDto> list1=new ArrayList<DCatalogDto>();
+    	DCatalogDto catalogDto1=new DCatalogDto();
+    	catalogDto1.setCatalogName("全部文章");
+    	catalogDto1.setArticleCount(0);
+    	//获取分类日志数
     	for(DCatalogDto catalogDto:list){
+    //		DCatalogDto  dto1=dCatalogDao.getDCatalog(catalogDto);
+    //		System.out.println(dto1.getUUserDto().getUserId());
     		DDiaryDto diaryDto=new DDiaryDto();
     		diaryDto.setDCatalogDto(catalogDto);
-    		diaryDto.setUUserDto(catalogDto.getUUserDto());
+    		diaryDto.setUUserDto(dCatalogDto.getUUserDto());
     		int count=dDiaryDao.getDiaryCount(diaryDto);
     		catalogDto.setArticleCount(count);
     		dCatalogDao.updateDCatalog(catalogDto);
+    		//获取全部日志的数量
+    		catalogDto1.setArticleCount(catalogDto1.getArticleCount()+count);
     	}
-    	return dCatalogDao.getDCatalogList(dCatalogDto);
+    	list1.add(catalogDto1);
+    	list=dCatalogDao.getDCatalogList(dCatalogDto);
+    	list1.addAll(list);
+    	return list1;
     }
 
     /**

@@ -1,2 +1,65 @@
 #set($layout = "layout/user/l_user.vm")
 #set($page_title="文章列表-"+"$user.nickname")
+
+<!--日志列表-主体开始-->
+<div class="row">
+    <div class="ibox">
+        <div class="ibox-title">
+			 #if($user.userId==$author.userId)
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav no-padding">
+                    <li><a>我的文章</a></li>
+                    <li><a>私密文章</a></li>
+                    <li><a>写文章</a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li><a>草稿箱</a></li>
+                    <li><a>回收站</a></li>
+                </ul>
+            </div>
+			#else
+				<h4>文章</h4>
+			#end
+</div>
+
+         <div class="ibox-content">
+             <div class="row">
+                <div class="col-md-9">
+
+                    <ul class="list-group">
+                        #foreach($diary in $diarys)
+                        <li class="list-group-item"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
+                            #if($user.userId==$author.userId)
+                        <span class="pull-right dropdown">&nbsp;
+							<a class="dropdown-toggle active" data-toggle="data-toggle"><i class="fa fa-edit"></i>编辑<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a>编辑</a></li>
+                                            <li id="d_delete"><a data-url="#rootUrl()/$author.nickname/article/article_delete/$diary.diaryId" href="javascript:;">删除</a></li>
+                                            <li><a>转为私密文章</a></li>
+                                        </ul></span>
+                            #end
+                            <div class="pull-right">$date.format('yyyy/MM/dd',$diary.writeTime)&nbsp;($diary.replyCount/$diary.viewCount)</div>
+                        </li>
+                        #end
+                    </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-group">
+						<li class="list-group-item"><h4 class="list-group-item-heading text-info">文章分类</h4></li>
+                        #foreach($catalog in $catalogs)
+						#if($catalog.catalogName=="全部文章")	
+						<li class="list-group-item"><span>$catalog.catalogName</span><span class="pull-right">($catalog.articleCount)</span></li>	
+						#else							
+                        <li class="list-group-item"><a><span>$catalog.catalogName</span><span class="pull-right">($catalog.articleCount)</span></a></li>
+						#end
+						#end
+                    </ul>
+
+                </div>
+             </div>
+            </div>
+
+    </div>
+</div>
+<!--日志列表-主体结束-->

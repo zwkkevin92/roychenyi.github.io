@@ -114,6 +114,14 @@ function dropdownOpen() {
 	}).mouseout(function() {
 		$(this).removeClass('open');
 	});
+	
+	  var $dropdownSpan=$('span.dropdown');
+    $dropdownSpan.mouseover(function() {
+        $(this).addClass('open');
+    }).mouseout(function() {
+        $(this).removeClass('open');
+    });
+    
 }
 
 // For demo purpose - animation css script
@@ -207,7 +215,6 @@ function WinMove() {
             success: function (data) {
                 if(data["statusFlag"]==-1){
                     
-                    flag=false;
                 }else if(data["statusFlag"]==1){
                     $.cookie("flag","true");
                     flag=true;

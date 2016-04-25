@@ -91,5 +91,12 @@ public class DDiaryServiceImpl implements DDiaryService {
 		// TODO Auto-generated method stub
 		return dDiaryDao.getCurrentDiarys(diaryDto);
 	}
+	@Override
+	 public DDiaryDto getPageInfo(DDiaryDto diaryDto){
+		int count=dDiaryDao.getDiaryCount(diaryDto);
+		int pageCount=count/diaryDto.getPage()+1;
+		diaryDto.setPageCont(pageCount);
+		return diaryDto;
+	}
 
 }

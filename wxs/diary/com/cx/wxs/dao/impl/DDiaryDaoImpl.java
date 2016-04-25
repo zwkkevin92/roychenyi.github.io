@@ -32,6 +32,13 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
     public void setBeanToDto(BeanToDto<DDiary, DDiaryDto> beanToDto) {
         this.beanToDto = beanToDto;
     }
+    
+    public void setDefault(DDiary diary){
+    	diary.setReplyCount(0);
+    	diary.setViewCount(0);
+    	diary.setUpvoteCount(0);
+    	diary.setFavoriteCount(0);
+    }
     /**
     * 通过id获取DDiaryDto
     * @author 陈义
@@ -106,6 +113,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
         if(dDiaryDto!=null){
            DDiary dDiary= new DDiary();
            dDiary=beanToDto.D1ToT1(dDiary, dDiaryDto);
+           this.setDefault(dDiary);
            return this.save(dDiary);
         }
         return 0;

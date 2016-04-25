@@ -193,37 +193,36 @@ $(document).ready(function () {
    });
    
    $("#d_delete a").click(function(){
-   	    var url=$(this).data("url");
+        var url=$(this).data("url");
         layer.confirm("该文章将移动到回收站，您确定吗？",{title:"删除提示",btn: ['确定','取消'] //按钮
-          },function(){
-             $.ajax({
-             url:url,
-              url:url,
-           type:"POST",
-           data:data_str,
-           dataType:"json",
-           async: false,
-           beforeSend: function () {
-               submitStart();
-           },
-           success: function (data) {
-              if(data["statusFlag"]==-1){
-              layer.msg("删除失败，请重新再试!",{icon:2,time:1000});
-              }else if(data["statusFlag"]==1){
-              	window.location.href="" ;
-              }
-           },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-               submitFail(textStatus || errorThrown);
+        },function(){
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:"",
+                dataType:"json",
+                async: false,
+                beforeSend: function () {
+                    submitStart();
+                },
+                success: function (data) {
+                    if(data["statusFlag"]==-1){
+                        layer.msg("删除失败，请重新再试!",{icon:2,time:1000});
+                    }else if(data["statusFlag"]==1){
+                        window.location.href="" ;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    submitFail(textStatus || errorThrown);
 
-           },
+                },
 
-           complete: function () {
-               submitEnd();
-           }
-             });
-          });
-   });
+                complete: function () {
+                    submitEnd();
+                }
+            });
+        });
+    }); 
    
 });
 

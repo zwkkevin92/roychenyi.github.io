@@ -60,6 +60,14 @@ public interface DDiaryService {
      * @date   2016-4-12下午4:53:25
      */
     public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto);
+    /**
+     * 获取分页信息
+     * @param diaryDto
+     * @return
+     * @author 陈义
+     * @date   2016-4-25下午4:54:01
+     */
+    public DDiaryDto getPageInfo(DDiaryDto diaryDto);
     
     
 

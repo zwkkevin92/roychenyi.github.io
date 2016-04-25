@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>wxs</display-name>
-	<!-- 设置session 的过期时间为12个小时 -->
+	<!-- 设置session 的过期时间为60分钟 -->
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 
 	<!-- 加载spring容器 -->
