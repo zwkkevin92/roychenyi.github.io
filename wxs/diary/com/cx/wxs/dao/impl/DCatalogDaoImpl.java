@@ -57,7 +57,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
 	@Override
 	public DCatalogDto getDCatalog(DCatalogDto dCatalogDto){
 		// TODO Auto-generated method stub
-        if(dCatalogDto!=null&&dCatalogDto.getUUserDto()!=null&&dCatalogDto.getCatalogName()!=null){
+
 		StringBuffer stringBuffer=new StringBuffer();
 		Map<String,Object> params=new HashMap<String, Object>();
 		stringBuffer.append("from  "+DCatalog.class.getName()+"  a where a.UUser.userId=:id");
@@ -75,7 +75,7 @@ public class DCatalogDaoImpl extends BaseDaoImpl<DCatalog, Integer> implements D
 			dto=beanToDto.T1ToD1(t1,dto);
 			return dto;
 		}
-        }
+
 		return null;
 	}
 

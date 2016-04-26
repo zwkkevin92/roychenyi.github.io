@@ -10,13 +10,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cx.wxs.action.diary.diaryAction;
 import com.cx.wxs.dto.BConfigDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
+import com.cx.wxs.dto.DFavoriteDto;
+import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.DCatalogService;
+import com.cx.wxs.service.DFavoriteService;
+import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
@@ -34,6 +39,10 @@ public class BaseDiaryAction extends BaseAction{
 	private DCatalogService catalogService;
 	@Resource
 	private SysTypeService sysTypeService;
+	@Resource
+	private DUpvoteService upvoteService;
+	@Resource
+	private DFavoriteService favoriteService;
     
 	
 	public void getDiarySetting(UUserDto userDto,ModelAndView mv){
@@ -79,6 +88,22 @@ public class BaseDiaryAction extends BaseAction{
 		RequestUtils.setCookie(request, response, "pageCount", pageCount.toString(),12*3600);
 		session.setAttribute("page", page);
 		session.setAttribute("pageCount", pageCount);
+	}
+	
+	public DUpvoteDto getDUpvoteDto(DDiaryDto diaryDto,UUserDto userDto){
+		DUpvoteDto upvoteDto=new DUpvoteDto();
+		upvoteDto.setUUserDto(userDto);
+		upvoteDto.setDDiaryDto(diaryDto);
+		upvoteDto=upvoteService.getDUpvote(upvoteDto);
+		return upvoteDto;
+	}
+	
+	public DFavoriteDto getDFavoriteDto(DDiaryDto diaryDto,UUserDto userDto){
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		favoriteDto.setUUserDto(userDto);
+		favoriteDto.setDDiaryDto(diaryDto);
+		favoriteDto=favoriteService.getDFavorite(favoriteDto);
+		return favoriteDto;
 	}
 
 }

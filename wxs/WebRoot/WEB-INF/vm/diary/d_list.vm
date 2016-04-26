@@ -1,5 +1,7 @@
 #set($layout = "layout/user/l_user.vm")
 #set($page_title="文章列表-"+"$user.nickname")
+#parse("conf/js.vm")
+#set($extjs=$Jlayer+$Jarticle_tool)
 
 <!--日志列表-主体开始-->
 <div class="row">
@@ -8,7 +10,7 @@
 			 #if($user.userId==$author.userId)
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav no-padding">
-                    <li><a>我的文章</a></li>
+                    <li class="active"><a href="">我的文章</a></li>
                     <li><a>私密文章</a></li>
                     <li><a>写文章</a></li>
                 </ul>

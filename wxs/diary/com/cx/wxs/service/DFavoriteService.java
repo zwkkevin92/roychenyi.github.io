@@ -18,7 +18,7 @@ public interface DFavoriteService {
     
     public DFavoriteDto getDFavoriteByID(DFavoriteDto dFavoriteDto);
     
-    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto);
+    public DFavoriteDto getDFavorite(DFavoriteDto dFavoriteDto);
 
     /**
     * 通过相关信息获取DFavoriteDtoList信息

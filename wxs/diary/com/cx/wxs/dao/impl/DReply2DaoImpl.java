@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-04-09 16:11:18
+ * @date 2016-04-26 21:51:42
  */
 @Repository("DReply2Dao")
 public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DReply2Dao{
@@ -34,7 +34,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     /**
     * 通过id获取DReply2Dto
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public DReply2Dto getDReply2ByID(DReply2Dto dReply2Dto){
@@ -58,7 +58,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     /**
     * 通过相关数据获取DReply2DtoList
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public List<DReply2Dto> getDReply2List(DReply2Dto dReply2Dto){
@@ -68,7 +68,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     /**
     * 添加一个新的DReply2到数据库
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer addDReply2(DReply2Dto dReply2Dto){
@@ -84,7 +84,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     /**
     * 更新DReply2
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer updateDReply2(DReply2Dto dReply2Dto){
@@ -94,7 +94,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dReply2Dto.createSetPropertiesVal(dReply2Dto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+DReply2.class.getName()+" a");
+           stringBuffer.append(" from "+DReply2.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.dreply1Id=:uid");
            params.put("uid",dReply2Dto.getDreply1Id());
@@ -106,7 +106,7 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     /**
     * 删除DReply2
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer deleteDReply2(DReply2Dto dReply2Dto){
@@ -114,11 +114,9 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
         if(dReply2Dto!=null&&dReply2Dto.getDreply1Id()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
-           stringBuffer.append(" from "+DReply2.class.getName()+" a");
+           stringBuffer.append("  "+DReply2.class.getName()+" a");
            stringBuffer.append(" where a.dreply1Id=:uid ");
            params.put("uid",dReply2Dto.getDreply1Id());
-           DReply2 dReply2= new DReply2();
-           BeanUtils.copyProperties(dReply2Dto, dReply2);
            return this.executeHql(stringBuffer.toString(),params);
         }
         return 0;

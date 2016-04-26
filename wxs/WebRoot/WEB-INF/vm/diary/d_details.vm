@@ -22,7 +22,7 @@
                             </div>
                             <div class="ibox-content ">
                                #parse("layout/diary/l_article_tool.vm")
-								<div>分类|标签|原创</div>
+								<div><a>$diary.DCatalogDto.catalogName</a>|<a>$diary.sysTypeDto.name</a>|标签|原创</div>
                                 <div><h4>签名档：</h4>
                                     <p>#if($author.USignDto.content) $author.USignDto.content #end</p>
                                 </div>

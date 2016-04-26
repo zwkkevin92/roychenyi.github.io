@@ -167,7 +167,7 @@ body.body-small .navbar-top-links li:last-child {
   transition: all 0.5s;
 }
 .nav > li.active {
-  border-left: 4px solid #19aa8d;
+  border-bottom: 2px solid #19aa8d;
   background: #293846;
 }
 .nav.nav-second-level > li.active {
@@ -477,6 +477,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .top-navigation .nav > li.active {
   background: #fff;
   border: none;
+  border-bottom:2px solid #1ab394;
 }
 .top-navigation .nav > li.active > a {
   color: #1ab394;
