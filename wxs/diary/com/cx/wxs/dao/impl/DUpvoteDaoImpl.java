@@ -114,7 +114,7 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dUpvoteDto.createSetPropertiesVal(dUpvoteDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
-           stringBuffer.append(" form "+DUpvote.class.getName()+" a");
+           stringBuffer.append(" from "+DUpvote.class.getName()+" a");
            stringBuffer.append(map.get(StringUtils.SET_HQL));
            stringBuffer.append(" where a.dupvoteId=:uid");
            params.put("uid",dUpvoteDto.getDupvoteId());

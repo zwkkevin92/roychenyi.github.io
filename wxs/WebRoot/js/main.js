@@ -246,7 +246,9 @@ function WinMove() {
                 submitStart();
             },
 
-            success: success_function(data),
+            success: function(data){
+            success_function(data)
+            }, 
 
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 submitFail(textStatus || errorThrown);

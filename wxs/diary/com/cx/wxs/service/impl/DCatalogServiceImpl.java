@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.cx.wxs.dao.DCatalogDao;
 import com.cx.wxs.dao.DDiaryDao;
+import com.cx.wxs.dao.UUserDao;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
+import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.DCatalogService;
 
 /**
@@ -22,6 +24,8 @@ public class DCatalogServiceImpl implements DCatalogService {
     private DCatalogDao dCatalogDao;
     @Autowired
     private DDiaryDao dDiaryDao;
+    @Autowired
+    private UUserDao uUserDao;
 
     public void setDCatalogDao(DCatalogDao dCatalogDao){
         this.dCatalogDao=dCatalogDao;
@@ -45,7 +49,7 @@ public class DCatalogServiceImpl implements DCatalogService {
     }
 
     /**
-    * 通过相关信息获取DCatalogDtoList信息
+    * 通过相关信息获取DCatalogDtoList信息,并处理文章数量
     * @author 陈义
     * @date 2016-01-19 14:41:49
     */
@@ -64,14 +68,21 @@ public class DCatalogServiceImpl implements DCatalogService {
     		diaryDto.setDCatalogDto(catalogDto);
     		diaryDto.setUUserDto(dCatalogDto.getUUserDto());
     		int count=dDiaryDao.getDiaryCount(diaryDto);
+    		if(count!=catalogDto.getArticleCount()){
     		catalogDto.setArticleCount(count);
     		dCatalogDao.updateDCatalog(catalogDto);
+    		}
     		//获取全部日志的数量
     		catalogDto1.setArticleCount(catalogDto1.getArticleCount()+count);
+    		list1.add(catalogDto);    		
     	}
-    	list1.add(catalogDto1);
-    	list=dCatalogDao.getDCatalogList(dCatalogDto);
-    	list1.addAll(list);
+    	//文章总数
+    	UUserDto userDto=dCatalogDto.getUUserDto();
+    	userDto.setArticleCount(catalogDto1.getArticleCount());
+    	uUserDao.updateUuser(userDto);
+    	list1.add(0, catalogDto1);
+    //	List<DCatalogDto> list2=dCatalogDao.getDCatalogList(dCatalogDto);
+   // 	list1.addAll(list2);
     	return list1;
     }
 

@@ -94,7 +94,12 @@ public class DDiaryServiceImpl implements DDiaryService {
 	@Override
 	 public DDiaryDto getPageInfo(DDiaryDto diaryDto){
 		int count=dDiaryDao.getDiaryCount(diaryDto);
-		int pageCount=count/diaryDto.getPage()+1;
+		int pageCount=0;
+		if(count%diaryDto.getRows()>0){
+		pageCount=(count/diaryDto.getRows())+1;
+		}else{
+			pageCount=count/diaryDto.getRows();
+		}
 		diaryDto.setPageCont(pageCount);
 		return diaryDto;
 	}
