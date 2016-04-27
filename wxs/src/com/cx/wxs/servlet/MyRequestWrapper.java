@@ -29,7 +29,7 @@ public class MyRequestWrapper extends HttpServletRequestWrapper{
         this.params = newParams;
     }  
     
-    @Override  
+   /* @Override  
     public ServletInputStream getInputStream() {          
         ServletInputStream stream = null;
         String data=null;
@@ -65,7 +65,7 @@ public class MyRequestWrapper extends HttpServletRequestWrapper{
             }  
         };  
         return newStream; 
-    }
+    }*/
     
     @Override  
     public String getParameter(String name) {  

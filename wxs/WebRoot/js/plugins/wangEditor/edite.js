@@ -45,7 +45,9 @@ $(document).ready(function () {
        var url=$(this).attr("action"),
            _this=this,
            arr=$(this).serializeArray();
-       var data_str= $.param(arr);
+           arr.push({name: 'firstname'});
+       var arr1=$(this).serialize();      
+       var data_str= arr1;
        var content=editor.$txt.html();
        var txt=editor.$txt.text();
        var txt1=editor.$txt.text();
@@ -71,6 +73,7 @@ $(document).ready(function () {
        var dairyId=$(this).find("input[name='diaryId']").val();
        var diaryId1=$(this).find("input[name='diaryId1']").val();
        var draft_box=$(this).find("input[name='draft_box']").val();
+       console.log(data_str);
        if(draft_box=="1"){
        layer.confirm("您正要发布的文章列表里有对应的文章存在，你现在要",{
           btn: ['发表为新文章','覆盖该原文章'] //按钮
@@ -136,7 +139,7 @@ function diary_save(data){
                    layer.msg("发布成功！",{icon:1,time:1000});
                    var article_url=$('#article_add_form').data("url");
                    var dirayId=data["diaryId"];
-                   window.location.href=article_url+"/"+dirayId;
+              //     window.location.href=article_url+"/"+dirayId;
                }
 }
 //草稿保存
