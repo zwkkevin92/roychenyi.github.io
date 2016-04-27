@@ -1,5 +1,7 @@
 package com.cx.wxs.action.diary;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -106,6 +108,7 @@ public class diaryAction extends BaseDiaryAction{
 		System.out.println("txt-length:"+diaryDto.getTxt());
 		System.out.println("-------/ntxt:"+request.getParameter("txt"));
 		System.out.println("content:"+diaryDto.getContent());
+		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent()));
 		String coverFlag=request.getParameter("coverFlag");
 		System.out.println("测试："+coverFlag);
 		Date date=new Date();
@@ -184,6 +187,7 @@ public class diaryAction extends BaseDiaryAction{
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
 		ModelAndView mv=new ModelAndView();
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent()));
 		Date date=new Date();
 		if(userDto==null){
 			diaryDto.setStatusFlag("-1");

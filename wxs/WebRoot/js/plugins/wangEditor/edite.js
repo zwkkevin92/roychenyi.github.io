@@ -49,6 +49,7 @@ $(document).ready(function () {
        var arr1=$(this).serialize();      
        var data_str= arr1;
        var content=editor.$txt.html();
+       content=encodeURI(content);
        var txt=editor.$txt.text();
        var txt1=editor.$txt.text();
        txt1 = txt1.replace(/\s/g,"");
@@ -102,6 +103,7 @@ $(document).ready(function () {
            arr=$(form).serializeArray();
        var data_str= $.param(arr);
        var content=editor.$txt.html();
+       content=encodeURI(content);
        var txt=editor.$txt.text();
        var txt1=editor.$txt.text();
        txt1 = txt1.replace(/\s/g,"");
@@ -139,7 +141,7 @@ function diary_save(data){
                    layer.msg("发布成功！",{icon:1,time:1000});
                    var article_url=$('#article_add_form').data("url");
                    var dirayId=data["diaryId"];
-              //     window.location.href=article_url+"/"+dirayId;
+                   window.location.href=article_url+"/"+dirayId;
                }
 }
 //草稿保存
