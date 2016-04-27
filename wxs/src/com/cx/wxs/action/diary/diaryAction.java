@@ -97,13 +97,15 @@ public class diaryAction extends BaseDiaryAction{
 	public DDiaryDto articleAdd(@PathVariable("vip") String vip, HttpServletRequest request,HttpServletResponse reqResponse,Integer diaryId1 ,DDiaryDto diaryDto){
 
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
-
 		System.out.println("content-length:"+diaryDto.getContent().length());
 		System.out.println("txt-length:"+diaryDto.getTxt());
 		System.out.println("-------/ntxt:"+request.getParameter("txt"));
 
 		System.out.println("content:"+diaryDto.getContent());
-
+		System.out.println("content-length:"+diaryDto.getContent().length());
+		System.out.println("txt-length:"+diaryDto.getTxt());
+		System.out.println("-------/ntxt:"+request.getParameter("txt"));
+		System.out.println("content:"+diaryDto.getContent());
 		String coverFlag=request.getParameter("coverFlag");
 		System.out.println("测试："+coverFlag);
 		Date date=new Date();
