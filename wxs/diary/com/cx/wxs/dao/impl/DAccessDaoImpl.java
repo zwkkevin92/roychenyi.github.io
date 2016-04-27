@@ -17,7 +17,7 @@ import com.cx.wxs.utils.BeanToDto;
 
 /**
  * @author 陈义
- * @date 2016-04-09 16:11:18
+ * @date 2016-04-26 21:51:42
  */
 @Repository("DAccessDao")
 public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAccessDao{
@@ -34,7 +34,7 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     /**
     * 通过id获取DAccessDto
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public DAccessDto getDAccessByID(DAccessDto dAccessDto){
@@ -58,7 +58,7 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     /**
     * 通过相关数据获取DAccessDtoList
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public List<DAccessDto> getDAccessList(DAccessDto dAccessDto){
@@ -68,23 +68,12 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     /**
     * 添加一个新的DAccess到数据库
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer addDAccess(DAccessDto dAccessDto){
          // TODO Auto-generated method stub
         if(dAccessDto!=null){
-        	//当写入新的访问记录之前，设置之前的访问记录过期，update status=1
-           StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           Map<String, Object> params =new HashMap<String, Object>();
-           stringBuffer.append(" from "+DAccess.class.getName()+" a ");
-           stringBuffer.append(" set a.status=0 ,a.updateTime=:updateTime");
-           stringBuffer.append(" where a.status=1 and a.DDiary.diaryId=:diaryId and a.UUser.userId=:userId");
-           params.put("updateTime",dAccessDto.getTime());
-           params.put("diaryId", dAccessDto.getDDiaryDto().getDiaryId());
-           params.put("userId",dAccessDto.getUUserDto().getUserId());
-           this.update(stringBuffer.toString(), params);
-           //添加新的访问记录
            DAccess dAccess= new DAccess();
            dAccess=beanToDto.D1ToT1(dAccess, dAccessDto);
            return this.save(dAccess);
@@ -95,7 +84,7 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     /**
     * 更新DAccess
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer updateDAccess(DAccessDto dAccessDto){
@@ -117,7 +106,7 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
     /**
     * 删除DAccess
     * @author 陈义
-    * @date 2016-04-09 16:11:18
+    * @date 2016-04-26 21:51:43
     */
     @Override
     public Integer deleteDAccess(DAccessDto dAccessDto){
@@ -125,11 +114,9 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
         if(dAccessDto!=null&&dAccessDto.getDaccessId()!=null){
            StringBuffer stringBuffer=new StringBuffer(DbType.DELETE.toString());
            Map<String,Object> params=new HashMap<String,Object>();
-           stringBuffer.append(" from "+DAccess.class.getName()+" a");
+           stringBuffer.append("  "+DAccess.class.getName()+" a");
            stringBuffer.append(" where a.daccessId=:uid ");
            params.put("uid",dAccessDto.getDaccessId());
-           DAccess dAccess= new DAccess();
-           BeanUtils.copyProperties(dAccessDto, dAccess);
            return this.executeHql(stringBuffer.toString(),params);
         }
         return 0;

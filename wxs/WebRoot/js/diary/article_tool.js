@@ -40,13 +40,19 @@ $(document).ready(function () {
     $('#d_upvote a').click(function(){
         var url=$(this).data("url"),
             _this=this;
-        ajax1(url,"",upvote);
+        ajax1(url,"",d_upvote);
 
+    });
+    
+    $('#d_favorite a').click(function () {
+        var url=$(this).data("url"),
+            _this=this;
+        ajax1(url,"",d_favorite);
     });
 
 });
 //点赞处理
-function upvote(data){
+function d_upvote(data){
     if(data["statusFlag"]==-1){
         layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==1){
@@ -61,5 +67,23 @@ function upvote(data){
         layer.msg("点赞-1!",{icon:5,time:1000});
     }else if(data["statusFlag"]==-2){
         layer.msg("您尚未登陆，请登陆后再试!",{icon:5,time:1000});
+    }
+}
+//收藏处理
+function d_favorite(data){
+	var flag=Number(data["statusFlag"]);
+    switch(flag){
+    case -2:layer.msg("您尚未登陆，请登陆后再试!",{icon:5,time:1000});break;
+    case -1:layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});break;
+    case 0:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
+        $('#d_favorite>a>i').addClass("fa-star-o");
+        $('#d_favorite>a>i').removeClass("fa-star");
+        layer.msg("点赞-1!",{icon:5,time:1000});break;
+    case 1:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
+        $('#d_favorite>a>i').removeClass("fa-star-o");
+        $('#d_favorite>a>i').addClass("fa-star");
+        layer.msg("点赞+1!",{icon:6,time:1000});break;
+    default:break;
+    
     }
 }

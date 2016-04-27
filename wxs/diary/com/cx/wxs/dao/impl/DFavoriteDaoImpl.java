@@ -59,19 +59,21 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
      * @date 2016-04-19 19:02:44
      */
     @Override
-    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto){
+    public DFavoriteDto getDFavorite(DFavoriteDto dFavoriteDto){
     	if(dFavoriteDto!=null){
     		StringBuffer stringBuffer=new StringBuffer();
             Map<String,Object> params=new HashMap<String, Object>();
             stringBuffer.append("from  "+DFavorite.class.getName()+"  a where a.status=1");
-            stringBuffer.append(" and a.DDiary.diaryId=:diaryId and a.UUser.userId");
+            stringBuffer.append(" and a.DDiary.diaryId=:diaryId and a.UUser.userId=:userId");
             params.put("diaryId",dFavoriteDto.getDDiaryDto().getDiaryId());
             params.put("userId",dFavoriteDto.getUUserDto().getUserId());
             List<DFavorite> list=this.find(stringBuffer.toString(), params);
             if(list!=null&&list.size()>0){
             	DFavorite dFavorite=list.get(0);
             	dFavoriteDto=beanToDto.T1ToD1(dFavorite, new DFavoriteDto());
+                return dFavoriteDto;
             }
+           
     	}
     	return null;
     }
@@ -110,7 +112,7 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
     @Override
     public Integer updateDFavorite(DFavoriteDto dFavoriteDto){
         // TODO Auto-generated method stub
-        if(dFavoriteDto!=null&&dFavoriteDto.getUid()!=null){
+        if(dFavoriteDto!=null&&dFavoriteDto.getDfavoriteId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
            String[] fl = new String[]{"uid"};//过滤掉的字段
            Map<String, Object> map = dFavoriteDto.createSetPropertiesVal(dFavoriteDto, "a", fl);

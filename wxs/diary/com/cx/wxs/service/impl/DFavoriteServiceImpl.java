@@ -34,8 +34,8 @@ public class DFavoriteServiceImpl implements DFavoriteService {
     }
     
     @Override
-    public DFavoriteDto getDFADFavorite(DFavoriteDto dFavoriteDto){
-    	return dFavoriteDao.getDFADFavorite(dFavoriteDto);
+    public DFavoriteDto getDFavorite(DFavoriteDto dFavoriteDto){
+    	return dFavoriteDao.getDFavorite(dFavoriteDto);
     }
 
     /**

@@ -591,11 +591,14 @@ public class CreateDto {
 	 }
 	public static void main(String[] avg) throws IOException, ClassNotFoundException{
 		CreateDto create=new CreateDto();
-		create.createAll();
-//		String className="com.cx.wxs.po.SysIllegal";
-//		Class c=Class.forName(className);
-//		System.out.println(c.getName());
-//		String module="system";
+	//	create.createAll();
+		String className="com.cx.wxs.po.UUser";
+		Class c=Class.forName(className);
+		System.out.println(c.getName());
+		String module="user";
+		 Map<String,Object> map= create.getFields(c);
+    	 String content= create.createDtoFileContent(c, map);
+    	 System.out.println(content);
 //        if(!module.equals("user")){
 //        	 Map<String,Object> map= create.getFields(c);
 //        	 String content= create.createDtoFileContent(c, map);
