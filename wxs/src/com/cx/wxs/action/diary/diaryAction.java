@@ -97,6 +97,9 @@ public class diaryAction extends BaseDiaryAction{
 	public DDiaryDto articleAdd(@PathVariable("vip") String vip, HttpServletRequest request,HttpServletResponse reqResponse,Integer diaryId1 ,DDiaryDto diaryDto){
 
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		System.out.println("content-length:"+diaryDto.getContent().length());
+		System.out.println("txt-length:"+diaryDto.getTxt());
+		System.out.println("-------/ntxt:"+request.getParameter("txt"));
 		String coverFlag=request.getParameter("coverFlag");
 		System.out.println("测试："+coverFlag);
 		Date date=new Date();
@@ -268,6 +271,7 @@ public class diaryAction extends BaseDiaryAction{
 		mv.addObject("next_diary",list.get(1));
 
 		diaryDto=list.get(0);
+		System.out.println("content-length:"+diaryDto.getContent().length());
 		if(diaryDto.getDiaryId()==null){
 			mv.setViewName("diary/d_no_details");
 		}else{
