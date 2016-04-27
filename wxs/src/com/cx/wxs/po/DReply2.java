@@ -96,7 +96,7 @@ public class DReply2 implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "commentator", nullable = false)
+	@JoinColumn(name = "commentator")
 	public UUser getUUserByCommentator() {
 		return this.UUserByCommentator;
 	}

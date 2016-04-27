@@ -3,18 +3,14 @@
  */
 $(document).ready(function () {
 	
-	 $("#edit_dropdown").mouseover(function() {
-        $(this).addClass('open');
-    }).mouseout(function() {
-        $(this).removeClass('open');
-    });
+
 	
     var editor = new wangEditor('textarea1');
 
     // 自定义菜单
     editor.config.menus = [
-//        'source',
-//        '|',     // '|' 是菜单组的分割线
+        'source',
+        '|',     // '|' 是菜单组的分割线
         'bold',
         'underline',
         'italic',
@@ -82,49 +78,18 @@ $(document).ready(function () {
           diary_save(url,data_str,_this)
           },function(){
           data_str+="&coverFlag=1";
-          diary_save(url,data_str,_this)
+          ajax1(url,data_str,diary_save)
+      //    diary_save(url,data_str,_this)
           });
           return false;
        }else{
-       diary_save(url,data_str,this)
+       	ajax1(url,data_str,diary_save)
+  //     diary_save(url,data_str,this)
        }
       return false;
    });
    
-   function diary_save(url,data_str,e){
-        $.ajax({
-           url:url,
-           type:"POST",
-           data:data_str,
-           dataType:"json",
-           async: false,
-           beforeSend: function () {
-               submitStart();
-           },
-
-           success: function (data) {
-               if(data["statusFlag"]==-1){
-                   layer.msg("文章发布失败，请重新再试!",{icon:2,time:1000});
-               }else if(data["statusFlag"]==1){
-                   layer.msg("发布成功！",{icon:1,time:1000});
-                   var article_url=$(e).data("url");
-                   var dirayId=data["diaryId"];
-                   window.location.href=article_url+"/"+dirayId;
-               }
-           },
-
-           error: function (XMLHttpRequest, textStatus, errorThrown) {
-               submitFail(textStatus || errorThrown);
-
-           },
-
-           complete: function () {
-               submitEnd();
-           }
-       });
-
-       return false;
-   }
+  
 
    
    $("#draft_save").click(function(){
@@ -155,44 +120,36 @@ $(document).ready(function () {
        }
         var article_url1=$(this).data("url");
        data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=2";
-       $.ajax({
-           url:url,
-           type:"POST",
-           data:data_str,
-           dataType:"json",
-           async: false,
-           beforeSend: function () {
-               submitStart();
-           },
+       ajax1(url,data_str,draft_save);
 
-           success: function (data) {
-               if(data["statusFlag"]==-1){
+       return false;
+   });
+   
+
+   
+});
+//文章保存
+function diary_save(data){
+    if(data["statusFlag"]==-1){
+                   layer.msg("文章发布失败，请重新再试!",{icon:2,time:1000});
+               }else if(data["statusFlag"]==1){
+                   layer.msg("发布成功！",{icon:1,time:1000});
+                   var article_url=$('#article_add_form').data("url");
+                   var dirayId=data["diaryId"];
+                   window.location.href=article_url+"/"+dirayId;
+               }
+}
+//草稿保存
+function draft_save(data){
+if(data["statusFlag"]==-1){
                    layer.msg("文章存草稿失败，请重新再试!",{icon:2,time:1000});
                }else if(data["statusFlag"]==1){
                    layer.msg("存草稿成功！",{icon:1,time:1000});
+                   var form=$("#article_add_form");
                    if(!$(form).find("input[name='diaryId1']").length>0){
                       $(form).append("<input type='hidden' name='diaryId1' value='"+data["diaryId"]+"'/>");                      
                    }
                    if(!$(form).find("input[name='diaryId']").length>0){
                       $(form).append("<input type='hidden' name='diaryId' value='"+data["diaryId"]+"'/>");                      
                    }
-               }
-           },
-
-           error: function (XMLHttpRequest, textStatus, errorThrown) {
-               submitFail(textStatus || errorThrown);
-
-           },
-
-           complete: function () {
-               submitEnd();
-           }
-       });
-
-       return false;
-   });
-   
-  
-   
-});
-
+               }}

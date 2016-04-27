@@ -12,6 +12,7 @@ import com.cx.wxs.utils.clientInfo;
 
 /**
  * @author 陈义
+ * @param <T>
  * @date   2016-4-7 下午4:53:07
  */
 @Controller
@@ -52,12 +53,13 @@ public class BaseAction {
 			return true;
 		}
 	}
-	
+	//通过昵称获取用户信息
 	public UUserDto getUserDtoByNickname(String name){
 		UUserDto userDto=new UUserDto();
 		userDto.setNickname(name);
 		userDto=userService.getUuser(userDto);
 		return userDto;
 	}
+
 
 }

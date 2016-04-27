@@ -1,5 +1,7 @@
 package com.cx.wxs.action.diary;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +36,21 @@ public class commentAction extends BaseDiaryAction{
 	@Resource
 	private UUserService userService;
 	/***
+	 * 获取评论信息
+	 * @param vip
+	 * @param diaryId
+	 * @param request
+	 * @param response
+	 * @param dReply1Dto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-27下午2:50:13
+	 */
+	public List<DReply1Dto> getDreplys(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse response,DReply1Dto dReply1Dto){
+		return null;
+	}
+	/***
 	 * 添加新评论
 	 * @param vip
 	 * @param request
@@ -53,7 +70,19 @@ public class commentAction extends BaseDiaryAction{
 		if(userDto1==null){
 			dReply1Dto.setStatusFlag("-2");
 		}else{
-			
+			UUserDto userDto=this.getUserDtoByNickname(vip);
+			dReply2Dto.setUUserByUserIdDto(userDto1);
+			dReply2Dto.setUUserByCommentatorDto(userDto);
+			dReply2Dto.setSortOrder((short)1);
+			int reply2Id=reply2Service.addDReply2(dReply2Dto);
+			if(reply2Id>0){
+				dReply2Dto.setDreply1Id(reply2Id);
+				DReply2Dto reply2Dto=reply2Service.getDReply2ByID(dReply2Dto);
+				dReply1Dto=reply2Dto.getDReply1Dto();
+				dReply1Dto=reply1Service.getDReply1ByID(dReply1Dto);
+			}else{
+				dReply1Dto=null;
+			}
 		}
 		return dReply1Dto;
 	}

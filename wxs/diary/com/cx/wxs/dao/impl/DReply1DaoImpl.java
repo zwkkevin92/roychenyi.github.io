@@ -51,6 +51,15 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
             DReply1 t1= list.get(0);
             DReply1Dto    dto=new    DReply1Dto();
             dto=beanToDto.T1ToD1(t1,dto);
+            Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
+ 		   for(DReply2 dReply2:t1.getDReply2s()){
+ 			   DReply2Dto dReply2Dto=new DReply2Dto();
+ 			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
+ 			 //  dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
+ 			   BeanUtils.copyProperties(dReply2, dReply2Dto);
+ 			   dReply2Dtos.add(dReply2Dto);
+ 		   }
+ 		   dto.setDReply2Dtos(dReply2Dtos);
             return dto;
             }
         }
@@ -160,6 +169,20 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
            return this.executeHql(stringBuffer.toString(),params);
         }
         return 0;
+    }
+    //获取评论子列表
+    public void getDReply2(DReply1 dReply1, DReply1Dto dReply1Dto){
+    	if(dReply1.getDReply2s()!=null&&dReply1.getDReply2s().size()>0){
+    	 Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
+		   for(DReply2 dReply2:dReply1.getDReply2s()){
+			   DReply2Dto dReply2Dto=new DReply2Dto();
+			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
+			 //  dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
+			   BeanUtils.copyProperties(dReply2, dReply2Dto);
+			   dReply2Dtos.add(dReply2Dto);
+		   }
+		   dReply1Dto.setDReply2Dtos(dReply2Dtos);
+    	} 
     }
 
 }

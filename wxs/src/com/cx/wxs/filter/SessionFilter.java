@@ -139,12 +139,12 @@ public class SessionFilter extends OncePerRequestFilter {
 		m.put("clientType",new String[]{clientType+""});
 		//request=new MyRequestWrapper(request,m);
 	   // System.out.println(request.getParameter("ip")+request.getParameter("catalogName"));
-	/*	if(requestUrl.contains("image")){
+		if(requestUrl.contains("image")){
 			filterchain.doFilter(request, response);
 		}else{
 		filterchain.doFilter(new MyRequestWrapper(request,m), response);
-		}*/
-		filterchain.doFilter(request, response);
+		}
+	//	filterchain.doFilter(request, response);
 	}
 	
 	 

@@ -24,6 +24,7 @@ import com.cx.wxs.dto.DAccessDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DFavoriteDto;
+import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
@@ -34,6 +35,7 @@ import com.cx.wxs.service.DAccessService;
 import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.DFavoriteService;
+import com.cx.wxs.service.DReply1Service;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.service.UUserService;
@@ -65,6 +67,8 @@ public class diaryAction extends BaseDiaryAction{
 	private DUpvoteService upvoteService;
 	@Resource
 	private DFavoriteService favoriteService;
+	@Resource
+	private DReply1Service reply1Service;
 	/***
 	 * 跳转到更新日志的界面
 	 * @param vip
@@ -312,6 +316,11 @@ public class diaryAction extends BaseDiaryAction{
 					author.setIsUsers(false);		
 				}		
 			mv.addObject("diary",diaryDto);
+			//获取日志评论
+			DReply1Dto  dReply1Dto=new DReply1Dto();
+			dReply1Dto.setDDiaryDto(diaryDto);
+			List<DReply1Dto> dReply1s=reply1Service.getDReply1List(dReply1Dto);
+			mv.addObject("dReply1s", dReply1s);
 		}
 		mv.addObject("author", author);		
 		return mv;

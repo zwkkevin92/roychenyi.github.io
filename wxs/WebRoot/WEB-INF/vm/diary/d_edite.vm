@@ -48,11 +48,13 @@
                                     分类：
                                     <select  name="DCatalogDto.catalogId">
 										#foreach($catalog in $catalogList)
+											#if($velocityCount>1)
 											#if($catalog.catalogId==$diary.DCatalogDto.catalogId)
 											<option value="$catalog.catalogId" selected>$catalog.catalogName</option>	
 											#else
 											 <option value="$catalog.catalogId">$catalog.catalogName</option>
-											 #end
+											#end
+											#end
 										#end
                                         
                                     </select>
