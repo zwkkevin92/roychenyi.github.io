@@ -77,8 +77,8 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         if(dReply1Dto!=null&&dReply1Dto.getDDiaryDto()!=null){
            StringBuffer stringBuffer=new StringBuffer();
            Map<String,Object> params=new HashMap<String, Object>();
-           stringBuffer.append("from  "+DReply1.class.getName()+"  a where a.DDiaryDto.diaryId=:diaryId");
-           params.put("id",dReply1Dto.getDDiaryDto().getDiaryId());
+           stringBuffer.append("from  "+DReply1.class.getName()+"  a where a.DDiary.diaryId=:diaryId");
+           params.put("diaryId",dReply1Dto.getDDiaryDto().getDiaryId());
            if(dReply1Dto.getStatus()!=null){
         	   stringBuffer.append(" and a.status=:status");
         	   params.put("status",dReply1Dto.getStatus());

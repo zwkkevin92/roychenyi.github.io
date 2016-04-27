@@ -62,7 +62,22 @@ public class SysConfigDaoImpl extends BaseDaoImpl<SysConfig, Integer> implements
     */
     @Override
     public List<SysConfigDto> getSysConfigList(SysConfigDto sysConfigDto){
-        return null;
+        if(sysConfigDto!=null&&sysConfigDto.getConfigName()!=null){
+        	StringBuffer stringBuffer=new StringBuffer();
+            Map<String,Object> params=new HashMap<String, Object>();
+            stringBuffer.append("from  "+SysConfig.class.getName()+"  a where a.configName like :configName");
+            params.put("configName","%"+sysConfigDto.getConfigName()+"%");
+            List<SysConfig> list=this.find(stringBuffer.toString(), params);
+            List<SysConfigDto> list1=new ArrayList<SysConfigDto>();
+            if(list!=null&&list.size()>0){
+             for(SysConfig sysConfig:list){
+            	 SysConfigDto sysConfigDto2=beanToDto.T1ToD1(sysConfig, new SysConfigDto());
+            	 list1.add(sysConfigDto2);
+             }
+             return list1;
+             }
+        }
+    	return null;
     }
 
     /**
