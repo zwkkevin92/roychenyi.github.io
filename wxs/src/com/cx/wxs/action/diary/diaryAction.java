@@ -108,11 +108,11 @@ public class diaryAction extends BaseDiaryAction{
 		System.out.println("txt-length:"+diaryDto.getTxt());
 		System.out.println("-------/ntxt:"+request.getParameter("txt"));
 		System.out.println("content:"+diaryDto.getContent());*/
-//		try{
-//		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
-//		}catch (Exception e) {
-//			// TODO: handle exception
-//		}
+		try{
+		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		String coverFlag=request.getParameter("coverFlag");
 		System.out.println("测试："+coverFlag);
 		Date date=new Date();
@@ -167,6 +167,11 @@ public class diaryAction extends BaseDiaryAction{
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
 		ModelAndView mv=new ModelAndView("diary/d_edite");
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		try{
+			diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
 		if(userDto.getNickname().equals(vip)){
 			diaryDto.setDiaryId(diaryId);
 			diaryDto.setUUserDto(userDto);

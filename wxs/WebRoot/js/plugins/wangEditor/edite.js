@@ -45,42 +45,12 @@ $(document).ready(function () {
        var url=$(this).attr("action"),
            _this=this,
            arr=$(this).serializeArray();
-           arr.push({name: 'firstname',value:'hello'});
-           
-       var arr1=$(this).serialize(); 
+       var bool=get_diary_info(url,arr);
+       if(bool==1){
+              var arr1=$(this).serialize(); 
        var data_str= arr1;
        var data_str1=$.param(arr);
-       var content=editor.$txt.html().replace(/\s/g,"");;
-    //   content=encodeURI(content,"UTF-8");
-       var txt=editor.$txt.text();
-       var txt1=editor.$txt.text();
-       txt1 = txt1.replace(/\s/g,"");
-
-       var diarySize=txt1.length;
-       var title=$(this).find("input[name='title']").val();
-
-       if(title.length==0){
-           layer.msg("标题不能为空",{icon:2,time:1000});
-           return false;
-       }
-       if(txt.length==0||txt==""){
-           layer.msg("内容不能为空",{icon:2,time:1000});
-           return false;
-       }
-       if(diarySize>10000){
-           layer.msg("内容不能超过一万字",{icon:2,time:1000});
-           return false;
-       }
-        var article_url1=$(this).data("url");
-       data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=1";
-       data_str1.content=content;
-       data_str1.txt=txt;
-       data_str1.diarySize=diarySize;
-       data_str1.role=1;
-       arr.push({name:"content",value:content});
-       arr.push({name:"txt",value:txt});
-       arr.push({name:"diarySize",value:diarySize});
-       arr.push({name:"role",value:"1"});
+       
        var dairyId=$(this).find("input[name='diaryId']").val();
        var diaryId1=$(this).find("input[name='diaryId1']").val();
        var draft_box=$(this).find("input[name='draft_box']").val();
@@ -89,10 +59,12 @@ $(document).ready(function () {
        layer.confirm("您正要发布的文章列表里有对应的文章存在，你现在要",{
           btn: ['发表为新文章','覆盖该原文章'] //按钮
           },function(){
-          diary_save(url,data_str,_this)
+       //   diary_save(url,arr,_this)
+          	ajax1(url,arr,diary_save);
           },function(){
           data_str+="&coverFlag=1";
-          ajax1(url,data_str,diary_save)
+          arr.push({name:"coverFlag",value:"1"});
+          ajax1(url,arr,diary_save)
       //    diary_save(url,data_str,_this)
           });
           return false;
@@ -100,6 +72,7 @@ $(document).ready(function () {
        	ajax1(url,arr,diary_save)
   //     diary_save(url,data_str,this)
        }
+       }    
       return false;
    });
    
@@ -111,35 +84,45 @@ $(document).ready(function () {
    	       _this=this;
        var url=$(this).data("url"),
            arr=$(form).serializeArray();
-       var data_str= $.param(arr);
-       var content=editor.$txt.html().replace(/\s/g,"");
-       content=encodeURI(content);
+       var data_str=arr;
+       var bool =get_diary_info(url,data_str);
+       if(bool==1){
+       ajax1(url,data_str,draft_save);
+       }
+       return false;
+   });
+ 
+   //获取文章信息               
+function get_diary_info(url,arr){
+       var content=editor.$txt.html();
+       content=encodeURI(content,"UTF-8");
        var txt=editor.$txt.text();
        var txt1=editor.$txt.text();
        txt1 = txt1.replace(/\s/g,"");
 
        var diarySize=txt1.length;
-       var title=$(form).find("input[name='title']").val();
+       var title=$('#article_add_form').find("input[name='title']").val();
 
        if(title.length==0){
            layer.msg("标题不能为空",{icon:2,time:1000});
-           return false;
+           return 0;
        }
        if(txt.length==0||txt==""){
            layer.msg("内容不能为空",{icon:2,time:1000});
-           return false;
+           return 0;
        }
        if(diarySize>10000){
            layer.msg("内容不能超过一万字",{icon:2,time:1000});
-           return false;
+           return 0;
        }
-        var article_url1=$(this).data("url");
-       data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=2";
-       ajax1(url,data_str,draft_save);
-
-       return false;
-   });
-   
+ //       var article_url1=$('#article_add_form').data("url");
+ //      data_str+="&content="+content+"&txt="+txt+"&diarySize="+diarySize+"&role=1";
+       arr.push({name:"content",value:content});
+       arr.push({name:"txt",value:txt});
+       arr.push({name:"diarySize",value:diarySize});
+       arr.push({name:"role",value:"1"});
+       return 1;
+}
 
    
 });
@@ -151,7 +134,7 @@ function diary_save(data){
                    layer.msg("发布成功！",{icon:1,time:1000});
                    var article_url=$('#article_add_form').data("url");
                    var dirayId=data["diaryId"];
-          //         window.location.href=article_url+"/"+dirayId;
+                   window.location.href=article_url+"/"+dirayId;
                }
 }
 //草稿保存
