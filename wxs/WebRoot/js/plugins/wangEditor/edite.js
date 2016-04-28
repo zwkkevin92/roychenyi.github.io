@@ -51,7 +51,7 @@ $(document).ready(function () {
        var data_str= arr1;
        var data_str1=$.param(arr);
        var content=editor.$txt.html().replace(/\s/g,"");;
-       content=encodeURI(content);
+    //   content=encodeURI(content,"UTF-8");
        var txt=editor.$txt.text();
        var txt1=editor.$txt.text();
        txt1 = txt1.replace(/\s/g,"");
