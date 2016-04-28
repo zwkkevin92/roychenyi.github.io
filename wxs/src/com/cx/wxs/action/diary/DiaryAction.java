@@ -102,7 +102,23 @@ public class DiaryAction extends BaseDiaryAction{
 	public DDiaryDto articleAdd(@PathVariable("vip") String vip, HttpServletRequest request,HttpServletResponse reqResponse,Integer diaryId1 ,DDiaryDto diaryDto){
 
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD:wxs/src/com/cx/wxs/action/diary/DiaryAction.java
+
+=======
+/*		System.out.println("content-length:"+diaryDto.getContent().length());
+		System.out.println("txt-length:"+diaryDto.getTxt());
+		System.out.println("-------/ntxt:"+request.getParameter("txt"));
+
+		System.out.println("content:"+diaryDto.getContent());
+		System.out.println("content-length:"+diaryDto.getContent().length());
+		System.out.println("txt-length:"+diaryDto.getTxt());
+		System.out.println("-------/ntxt:"+request.getParameter("txt"));
+		System.out.println("content:"+diaryDto.getContent());*/
+>>>>>>> 88043f48eb53fad28314c644d716f4b70ad0718a:wxs/src/com/cx/wxs/action/diary/diaryAction.java
+>>>>>>> c70b37c1ae20eb276189855372ac60d3d4860004
 		try{
 		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
 		}catch (Exception e) {
