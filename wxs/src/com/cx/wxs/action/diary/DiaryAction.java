@@ -108,6 +108,7 @@ public class DiaryAction extends BaseDiaryAction{
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+		System.out.println(diaryDto.getContent());
 		String coverFlag=request.getParameter("coverFlag");
 		System.out.println("测试："+coverFlag);
 		Date date=new Date();
