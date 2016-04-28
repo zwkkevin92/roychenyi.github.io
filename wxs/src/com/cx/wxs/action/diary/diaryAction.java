@@ -187,7 +187,11 @@ public class diaryAction extends BaseDiaryAction{
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
 		ModelAndView mv=new ModelAndView();
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
-		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent()));
+		try{
+		diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		Date date=new Date();
 		if(userDto==null){
 			diaryDto.setStatusFlag("-1");

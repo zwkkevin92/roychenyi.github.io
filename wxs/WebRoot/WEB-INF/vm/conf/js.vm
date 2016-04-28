@@ -16,7 +16,7 @@
 #set($Jsetting="<script src='#rootUrl()/js/setting.js'></script>")
 ##wangEditor
 #set($JwangEditor="<script src='#rootUrl()/js/plugins/wangEditor/wangEditor.min.js'></script>")
-#set($Jeditor="<script src='#rootUrl()/js/plugins/wangEditor/edite.js'></script>")
+#set($Jeditor="<script src='#rootUrl()/js/plugins/wangEditor/edite.js?v=1.0'></script>")
 ##cookie
 #set($Jcookie="<script src='#rootUrl()/js/plugins/cookie/jquery.cookie.js'></script>")
 ##article_tool
