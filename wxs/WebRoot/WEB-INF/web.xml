@@ -63,7 +63,7 @@
 		<description>验证码</description>
 		<display-name>验证码</display-name>
 		<servlet-name>velidateCodeServlet</servlet-name>
-		<servlet-class>com.cx.wxs.servlet.velidateCodeServlet</servlet-class>
+		<servlet-class>com.cx.wxs.servlet.VelidateCodeServlet</servlet-class>
 		<load-on-startup>4</load-on-startup>
 	</servlet>
 	<servlet>

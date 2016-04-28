@@ -213,6 +213,13 @@ public class RequestUtils {
 		return path.substring(req.getContextPath().length());
 	}
 
+	/***
+	 * 获取项目所在路径
+	 */
+	public static String getUserDir(){
+		String fileName = System.getProperty("user.dir");
+		return fileName;
+	}
 	
 	/**
 	 * 打印所有的头信息

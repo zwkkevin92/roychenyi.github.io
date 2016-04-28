@@ -191,7 +191,7 @@
       <!-- session超时 -->  
       <mvc:interceptor>  
         <mvc:mapping path="/*"/>  
-        <bean class="com.cx.wxs.Interceptor.userCookieInterceptor">  
+        <bean class="com.cx.wxs.Interceptor.UserCookieInterceptor">  
           <property name="allowUrls">  
             <list>  
               <!-- 如果请求中包含以下路径，则不进行拦截 -->  

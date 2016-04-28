@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cx.wxs.action.diary.diaryAction;
+import com.cx.wxs.action.diary.DiaryAction;
 import com.cx.wxs.dto.BConfigDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
