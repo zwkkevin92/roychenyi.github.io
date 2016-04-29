@@ -10,6 +10,7 @@ public class WeatherUitls {
 		ArrayOfString weather = null;
 		weather = weatherWSSoap.getWeather(city.trim(), null);
 		List<String> listSub = weather.getString();
+		System.out.println("listSub:"+listSub);
 		Object[] strSet = (Object[]) listSub.toArray();
 		WeatherBean weatherBean = null;
 		if (strSet != null && strSet.length >= 1) {
@@ -21,7 +22,8 @@ public class WeatherUitls {
 				switch (i) {
 				case 0:
 					weatherBean
-							.setProvince(str.substring(str.indexOf(" ") + 1));
+							.setProvince(str.substring(0,str.indexOf(" ")));
+					System.out.println("province:"+weatherBean.getProvince());
 					break;
 				case 1:
 					weatherBean.setCountry(str);

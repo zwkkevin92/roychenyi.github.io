@@ -136,7 +136,7 @@ public class DiaryAction extends BaseDiaryAction{
 			}
 			diaryDto.setExt2(0);
 			diaryDto.setRole((short)1);
-			sysIllegalService.IllegalReplace(diaryDto.getContent());
+			diaryDto.setContent(sysIllegalService.IllegalReplace(diaryDto.getContent()));
 			if(diaryService.updateDDiary(diaryDto)>0){
 				diaryDto=diaryService.getDDiaryByID(diaryDto);
 				diaryDto.setStatusFlag("1");
@@ -149,7 +149,7 @@ public class DiaryAction extends BaseDiaryAction{
 			diaryDto.setBSiteDto(userDto.getBSiteDto());
 			diaryDto.setUUserDto(userDto);
 			diaryDto.setWriteTime(new Timestamp(date.getTime()));
-			sysIllegalService.IllegalReplace(diaryDto.getContent());
+			diaryDto.setContent(sysIllegalService.IllegalReplace(diaryDto.getContent()));
 			int diaryId= diaryService.addDDiary(diaryDto);
 			if(diaryId>0){
 				diaryDto.setDiaryId(diaryId);

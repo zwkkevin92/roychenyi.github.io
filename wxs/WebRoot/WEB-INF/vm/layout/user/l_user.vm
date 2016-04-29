@@ -14,7 +14,7 @@
     <div class="wrapper wrapper-content">
         <div class="container">
 			<div class="row">
-                <div class="headarea white-bg" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
+                <div class="blog_headarea white-bg" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
 <div class="pull-right">统计</div>
                         <div class="blog_titil">
 							<div>#if($author.username==$user.username) 
