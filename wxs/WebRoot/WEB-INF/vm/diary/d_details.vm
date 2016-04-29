@@ -2,7 +2,7 @@
 #set($page_title=$diary.title+"-"+$author.nickname)
 
 #parse("conf/js.vm")
-#set($extjs=$JwangEditor+$Jcomment+$Jlayer+$Jarticle_tool)
+#set($extjs=$JwangEditor+$Jarticle_comment+$Jlayer+$Jarticle_tool)
 #parse("conf/css.vm")
 #set($extcss=$CwangEditor)
 

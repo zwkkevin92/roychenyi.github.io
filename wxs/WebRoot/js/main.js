@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     $("[data-toggle=popover]").popover();
     //关闭点击触发导航栏下拉，实现鼠标移入触发
-    $(document).off('click.bs.dropdown.data-api');
+ //   $(document).off('click.bs.dropdown.data-api');
     dropdownOpen();
 });
 
@@ -117,9 +117,9 @@ function dropdownOpen() {
 	
 	  var $dropdownSpan=$('span.dropdown');
     $dropdownSpan.mouseover(function() {
-        $(this).addClass('open');
+        $(this).addClass('gray-bg open');
     }).mouseout(function() {
-        $(this).removeClass('open');
+        $(this).removeClass('gray-bg open');
     });
     
 }

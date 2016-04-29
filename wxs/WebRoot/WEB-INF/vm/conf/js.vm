@@ -22,4 +22,4 @@
 ##article_tool
 #set($Jarticle_tool="<script src='#rootUrl()/js/diary/article_tool.js'></script>")
 ##comment
-#set($Jcomment="<script src='#rootUrl()/js/diary/comment.js'></script>")
+#set($Jarticle_comment="<script src='#rootUrl()/js/diary/article_comment.js'></script>")
