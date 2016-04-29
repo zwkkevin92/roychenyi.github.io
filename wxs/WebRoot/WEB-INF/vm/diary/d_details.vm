@@ -41,6 +41,7 @@
                                 <div class="ibox-content">
                                     <div id="comment_list">
 									<div class="chat-discussion">
+										#if($dReply1s)
 										#foreach($reply1 in $dReply1s)
                                         <div class="chat-message">
                                             <a href="#rootUrl/$reply1.UUserDto.nickname">#if($reply1.UUserDto.portrait)<img class="message-avatar" src="#rootUrl/$reply1.UUserDto.portrait" alt="$reply1.UUserDto.nickname"> #else <img class="img-container" src="#rootUrl()/images/face.png"> #end</a>
@@ -81,7 +82,10 @@
                                                 </div>
                                             </div>
                                         </div>
-									#end
+										#end
+										#else
+											<a href="#textarea1">还没有人评论，快来抢第一个沙发吧</a>
+										#end
 									</div>
 									</div>
                                     <div class="ibox-heading">发表评论</div>
@@ -108,7 +112,7 @@
 											
                                         </div>
                                         <div class="col-sm-10">
-                                            <form id="comment_form" class="chat-message-form" action="#rootUrl/{$author.nickname}/article/$diary.diaryId/reply_add">
+                                            <form id="comment_form" class="chat-message-form" action="#rootUrl/$author.nickname/article/$diary.diaryId/reply_add">
                                                 <div class="form-group">
 													<div id="textarea1" style="height:150px;max-height:200px;">
                                         

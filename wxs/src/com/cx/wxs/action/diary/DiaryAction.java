@@ -165,6 +165,7 @@ public class DiaryAction extends BaseDiaryAction{
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
 		ModelAndView mv=new ModelAndView("diary/d_edite");
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		UUserDto userDto1=this.getUserDtoByNickname(vip);
 		try{
 			diaryDto.setContent(URLDecoder.decode(diaryDto.getContent(),"UTF-8"));
 			}catch (Exception e) {
@@ -177,9 +178,9 @@ public class DiaryAction extends BaseDiaryAction{
 			if(diaryDto==null){
 				mv.setViewName("diary/d_no_details");
 			}else{
-			getDiarySetting(userDto, mv);
-			}
-			mv.addObject("author", userDto);
+			getDiarySetting(userDto1, mv);
+			}			
+			mv.addObject("author", userDto1);
 			mv.addObject("diary",diaryDto);
 		}else{
 			mv.setViewName("404");

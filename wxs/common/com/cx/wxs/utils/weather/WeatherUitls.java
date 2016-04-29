@@ -26,7 +26,7 @@ public class WeatherUitls {
 					System.out.println("province:"+weatherBean.getProvince());
 					break;
 				case 1:
-					weatherBean.setCountry(str);
+					weatherBean.setCity(str);
 					break;
 				case 2:
 					weatherBean.setCode(str);
@@ -63,8 +63,9 @@ public class WeatherUitls {
 						dayWeather.setPath1(str);
 						break;
 					case 4:
-						dayWeather.setPath2(str);
+						dayWeather.setPath2(str.substring(0,str.indexOf(".gif")));
 						break;
+					
 					}
 					break;
 				}

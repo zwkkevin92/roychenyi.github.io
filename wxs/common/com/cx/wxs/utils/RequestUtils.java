@@ -3,6 +3,7 @@ package com.cx.wxs.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.InetAddress;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -155,13 +156,26 @@ public class RequestUtils {
 			add("org");
 		}
 	};
-	
+	//获取域名路径
 	public static String getDomain(HttpServletRequest request){
 		//测试
 		String path = request.getContextPath();
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 		return basePath;
 	}
+	//获取服务器ip
+	public static String getServerIp(HttpServletRequest request){
+		String ip="";
+		try{
+		ip=InetAddress.getLocalHost().getHostAddress();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		return ip;
+	}
+	
 	
 	public static void main(String[] args){
 		String host = "127.0.0.1";

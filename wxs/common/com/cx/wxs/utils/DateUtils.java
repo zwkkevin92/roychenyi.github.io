@@ -427,6 +427,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils{
 		System.out.println(DateUtils.addDay(date, -7));
 		DateUtils date1= new DateUtils();
 		System.out.println(date1.convert("2012-03-01 23:23:23")); 
+		System.out.println(date1.formatDate(new Date(),"MM月dd日") );
 	}
 
 }

@@ -32,7 +32,7 @@ public class AAA {
 		WeatherBean weatherBean= WeatherUitls.getWeatherBean(address);
 		System.out.println(weatherBean.toString());
 		DayWeather todayWeather = ((DayWeather)(WeatherUitls.getWeatherBean(address).getDayWeathers().toArray()[0]));
-		System.out.println(todayWeather.getWeather()+";"+todayWeather.getDate()+";"+todayWeather.getTemperature()+";"+todayWeather.getPath1());
+		System.out.println(todayWeather.getWeather()+";"+todayWeather.getDate()+";"+todayWeather.getTemperature()+";"+todayWeather.getPath1()+";"+todayWeather.getPath2());
 	}
 
 }

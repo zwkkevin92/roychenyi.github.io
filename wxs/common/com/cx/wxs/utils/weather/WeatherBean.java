@@ -7,7 +7,7 @@ public class WeatherBean {
 	//省、直辖市、特别行政区
 	private String province;
 	//地区、市、县
-	private String country;
+	private String city;
 	//编码
 	private String code;
 	//更新时间
@@ -25,12 +25,12 @@ public class WeatherBean {
 		super();
 	}
 
-	public WeatherBean(String province, String country, String code,
+	public WeatherBean(String province, String city, String code,
 			String updateTime, String todayWeather, String uV,
 			String otherIndex, List<DayWeather> dayWeathers) {
 		super();
 		this.province = province;
-		this.country = country;
+		this.city = city;
 		this.code = code;
 		this.updateTime = updateTime;
 		this.todayWeather = todayWeather;
@@ -47,12 +47,12 @@ public class WeatherBean {
 		this.province = province;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getCode() {
@@ -105,7 +105,7 @@ public class WeatherBean {
 
 	@Override
 	public String toString() {
-		return "WeatherBean [province=" + province + ", country=" + country
+		return "WeatherBean [province=" + province + ", city=" + city
 				+ ", code=" + code + ", updateTime=" + updateTime
 				+ ", todayWeather=" + todayWeather + ", UV=" + UV
 				+ ", otherIndex=" + otherIndex + ", dayWeathers=" + dayWeathers

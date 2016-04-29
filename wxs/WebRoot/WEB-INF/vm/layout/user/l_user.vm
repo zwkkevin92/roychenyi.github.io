@@ -7,15 +7,22 @@
 		<link href='#rootUrl()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />
 	#end
 </head>
-<body class="top-navigation gray-bg" >
+<body class="top-navigation gray-bg">## style="background: url(#rootUrl()/images/head_bg.jpg) no-repeat 0 0;background-color: #E2E2E2;">
 #parse("layout/header.vm")
 <div id="wrapper">
 <div id="page-wrapper">
     <div class="wrapper wrapper-content">
         <div class="container">
 			<div class="row">
-                <div class="blog_headarea white-bg" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
+                <div class="blog_headarea" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
 <div class="pull-right">统计</div>
+<!--挂件-->
+<div id="hanger" class="blog_hanger">
+	<!-- 天气 -->
+	#if($weatherTool.getTodayWeather($request))
+		$weatherTool.getTodayWeather($request)
+		#end
+</div>
                         <div class="blog_titil">
 							<div>#if($author.username==$user.username) 
 							<div id="face-photo" class="avatar-view"  title="点击更新头像"><img class="img-circle" #if($author.BSiteDto.logo)  src="#rootUrl()/$author.BSiteDto.logo" #else src="#rootUrl()/images/face.png" #end title="$author.nickname" /></div>	

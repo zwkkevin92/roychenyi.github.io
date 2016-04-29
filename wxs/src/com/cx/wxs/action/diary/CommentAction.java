@@ -80,7 +80,9 @@ public class CommentAction extends BaseDiaryAction{
 				DReply2Dto reply2Dto=reply2Service.getDReply2ByID(dReply2Dto);
 				dReply1Dto=reply2Dto.getDReply1Dto();
 				dReply1Dto=reply1Service.getDReply1ByID(dReply1Dto);
+				dReply1Dto.setStatusFlag("1");
 			}else{
+				dReply1Dto.setStatusFlag("-1");
 				dReply1Dto=null;
 			}
 		}
