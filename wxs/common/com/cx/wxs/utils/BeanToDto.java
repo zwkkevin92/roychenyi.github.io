@@ -156,7 +156,11 @@ public class BeanToDto<T1 extends Serializable,D1 extends Serializable> {
 						String first=field.getName().substring(0,1).toUpperCase();
 						fieldName=first+field.getName().substring(1,field.getName().length());
 						fieldName+="Dto";
+						if(fieldName.contains("UUser")){
+							fieldType=Class.forName("com.cx.wxs.dto.UUserDto");	
+						}else{
 						fieldType=Class.forName("com.cx.wxs.dto."+fieldName);
+						}
 					}
 					System.out.println(fieldType+"::"+fieldName);
 					Object o2=null;
@@ -204,7 +208,11 @@ public class BeanToDto<T1 extends Serializable,D1 extends Serializable> {
 						if(field.getGenericType().toString().contains(".dto.")){
 							String first=field.getName().substring(0,1).toUpperCase();
 							fieldName=first+field.getName().substring(1,(field.getName().length()-3));
+							if(fieldName.contains("UUser")){
+								fieldType=Class.forName("com.cx.wxs.po.UUser");
+							}else{
 							fieldType=Class.forName("com.cx.wxs.po."+fieldName);
+							}
 						}else{
 							String first=field.getName().substring(0,1).toUpperCase();
 							fieldName=first+field.getName().substring(1,field.getName().length());

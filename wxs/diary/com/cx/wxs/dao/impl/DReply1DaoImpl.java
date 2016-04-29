@@ -99,9 +99,9 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         		   Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
         		   for(DReply2 dReply2:dReply1.getDReply2s()){
         			   DReply2Dto dReply2Dto=new DReply2Dto();
-        			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
-        			 //  dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
-        			   BeanUtils.copyProperties(dReply2, dReply2Dto);
+        			   BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
+        			   dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
+        			 //  BeanUtils.copyProperties(dReply2, dReply2Dto);
         			   dReply2Dtos.add(dReply2Dto);
         		   }
         		   dto.setDReply2Dtos(dReply2Dtos);

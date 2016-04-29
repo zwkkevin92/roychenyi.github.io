@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.DReply2Dao;
+import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DReply2Dto;
 import com.cx.wxs.enums.DbType;
+import com.cx.wxs.po.DReply1;
 import com.cx.wxs.po.DReply2;
 import com.cx.wxs.utils.StringUtils;
 
@@ -74,8 +76,12 @@ public class DReply2DaoImpl extends BaseDaoImpl<DReply2, Integer> implements DRe
     public Integer addDReply2(DReply2Dto dReply2Dto){
          // TODO Auto-generated method stub
         if(dReply2Dto!=null){
-           DReply2 dReply2= new DReply2();
+           DReply1 dReply1=new DReply1();
+           BeanToDto<DReply1, DReply1Dto> beanToDto1=new BeanToDto<DReply1, DReply1Dto>();
+           dReply1=beanToDto1.D1ToT1(dReply1, dReply2Dto.getDReply1Dto());
+           DReply2 dReply2= new DReply2(); 
            dReply2=beanToDto.D1ToT1(dReply2, dReply2Dto);
+           dReply2.setDReply1(dReply1);
            return this.save(dReply2);
         }
         return 0;
