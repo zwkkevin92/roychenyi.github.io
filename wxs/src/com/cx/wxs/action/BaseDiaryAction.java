@@ -20,6 +20,7 @@ import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.DCatalogService;
+import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.DFavoriteService;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
@@ -32,7 +33,7 @@ import com.cx.wxs.utils.StringUtils;
  */
 @Controller
 public class BaseDiaryAction extends BaseAction{
-	
+
 	@Resource
 	private BConfigService configService;
 	@Resource
@@ -43,8 +44,10 @@ public class BaseDiaryAction extends BaseAction{
 	private DUpvoteService upvoteService;
 	@Resource
 	private DFavoriteService favoriteService;
-    
-	
+	@Resource
+	private DDiaryService diaryService;
+
+
 	public void getDiarySetting(UUserDto userDto,ModelAndView mv){
 		//是否可以上传日志
 		BConfigDto configDto=new BConfigDto();
@@ -89,7 +92,14 @@ public class BaseDiaryAction extends BaseAction{
 		session.setAttribute("page", page);
 		session.setAttribute("pageCount", pageCount);
 	}
-	
+	/**
+	 * 通过日记id和用户userID获取用户的点赞信息
+	 * @param diaryDto
+	 * @param userDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-30上午9:33:09
+	 */
 	public DUpvoteDto getDUpvoteDto(DDiaryDto diaryDto,UUserDto userDto){
 		DUpvoteDto upvoteDto=new DUpvoteDto();
 		upvoteDto.setUUserDto(userDto);
@@ -97,13 +107,99 @@ public class BaseDiaryAction extends BaseAction{
 		upvoteDto=upvoteService.getDUpvote(upvoteDto);
 		return upvoteDto;
 	}
-	
+	/**
+	 * 通过日记id和用户userID获取用户的点赞信息
+	 * @param diaryDto
+	 * @param userDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-30上午9:33:49
+	 */
 	public DFavoriteDto getDFavoriteDto(DDiaryDto diaryDto,UUserDto userDto){
 		DFavoriteDto favoriteDto=new DFavoriteDto();
 		favoriteDto.setUUserDto(userDto);
 		favoriteDto.setDDiaryDto(diaryDto);
 		favoriteDto=favoriteService.getDFavorite(favoriteDto);
 		return favoriteDto;
+	}
+	/**
+	 * 添加点赞计数
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:35:35
+	 */
+	public void addDUpvoteCount(DDiaryDto diaryDto){
+		//点赞+1
+		if(diaryDto.getFavoriteCount()==null){
+			diaryDto.setFavoriteCount(1);
+		}else{
+			diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()+1);
+		}
+		diaryService.updateDDiary(diaryDto);
+	}
+	/**
+	 * 点赞数量减少
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:39:25
+	 */
+	public void reduceDUpvoteCount(DDiaryDto diaryDto){
+		//点赞-1
+		diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()-1);
+		diaryService.updateDDiary(diaryDto);
+	}
+	/**
+	 * 收藏+1
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:41:39
+	 */
+	public void addDFavoriteCount(DDiaryDto diaryDto){
+		//收藏+1
+		if(diaryDto.getFavoriteCount()==null){
+			diaryDto.setFavoriteCount(1);
+		}else{
+			diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()+1);
+		}
+		diaryService.updateDDiary(diaryDto);
+	}
+	/***
+	 * 收藏-1
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:42:33
+	 */
+	public void reduceDFavoriteCount(DDiaryDto diaryDto){
+		//收藏-1
+		diaryDto.setFavoriteCount(diaryDto.getFavoriteCount()-1);
+		diaryService.updateDDiary(diaryDto);
+
+	}
+
+	/***
+	 * 评论+1
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:45:06
+	 */
+	public void addDCommentCount(DDiaryDto diaryDto){
+
+		if(diaryDto.getReplyCount()==null){
+			diaryDto.setReplyCount(1);
+		}else{
+			diaryDto.setReplyCount(diaryDto.getReplyCount()+1);
+		}
+		diaryService.updateDDiary(diaryDto);
+	}
+	/**
+	 * 评论-1
+	 * @param diaryDto
+	 * @author 陈义
+	 * @date   2016-4-30上午9:46:48
+	 */
+	public void reduceDCommentCount(DDiaryDto diaryDto){
+		diaryDto.setReplyCount(diaryDto.getReplyCount()-1);
+		diaryService.updateDDiary(diaryDto);
 	}
 
 }

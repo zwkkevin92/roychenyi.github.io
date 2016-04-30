@@ -38,7 +38,7 @@
                                 </div>
                                 <hr >
                                 <div class="ibox-title no-borders">评论</div>
-                                  #parse("layout/diary/l_article_comment.vm");
+                                  #parse("layout/diary/l_article_comment.vm")
 								</div>
                             </div>
 
