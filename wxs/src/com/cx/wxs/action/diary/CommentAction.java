@@ -23,6 +23,7 @@ import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.DReply1Service;
 import com.cx.wxs.service.DReply2Service;
+import com.cx.wxs.service.SysIllegalService;
 import com.cx.wxs.service.UUserService;
 
 /**
@@ -40,6 +41,8 @@ public class CommentAction extends BaseDiaryAction{
 	private DReply2Service reply2Service;
 	@Resource
 	private UUserService userService;
+	@Resource
+	private SysIllegalService sysIllegalService;
 	/***
 	 * 获取评论信息
 	 * @param vip
@@ -102,6 +105,7 @@ public class CommentAction extends BaseDiaryAction{
 			}
 			dReply2Dto.setReplyTime(new Timestamp(date.getTime()));
 			dReply2Dto.setDReply1Dto(dReply1Dto);
+			dReply2Dto.setContent(sysIllegalService.IllegalReplace(dReply2Dto.getContent()));
 			int reply2Id=reply2Service.addDReply2(dReply2Dto);
 			if(reply2Id>0){
 				dReply2Dto.setDreply1Id(reply2Id);
@@ -109,6 +113,7 @@ public class CommentAction extends BaseDiaryAction{
 				dReply1Dto=reply2Dto.getDReply1Dto();
 				dReply1Dto=reply1Service.getDReply1ByID(dReply1Dto);
 				dReply1Dto.setStatusFlag("1");
+				this.addDCommentCount(diaryDto);
 			}else{
 				//发布评论失败，写入子表数据错误，将父表状态变成删除状态
 				dReply1Dto.setStatus((short)0);
