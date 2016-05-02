@@ -2,7 +2,9 @@ package com.cx.wxs.dto;
 
 import com.cx.wxs.base.BeanBase;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.cx.wxs.dto.DDiaryDto;
@@ -20,7 +22,7 @@ public class DReply1Dto extends BeanBase{
     private Short ownerOnly;
     private Timestamp writeTime;
     private Short status;
-    private Set<DReply2Dto> DReply2Dtos = new HashSet<DReply2Dto>(0);
+    private List<DReply2Dto> DReply2Dtos = new ArrayList<DReply2Dto>(0);
 
     /** default constructor */
     public DReply1Dto(){
@@ -54,7 +56,7 @@ public class DReply1Dto extends BeanBase{
 	public DReply1Dto(Integer dreplyId, com.cx.wxs.dto.DDiaryDto dDiaryDto,
 			com.cx.wxs.dto.UUserDto uUserDto, Short clientType,
 			Short ownerOnly, Timestamp writeTime, Short status,
-			Set<DReply2Dto> dReply2Dtos) {
+			List<DReply2Dto> dReply2Dtos) {
 		super();
 		this.dreplyId = dreplyId;
 		DDiaryDto = dDiaryDto;
@@ -118,14 +120,14 @@ public class DReply1Dto extends BeanBase{
 	/**
 	 * @return the dReply2s
 	 */
-	public Set<DReply2Dto> getDReply2Dtos() {
+	public List<DReply2Dto> getDReply2Dtos() {
 		return DReply2Dtos;
 	}
 
 	/**
 	 * @param dReply2s the dReply2s to set
 	 */
-	public void setDReply2Dtos(Set<DReply2Dto> dReply2Dtos) {
+	public void setDReply2Dtos(List<DReply2Dto> dReply2Dtos) {
 		DReply2Dtos = dReply2Dtos;
 	}
 

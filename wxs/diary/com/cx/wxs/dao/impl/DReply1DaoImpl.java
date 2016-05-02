@@ -51,7 +51,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
             DReply1 t1= list.get(0);
             DReply1Dto    dto=new    DReply1Dto();
             dto=beanToDto.T1ToD1(t1,dto);
-            Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
+            List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
  		   for(DReply2 dReply2:t1.getDReply2s()){
  			   DReply2Dto dReply2Dto=new DReply2Dto();
  			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
@@ -96,7 +96,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         	   for(DReply1 dReply1:list){
         		   DReply1Dto dto=new DReply1Dto();
         		   dto=beanToDto.T1ToD1(dReply1, new DReply1Dto());
-        		   Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
+        		   List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
         		   for(DReply2 dReply2:dReply1.getDReply2s()){
         			   DReply2Dto dReply2Dto=new DReply2Dto();
         			   BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
@@ -105,6 +105,13 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         			   dReply2Dtos.add(dReply2Dto);
         		   }
         		   dto.setDReply2Dtos(dReply2Dtos);
+        		   if( dReply1Dto.getPage()!=null&&dReply1Dto.getRows()!=null){
+        			   dto.setPage(dReply1Dto.getPage());
+        			   dto.setRows(dReply1Dto.getRows());
+        		   }else{
+        			   dto.setPage(1);
+        			   dto.setRows(10);
+        		   }
         		   list2.add(dto);
         	   }
         	   return list2;
@@ -173,7 +180,7 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     //获取评论子列表
     public void getDReply2(DReply1 dReply1, DReply1Dto dReply1Dto){
     	if(dReply1.getDReply2s()!=null&&dReply1.getDReply2s().size()>0){
-    	 Set<DReply2Dto> dReply2Dtos=new HashSet<DReply2Dto>();
+    	List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
 		   for(DReply2 dReply2:dReply1.getDReply2s()){
 			   DReply2Dto dReply2Dto=new DReply2Dto();
 			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();

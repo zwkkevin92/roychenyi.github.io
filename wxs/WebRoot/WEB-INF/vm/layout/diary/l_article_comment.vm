@@ -2,13 +2,16 @@
                                     <div id="comment_list">
 									<div class="chat-discussion">
 										#if($dReply1s)
+											
+											<input type="hidden" id="comment_page" value="$dReply1s[0].page">
 										#foreach($reply1 in $dReply1s)
-                                        <div class="chat-message" id="commentDiv$velocityCount" data-replyId="$reply1.dreplyId">
+											#set($comment_count=($reply1.page - 1) * $reply1.rows + $velocityCount)
+                                        <div class="chat-message" id="commentDiv${comment_count}" data-replyId="$reply1.dreplyId">
                                             <a href="#rootUrl/$reply1.UUserDto.nickname">#if($reply1.UUserDto.portrait)<img class="message-avatar" src="#rootUrl/$reply1.UUserDto.portrait" alt="$reply1.UUserDto.nickname"> #else <img class="img-container" src="#rootUrl()/images/face.png"> #end</a>
-                                            <span><b>$velocityCount楼</b></span>
+                                            <span><b>${comment_count}楼</b></span>
 											 <span  class="pull-right">
 												<small >$date.format('yyyy/MM/dd HH:mm:ss',$reply1.writeTime) </small>
-											    <a href="">回复</a>	
+											    <a href="javascript:;" onclick="DComment.showCommentEditor('${comment_count}')">回复</a>	
 												<span class="dropdown pull-right">
 							                 <a class="dropdown-toggle" data-toggle="data-toggle"><i class="fa fa-sort-desc " style="padding:0 5px; " ></i></a>
                                         <ul class="dropdown-menu text-right" >
@@ -43,13 +46,15 @@
 											
                                                              
                                                 <div class="chat-message-form hidden">
+													<form id="replyForm${comment_count}" action="#rootUrl/$author.nickname/article/$diary.diaryId/reply2_add">
+														<input type="hidden" name="DReply1Dto.dreplyId" value="$reply1.dreplyId">
+                                                    <div id="dreply${comment_count}" class="form-group" style="height:150px;max-height:200px;">
 
-                                                    <div class="form-group">
-
-                                                        <textarea class="form-control message-input" name="message" placeholder="输入消息内容，按回车键发送"></textarea>
+                                                        
                                                     </div>
-
-                                                </div>
+													<input class="btn btn-info" type="button" value="确认" onclick="DComment.addCommentReply(${comment_count})">
+                                                </form>
+													</div>
                                             </div>
                                         </div>
 										#end

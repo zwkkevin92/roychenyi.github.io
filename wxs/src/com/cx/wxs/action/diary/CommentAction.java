@@ -54,9 +54,16 @@ public class CommentAction extends BaseDiaryAction{
 	 * @author 陈义
 	 * @date   2016-4-27下午2:50:13
 	 */
+	@RequestMapping(value="/{diaryId}/reply_list")
+	@ResponseBody
 	public List<DReply1Dto> getDreplys(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse response,DReply1Dto dReply1Dto){
-		return null;
+		//获取日志评论
+		DDiaryDto diaryDto=new DDiaryDto();
+		diaryDto.setDiaryId(diaryId);
+		dReply1Dto.setDDiaryDto(diaryDto);
+		List<DReply1Dto> dReply1s=reply1Service.getDReply1List(dReply1Dto);
+		return dReply1s;
 	}
 	/***
 	 * 添加新评论
@@ -138,6 +145,29 @@ public class CommentAction extends BaseDiaryAction{
 	@ResponseBody
 	public DReply2Dto addDReply2(@PathVariable("vip") String vip,
 			HttpServletRequest request,HttpServletResponse response,DReply2Dto dReply2Dto){
+		UUserDto userDto1=(UUserDto) request.getSession().getAttribute("user");
+	    if(userDto1==null){
+	    	dReply2Dto.setStatusFlag("-2");
+	    }else{
+	    	try{
+	    		dReply2Dto.setContent(URLDecoder.decode(dReply2Dto.getContent(),"UTF-8"));
+	    	}catch (Exception e) {
+				// TODO: handle exception
+			}
+	    	Date date=new Date();
+	    	UUserDto userDto=this.getUserDtoByNickname(vip);
+			dReply2Dto.setUUserByUserIdDto(userDto1);
+			dReply2Dto.setUUserByCommentatorDto(userDto);
+			dReply2Dto.setReplyTime(new Timestamp(date.getTime()));
+			dReply2Dto.setContent(sysIllegalService.IllegalReplace(dReply2Dto.getContent()));
+			int dReply2=reply2Service.addDReply2(dReply2Dto);
+			if(dReply2>0){
+				dReply2Dto.setDreply1Id(dReply2);
+				dReply2Dto.setStatusFlag("1");
+			}else{
+				dReply2Dto.setStatusFlag("-1");
+			}
+	    }
 		return dReply2Dto;
 	}
 	/***

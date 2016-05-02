@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +33,7 @@ public class DReply1 implements java.io.Serializable {
 	private Short ownerOnly;
 	private Timestamp writeTime;
 	private Short status;
-	private Set<DReply2> DReply2s = new HashSet<DReply2>(0);
+	private List<DReply2> DReply2s = new ArrayList<DReply2>(0);
 
 	// Constructors
 
@@ -48,7 +50,7 @@ public class DReply1 implements java.io.Serializable {
 	/** full constructor */
 	public DReply1(DDiary DDiary, UUser UUser, Short clientType,
 			Short ownerOnly, Timestamp writeTime, Short status,
-			Set<DReply2> DReply2s) {
+			List<DReply2> DReply2s) {
 		this.DDiary = DDiary;
 		this.UUser = UUser;
 		this.clientType = clientType;
@@ -127,11 +129,11 @@ public class DReply1 implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DReply1")
-	public Set<DReply2> getDReply2s() {
+	public List<DReply2> getDReply2s() {
 		return this.DReply2s;
 	}
 
-	public void setDReply2s(Set<DReply2> DReply2s) {
+	public void setDReply2s(List<DReply2> DReply2s) {
 		this.DReply2s = DReply2s;
 	}
 

@@ -158,7 +158,7 @@ public class ImageAction {
 						 siteDto.setLogo(resourcePath+"/"+date.getTime()+"_s_100.jpg");
 						 siteDto.setLastTime( new Timestamp(date.getTime()));
 						 bSiteService.updateBSite(siteDto);
-						 userDto.setPortrait(resourcePath+"/"+date.getTime()+"_s_30.jpg");
+						 userDto.setPortrait(resourcePath+"/"+date.getTime()+"_s_50.jpg");
 						 uUserService.updateUuser(userDto);
 						 userDto=uUserService.getUuser(userDto);
 						 imageDto.setStatusFlag("1");
