@@ -293,7 +293,7 @@ public class DiaryAction extends BaseDiaryAction{
 		mv.addObject("next_diary",list.get(1));
 
 		diaryDto=list.get(0);
-		System.out.println("content-length:"+diaryDto.getContent().length());
+	//	System.out.println("content-length:"+diaryDto.getContent().length());
 		if(diaryDto.getDiaryId()==null){
 			mv.setViewName("diary/d_no_details");
 		}else{
@@ -347,6 +347,7 @@ public class DiaryAction extends BaseDiaryAction{
 			dReply1Dto.setDDiaryDto(diaryDto);
 			List<DReply1Dto> dReply1s=reply1Service.getDReply1List(dReply1Dto);
 			mv.addObject("dReply1s", dReply1s);
+			reply1Service.getDReply1ByID(dReply1s.get(0));
 		}
 		mv.addObject("author", author);		
 		return mv;

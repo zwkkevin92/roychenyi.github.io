@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * WLink entity. @author MyEclipse Persistence Tools
+ * 文学社-链接
  */
 @Entity
 @Table(name = "w_link", catalog = "wxs")

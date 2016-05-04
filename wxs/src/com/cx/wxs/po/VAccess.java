@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * VAccess entity. @author MyEclipse Persistence Tools
+ * 投票访问记录
  */
 @Entity
 @Table(name = "v_access", catalog = "wxs")

@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * DCatalog entity. @author MyEclipse Persistence Tools
+ * 分类
  */
 @Entity
 @Table(name = "d_catalog", catalog = "wxs")
@@ -38,7 +41,7 @@ public class DCatalog implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
+	private List<DDiary> DDiaries = new ArrayList<DDiary>(0);
 
 	// Constructors
 
@@ -57,7 +60,7 @@ public class DCatalog implements java.io.Serializable {
 			String description, Timestamp createTime, Integer articleCount,
 			Integer catalogType, String verifyCode, Short sortOrder,
 			Integer ext1, Integer ext2, String ext3, String ext4,
-			Set<DDiary> DDiaries) {
+			List<DDiary> DDiaries) {
 		this.UUser = UUser;
 		this.BSite = BSite;
 		this.catalogName = catalogName;
@@ -206,11 +209,11 @@ public class DCatalog implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DCatalog")
-	public Set<DDiary> getDDiaries() {
+	public List<DDiary> getDDiaries() {
 		return this.DDiaries;
 	}
 
-	public void setDDiaries(Set<DDiary> DDiaries) {
+	public void setDDiaries(List<DDiary> DDiaries) {
 		this.DDiaries = DDiaries;
 	}
 

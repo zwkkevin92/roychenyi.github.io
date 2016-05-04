@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * IAlbum entity. @author MyEclipse Persistence Tools
+ * 相册
  */
 @Entity
 @Table(name = "i_album", catalog = "wxs")
@@ -39,7 +42,7 @@ public class IAlbum implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<IImage> IImages = new HashSet<IImage>(0);
+	private List<IImage> IImages = new ArrayList<IImage>(0);
 
 	// Constructors
 
@@ -57,7 +60,7 @@ public class IAlbum implements java.io.Serializable {
 			Integer ablumType, Integer ablumCount, String accessQuestion,
 			String verifycode, Timestamp createTime, Short sortOrder,
 			Integer ext1, Integer ext2, String ext3, String ext4,
-			Set<IImage> IImages) {
+			List<IImage> IImages) {
 		this.UUser = UUser;
 		this.BSite = BSite;
 		this.name = name;
@@ -216,11 +219,11 @@ public class IAlbum implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "IAlbum")
-	public Set<IImage> getIImages() {
+	public List<IImage> getIImages() {
 		return this.IImages;
 	}
 
-	public void setIImages(Set<IImage> IImages) {
+	public void setIImages(List<IImage> IImages) {
 		this.IImages = IImages;
 	}
 

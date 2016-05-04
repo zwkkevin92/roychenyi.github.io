@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 /**
  * BAccess entity. @author MyEclipse Persistence Tools
+ * 博客站点（blog）
+ * 访问记录表
  */
 @Entity
 @Table(name = "b_access", catalog = "wxs")

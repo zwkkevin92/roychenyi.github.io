@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * WConfig entity. @author MyEclipse Persistence Tools
+ * 文学社-配置
  */
 @Entity
 @Table(name = "w_config", catalog = "wxs")

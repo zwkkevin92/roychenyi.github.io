@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * SBox entity. @author MyEclipse Persistence Tools
+ * 声音盒
  */
 @Entity
 @Table(name = "s_box", catalog = "wxs")
@@ -35,7 +38,7 @@ public class SBox implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<SSound> SSounds = new HashSet<SSound>(0);
+	private List<SSound> SSounds = new ArrayList<SSound>(0);
 
 	// Constructors
 
@@ -52,7 +55,7 @@ public class SBox implements java.io.Serializable {
 	public SBox(UUser UUser, String name, String description,
 			Timestamp createTime, Integer soundCount, Short sortOrder,
 			Integer ext1, Integer ext2, String ext3, String ext4,
-			Set<SSound> SSounds) {
+			List<SSound> SSounds) {
 		this.UUser = UUser;
 		this.name = name;
 		this.description = description;
@@ -170,11 +173,11 @@ public class SBox implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "SBox")
-	public Set<SSound> getSSounds() {
+	public List<SSound> getSSounds() {
 		return this.SSounds;
 	}
 
-	public void setSSounds(Set<SSound> SSounds) {
+	public void setSSounds(List<SSound> SSounds) {
 		this.SSounds = SSounds;
 	}
 

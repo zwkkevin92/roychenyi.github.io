@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * SSound entity. @author MyEclipse Persistence Tools
+ * 声音
  */
 @Entity
 @Table(name = "s_sound", catalog = "wxs")

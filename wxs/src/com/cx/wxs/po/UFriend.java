@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 /**
  * UFriend entity. @author MyEclipse Persistence Tools
+ * 朋友表
  */
 @Entity
 @Table(name = "u_friend", catalog = "wxs")

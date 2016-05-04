@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * VCount entity. @author MyEclipse Persistence Tools
+ * 投票计数
  */
 @Entity
 @Table(name = "v_count", catalog = "wxs")

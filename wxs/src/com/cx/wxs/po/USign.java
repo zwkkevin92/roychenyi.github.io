@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * USign entity. @author MyEclipse Persistence Tools
+ * 签名档
  */
 @Entity
 @Table(name = "u_sign", catalog = "wxs")
@@ -29,7 +32,7 @@ public class USign implements java.io.Serializable {
 	private String content;
 	private Timestamp createTime;
 	private Short status;
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
+	private List<UUser> UUsers = new ArrayList<UUser>(0);
 
 	// Constructors
 
@@ -45,7 +48,7 @@ public class USign implements java.io.Serializable {
 
 	/** full constructor */
 	public USign(UUser UUser, String content, Timestamp createTime,
-			Short status, Set<UUser> UUsers) {
+			Short status, List<UUser> UUsers) {
 		this.UUser = UUser;
 		this.content = content;
 		this.createTime = createTime;
@@ -103,11 +106,11 @@ public class USign implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "USign")
-	public Set<UUser> getUUsers() {
+	public List<UUser> getUUsers() {
 		return this.UUsers;
 	}
 
-	public void setUUsers(Set<UUser> UUsers) {
+	public void setUUsers(List<UUser> UUsers) {
 		this.UUsers = UUsers;
 	}
 

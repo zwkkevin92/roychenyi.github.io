@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 /**
  * SysTopic entity. @author MyEclipse Persistence Tools
+ * 系统话题
  */
 @Entity
 @Table(name = "sys_topic", catalog = "wxs")

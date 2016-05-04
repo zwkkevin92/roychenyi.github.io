@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * SysLoginRecord entity. @author MyEclipse Persistence Tools
+ * 登录记录
  */
 @Entity
 @Table(name = "sys_login_record", catalog = "wxs")

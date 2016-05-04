@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * MAffiche entity. @author MyEclipse Persistence Tools
+ * 系统消息 
  */
 @Entity
 @Table(name = "m_affiche", catalog = "wxs")

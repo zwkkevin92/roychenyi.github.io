@@ -45,5 +45,13 @@ public interface DReply1Dao extends IBaseDao<DReply1,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDReply1(DReply1Dto dReply1Dto);
+    /**
+     * 获取评论计数
+     * @param dReply1Dto
+     * @return
+     * @author 陈义
+     * @date   2016-5-4上午10:38:24
+     */
+    public Integer getDReply1Count(DReply1Dto dReply1Dto);
 
 }

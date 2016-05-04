@@ -44,6 +44,7 @@ public  class BeanBase implements Serializable{
 
    private Integer page;  //当前页面
    private Integer rows;  //行数
+   private Integer row;   //所在行
    private String sort; //排序字段
    private String dir;   //排序方向
    private String group;//分组字段
@@ -61,6 +62,7 @@ public  class BeanBase implements Serializable{
    private Boolean isFortyLogin=false;
    private String url;  //获取前一个页面的URL
    private String statusFlag; //返回值的状态标识 -1：不成功；0：待验证；1：成功
+   private String html;  //变成的html
 
 	//**************验证信息参数******************/
 
@@ -172,6 +174,48 @@ public  class BeanBase implements Serializable{
 	
 
 	/**
+	 * 全局构造器
+	 * @author 陈义
+	 * @date   2016-5-4上午9:28:21
+	 */
+	public BeanBase(Integer page, Integer rows, Integer row, String sort,
+			String dir, String group, String order, Integer pageCount,
+			String batch, String field, String ip, String local, String msg,
+			Boolean isSucceed, Object object, Integer uid, Boolean isUsers,
+			Boolean isFortyLogin, String url, String statusFlag,String html,
+			String validateNum, String validateCode, String validateMark,
+			String validateType, BigDecimal rOWNUM_, String search) {
+		super();
+		this.page = page;
+		this.rows = rows;
+		this.row = row;
+		this.sort = sort;
+		this.dir = dir;
+		this.group = group;
+		this.order = order;
+		this.pageCount = pageCount;
+		this.batch = batch;
+		this.field = field;
+		this.ip = ip;
+		this.local = local;
+		this.msg = msg;
+		this.isSucceed = isSucceed;
+		this.object = object;
+		this.uid = uid;
+		this.isUsers = isUsers;
+		this.isFortyLogin = isFortyLogin;
+		this.url = url;
+		this.statusFlag = statusFlag;
+		this.html=html;
+		this.validateNum = validateNum;
+		this.validateCode = validateCode;
+		this.validateMark = validateMark;
+		this.validateType = validateType;
+		ROWNUM_ = rOWNUM_;
+		this.search = search;
+	}
+
+	/**
 	 * @param page
 	 * @param rows
 	 * @param sort
@@ -249,6 +293,14 @@ public  class BeanBase implements Serializable{
 
 	public void setRows(Integer rows) {
 		this.rows = rows;
+	}
+	
+	public Integer getRow() {
+		return row;
+	}
+
+	public void setRow(Integer row) {
+		this.row = row;
 	}
 
 	public String getSort() {
@@ -454,6 +506,21 @@ public  class BeanBase implements Serializable{
 	 */
 	public void setStatusFlag(String statusFlag) {
 		this.statusFlag = statusFlag;
+	}
+		
+
+	/**
+	 * @return the html
+	 */
+	public String getHtml() {
+		return html;
+	}
+
+	/**
+	 * @param html the html to set
+	 */
+	public void setHtml(String html) {
+		this.html = html;
 	}
 
 	/**

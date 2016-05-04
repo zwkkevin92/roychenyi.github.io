@@ -10,7 +10,7 @@ public class WeatherUitls {
 		ArrayOfString weather = null;
 		weather = weatherWSSoap.getWeather(city.trim(), null);
 		List<String> listSub = weather.getString();
-		System.out.println("listSub:"+listSub);
+//		System.out.println("listSub:"+listSub);
 		Object[] strSet = (Object[]) listSub.toArray();
 		WeatherBean weatherBean = null;
 		if (strSet != null && strSet.length >= 1) {

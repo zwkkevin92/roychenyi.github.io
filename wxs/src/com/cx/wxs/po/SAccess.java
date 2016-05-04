@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 /**
  * SAccess entity. @author MyEclipse Persistence Tools
+ * 声音（sound）
+ * 访问记录
  */
 @Entity
 @Table(name = "s_access", catalog = "wxs")

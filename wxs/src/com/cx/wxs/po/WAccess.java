@@ -12,7 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * WAccess entity. @author MyEclipse Persistence Tools
+ * WAccess entity. @author MyEclipse Persistence Tool
+ * 文学社-访问记录
  */
 @Entity
 @Table(name = "w_access", catalog = "wxs")

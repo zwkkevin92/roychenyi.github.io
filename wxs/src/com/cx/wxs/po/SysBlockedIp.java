@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 /**
  * SysBlockedIp entity. @author MyEclipse Persistence Tools
+ * 系统
+ * 黑名单
  */
 @Entity
 @Table(name = "sys_blocked_ip", catalog = "wxs")

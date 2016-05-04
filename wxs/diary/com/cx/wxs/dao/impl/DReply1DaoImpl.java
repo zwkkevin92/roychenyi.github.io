@@ -52,11 +52,12 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
             DReply1Dto    dto=new    DReply1Dto();
             dto=beanToDto.T1ToD1(t1,dto);
             List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
- 		   for(DReply2 dReply2:t1.getDReply2s()){
+            List l=t1.getDReply2s();
+            for(DReply2 dReply2:t1.getDReply2s()){
  			   DReply2Dto dReply2Dto=new DReply2Dto();
- 			 //  BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
- 			 //  dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
- 			   BeanUtils.copyProperties(dReply2, dReply2Dto);
+ 			   BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
+ 			   dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());
+ 			 //  BeanUtils.copyProperties(dReply2, dReply2Dto);
  			   dReply2Dtos.add(dReply2Dto);
  		   }
  		   dto.setDReply2Dtos(dReply2Dtos);
@@ -93,7 +94,8 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         	   list=this.find(stringBuffer.toString(),params,1,10);
            }
            if(list!=null&&list.size()>0){
-        	   for(DReply1 dReply1:list){
+        	   for(int i=0;i<list.size();i++){
+        		   DReply1 dReply1=list.get(i);
         		   DReply1Dto dto=new DReply1Dto();
         		   dto=beanToDto.T1ToD1(dReply1, new DReply1Dto());
         		   List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
@@ -108,9 +110,11 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
         		   if( dReply1Dto.getPage()!=null&&dReply1Dto.getRows()!=null){
         			   dto.setPage(dReply1Dto.getPage());
         			   dto.setRows(dReply1Dto.getRows());
+        			   dto.setRow((dReply1Dto.getPage()-1)*dReply1Dto.getRows()+i+1);
         		   }else{
         			   dto.setPage(1);
         			   dto.setRows(10);
+        			   dto.setRow(i+1);
         		   }
         		   list2.add(dto);
         	   }
@@ -190,6 +194,26 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
 		   }
 		   dReply1Dto.setDReply2Dtos(dReply2Dtos);
     	} 
+    }
+    /***
+     * 获取评论数
+     */
+    public Integer getDReply1Count(DReply1Dto dReply1Dto){
+    	if(dReply1Dto!=null&&dReply1Dto.getDDiaryDto()!=null){
+    		StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
+			Map<String,Object> params=new HashMap<String, Object>();
+			stringBuffer.append(" from "+DReply1.class.getName()+" a where 1=1 ");
+			stringBuffer.append(" and a.DDiary.diaryId=:diaryId");
+			params.put("diaryId", dReply1Dto.getDDiaryDto().getDiaryId());
+			if(dReply1Dto.getStatus()!=null){
+				stringBuffer.append(" and a.status=:status");
+				params.put("status",dReply1Dto.getStatus());
+			}else{
+				stringBuffer.append(" and a.status=1");
+			}
+			return this.count(stringBuffer.toString(), params);
+    	}
+    	return 0;
     }
 
 }

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 /**
  * DAccess entity. @author MyEclipse Persistence Tools
+ * 日记（diary）
+ * 访问记录
  */
 @Entity
 @Table(name = "d_access", catalog = "wxs")

@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * MGuestbook entity. @author MyEclipse Persistence Tools
+ * 留言板
  */
 @Entity
 @Table(name = "m_guestbook", catalog = "wxs")
@@ -33,7 +36,7 @@ public class MGuestbook implements java.io.Serializable {
 	private String clientIp;
 	private String clientAgent;
 	private Timestamp time;
-	private Set<MReply> MReplies = new HashSet<MReply>(0);
+	private List<MReply> MReplies = new ArrayList<MReply>(0);
 
 	// Constructors
 
@@ -51,7 +54,7 @@ public class MGuestbook implements java.io.Serializable {
 	/** full constructor */
 	public MGuestbook(UUser UUser, BSite BSite, Integer visitorId,
 			String content, Short clientType, String clientIp,
-			String clientAgent, Timestamp time, Set<MReply> MReplies) {
+			String clientAgent, Timestamp time, List<MReply> MReplies) {
 		this.UUser = UUser;
 		this.BSite = BSite;
 		this.visitorId = visitorId;
@@ -150,11 +153,11 @@ public class MGuestbook implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "MGuestbook")
-	public Set<MReply> getMReplies() {
+	public List<MReply> getMReplies() {
 		return this.MReplies;
 	}
 
-	public void setMReplies(Set<MReply> MReplies) {
+	public void setMReplies(List<MReply> MReplies) {
 		this.MReplies = MReplies;
 	}
 

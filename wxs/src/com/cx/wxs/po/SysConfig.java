@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 /**
  * SysConfig entity. @author MyEclipse Persistence Tools
+ * 系统
+ * 设置
  */
 @Entity
 @Table(name = "sys_config", catalog = "wxs")

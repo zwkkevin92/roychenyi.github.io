@@ -11,6 +11,7 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * SysIllegal entity. @author MyEclipse Persistence Tools
+ * 非法词汇表
  */
 @Entity
 @Table(name = "sys_illegal", catalog = "wxs", uniqueConstraints = @UniqueConstraint(columnNames = "word"))

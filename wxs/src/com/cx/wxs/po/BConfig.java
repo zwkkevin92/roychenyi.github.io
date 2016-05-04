@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * BConfig entity. @author MyEclipse Persistence Tools
+ * 配置表
  */
 @Entity
 @Table(name = "b_config", catalog = "wxs")

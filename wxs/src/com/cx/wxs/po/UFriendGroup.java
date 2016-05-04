@@ -1,6 +1,8 @@
 package com.cx.wxs.po;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 
 /**
  * UFriendGroup entity. @author MyEclipse Persistence Tools
+ * 朋友分组
  */
 @Entity
 @Table(name = "u_friend_group", catalog = "wxs")
@@ -28,7 +31,7 @@ public class UFriendGroup implements java.io.Serializable {
 	private String name;
 	private Integer groupType;
 	private Integer groupCount;
-	private Set<UFriend> UFriends = new HashSet<UFriend>(0);
+	private List<UFriend> UFriends = new ArrayList<UFriend>(0);
 
 	// Constructors
 
@@ -44,7 +47,7 @@ public class UFriendGroup implements java.io.Serializable {
 
 	/** full constructor */
 	public UFriendGroup(UUser UUser, String name, Integer groupType,
-			Integer groupCount, Set<UFriend> UFriends) {
+			Integer groupCount, List<UFriend> UFriends) {
 		this.UUser = UUser;
 		this.name = name;
 		this.groupType = groupType;
@@ -102,11 +105,11 @@ public class UFriendGroup implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UFriendGroup")
-	public Set<UFriend> getUFriends() {
+	public List<UFriend> getUFriends() {
 		return this.UFriends;
 	}
 
-	public void setUFriends(Set<UFriend> UFriends) {
+	public void setUFriends(List<UFriend> UFriends) {
 		this.UFriends = UFriends;
 	}
 

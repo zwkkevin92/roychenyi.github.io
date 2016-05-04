@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * DFavorite entity. @author MyEclipse Persistence Tools
+ * 收藏（喜欢）
  */
 @Entity
 @Table(name = "d_favorite", catalog = "wxs")

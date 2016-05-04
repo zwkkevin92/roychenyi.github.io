@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * SReply1 entity. @author MyEclipse Persistence Tools
+ * 评论
  */
 @Entity
 @Table(name = "s_reply1", catalog = "wxs")
@@ -31,7 +34,7 @@ public class SReply1 implements java.io.Serializable {
 	private Short ownerOnly;
 	private Timestamp writeTime;
 	private Short status;
-	private Set<SReply2> SReply2s = new HashSet<SReply2>(0);
+	private List<SReply2> SReply2s = new ArrayList<SReply2>(0);
 
 	// Constructors
 
@@ -48,7 +51,7 @@ public class SReply1 implements java.io.Serializable {
 	/** full constructor */
 	public SReply1(UUser UUser, SSound SSound, Short clientType,
 			Short ownerOnly, Timestamp writeTime, Short status,
-			Set<SReply2> SReply2s) {
+			List<SReply2> SReply2s) {
 		this.UUser = UUser;
 		this.SSound = SSound;
 		this.clientType = clientType;
@@ -127,11 +130,11 @@ public class SReply1 implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "SReply1")
-	public Set<SReply2> getSReply2s() {
+	public List<SReply2> getSReply2s() {
 		return this.SReply2s;
 	}
 
-	public void setSReply2s(Set<SReply2> SReply2s) {
+	public void setSReply2s(List<SReply2> SReply2s) {
 		this.SReply2s = SReply2s;
 	}
 

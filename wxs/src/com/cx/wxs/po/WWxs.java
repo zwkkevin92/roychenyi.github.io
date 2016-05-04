@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 /**
  * WWxs entity. @author MyEclipse Persistence Tools
+ * 文学社
+ * 
  */
 @Entity
 @Table(name = "w_wxs", catalog = "wxs")
@@ -46,11 +48,11 @@ public class WWxs implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<WBook> WBooks = new HashSet<WBook>(0);
-	private Set<WConfig> WConfigs = new HashSet<WConfig>(0);
-	private Set<WLink> WLinks = new HashSet<WLink>(0);
-	private Set<WStatus> WStatuses = new HashSet<WStatus>(0);
-	private Set<SysInvitationCode> sysInvitationCodes = new HashSet<SysInvitationCode>(
+	private List<WBook> WBooks = new ArrayList<WBook>(0);
+	private List<WConfig> WConfigs = new ArrayList<WConfig>(0);
+	private List<WLink> WLinks = new ArrayList<WLink>(0);
+	private List<WStatus> WStatuses = new ArrayList<WStatus>(0);
+	private List<SysInvitationCode> sysInvitationCodes = new ArrayList<SysInvitationCode>(
 			0);
 
 	// Constructors
@@ -72,8 +74,8 @@ public class WWxs implements java.io.Serializable {
 			String accessCode, String indexName, String diaryName,
 			String soundName, String imageName, Integer siteType, Short status,
 			Integer ext1, Integer ext2, String ext3, String ext4,
-			Set<WBook> WBooks, Set<WConfig> WConfigs, Set<WLink> WLinks,
-			Set<WStatus> WStatuses, Set<SysInvitationCode> sysInvitationCodes) {
+			List<WBook> WBooks, List<WConfig> WConfigs, List<WLink> WLinks,
+			List<WStatus> WStatuses, List<SysInvitationCode> sysInvitationCodes) {
 		this.account = account;
 		this.password = password;
 		this.name = name;
@@ -324,47 +326,47 @@ public class WWxs implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<WBook> getWBooks() {
+	public List<WBook> getWBooks() {
 		return this.WBooks;
 	}
 
-	public void setWBooks(Set<WBook> WBooks) {
+	public void setWBooks(List<WBook> WBooks) {
 		this.WBooks = WBooks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<WConfig> getWConfigs() {
+	public List<WConfig> getWConfigs() {
 		return this.WConfigs;
 	}
 
-	public void setWConfigs(Set<WConfig> WConfigs) {
+	public void setWConfigs(List<WConfig> WConfigs) {
 		this.WConfigs = WConfigs;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<WLink> getWLinks() {
+	public List<WLink> getWLinks() {
 		return this.WLinks;
 	}
 
-	public void setWLinks(Set<WLink> WLinks) {
+	public void setWLinks(List<WLink> WLinks) {
 		this.WLinks = WLinks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<WStatus> getWStatuses() {
+	public List<WStatus> getWStatuses() {
 		return this.WStatuses;
 	}
 
-	public void setWStatuses(Set<WStatus> WStatuses) {
+	public void setWStatuses(List<WStatus> WStatuses) {
 		this.WStatuses = WStatuses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
-	public Set<SysInvitationCode> getSysInvitationCodes() {
+	public List<SysInvitationCode> getSysInvitationCodes() {
 		return this.sysInvitationCodes;
 	}
 
-	public void setSysInvitationCodes(Set<SysInvitationCode> sysInvitationCodes) {
+	public void setSysInvitationCodes(List<SysInvitationCode> sysInvitationCodes) {
 		this.sysInvitationCodes = sysInvitationCodes;
 	}
 

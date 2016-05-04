@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * DAnnex entity. @author MyEclipse Persistence Tools
+ * 附件
  */
 @Entity
 @Table(name = "d_annex", catalog = "wxs")

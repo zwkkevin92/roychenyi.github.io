@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * DDiary entity. @author MyEclipse Persistence Tools
+ * 日记
  */
 @Entity
 @Table(name = "d_diary", catalog = "wxs")
@@ -55,12 +58,12 @@ public class DDiary implements java.io.Serializable {
 	private Integer ext2;
 	private Integer ext3;
 	private Integer ext4;
-	private Set<DAnnex> DAnnexes = new HashSet<DAnnex>(0);
-	private Set<DFavorite> DFavorites = new HashSet<DFavorite>(0);
-	private Set<DUpvote> DUpvotes = new HashSet<DUpvote>(0);
-	private Set<DAccess> DAccesses = new HashSet<DAccess>(0);
-	private Set<DReply1> DReply1s = new HashSet<DReply1>(0);
-	private Set<BTag> BTags = new HashSet<BTag>(0);
+	private List<DAnnex> DAnnexes = new ArrayList<DAnnex>(0);
+	private List<DFavorite> DFavorites = new ArrayList<DFavorite>(0);
+	private List<DUpvote> DUpvotes = new ArrayList<DUpvote>(0);
+	private List<DAccess> DAccesses = new ArrayList<DAccess>(0);
+	private List<DReply1> DReply1s = new ArrayList<DReply1>(0);
+	private List<BTag> BTags = new ArrayList<BTag>(0);
 
 	// Constructors
 
@@ -85,9 +88,9 @@ public class DDiary implements java.io.Serializable {
 			Timestamp lastReplyTime, Timestamp modifyTime, Short replyNotify,
 			Short moodLevel, Short locked, Short contribute, Short role,
 			String tag, Integer annexId, Integer ext1, Integer ext2,
-			Integer ext3, Integer ext4, Set<DAnnex> DAnnexes,
-			Set<DFavorite> DFavorites, Set<DUpvote> DUpvotes,
-			Set<DAccess> DAccesses, Set<DReply1> DReply1s, Set<BTag> BTags) {
+			Integer ext3, Integer ext4, List<DAnnex> DAnnexes,
+			List<DFavorite> DFavorites, List<DUpvote> DUpvotes,
+			List<DAccess> DAccesses, List<DReply1> DReply1s, List<BTag> BTags) {
 		this.sysType = sysType;
 		this.UUser = UUser;
 		this.BSite = BSite;
@@ -413,56 +416,56 @@ public class DDiary implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<DAnnex> getDAnnexes() {
+	public List<DAnnex> getDAnnexes() {
 		return this.DAnnexes;
 	}
 
-	public void setDAnnexes(Set<DAnnex> DAnnexes) {
+	public void setDAnnexes(List<DAnnex> DAnnexes) {
 		this.DAnnexes = DAnnexes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<DFavorite> getDFavorites() {
+	public List<DFavorite> getDFavorites() {
 		return this.DFavorites;
 	}
 
-	public void setDFavorites(Set<DFavorite> DFavorites) {
+	public void setDFavorites(List<DFavorite> DFavorites) {
 		this.DFavorites = DFavorites;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<DUpvote> getDUpvotes() {
+	public List<DUpvote> getDUpvotes() {
 		return this.DUpvotes;
 	}
 
-	public void setDUpvotes(Set<DUpvote> DUpvotes) {
+	public void setDUpvotes(List<DUpvote> DUpvotes) {
 		this.DUpvotes = DUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<DAccess> getDAccesses() {
+	public List<DAccess> getDAccesses() {
 		return this.DAccesses;
 	}
 
-	public void setDAccesses(Set<DAccess> DAccesses) {
+	public void setDAccesses(List<DAccess> DAccesses) {
 		this.DAccesses = DAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<DReply1> getDReply1s() {
+	public List<DReply1> getDReply1s() {
 		return this.DReply1s;
 	}
 
-	public void setDReply1s(Set<DReply1> DReply1s) {
+	public void setDReply1s(List<DReply1> DReply1s) {
 		this.DReply1s = DReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "DDiary")
-	public Set<BTag> getBTags() {
+	public List<BTag> getBTags() {
 		return this.BTags;
 	}
 
-	public void setBTags(Set<BTag> BTags) {
+	public void setBTags(List<BTag> BTags) {
 		this.BTags = BTags;
 	}
 

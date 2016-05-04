@@ -1,6 +1,6 @@
  <div class="ibox-content">
                                     <div id="comment_list">
-									<div class="chat-discussion">
+									<div class="chat-discussion" id="commentDiv">
 										#if($dReply1s)
 											
 											<input type="hidden" id="comment_page" value="$dReply1s[0].page">
@@ -31,7 +31,7 @@
                                             </span>
 											#else
 											<div class="chat-message">
-                                                     <a href="#rootUrl/$reply1.UUserDto.nickname"><img class="message-avatar" src="#rootUrl/$reply2.UUserByUserIdDto.portrait" alt="$reply2.UUserByUserIdDto.nickname"></a>
+                                                     <a href="#rootUrl/$reply2.UUserByUserIdDto.nickname"><img class="message-avatar" src="#rootUrl/$reply2.UUserByUserIdDto.portrait" alt="$reply2.UUserByUserIdDto.nickname"></a>
                                                    <div class="message">
                                                 <a class="message-author" href="#rootUrl/$reply2.UUserByUserIdDto.nickname"> $reply2.UUserByUserIdDto.nickname</a>
                                                 <span class="message-date"> $date.format('yyyy/MM/dd HH:mm:ss',$reply2.replyTime)  </span>
@@ -43,7 +43,9 @@
                                                 </div>
 											#end
 										   #end
-											
+											<div class="form-group" id="s_replyForm1">
+                                                <input type="text" class="form-control" placeholder="我也来评论一句" onclick="DComment.showCommentEditor(${comment_count})">
+                                                </div>
                                                              
                                                 <div class="chat-message-form hidden">
 													<form id="replyForm${comment_count}" action="#rootUrl/$author.nickname/article/$diary.diaryId/reply2_add">
@@ -88,7 +90,8 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <form id="comment_form" class="chat-message-form" action="#rootUrl/$author.nickname/article/$diary.diaryId/reply_add">
-                                                <div class="form-group">
+                                               <input type="hidden" id="d_comment_count" name="d_comment_count" value="$diary.replyCount">
+												<div class="form-group">
 													<div id="textarea1" style="height:150px;max-height:200px;">
                                         
                                                      </div>

@@ -65,6 +65,10 @@ public class CommentAction extends BaseDiaryAction{
 		List<DReply1Dto> dReply1s=reply1Service.getDReply1List(dReply1Dto);
 		return dReply1s;
 	}
+	
+	public List<DReply1Dto> getDreplys(Integer row,DReply1Dto dReply1Dto){
+		return null;
+	}
 	/***
 	 * 添加新评论
 	 * @param vip

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * WStatus entity. @author MyEclipse Persistence Tools
+ * 文学社状态
  */
 @Entity
 @Table(name = "w_status", catalog = "wxs")

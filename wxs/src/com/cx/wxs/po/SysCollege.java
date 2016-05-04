@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 /**
  * SysCollege entity. @author MyEclipse Persistence Tools
+ * 系统
+ * 学院
  */
 @Entity
 @Table(name = "sys_college", catalog = "wxs")

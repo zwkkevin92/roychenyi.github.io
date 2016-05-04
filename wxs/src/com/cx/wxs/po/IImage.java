@@ -1,8 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 
 /**
  * IImage entity. @author MyEclipse Persistence Tools
+ * 图片
  */
 @Entity
 @Table(name = "i_image", catalog = "wxs")
@@ -53,9 +55,9 @@ public class IImage implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<IAccess> IAccesses = new HashSet<IAccess>(0);
-	private Set<IUpvote> IUpvotes = new HashSet<IUpvote>(0);
-	private Set<IReply1> IReply1s = new HashSet<IReply1>(0);
+	private List<IAccess> IAccesses = new ArrayList<IAccess>(0);
+	private List<IUpvote> IUpvotes = new ArrayList<IUpvote>(0);
+	private List<IReply1> IReply1s = new ArrayList<IReply1>(0);
 
 	// Constructors
 
@@ -77,8 +79,8 @@ public class IImage implements java.io.Serializable {
 			Integer imageType, Short clientType, String clientIp,
 			String clientAgent, Short status, Integer replyCount,
 			Integer viewCount, Integer downloadCount, Integer ext1,
-			Integer ext2, String ext3, String ext4, Set<IAccess> IAccesses,
-			Set<IUpvote> IUpvotes, Set<IReply1> IReply1s) {
+			Integer ext2, String ext3, String ext4, List<IAccess> IAccesses,
+			List<IUpvote> IUpvotes, List<IReply1> IReply1s) {
 		this.UUser = UUser;
 		this.BSite = BSite;
 		this.IAlbum = IAlbum;
@@ -380,29 +382,29 @@ public class IImage implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "IImage")
-	public Set<IAccess> getIAccesses() {
+	public List<IAccess> getIAccesses() {
 		return this.IAccesses;
 	}
 
-	public void setIAccesses(Set<IAccess> IAccesses) {
+	public void setIAccesses(List<IAccess> IAccesses) {
 		this.IAccesses = IAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "IImage")
-	public Set<IUpvote> getIUpvotes() {
+	public List<IUpvote> getIUpvotes() {
 		return this.IUpvotes;
 	}
 
-	public void setIUpvotes(Set<IUpvote> IUpvotes) {
+	public void setIUpvotes(List<IUpvote> IUpvotes) {
 		this.IUpvotes = IUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "IImage")
-	public Set<IReply1> getIReply1s() {
+	public List<IReply1> getIReply1s() {
 		return this.IReply1s;
 	}
 
-	public void setIReply1s(Set<IReply1> IReply1s) {
+	public void setIReply1s(List<IReply1> IReply1s) {
 		this.IReply1s = IReply1s;
 	}
 

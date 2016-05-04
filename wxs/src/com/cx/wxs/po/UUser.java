@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * UUser entity. @author MyEclipse Persistence Tools
+ * 用户表
  */
 @Entity
 @Table(name = "u_user", catalog = "wxs", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
@@ -64,51 +65,51 @@ public class UUser implements java.io.Serializable {
 	private Integer follows;
 	private Integer popedom;
 	private Integer codeId;
-	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
-	private Set<VVote> VVotes = new HashSet<VVote>(0);
-	private Set<DUpvote> DUpvotes = new HashSet<DUpvote>(0);
-	private Set<DReply1> DReply1s = new HashSet<DReply1>(0);
-	private Set<IReply2> IReply2sForUserId = new HashSet<IReply2>(0);
-	private Set<SSound> SSounds = new HashSet<SSound>(0);
-	private Set<USign> USigns = new HashSet<USign>(0);
-	private Set<SReply2> SReply2sForCommentator = new HashSet<SReply2>(0);
-	private Set<BAccess> BAccesses = new HashSet<BAccess>(0);
-	private Set<VUpvote> VUpvotes = new HashSet<VUpvote>(0);
-	private Set<IImage> IImages = new HashSet<IImage>(0);
-	private Set<VReply1> VReply1s = new HashSet<VReply1>(0);
-	private Set<DCatalog> DCatalogs = new HashSet<DCatalog>(0);
-	private Set<MAffiche> MAffiches = new HashSet<MAffiche>(0);
-	private Set<DReply2> DReply2sForCommentator = new HashSet<DReply2>(0);
-	private Set<WAccess> WAccesses = new HashSet<WAccess>(0);
-	private Set<BSite> BSites = new HashSet<BSite>(0);
-	private Set<SUpvote> SUpvotes = new HashSet<SUpvote>(0);
-	private Set<IReply1> IReply1s = new HashSet<IReply1>(0);
-	private Set<IUpvote> IUpvotes = new HashSet<IUpvote>(0);
-	private Set<SysLoginRecord> sysLoginRecords = new HashSet<SysLoginRecord>(0);
-	private Set<SBox> SBoxes = new HashSet<SBox>(0);
-	private Set<VReply2> VReply2sForCommentator = new HashSet<VReply2>(0);
-	private Set<SReply2> SReply2sForUserId = new HashSet<SReply2>(0);
-	private Set<UFriendGroup> UFriendGroups = new HashSet<UFriendGroup>(0);
-	private Set<MGuestbook> MGuestbooks = new HashSet<MGuestbook>(0);
-	private Set<IAlbum> IAlbums = new HashSet<IAlbum>(0);
-	private Set<SAccess> SAccesses = new HashSet<SAccess>(0);
-	private Set<VReply2> VReply2sForUserId = new HashSet<VReply2>(0);
-	private Set<VCount> VCounts = new HashSet<VCount>(0);
-	private Set<DAnnex> DAnnexes = new HashSet<DAnnex>(0);
-	private Set<UBook> UBooks = new HashSet<UBook>(0);
-	private Set<IAccess> IAccesses = new HashSet<IAccess>(0);
-	private Set<BBacklist> BBacklistsForUserId = new HashSet<BBacklist>(0);
-	private Set<DReply2> DReply2sForUserId = new HashSet<DReply2>(0);
-	private Set<MMessage> MMessagesForUserId = new HashSet<MMessage>(0);
-	private Set<VAccess> VAccesses = new HashSet<VAccess>(0);
-	private Set<SysInvitationCode> sysInvitationCodes = new HashSet<SysInvitationCode>(
+	private List<DDiary> DDiaries = new ArrayList<DDiary>(0);
+	private List<VVote> VVotes = new ArrayList<VVote>(0);
+	private List<DUpvote> DUpvotes = new ArrayList<DUpvote>(0);
+	private List<DReply1> DReply1s = new ArrayList<DReply1>(0);
+	private List<IReply2> IReply2sForUserId = new ArrayList<IReply2>(0);
+	private List<SSound> SSounds = new ArrayList<SSound>(0);
+	private List<USign> USigns = new ArrayList<USign>(0);
+	private List<SReply2> SReply2sForCommentator = new ArrayList<SReply2>(0);
+	private List<BAccess> BAccesses = new ArrayList<BAccess>(0);
+	private List<VUpvote> VUpvotes = new ArrayList<VUpvote>(0);
+	private List<IImage> IImages = new ArrayList<IImage>(0);
+	private List<VReply1> VReply1s = new ArrayList<VReply1>(0);
+	private List<DCatalog> DCatalogs = new ArrayList<DCatalog>(0);
+	private List<MAffiche> MAffiches = new ArrayList<MAffiche>(0);
+	private List<DReply2> DReply2sForCommentator = new ArrayList<DReply2>(0);
+	private List<WAccess> WAccesses = new ArrayList<WAccess>(0);
+	private List<BSite> BSites = new ArrayList<BSite>(0);
+	private List<SUpvote> SUpvotes = new ArrayList<SUpvote>(0);
+	private List<IReply1> IReply1s = new ArrayList<IReply1>(0);
+	private List<IUpvote> IUpvotes = new ArrayList<IUpvote>(0);
+	private List<SysLoginRecord> sysLoginRecords = new ArrayList<SysLoginRecord>(0);
+	private List<SBox> SBoxes = new ArrayList<SBox>(0);
+	private List<VReply2> VReply2sForCommentator = new ArrayList<VReply2>(0);
+	private List<SReply2> SReply2sForUserId = new ArrayList<SReply2>(0);
+	private List<UFriendGroup> UFriendGroups = new ArrayList<UFriendGroup>(0);
+	private List<MGuestbook> MGuestbooks = new ArrayList<MGuestbook>(0);
+	private List<IAlbum> IAlbums = new ArrayList<IAlbum>(0);
+	private List<SAccess> SAccesses = new ArrayList<SAccess>(0);
+	private List<VReply2> VReply2sForUserId = new ArrayList<VReply2>(0);
+	private List<VCount> VCounts = new ArrayList<VCount>(0);
+	private List<DAnnex> DAnnexes = new ArrayList<DAnnex>(0);
+	private List<UBook> UBooks = new ArrayList<UBook>(0);
+	private List<IAccess> IAccesses = new ArrayList<IAccess>(0);
+	private List<BBacklist> BBacklistsForUserId = new ArrayList<BBacklist>(0);
+	private List<DReply2> DReply2sForUserId = new ArrayList<DReply2>(0);
+	private List<MMessage> MMessagesForUserId = new ArrayList<MMessage>(0);
+	private List<VAccess> VAccesses = new ArrayList<VAccess>(0);
+	private List<SysInvitationCode> sysInvitationCodes = new ArrayList<SysInvitationCode>(
 			0);
-	private Set<MMessage> MMessagesForReceiveId = new HashSet<MMessage>(0);
-	private Set<MReply> MReplies = new HashSet<MReply>(0);
-	private Set<IReply2> IReply2sForCommentator = new HashSet<IReply2>(0);
-	private Set<SReply1> SReply1s = new HashSet<SReply1>(0);
-	private Set<DAccess> DAccesses = new HashSet<DAccess>(0);
-	private Set<BBacklist> BBacklistsForBackId = new HashSet<BBacklist>(0);
+	private List<MMessage> MMessagesForReceiveId = new ArrayList<MMessage>(0);
+	private List<MReply> MReplies = new ArrayList<MReply>(0);
+	private List<IReply2> IReply2sForCommentator = new ArrayList<IReply2>(0);
+	private List<SReply1> SReply1s = new ArrayList<SReply1>(0);
+	private List<DAccess> DAccesses = new ArrayList<DAccess>(0);
+	private List<BBacklist> BBacklistsForBackId = new ArrayList<BBacklist>(0);
 
 	// Constructors
 
@@ -137,26 +138,26 @@ public class UUser implements java.io.Serializable {
 			Integer topicCount, Integer topicReplyCount, Integer imageCount,
 			Integer imageReplyCount, Integer guestbookCount, Integer tagCount,
 			Integer fans, Integer follows, Integer popedom, Integer codeId,
-			Set<DDiary> DDiaries, Set<VVote> VVotes, Set<DUpvote> DUpvotes,
-			Set<DReply1> DReply1s, Set<IReply2> IReply2sForUserId,
-			Set<SSound> SSounds, Set<USign> USigns,
-			Set<SReply2> SReply2sForCommentator, Set<BAccess> BAccesses,
-			Set<VUpvote> VUpvotes, Set<IImage> IImages, Set<VReply1> VReply1s,
-			Set<DCatalog> DCatalogs, Set<MAffiche> MAffiches,
-			Set<DReply2> DReply2sForCommentator, Set<WAccess> WAccesses,
-			Set<BSite> BSites, Set<SUpvote> SUpvotes, Set<IReply1> IReply1s,
-			Set<IUpvote> IUpvotes, Set<SysLoginRecord> sysLoginRecords,
-			Set<SBox> SBoxes, Set<VReply2> VReply2sForCommentator,
-			Set<SReply2> SReply2sForUserId, Set<UFriendGroup> UFriendGroups,
-			Set<MGuestbook> MGuestbooks, Set<IAlbum> IAlbums,
-			Set<SAccess> SAccesses, Set<VReply2> VReply2sForUserId,
-			Set<VCount> VCounts, Set<DAnnex> DAnnexes, Set<UBook> UBooks,
-			Set<IAccess> IAccesses, Set<BBacklist> BBacklistsForUserId,
-			Set<DReply2> DReply2sForUserId, Set<MMessage> MMessagesForUserId,
-			Set<VAccess> VAccesses, Set<SysInvitationCode> sysInvitationCodes,
-			Set<MMessage> MMessagesForReceiveId, Set<MReply> MReplies,
-			Set<IReply2> IReply2sForCommentator, Set<SReply1> SReply1s,
-			Set<DAccess> DAccesses, Set<BBacklist> BBacklistsForBackId) {
+			List<DDiary> DDiaries, List<VVote> VVotes, List<DUpvote> DUpvotes,
+			List<DReply1> DReply1s, List<IReply2> IReply2sForUserId,
+			List<SSound> SSounds, List<USign> USigns,
+			List<SReply2> SReply2sForCommentator, List<BAccess> BAccesses,
+			List<VUpvote> VUpvotes, List<IImage> IImages, List<VReply1> VReply1s,
+			List<DCatalog> DCatalogs, List<MAffiche> MAffiches,
+			List<DReply2> DReply2sForCommentator, List<WAccess> WAccesses,
+			List<BSite> BSites, List<SUpvote> SUpvotes, List<IReply1> IReply1s,
+			List<IUpvote> IUpvotes, List<SysLoginRecord> sysLoginRecords,
+			List<SBox> SBoxes, List<VReply2> VReply2sForCommentator,
+			List<SReply2> SReply2sForUserId, List<UFriendGroup> UFriendGroups,
+			List<MGuestbook> MGuestbooks, List<IAlbum> IAlbums,
+			List<SAccess> SAccesses, List<VReply2> VReply2sForUserId,
+			List<VCount> VCounts, List<DAnnex> DAnnexes, List<UBook> UBooks,
+			List<IAccess> IAccesses, List<BBacklist> BBacklistsForUserId,
+			List<DReply2> DReply2sForUserId, List<MMessage> MMessagesForUserId,
+			List<VAccess> VAccesses, List<SysInvitationCode> sysInvitationCodes,
+			List<MMessage> MMessagesForReceiveId, List<MReply> MReplies,
+			List<IReply2> IReply2sForCommentator, List<SReply1> SReply1s,
+			List<DAccess> DAccesses, List<BBacklist> BBacklistsForBackId) {
 		this.USign = USign;
 		this.BSite = BSite;
 		this.sysRank = sysRank;
@@ -599,398 +600,398 @@ public class UUser implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DDiary> getDDiaries() {
+	public List<DDiary> getDDiaries() {
 		return this.DDiaries;
 	}
 
-	public void setDDiaries(Set<DDiary> DDiaries) {
+	public void setDDiaries(List<DDiary> DDiaries) {
 		this.DDiaries = DDiaries;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<VVote> getVVotes() {
+	public List<VVote> getVVotes() {
 		return this.VVotes;
 	}
 
-	public void setVVotes(Set<VVote> VVotes) {
+	public void setVVotes(List<VVote> VVotes) {
 		this.VVotes = VVotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DUpvote> getDUpvotes() {
+	public List<DUpvote> getDUpvotes() {
 		return this.DUpvotes;
 	}
 
-	public void setDUpvotes(Set<DUpvote> DUpvotes) {
+	public void setDUpvotes(List<DUpvote> DUpvotes) {
 		this.DUpvotes = DUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DReply1> getDReply1s() {
+	public List<DReply1> getDReply1s() {
 		return this.DReply1s;
 	}
 
-	public void setDReply1s(Set<DReply1> DReply1s) {
+	public void setDReply1s(List<DReply1> DReply1s) {
 		this.DReply1s = DReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<IReply2> getIReply2sForUserId() {
+	public List<IReply2> getIReply2sForUserId() {
 		return this.IReply2sForUserId;
 	}
 
-	public void setIReply2sForUserId(Set<IReply2> IReply2sForUserId) {
+	public void setIReply2sForUserId(List<IReply2> IReply2sForUserId) {
 		this.IReply2sForUserId = IReply2sForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SSound> getSSounds() {
+	public List<SSound> getSSounds() {
 		return this.SSounds;
 	}
 
-	public void setSSounds(Set<SSound> SSounds) {
+	public void setSSounds(List<SSound> SSounds) {
 		this.SSounds = SSounds;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<USign> getUSigns() {
+	public List<USign> getUSigns() {
 		return this.USigns;
 	}
 
-	public void setUSigns(Set<USign> USigns) {
+	public void setUSigns(List<USign> USigns) {
 		this.USigns = USigns;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByCommentator")
-	public Set<SReply2> getSReply2sForCommentator() {
+	public List<SReply2> getSReply2sForCommentator() {
 		return this.SReply2sForCommentator;
 	}
 
-	public void setSReply2sForCommentator(Set<SReply2> SReply2sForCommentator) {
+	public void setSReply2sForCommentator(List<SReply2> SReply2sForCommentator) {
 		this.SReply2sForCommentator = SReply2sForCommentator;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<BAccess> getBAccesses() {
+	public List<BAccess> getBAccesses() {
 		return this.BAccesses;
 	}
 
-	public void setBAccesses(Set<BAccess> BAccesses) {
+	public void setBAccesses(List<BAccess> BAccesses) {
 		this.BAccesses = BAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VUpvote> getVUpvotes() {
+	public List<VUpvote> getVUpvotes() {
 		return this.VUpvotes;
 	}
 
-	public void setVUpvotes(Set<VUpvote> VUpvotes) {
+	public void setVUpvotes(List<VUpvote> VUpvotes) {
 		this.VUpvotes = VUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<IImage> getIImages() {
+	public List<IImage> getIImages() {
 		return this.IImages;
 	}
 
-	public void setIImages(Set<IImage> IImages) {
+	public void setIImages(List<IImage> IImages) {
 		this.IImages = IImages;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<VReply1> getVReply1s() {
+	public List<VReply1> getVReply1s() {
 		return this.VReply1s;
 	}
 
-	public void setVReply1s(Set<VReply1> VReply1s) {
+	public void setVReply1s(List<VReply1> VReply1s) {
 		this.VReply1s = VReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DCatalog> getDCatalogs() {
+	public List<DCatalog> getDCatalogs() {
 		return this.DCatalogs;
 	}
 
-	public void setDCatalogs(Set<DCatalog> DCatalogs) {
+	public void setDCatalogs(List<DCatalog> DCatalogs) {
 		this.DCatalogs = DCatalogs;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<MAffiche> getMAffiches() {
+	public List<MAffiche> getMAffiches() {
 		return this.MAffiches;
 	}
 
-	public void setMAffiches(Set<MAffiche> MAffiches) {
+	public void setMAffiches(List<MAffiche> MAffiches) {
 		this.MAffiches = MAffiches;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByCommentator")
-	public Set<DReply2> getDReply2sForCommentator() {
+	public List<DReply2> getDReply2sForCommentator() {
 		return this.DReply2sForCommentator;
 	}
 
-	public void setDReply2sForCommentator(Set<DReply2> DReply2sForCommentator) {
+	public void setDReply2sForCommentator(List<DReply2> DReply2sForCommentator) {
 		this.DReply2sForCommentator = DReply2sForCommentator;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<WAccess> getWAccesses() {
+	public List<WAccess> getWAccesses() {
 		return this.WAccesses;
 	}
 
-	public void setWAccesses(Set<WAccess> WAccesses) {
+	public void setWAccesses(List<WAccess> WAccesses) {
 		this.WAccesses = WAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<BSite> getBSites() {
+	public List<BSite> getBSites() {
 		return this.BSites;
 	}
 
-	public void setBSites(Set<BSite> BSites) {
+	public void setBSites(List<BSite> BSites) {
 		this.BSites = BSites;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SUpvote> getSUpvotes() {
+	public List<SUpvote> getSUpvotes() {
 		return this.SUpvotes;
 	}
 
-	public void setSUpvotes(Set<SUpvote> SUpvotes) {
+	public void setSUpvotes(List<SUpvote> SUpvotes) {
 		this.SUpvotes = SUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<IReply1> getIReply1s() {
+	public List<IReply1> getIReply1s() {
 		return this.IReply1s;
 	}
 
-	public void setIReply1s(Set<IReply1> IReply1s) {
+	public void setIReply1s(List<IReply1> IReply1s) {
 		this.IReply1s = IReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<IUpvote> getIUpvotes() {
+	public List<IUpvote> getIUpvotes() {
 		return this.IUpvotes;
 	}
 
-	public void setIUpvotes(Set<IUpvote> IUpvotes) {
+	public void setIUpvotes(List<IUpvote> IUpvotes) {
 		this.IUpvotes = IUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SysLoginRecord> getSysLoginRecords() {
+	public List<SysLoginRecord> getSysLoginRecords() {
 		return this.sysLoginRecords;
 	}
 
-	public void setSysLoginRecords(Set<SysLoginRecord> sysLoginRecords) {
+	public void setSysLoginRecords(List<SysLoginRecord> sysLoginRecords) {
 		this.sysLoginRecords = sysLoginRecords;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SBox> getSBoxes() {
+	public List<SBox> getSBoxes() {
 		return this.SBoxes;
 	}
 
-	public void setSBoxes(Set<SBox> SBoxes) {
+	public void setSBoxes(List<SBox> SBoxes) {
 		this.SBoxes = SBoxes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByCommentator")
-	public Set<VReply2> getVReply2sForCommentator() {
+	public List<VReply2> getVReply2sForCommentator() {
 		return this.VReply2sForCommentator;
 	}
 
-	public void setVReply2sForCommentator(Set<VReply2> VReply2sForCommentator) {
+	public void setVReply2sForCommentator(List<VReply2> VReply2sForCommentator) {
 		this.VReply2sForCommentator = VReply2sForCommentator;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<SReply2> getSReply2sForUserId() {
+	public List<SReply2> getSReply2sForUserId() {
 		return this.SReply2sForUserId;
 	}
 
-	public void setSReply2sForUserId(Set<SReply2> SReply2sForUserId) {
+	public void setSReply2sForUserId(List<SReply2> SReply2sForUserId) {
 		this.SReply2sForUserId = SReply2sForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<UFriendGroup> getUFriendGroups() {
+	public List<UFriendGroup> getUFriendGroups() {
 		return this.UFriendGroups;
 	}
 
-	public void setUFriendGroups(Set<UFriendGroup> UFriendGroups) {
+	public void setUFriendGroups(List<UFriendGroup> UFriendGroups) {
 		this.UFriendGroups = UFriendGroups;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<MGuestbook> getMGuestbooks() {
+	public List<MGuestbook> getMGuestbooks() {
 		return this.MGuestbooks;
 	}
 
-	public void setMGuestbooks(Set<MGuestbook> MGuestbooks) {
+	public void setMGuestbooks(List<MGuestbook> MGuestbooks) {
 		this.MGuestbooks = MGuestbooks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<IAlbum> getIAlbums() {
+	public List<IAlbum> getIAlbums() {
 		return this.IAlbums;
 	}
 
-	public void setIAlbums(Set<IAlbum> IAlbums) {
+	public void setIAlbums(List<IAlbum> IAlbums) {
 		this.IAlbums = IAlbums;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SAccess> getSAccesses() {
+	public List<SAccess> getSAccesses() {
 		return this.SAccesses;
 	}
 
-	public void setSAccesses(Set<SAccess> SAccesses) {
+	public void setSAccesses(List<SAccess> SAccesses) {
 		this.SAccesses = SAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<VReply2> getVReply2sForUserId() {
+	public List<VReply2> getVReply2sForUserId() {
 		return this.VReply2sForUserId;
 	}
 
-	public void setVReply2sForUserId(Set<VReply2> VReply2sForUserId) {
+	public void setVReply2sForUserId(List<VReply2> VReply2sForUserId) {
 		this.VReply2sForUserId = VReply2sForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<VCount> getVCounts() {
+	public List<VCount> getVCounts() {
 		return this.VCounts;
 	}
 
-	public void setVCounts(Set<VCount> VCounts) {
+	public void setVCounts(List<VCount> VCounts) {
 		this.VCounts = VCounts;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DAnnex> getDAnnexes() {
+	public List<DAnnex> getDAnnexes() {
 		return this.DAnnexes;
 	}
 
-	public void setDAnnexes(Set<DAnnex> DAnnexes) {
+	public void setDAnnexes(List<DAnnex> DAnnexes) {
 		this.DAnnexes = DAnnexes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<UBook> getUBooks() {
+	public List<UBook> getUBooks() {
 		return this.UBooks;
 	}
 
-	public void setUBooks(Set<UBook> UBooks) {
+	public void setUBooks(List<UBook> UBooks) {
 		this.UBooks = UBooks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<IAccess> getIAccesses() {
+	public List<IAccess> getIAccesses() {
 		return this.IAccesses;
 	}
 
-	public void setIAccesses(Set<IAccess> IAccesses) {
+	public void setIAccesses(List<IAccess> IAccesses) {
 		this.IAccesses = IAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<BBacklist> getBBacklistsForUserId() {
+	public List<BBacklist> getBBacklistsForUserId() {
 		return this.BBacklistsForUserId;
 	}
 
-	public void setBBacklistsForUserId(Set<BBacklist> BBacklistsForUserId) {
+	public void setBBacklistsForUserId(List<BBacklist> BBacklistsForUserId) {
 		this.BBacklistsForUserId = BBacklistsForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<DReply2> getDReply2sForUserId() {
+	public List<DReply2> getDReply2sForUserId() {
 		return this.DReply2sForUserId;
 	}
 
-	public void setDReply2sForUserId(Set<DReply2> DReply2sForUserId) {
+	public void setDReply2sForUserId(List<DReply2> DReply2sForUserId) {
 		this.DReply2sForUserId = DReply2sForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByUserId")
-	public Set<MMessage> getMMessagesForUserId() {
+	public List<MMessage> getMMessagesForUserId() {
 		return this.MMessagesForUserId;
 	}
 
-	public void setMMessagesForUserId(Set<MMessage> MMessagesForUserId) {
+	public void setMMessagesForUserId(List<MMessage> MMessagesForUserId) {
 		this.MMessagesForUserId = MMessagesForUserId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<VAccess> getVAccesses() {
+	public List<VAccess> getVAccesses() {
 		return this.VAccesses;
 	}
 
-	public void setVAccesses(Set<VAccess> VAccesses) {
+	public void setVAccesses(List<VAccess> VAccesses) {
 		this.VAccesses = VAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SysInvitationCode> getSysInvitationCodes() {
+	public List<SysInvitationCode> getSysInvitationCodes() {
 		return this.sysInvitationCodes;
 	}
 
-	public void setSysInvitationCodes(Set<SysInvitationCode> sysInvitationCodes) {
+	public void setSysInvitationCodes(List<SysInvitationCode> sysInvitationCodes) {
 		this.sysInvitationCodes = sysInvitationCodes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByReceiveId")
-	public Set<MMessage> getMMessagesForReceiveId() {
+	public List<MMessage> getMMessagesForReceiveId() {
 		return this.MMessagesForReceiveId;
 	}
 
-	public void setMMessagesForReceiveId(Set<MMessage> MMessagesForReceiveId) {
+	public void setMMessagesForReceiveId(List<MMessage> MMessagesForReceiveId) {
 		this.MMessagesForReceiveId = MMessagesForReceiveId;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<MReply> getMReplies() {
+	public List<MReply> getMReplies() {
 		return this.MReplies;
 	}
 
-	public void setMReplies(Set<MReply> MReplies) {
+	public void setMReplies(List<MReply> MReplies) {
 		this.MReplies = MReplies;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByCommentator")
-	public Set<IReply2> getIReply2sForCommentator() {
+	public List<IReply2> getIReply2sForCommentator() {
 		return this.IReply2sForCommentator;
 	}
 
-	public void setIReply2sForCommentator(Set<IReply2> IReply2sForCommentator) {
+	public void setIReply2sForCommentator(List<IReply2> IReply2sForCommentator) {
 		this.IReply2sForCommentator = IReply2sForCommentator;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<SReply1> getSReply1s() {
+	public List<SReply1> getSReply1s() {
 		return this.SReply1s;
 	}
 
-	public void setSReply1s(Set<SReply1> SReply1s) {
+	public void setSReply1s(List<SReply1> SReply1s) {
 		this.SReply1s = SReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
-	public Set<DAccess> getDAccesses() {
+	public List<DAccess> getDAccesses() {
 		return this.DAccesses;
 	}
 
-	public void setDAccesses(Set<DAccess> DAccesses) {
+	public void setDAccesses(List<DAccess> DAccesses) {
 		this.DAccesses = DAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUserByBackId")
-	public Set<BBacklist> getBBacklistsForBackId() {
+	public List<BBacklist> getBBacklistsForBackId() {
 		return this.BBacklistsForBackId;
 	}
 
-	public void setBBacklistsForBackId(Set<BBacklist> BBacklistsForBackId) {
+	public void setBBacklistsForBackId(List<BBacklist> BBacklistsForBackId) {
 		this.BBacklistsForBackId = BBacklistsForBackId;
 	}
 

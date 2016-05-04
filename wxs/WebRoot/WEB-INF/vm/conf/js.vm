@@ -23,3 +23,5 @@
 #set($Jarticle_tool="<script src='#rootUrl()/js/diary/article_tool.js'></script>")
 ##comment
 #set($Jarticle_comment="<script src='#rootUrl()/js/diary/article_comment.js'></script>")
+##时间转换器
+#set($Jtime="<script src='#rootUrl()/js/plugins/time/time.js'></script>")

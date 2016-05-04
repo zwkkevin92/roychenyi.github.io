@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * BTag entity. @author MyEclipse Persistence Tools
+ * 标签表
  */
 @Entity
 @Table(name = "b_tag", catalog = "wxs")

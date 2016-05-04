@@ -4,7 +4,7 @@
 var DComment = new Object();
 $(document).ready(function () {
 
-
+//alert(getRootPath());
 
     var editor = new wangEditor('textarea1');
 
@@ -74,16 +74,23 @@ function comment_save(data){
         layer.msg("文章发布失败，请重新再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==1){
         layer.msg("发布成功！",{icon:1,time:1000});
-
+        console.log(data);
+     //   location.reload();
     }
 }
+var comment_dreply;
 //显示评论回复编辑器
 DComment.showCommentEditor=function(commentId){
     var commentDivId='#commentDiv'+commentId;
     $('div.chat-message-form').addClass("hidden");
+    $('div.chat-message-form').prev().removeClass("hidden");
     $(commentDivId).find("div.message div.chat-message-form").removeClass("hidden");
-    
-        comment_dreply=new wangEditor('dreply'+commentId)
+    $(commentDivId).find("div.message div.chat-message-form").prev().addClass("hidden");
+    if(comment_dreply!=null) {
+    	comment_dreply.$txt.html("");
+        comment_dreply.destroy();
+    }
+    comment_dreply=new wangEditor('dreply'+commentId)
     // 自定义菜单
     comment_dreply.config.menus = [
 //        'source',
@@ -101,10 +108,12 @@ DComment.showCommentEditor=function(commentId){
 //        ,'img'
     ];
     comment_dreply.create();
+    comment_dreply.undestroy();
 }
 //添加评论回复
+ var formId;
 DComment.addCommentReply=function(commentId){
-    var formId="replyForm"+commentId;
+    formId="replyForm"+commentId;
     var url=$("#"+formId).attr("action"),
         arr=$("#"+formId).serializeArray();;
     var content=comment_dreply.$txt.html();
@@ -132,7 +141,14 @@ function dreply_save(data){
     }else if(data["statusFlag"]==-1){
         layer.msg("回复失败，请重新再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==1){
+    	console.log(data);
+        var rootUrl=getRootPath();
+        var user_url=rootUrl+"/"+data.uUserByUserIdDto.nickname;
+        $("#"+formId).parent().before("<div class='chat-message'><a href='"+user_url+"'>"+
+        "<img class='message-avatar' src='"+rootUrl+data["uUserByUserIdDto"]["portrait"]+"' alt='"+data["uUserByUserIdDto"]["nickname"]+"'></a>"
+        +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(data["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
+        +"<span class='message-content'>"+data["content"]+"</span></div></div>");
         layer.msg("回复成功！",{icon:1,time:1000});
-
+        comment_dreply.$txt.html("");
     }
 }

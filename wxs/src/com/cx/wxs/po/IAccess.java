@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 /**
  * IAccess entity. @author MyEclipse Persistence Tools
+ * 图片Image
+ * 访问记录
  */
 @Entity
 @Table(name = "i_access", catalog = "wxs")

@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * VItem entity. @author MyEclipse Persistence Tools
+ * 投票内容
  */
 @Entity
 @Table(name = "v_item", catalog = "wxs")
@@ -35,7 +36,7 @@ public class VItem implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<VCount> VCounts = new HashSet<VCount>(0);
+	private List<VCount> VCounts = new ArrayList<VCount>(0);
 
 	// Constructors
 
@@ -52,7 +53,7 @@ public class VItem implements java.io.Serializable {
 	/** full constructor */
 	public VItem(VVote VVote, String content, Timestamp createTime,
 			Timestamp updateTime, Integer count, Short sortOrder, Integer ext1,
-			Integer ext2, String ext3, String ext4, Set<VCount> VCounts) {
+			Integer ext2, String ext3, String ext4, List<VCount> VCounts) {
 		this.VVote = VVote;
 		this.content = content;
 		this.createTime = createTime;
@@ -170,11 +171,11 @@ public class VItem implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VItem")
-	public Set<VCount> getVCounts() {
+	public List<VCount> getVCounts() {
 		return this.VCounts;
 	}
 
-	public void setVCounts(Set<VCount> VCounts) {
+	public void setVCounts(List<VCount> VCounts) {
 		this.VCounts = VCounts;
 	}
 

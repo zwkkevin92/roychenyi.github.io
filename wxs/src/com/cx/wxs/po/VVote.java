@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,11 +30,11 @@ public class VVote implements java.io.Serializable {
 	private String content;
 	private Timestamp createTime;
 	private Timestamp updateTime;
-	private Set<VUpvote> VUpvotes = new HashSet<VUpvote>(0);
-	private Set<VCount> VCounts = new HashSet<VCount>(0);
-	private Set<VItem> VItems = new HashSet<VItem>(0);
-	private Set<VReply1> VReply1s = new HashSet<VReply1>(0);
-	private Set<VAccess> VAccesses = new HashSet<VAccess>(0);
+	private List<VUpvote> VUpvotes = new ArrayList<VUpvote>(0);
+	private List<VCount> VCounts = new ArrayList<VCount>(0);
+	private List<VItem> VItems = new ArrayList<VItem>(0);
+	private List<VReply1> VReply1s = new ArrayList<VReply1>(0);
+	private List<VAccess> VAccesses = new ArrayList<VAccess>(0);
 
 	// Constructors
 
@@ -49,9 +49,9 @@ public class VVote implements java.io.Serializable {
 
 	/** full constructor */
 	public VVote(UUser UUser, Integer vconfigId, String content,
-			Timestamp createTime, Timestamp updateTime, Set<VUpvote> VUpvotes,
-			Set<VCount> VCounts, Set<VItem> VItems, Set<VReply1> VReply1s,
-			Set<VAccess> VAccesses) {
+			Timestamp createTime, Timestamp updateTime, List<VUpvote> VUpvotes,
+			List<VCount> VCounts, List<VItem> VItems, List<VReply1> VReply1s,
+			List<VAccess> VAccesses) {
 		this.UUser = UUser;
 		this.vconfigId = vconfigId;
 		this.content = content;
@@ -123,47 +123,47 @@ public class VVote implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VUpvote> getVUpvotes() {
+	public List<VUpvote> getVUpvotes() {
 		return this.VUpvotes;
 	}
 
-	public void setVUpvotes(Set<VUpvote> VUpvotes) {
+	public void setVUpvotes(List<VUpvote> VUpvotes) {
 		this.VUpvotes = VUpvotes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VCount> getVCounts() {
+	public List<VCount> getVCounts() {
 		return this.VCounts;
 	}
 
-	public void setVCounts(Set<VCount> VCounts) {
+	public void setVCounts(List<VCount> VCounts) {
 		this.VCounts = VCounts;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VItem> getVItems() {
+	public List<VItem> getVItems() {
 		return this.VItems;
 	}
 
-	public void setVItems(Set<VItem> VItems) {
+	public void setVItems(List<VItem> VItems) {
 		this.VItems = VItems;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VReply1> getVReply1s() {
+	public List<VReply1> getVReply1s() {
 		return this.VReply1s;
 	}
 
-	public void setVReply1s(Set<VReply1> VReply1s) {
+	public void setVReply1s(List<VReply1> VReply1s) {
 		this.VReply1s = VReply1s;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VVote")
-	public Set<VAccess> getVAccesses() {
+	public List<VAccess> getVAccesses() {
 		return this.VAccesses;
 	}
 
-	public void setVAccesses(Set<VAccess> VAccesses) {
+	public void setVAccesses(List<VAccess> VAccesses) {
 		this.VAccesses = VAccesses;
 	}
 

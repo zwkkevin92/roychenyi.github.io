@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 /**
  * SysRole entity. @author MyEclipse Persistence Tools
+ * 系统权限
  */
 @Entity
 @Table(name = "sys_role", catalog = "wxs")

@@ -73,4 +73,17 @@ public class DReply1ServiceImpl implements DReply1Service {
         return dReply1Dao.deleteDReply1(dReply1Dto);
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DReply1Service#getDReply1Count(com.cx.wxs.dto.DReply1Dto)
+	 */
+	@Override
+	public Integer getDReply1Count(DReply1Dto dReply1Dto) {
+		// TODO Auto-generated method stub
+		return dReply1Dao.getDReply1Count(dReply1Dto);
+	}
+
+
+    
+    
+
 }

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * MReply entity. @author MyEclipse Persistence Tools
+ * 留言板回复
  */
 @Entity
 @Table(name = "m_reply", catalog = "wxs")

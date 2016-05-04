@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * BSite entity. @author MyEclipse Persistence Tools
+ * 站点表
  */
 @Entity
 @Table(name = "b_site", catalog = "wxs")
@@ -44,17 +45,17 @@ public class BSite implements java.io.Serializable {
 	private String friendName;
 	private Integer siteType;
 	private Short status;
-	private Set<MGuestbook> MGuestbooks = new HashSet<MGuestbook>(0);
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
-	private Set<DCatalog> DCatalogs = new HashSet<DCatalog>(0);
-	private Set<DAnnex> DAnnexes = new HashSet<DAnnex>(0);
-	private Set<BStatus> BStatuses = new HashSet<BStatus>(0);
-	private Set<IAlbum> IAlbums = new HashSet<IAlbum>(0);
-	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
-	private Set<BTag> BTags = new HashSet<BTag>(0);
-	private Set<BConfig> BConfigs = new HashSet<BConfig>(0);
-	private Set<BAccess> BAccesses = new HashSet<BAccess>(0);
-	private Set<IImage> IImages = new HashSet<IImage>(0);
+	private List<MGuestbook> MGuestbooks = new ArrayList<MGuestbook>(0);
+	private List<UUser> UUsers = new ArrayList<UUser>(0);
+	private List<DCatalog> DCatalogs = new ArrayList<DCatalog>(0);
+	private List<DAnnex> DAnnexes = new ArrayList<DAnnex>(0);
+	private List<BStatus> BStatuses = new ArrayList<BStatus>(0);
+	private List<IAlbum> IAlbums = new ArrayList<IAlbum>(0);
+	private List<DDiary> DDiaries = new ArrayList<DDiary>(0);
+	private List<BTag> BTags = new ArrayList<BTag>(0);
+	private List<BConfig> BConfigs = new ArrayList<BConfig>(0);
+	private List<BAccess> BAccesses = new ArrayList<BAccess>(0);
+	private List<IImage> IImages = new ArrayList<IImage>(0);
 
 	// Constructors
 
@@ -78,11 +79,11 @@ public class BSite implements java.io.Serializable {
 			Timestamp createTime, Timestamp lastTime, Short mode,
 			String accessCode, String indexName, String diaryName,
 			String soundName, String imageName, String friendName,
-			Integer siteType, Short status, Set<MGuestbook> MGuestbooks,
-			Set<UUser> UUsers, Set<DCatalog> DCatalogs, Set<DAnnex> DAnnexes,
-			Set<BStatus> BStatuses, Set<IAlbum> IAlbums, Set<DDiary> DDiaries,
-			Set<BTag> BTags, Set<BConfig> BConfigs, Set<BAccess> BAccesses,
-			Set<IImage> IImages) {
+			Integer siteType, Short status, List<MGuestbook> MGuestbooks,
+			List<UUser> UUsers, List<DCatalog> DCatalogs, List<DAnnex> DAnnexes,
+			List<BStatus> BStatuses, List<IAlbum> IAlbums, List<DDiary> DDiaries,
+			List<BTag> BTags, List<BConfig> BConfigs, List<BAccess> BAccesses,
+			List<IImage> IImages) {
 		this.sysStyle = sysStyle;
 		this.UUser = UUser;
 		this.name = name;
@@ -301,101 +302,101 @@ public class BSite implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<MGuestbook> getMGuestbooks() {
+	public List<MGuestbook> getMGuestbooks() {
 		return this.MGuestbooks;
 	}
 
-	public void setMGuestbooks(Set<MGuestbook> MGuestbooks) {
+	public void setMGuestbooks(List<MGuestbook> MGuestbooks) {
 		this.MGuestbooks = MGuestbooks;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<UUser> getUUsers() {
+	public List<UUser> getUUsers() {
 		return this.UUsers;
 	}
 
-	public void setUUsers(Set<UUser> UUsers) {
+	public void setUUsers(List<UUser> UUsers) {
 		this.UUsers = UUsers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<DCatalog> getDCatalogs() {
+	public List<DCatalog> getDCatalogs() {
 		return this.DCatalogs;
 	}
 
-	public void setDCatalogs(Set<DCatalog> DCatalogs) {
+	public void setDCatalogs(List<DCatalog> DCatalogs) {
 		this.DCatalogs = DCatalogs;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<DAnnex> getDAnnexes() {
+	public List<DAnnex> getDAnnexes() {
 		return this.DAnnexes;
 	}
 
-	public void setDAnnexes(Set<DAnnex> DAnnexes) {
+	public void setDAnnexes(List<DAnnex> DAnnexes) {
 		this.DAnnexes = DAnnexes;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<BStatus> getBStatuses() {
+	public List<BStatus> getBStatuses() {
 		return this.BStatuses;
 	}
 
-	public void setBStatuses(Set<BStatus> BStatuses) {
+	public void setBStatuses(List<BStatus> BStatuses) {
 		this.BStatuses = BStatuses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<IAlbum> getIAlbums() {
+	public List<IAlbum> getIAlbums() {
 		return this.IAlbums;
 	}
 
-	public void setIAlbums(Set<IAlbum> IAlbums) {
+	public void setIAlbums(List<IAlbum> IAlbums) {
 		this.IAlbums = IAlbums;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<DDiary> getDDiaries() {
+	public List<DDiary> getDDiaries() {
 		return this.DDiaries;
 	}
 
-	public void setDDiaries(Set<DDiary> DDiaries) {
+	public void setDDiaries(List<DDiary> DDiaries) {
 		this.DDiaries = DDiaries;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<BTag> getBTags() {
+	public List<BTag> getBTags() {
 		return this.BTags;
 	}
 
-	public void setBTags(Set<BTag> BTags) {
+	public void setBTags(List<BTag> BTags) {
 		this.BTags = BTags;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<BConfig> getBConfigs() {
+	public List<BConfig> getBConfigs() {
 		return this.BConfigs;
 	}
 
-	public void setBConfigs(Set<BConfig> BConfigs) {
+	public void setBConfigs(List<BConfig> BConfigs) {
 		this.BConfigs = BConfigs;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<BAccess> getBAccesses() {
+	public List<BAccess> getBAccesses() {
 		return this.BAccesses;
 	}
 
-	public void setBAccesses(Set<BAccess> BAccesses) {
+	public void setBAccesses(List<BAccess> BAccesses) {
 		this.BAccesses = BAccesses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "BSite")
-	public Set<IImage> getIImages() {
+	public List<IImage> getIImages() {
 		return this.IImages;
 	}
 
-	public void setIImages(Set<IImage> IImages) {
+	public void setIImages(List<IImage> IImages) {
 		this.IImages = IImages;
 	}
 

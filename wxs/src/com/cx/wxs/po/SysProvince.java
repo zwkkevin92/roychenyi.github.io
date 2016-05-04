@@ -1,6 +1,8 @@
 package com.cx.wxs.po;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 
 /**
  * SysProvince entity. @author MyEclipse Persistence Tools
+ * 登录记录
  */
 @Entity
 @Table(name = "sys_province", catalog = "wxs")
@@ -24,8 +27,8 @@ public class SysProvince implements java.io.Serializable {
 	private Integer provinceId;
 	private String name;
 	private String description;
-	private Set<SysCity> sysCities = new HashSet<SysCity>(0);
-	private Set<SysSchool> sysSchools = new HashSet<SysSchool>(0);
+	private List<SysCity> sysCities = new ArrayList<SysCity>(0);
+	private List<SysSchool> sysSchools = new ArrayList<SysSchool>(0);
 
 	// Constructors
 
@@ -34,8 +37,8 @@ public class SysProvince implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public SysProvince(String name, String description, Set<SysCity> sysCities,
-			Set<SysSchool> sysSchools) {
+	public SysProvince(String name, String description, List<SysCity> sysCities,
+			List<SysSchool> sysSchools) {
 		this.name = name;
 		this.description = description;
 		this.sysCities = sysCities;
@@ -73,20 +76,20 @@ public class SysProvince implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysProvince")
-	public Set<SysCity> getSysCities() {
+	public List<SysCity> getSysCities() {
 		return this.sysCities;
 	}
 
-	public void setSysCities(Set<SysCity> sysCities) {
+	public void setSysCities(List<SysCity> sysCities) {
 		this.sysCities = sysCities;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysProvince")
-	public Set<SysSchool> getSysSchools() {
+	public List<SysSchool> getSysSchools() {
 		return this.sysSchools;
 	}
 
-	public void setSysSchools(Set<SysSchool> sysSchools) {
+	public void setSysSchools(List<SysSchool> sysSchools) {
 		this.sysSchools = sysSchools;
 	}
 

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 /**
  * MMessage entity. @author MyEclipse Persistence Tools
+ * 信息（message）
+ * 消息
  */
 @Entity
 @Table(name = "m_message", catalog = "wxs")

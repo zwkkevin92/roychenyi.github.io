@@ -1,6 +1,8 @@
 package com.cx.wxs.po;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 
 /**
  * SysSchool entity. @author MyEclipse Persistence Tools
+ * 学校
  */
 @Entity
 @Table(name = "sys_school", catalog = "wxs")
@@ -30,7 +33,7 @@ public class SysSchool implements java.io.Serializable {
 	private String description;
 	private String address;
 	private Short post;
-	private Set<SysCollege> sysColleges = new HashSet<SysCollege>(0);
+	private List<SysCollege> sysColleges = new ArrayList<SysCollege>(0);
 
 	// Constructors
 
@@ -41,7 +44,7 @@ public class SysSchool implements java.io.Serializable {
 	/** full constructor */
 	public SysSchool(SysProvince sysProvince, SysCity sysCity, String name,
 			String description, String address, Short post,
-			Set<SysCollege> sysColleges) {
+			List<SysCollege> sysColleges) {
 		this.sysProvince = sysProvince;
 		this.sysCity = sysCity;
 		this.name = name;
@@ -120,11 +123,11 @@ public class SysSchool implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysSchool")
-	public Set<SysCollege> getSysColleges() {
+	public List<SysCollege> getSysColleges() {
 		return this.sysColleges;
 	}
 
-	public void setSysColleges(Set<SysCollege> sysColleges) {
+	public void setSysColleges(List<SysCollege> sysColleges) {
 		this.sysColleges = sysColleges;
 	}
 

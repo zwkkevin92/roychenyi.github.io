@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 /**
  * SysLink entity. @author MyEclipse Persistence Tools
+ * 链接
  */
 @Entity
 @Table(name = "sys_link", catalog = "wxs")

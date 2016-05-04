@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * VReply2 entity. @author MyEclipse Persistence Tools
+ * 投票评论
  */
 @Entity
 @Table(name = "v_reply2", catalog = "wxs")

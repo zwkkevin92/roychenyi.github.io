@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * SysType entity. @author MyEclipse Persistence Tools
+ * 文字类型
  */
 @Entity
 @Table(name = "sys_type", catalog = "wxs")
@@ -32,7 +35,7 @@ public class SysType implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<DDiary> DDiaries = new HashSet<DDiary>(0);
+	private List<DDiary> DDiaries = new ArrayList<DDiary>(0);
 
 	// Constructors
 
@@ -43,7 +46,7 @@ public class SysType implements java.io.Serializable {
 	/** full constructor */
 	public SysType(String name, String value, Timestamp createTime,
 			Timestamp lastTime, Integer parentId, Integer ext1, Integer ext2,
-			String ext3, String ext4, Set<DDiary> DDiaries) {
+			String ext3, String ext4, List<DDiary> DDiaries) {
 		this.name = name;
 		this.value = value;
 		this.createTime = createTime;
@@ -150,11 +153,11 @@ public class SysType implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysType")
-	public Set<DDiary> getDDiaries() {
+	public List<DDiary> getDDiaries() {
 		return this.DDiaries;
 	}
 
-	public void setDDiaries(Set<DDiary> DDiaries) {
+	public void setDDiaries(List<DDiary> DDiaries) {
 		this.DDiaries = DDiaries;
 	}
 

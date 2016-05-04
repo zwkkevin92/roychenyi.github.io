@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * DUpvote entity. @author MyEclipse Persistence Tools
+ * 点赞
  */
 @Entity
 @Table(name = "d_upvote", catalog = "wxs")

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * UBook entity. @author MyEclipse Persistence Tools
+ * 用户-书
  */
 @Entity
 @Table(name = "u_book", catalog = "wxs")

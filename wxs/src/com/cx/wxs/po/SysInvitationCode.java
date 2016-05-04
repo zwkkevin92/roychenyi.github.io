@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * SysInvitationCode entity. @author MyEclipse Persistence Tools
+ * 邀请码
  */
 @Entity
 @Table(name = "sys_invitation_code", catalog = "wxs")

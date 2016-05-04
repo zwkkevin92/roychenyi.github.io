@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 /**
  * BBacklist entity. @author MyEclipse Persistence Tools
+ * 黑名单表
  */
 @Entity
 @Table(name = "b_backlist", catalog = "wxs")

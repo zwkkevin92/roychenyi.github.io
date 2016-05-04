@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 /**
  * DReply1 entity. @author MyEclipse Persistence Tools
+ * 回复
  */
 @Entity
 @Table(name = "d_reply1", catalog = "wxs")

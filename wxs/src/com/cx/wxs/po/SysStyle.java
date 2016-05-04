@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * SysStyle entity. @author MyEclipse Persistence Tools
+ * 样式
  */
 @Entity
 @Table(name = "sys_style", catalog = "wxs")
@@ -32,7 +35,7 @@ public class SysStyle implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<BSite> BSites = new HashSet<BSite>(0);
+	private List<BSite> BSites = new ArrayList<BSite>(0);
 
 	// Constructors
 
@@ -43,7 +46,7 @@ public class SysStyle implements java.io.Serializable {
 	/** full constructor */
 	public SysStyle(String name, String path, Short status,
 			Timestamp createTime, String cover, Integer ext1, Integer ext2,
-			String ext3, String ext4, Set<BSite> BSites) {
+			String ext3, String ext4, List<BSite> BSites) {
 		this.name = name;
 		this.path = path;
 		this.status = status;
@@ -150,11 +153,11 @@ public class SysStyle implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysStyle")
-	public Set<BSite> getBSites() {
+	public List<BSite> getBSites() {
 		return this.BSites;
 	}
 
-	public void setBSites(Set<BSite> BSites) {
+	public void setBSites(List<BSite> BSites) {
 		this.BSites = BSites;
 	}
 

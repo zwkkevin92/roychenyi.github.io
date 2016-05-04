@@ -44,5 +44,13 @@ public interface DReply1Service {
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDReply1(DReply1Dto dReply1Dto);
+    /**
+     * 获取评论数
+     * @param dReply1Dto
+     * @return
+     * @author 陈义
+     * @date   2016-5-4上午10:57:41
+     */
+    public Integer getDReply1Count(DReply1Dto dReply1Dto);
 
 }

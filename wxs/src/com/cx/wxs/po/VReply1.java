@@ -1,8 +1,8 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * VReply1 entity. @author MyEclipse Persistence Tools
+ * 投票评论
  */
 @Entity
 @Table(name = "v_reply1", catalog = "wxs")
@@ -31,7 +32,7 @@ public class VReply1 implements java.io.Serializable {
 	private Short ownerOnly;
 	private Timestamp writeTime;
 	private Short status;
-	private Set<VReply2> VReply2s = new HashSet<VReply2>(0);
+	private List<VReply2> VReply2s = new ArrayList<VReply2>(0);
 
 	// Constructors
 
@@ -47,7 +48,7 @@ public class VReply1 implements java.io.Serializable {
 
 	/** full constructor */
 	public VReply1(VVote VVote, UUser UUser, Short clientType, Short ownerOnly,
-			Timestamp writeTime, Short status, Set<VReply2> VReply2s) {
+			Timestamp writeTime, Short status, List<VReply2> VReply2s) {
 		this.VVote = VVote;
 		this.UUser = UUser;
 		this.clientType = clientType;
@@ -126,11 +127,11 @@ public class VReply1 implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "VReply1")
-	public Set<VReply2> getVReply2s() {
+	public List<VReply2> getVReply2s() {
 		return this.VReply2s;
 	}
 
-	public void setVReply2s(Set<VReply2> VReply2s) {
+	public void setVReply2s(List<VReply2> VReply2s) {
 		this.VReply2s = VReply2s;
 	}
 

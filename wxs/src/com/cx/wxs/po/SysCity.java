@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 /**
  * SysCity entity. @author MyEclipse Persistence Tools
+ * 系统
+ * 城市
  */
 @Entity
 @Table(name = "sys_city", catalog = "wxs")

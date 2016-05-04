@@ -1,7 +1,9 @@
 package com.cx.wxs.po;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 /**
  * SysRank entity. @author MyEclipse Persistence Tools
+ * 积分等级
  */
 @Entity
 @Table(name = "sys_rank", catalog = "wxs")
@@ -32,7 +35,7 @@ public class SysRank implements java.io.Serializable {
 	private Integer ext2;
 	private String ext3;
 	private String ext4;
-	private Set<UUser> UUsers = new HashSet<UUser>(0);
+	private List<UUser> UUsers = new ArrayList<UUser>(0);
 
 	// Constructors
 
@@ -49,7 +52,7 @@ public class SysRank implements java.io.Serializable {
 	/** full constructor */
 	public SysRank(String name, Integer rankHigh, Integer rankLow,
 			String rankLogo, Timestamp time, Integer ext1, Integer ext2,
-			String ext3, String ext4, Set<UUser> UUsers) {
+			String ext3, String ext4, List<UUser> UUsers) {
 		this.name = name;
 		this.rankHigh = rankHigh;
 		this.rankLow = rankLow;
@@ -156,11 +159,11 @@ public class SysRank implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysRank")
-	public Set<UUser> getUUsers() {
+	public List<UUser> getUUsers() {
 		return this.UUsers;
 	}
 
-	public void setUUsers(Set<UUser> UUsers) {
+	public void setUUsers(List<UUser> UUsers) {
 		this.UUsers = UUsers;
 	}
 
