@@ -36,6 +36,7 @@ $(document).ready(function () {
         if(bool==1){
             ajax1(url,arr,comment_save);
         }
+        editor.$txt.html("");
         return false;
     });
 
@@ -71,11 +72,29 @@ function comment_save(data){
     if(data["statusFlag"]==-2){
         layer.msg("请登陆后再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==-1){
-        layer.msg("文章发布失败，请重新再试!",{icon:2,time:1000});
+        layer.msg("评论发布失败，请重新再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==1){
+    	console.log(data);
+        var rootUrl=getRootPath()+"/";
+        var user_url=rootUrl+data.uUserDto.nickname;
+        $('#d_comment>a>span').html("("+data["row"]+")");
+        $('#commentDiv').append("<div class='chat-message' id='commentDiv"+data["row"]+"' data-replyid='"+data["dreplyId"]+"'><a href='"+user_url+"'><img class='message-avatar' src='"+rootUrl+data["uUserDto"]["portrait"]+"' alt='"+data["uUserDto"]["nickname"]+"'> </a>"
+           +" <span><b>"+data["row"]+"楼</b></span><span class='pull-right'><small>"+new Date(data["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"</small><a href='javascript:;' onclick='DComment.showCommentEditor("+data["row"]+")'>回复</a>"
+           +" <span class='dropdown pull-right' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'><a class='dropdown-toggle' data-toggle='data-toggle'><i class='fa fa-sort-desc ' style='padding:0 5px; '></i></a>"
+           +"   <ul class='dropdown-menu text-right'>"
+           +"<li><a>删除</a></li>"
+           +"<li><a>举报</a></li>                </ul></span></span>"
+           +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data.uUserDto.nickname+":</a>"
+           +"<span class='message-date'> "+new Date(data["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
+           +"<span class='message-content'> "+data.dReply2Dtos[0].content+"</span>"
+           +"<div class='form-group' >            <input type='text' class='form-control' placeholder='我也来评论一句' onclick='DComment.showCommentEditor("+data.row+")'> </div>"
+           +"<div class='chat-message-form hidden'><form id='replyForm"+data.row+"' action='"+user_url+"/article/"+data.dDiaryDto.diaryId+"/reply2_add'>"
+           +"<input type='hidden' name='DReply1Dto.dreplyId' value='"+data.dreplyId+"'>"
+           +"<div id='dreply"+data.row+"' class='form-group' style='height:150px;max-height:200px;'></div>"
+           +"<input class='btn btn-info' type='button' value='确认' onclick='DComment.addCommentReply("+data.row+")'></form>"
+           +"</div></div></div>");
         layer.msg("发布成功！",{icon:1,time:1000});
-        console.log(data);
-     //   location.reload();
+        
     }
 }
 var comment_dreply;
@@ -87,28 +106,31 @@ DComment.showCommentEditor=function(commentId){
     $(commentDivId).find("div.message div.chat-message-form").removeClass("hidden");
     $(commentDivId).find("div.message div.chat-message-form").prev().addClass("hidden");
     if(comment_dreply!=null) {
-    	comment_dreply.$txt.html("");
-        comment_dreply.destroy();
-    }
-    comment_dreply=new wangEditor('dreply'+commentId)
-    // 自定义菜单
-    comment_dreply.config.menus = [
+    //    comment_dreply.destroy();
+    //    comment_dreply.$txt.html("");
+       $(commentDivId).find("div.message div.chat-message-form div.wangEditor-container").remove();
+       if($("#dreply"+commentId).length<=0) {
+           $(commentDivId).find("div.message div.chat-message-form").prepend("<div id='dreply" + commentId + "' class='form-group' style='height:150px;max-height:200px;'>");
+       }
+   }
+        comment_dreply = new wangEditor('dreply' + commentId);
+        // 自定义菜单
+        comment_dreply.config.menus = [
 //        'source',
 //        '|',     // '|' 是菜单组的分割线
-        'bold',
-        'underline',
-        'italic',
-        'strikethrough',
-        'eraser',
-        'forecolor',
-        'bgcolor',
-        'alignleft',
-        'aligncenter',
-        'alignright'
+            'bold',
+            'underline',
+            'italic',
+            'strikethrough',
+            'eraser',
+            'forecolor',
+            'bgcolor',
+            'alignleft',
+            'aligncenter',
+            'alignright'
 //        ,'img'
-    ];
-    comment_dreply.create();
-    comment_dreply.undestroy();
+        ];
+        comment_dreply.create();
 }
 //添加评论回复
  var formId;
@@ -142,8 +164,8 @@ function dreply_save(data){
         layer.msg("回复失败，请重新再试!",{icon:2,time:1000});
     }else if(data["statusFlag"]==1){
     	console.log(data);
-        var rootUrl=getRootPath();
-        var user_url=rootUrl+"/"+data.uUserByUserIdDto.nickname;
+        var rootUrl=getRootPath()+"/";
+        var user_url=rootUrl+data.uUserByUserIdDto.nickname;
         $("#"+formId).parent().before("<div class='chat-message'><a href='"+user_url+"'>"+
         "<img class='message-avatar' src='"+rootUrl+data["uUserByUserIdDto"]["portrait"]+"' alt='"+data["uUserByUserIdDto"]["nickname"]+"'></a>"
         +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(data["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"

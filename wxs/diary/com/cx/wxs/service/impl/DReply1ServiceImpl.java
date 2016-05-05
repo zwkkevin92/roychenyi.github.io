@@ -30,7 +30,13 @@ public class DReply1ServiceImpl implements DReply1Service {
     */
     @Override
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
-        return dReply1Dao.getDReply1ByID(dReply1Dto);
+    	dReply1Dto=dReply1Dao.getDReply1ByID(dReply1Dto);
+    	int row=dReply1Dao.getDReply1Count(dReply1Dto);
+    	int page=row/10+1;
+    	dReply1Dto.setRow(row);
+    	dReply1Dto.setPage(page);
+    	dReply1Dto.setPageCont(page);
+        return dReply1Dto;
     }
 
     /**

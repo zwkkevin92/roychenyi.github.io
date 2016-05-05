@@ -48,12 +48,12 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
            params.put("id",dReply1Dto.getDreplyId());
            List<DReply1> list=this.find(stringBuffer.toString(), params);
            if(list!=null&&list.size()>0){
-            DReply1 t1= list.get(0);
+            DReply1 dReply1= list.get(0);
+            List<DReply2> l=dReply1.getDReply2s();
             DReply1Dto    dto=new    DReply1Dto();
-            dto=beanToDto.T1ToD1(t1,dto);
+            dto=beanToDto.T1ToD1(dReply1,dto);
             List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
-            List l=t1.getDReply2s();
-            for(DReply2 dReply2:t1.getDReply2s()){
+            for(DReply2 dReply2:dReply1.getDReply2s() ){
  			   DReply2Dto dReply2Dto=new DReply2Dto();
  			   BeanToDto<DReply2, DReply2Dto> beanToDto2=new BeanToDto<DReply2, DReply2Dto>();
  			   dReply2Dto=beanToDto2.T1ToD1(dReply2, new DReply2Dto());

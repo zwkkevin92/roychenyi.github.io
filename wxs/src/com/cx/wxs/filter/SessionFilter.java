@@ -109,8 +109,9 @@ public class SessionFilter extends OncePerRequestFilter {
 		//	UUserService userService=GlobalContext.getBean("")
 			user=userService.getUuser(user);
 			session.setAttribute("user", user);
+			userDto=user;
 		}
-		userDto=(UUserDto) session.getAttribute("user");
+
 		if(userDto!=null){
 			request.setAttribute("uid", userDto.getUserId());
 		}

@@ -3,6 +3,7 @@ package com.cx.wxs.action.diary;
 
 import java.net.URLDecoder;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -120,9 +121,26 @@ public class CommentAction extends BaseDiaryAction{
 			int reply2Id=reply2Service.addDReply2(dReply2Dto);
 			if(reply2Id>0){
 				dReply2Dto.setDreply1Id(reply2Id);
-				DReply2Dto reply2Dto=reply2Service.getDReply2ByID(dReply2Dto);
-				dReply1Dto=reply2Dto.getDReply1Dto();
+			//	DReply2Dto reply2Dto=reply2Service.getDReply2ByID(dReply2Dto);
+				//dReply1Dto=reply2Dto.getDReply1Dto();
+				dReply1Dto.setDreplyId(reply1Id);
 				dReply1Dto=reply1Service.getDReply1ByID(dReply1Dto);
+				if(dReply1Dto.getDReply2Dtos().size()==0||dReply1Dto.getDReply2Dtos()==null){
+					List<DReply2Dto> dReply2Dtos=new ArrayList<DReply2Dto>();
+					dReply2Dtos.add(dReply2Dto);
+					dReply1Dto.setDReply2Dtos(dReply2Dtos);
+				}
+				//评论数更新
+				if(diaryDto.getReplyCount()==null||diaryDto.getReplyCount()==0){
+					diaryDto.setReplyCount(1);
+				}else{
+					if((diaryDto.getReplyCount()+1)<dReply1Dto.getRow()){
+						diaryDto.setReplyCount(dReply1Dto.getRow());
+					}else{
+						diaryDto.setReplyCount(diaryDto.getReplyCount()+1);
+					}
+				}
+				diaryService.updateDDiary(diaryDto);
 				dReply1Dto.setStatusFlag("1");
 				this.addDCommentCount(diaryDto);
 			}else{

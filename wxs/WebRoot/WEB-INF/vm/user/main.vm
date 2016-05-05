@@ -1,6 +1,6 @@
 #set($layout = "layout/user/l_user.vm")
 #set($page_title="$author.BSiteDto.title")
- #if($author.username==$user.username)
+#if($author.username==$user.username)
 #parse("conf/js.vm")
 #parse("conf/css.vm")
 #set($extjs=$Jcropper+$Jcropper-tool)

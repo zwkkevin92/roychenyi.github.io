@@ -124,6 +124,14 @@ function dropdownOpen() {
     
 }
 
+function dropdown_open(_this){
+   $(_this).addClass('gray-bg open');
+}
+
+function dropdown_close(_this){
+   $(_this).removeClass('gray-bg open');
+}
+
 // For demo purpose - animation css script
 function animationHover(element, animation){
     element = $(element);

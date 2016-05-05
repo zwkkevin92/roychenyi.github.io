@@ -280,6 +280,7 @@ public class DiaryAction extends BaseDiaryAction{
 	public ModelAndView articlePreview(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
 		ModelAndView mv=new ModelAndView("diary/d_details");
+	
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
 		UUserDto author=getUserDtoByNickname(vip);
 		diaryDto.setDiaryId(diaryId);
@@ -347,7 +348,7 @@ public class DiaryAction extends BaseDiaryAction{
 			dReply1Dto.setDDiaryDto(diaryDto);
 			List<DReply1Dto> dReply1s=reply1Service.getDReply1List(dReply1Dto);
 			mv.addObject("dReply1s", dReply1s);
-			reply1Service.getDReply1ByID(dReply1s.get(0));
+
 		}
 		mv.addObject("author", author);		
 		return mv;

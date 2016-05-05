@@ -12,7 +12,7 @@
                 <ul class="nav navbar-nav no-padding">
                     <li class="active"><a href="">我的文章</a></li>
                     <li><a>私密文章</a></li>
-                    <li><a>写文章</a></li>
+                    <li><a href="#rootUrl()/$user.nickname/article/article_add">写文章</a></li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right">
                     <li><a>草稿箱</a></li>
