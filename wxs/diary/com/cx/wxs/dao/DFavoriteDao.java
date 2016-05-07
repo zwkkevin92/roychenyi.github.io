@@ -58,5 +58,13 @@ public interface DFavoriteDao extends IBaseDao<DFavorite,Integer>{
     */
     
     public Integer deleteDFavorite(DFavoriteDto dFavoriteDto);
+    /**
+     * 获取收藏数量
+     * @param dFavoriteDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-6上午8:48:45
+     */
+    public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto);
 
 }

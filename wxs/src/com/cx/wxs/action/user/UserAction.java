@@ -175,7 +175,8 @@ public class UserAction {
 		String ip=clientInfo.getIpAddr(request);
 		String codeSession=(String) request.getSession().getAttribute("verifycode");
 		UUserDto uuser=new UUserDto();
-		//		String flag="1";    //flag:1:登陆成功；-1 ：登陆失败，密码或用户名错误；0：验证码错误
+		//		StatusFlag ="1";    //1:登陆成功；-1 ：登陆失败，密码或用户名错误；0：验证码错误
+		System.out.println("code1:"+codeSession+" code:"+verifyCode);
    	if(verifyCode.equalsIgnoreCase(codeSession)){
 		uuser.setUsername(username);
 		uuser.setPassword(StringUtils.md5(password));

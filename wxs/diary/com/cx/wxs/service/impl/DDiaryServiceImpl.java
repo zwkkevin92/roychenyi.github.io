@@ -2,12 +2,22 @@ package com.cx.wxs.service.impl;
 
 import java.util.*;
 
+import javax.resource.spi.AuthenticationMechanism;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cx.wxs.dao.DAccessDao;
 import com.cx.wxs.dao.DDiaryDao;
+import com.cx.wxs.dao.DFavoriteDao;
+import com.cx.wxs.dao.DReply1Dao;
+import com.cx.wxs.dao.DUpvoteDao;
+import com.cx.wxs.dto.DAccessDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
+import com.cx.wxs.dto.DFavoriteDto;
+import com.cx.wxs.dto.DReply1Dto;
+import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.service.DDiaryService;
 
 /**
@@ -19,6 +29,14 @@ import com.cx.wxs.service.DDiaryService;
 public class DDiaryServiceImpl implements DDiaryService {
     @Autowired
     private DDiaryDao dDiaryDao;
+    @Autowired
+    private DFavoriteDao dFavoriteDao;
+    @Autowired
+    private DUpvoteDao dUpvoteDao;
+    @Autowired
+    private DReply1Dao dReply1Dao;
+    @Autowired
+    private DAccessDao dAccessDao;
 
     public void setDDiaryDao(DDiaryDao dDiaryDao){
         this.dDiaryDao=dDiaryDao;
@@ -85,10 +103,33 @@ public class DDiaryServiceImpl implements DDiaryService {
 
 	/* (non-Javadoc)
 	 * @see com.cx.wxs.service.DDiaryService#getCurrentDiarys(com.cx.wxs.dto.DDiaryDto)
+	 * 获取最近的文章依旧上下两篇文章，并且更新文章数据
 	 */
 	@Override
 	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
 		// TODO Auto-generated method stub
+		//收藏数量
+		DFavoriteDto dFavoriteDto=new DFavoriteDto();
+		dFavoriteDto.setDDiaryDto(diaryDto);
+		int favoriteCount =dFavoriteDao.getDFavoriteCount(dFavoriteDto);
+		diaryDto.setFavoriteCount(favoriteCount);
+		//点赞数量
+		DUpvoteDto dUpvoteDto=new DUpvoteDto();
+		dUpvoteDto.setDDiaryDto(diaryDto);
+		int upvoteCount=dUpvoteDao.getDUpvoteCount(dUpvoteDto);
+		diaryDto.setUpvoteCount(upvoteCount);
+		/*//访问数量  不更新，这样会清楚游客访问数量
+		DAccessDto dAccessDto=new DAccessDto();
+		dAccessDto.setDDiaryDto(diaryDto);
+		int accessCount =dAccessDao.getDAccessCount(dAccessDto);
+		diaryDto.setViewCount(accessCount);*/
+		//评论数量
+		DReply1Dto dReply1Dto=new DReply1Dto();
+		dReply1Dto.setDDiaryDto(diaryDto);
+		int replyCount=dReply1Dao.getDReply1Count(dReply1Dto);
+		diaryDto.setReplyCount(replyCount);
+		//更新统计数据
+		dDiaryDao.updateDDiary(diaryDto);
 		return dDiaryDao.getCurrentDiarys(diaryDto);
 	}
 	@Override

@@ -53,5 +53,13 @@ public interface DUpvoteDao extends IBaseDao<DUpvote,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDUpvote(DUpvoteDto dUpvoteDto);
+    /**
+     * 获取点赞计数
+     * @param dUpvoteDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-6上午8:55:53
+     */
+    public Integer getDUpvoteCount(DUpvoteDto dUpvoteDto);
 
 }

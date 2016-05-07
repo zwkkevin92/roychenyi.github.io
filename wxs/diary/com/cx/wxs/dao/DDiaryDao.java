@@ -64,6 +64,12 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
      * @date   2016-4-12下午4:23:58
      */
     public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto);
-
+    /**
+     * 获取文章计数
+     * @param dDiaryDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-6上午9:09:01
+     */
     public Integer getDiaryCount(DDiaryDto dDiaryDto);
 }

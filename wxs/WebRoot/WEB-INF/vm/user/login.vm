@@ -54,7 +54,8 @@
 					4:				$link.getRoot()<br>
 					5:$link.getPath()<br>	
 						6:$link.getFile()<br>
-							7:#rootUrl();
+							7:#rootUrl();<br>
+								$verifycode
 
 
                     </form>

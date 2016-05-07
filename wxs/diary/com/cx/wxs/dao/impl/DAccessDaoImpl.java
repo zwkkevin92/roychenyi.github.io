@@ -122,4 +122,22 @@ public class DAccessDaoImpl extends BaseDaoImpl<DAccess, Integer> implements DAc
         return 0;
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DAccessDao#getDAccessCount(com.cx.wxs.dto.DAccessDto)
+	 */
+	@Override
+	public Integer getDAccessCount(DAccessDto dAccessDto) {
+		// TODO Auto-generated method stub
+		if(dAccessDto!=null&&dAccessDto.getDDiaryDto()!=null){
+			StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
+ 			Map<String,Object> params=new HashMap<String, Object>();
+ 			stringBuffer.append(" from "+DAccess.class.getName()+" a where 1=1");
+ 			stringBuffer.append(" and a.DDiary.diaryId=:diaryId");
+			params.put("diaryId", dAccessDto.getDDiaryDto().getDiaryId());
+            stringBuffer.append(" and a.status=1");
+			return this.count(stringBuffer.toString(), params); 			
+		}
+		return 0;
+	}
+
 }

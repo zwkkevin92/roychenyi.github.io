@@ -45,6 +45,14 @@ public interface DAccessDao extends IBaseDao<DAccess,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDAccess(DAccessDto dAccessDto);
+    /**
+     * 获取评论计数
+     * @param dAccessDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-6上午9:02:21
+     */
+    public Integer getDAccessCount(DAccessDto dAccessDto);
 
 
 }

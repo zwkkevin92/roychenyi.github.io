@@ -146,5 +146,23 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
         }
         return 0;
     }
+    @Override
+    public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto){
+    	if(dFavoriteDto!=null&&dFavoriteDto.getDDiaryDto()!=null){
+    		StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
+			Map<String,Object> params=new HashMap<String, Object>();
+			stringBuffer.append(" from "+DFavorite.class.getName()+" a where 1=1");
+			stringBuffer.append(" and a.DDiary.diaryId=:diaryId");
+			params.put("diaryId", dFavoriteDto.getDDiaryDto().getDiaryId());
+			if(dFavoriteDto.getStatus()!=null){
+				stringBuffer.append(" and a.status=:status");
+				params.put("status",dFavoriteDto.getStatus());
+			}else{
+				stringBuffer.append(" and a.status=1");
+			}
+			return this.count(stringBuffer.toString(), params);
+    	}
+    	return 0;
+    }
 
 }

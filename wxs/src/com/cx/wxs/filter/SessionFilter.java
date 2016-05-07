@@ -138,7 +138,7 @@ public class SessionFilter extends OncePerRequestFilter {
 		m.put("clientIp",new String[]{ip});
 		m.put("clientAgent",new String[]{clientAgent});
 		m.put("clientType",new String[]{clientType+""});
-		System.out.println(" content1-l:"+request.getParameter("content"));
+//		System.out.println(" content1-l:"+request.getParameter("content"));
 		//request=new MyRequestWrapper(request,m);
 	   // System.out.println(request.getParameter("ip")+request.getParameter("catalogName"));
 		if(requestUrl.contains("image")){

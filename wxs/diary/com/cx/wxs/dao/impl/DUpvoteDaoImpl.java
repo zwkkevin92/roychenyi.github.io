@@ -143,5 +143,23 @@ public class DUpvoteDaoImpl extends BaseDaoImpl<DUpvote, Integer> implements DUp
         }
         return 0;
     }
+    @Override
+    public Integer getDUpvoteCount(DUpvoteDto dUpvoteDto){
+    	 if(dUpvoteDto!=null&&dUpvoteDto.getDDiaryDto()!=null){
+    		StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
+ 			Map<String,Object> params=new HashMap<String, Object>();
+ 			stringBuffer.append(" from "+DUpvote.class.getName()+" a where 1=1");
+ 			stringBuffer.append(" and a.DDiary.diaryId=:diaryId");
+			params.put("diaryId", dUpvoteDto.getDDiaryDto().getDiaryId());
+			if(dUpvoteDto.getStatus()!=null){
+				stringBuffer.append(" and a.status=:status");
+				params.put("status",dUpvoteDto.getStatus());
+			}else{
+				stringBuffer.append(" and a.status=1");
+			}
+			return this.count(stringBuffer.toString(), params);
+    	 }
+    	 return 0;
+    }
 
 }
