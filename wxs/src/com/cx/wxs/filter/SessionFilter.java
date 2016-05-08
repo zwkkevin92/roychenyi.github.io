@@ -91,6 +91,7 @@ public class SessionFilter extends OncePerRequestFilter {
 	                }    
 	          } 
 		System.out.println("进入Filter.....");
+//		System.out.println(request.getParameter("username"));
 		System.out.println(request.getRequestURI());
 		//获取userid
 		Cookie cookie=RequestUtils.getCookie(request, "user");

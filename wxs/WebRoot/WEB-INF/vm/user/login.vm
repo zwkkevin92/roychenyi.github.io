@@ -48,17 +48,11 @@
 
                         <p class="text-muted text-center"> <a href="#rootUrl()/forgot"  target="_blank" > 忘记密码了？</a> | <a href="register">注册一个新账号</a>
                         </p>
-					1:	$test.getBaseUrl($request)<br>
-					2:		$link.getContextURL()<BR>
-					3:			$link.getContextPath()<BR>
-					4:				$link.getRoot()<br>
-					5:$link.getPath()<br>	
-						6:$link.getFile()<br>
-							7:#rootUrl();<br>
-								$verifycode
+			
 
 
                     </form>
+					
                 </div>
             </div>
 		

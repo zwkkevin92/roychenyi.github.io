@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Resource;
-import javax.enterprise.inject.Model;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -162,7 +162,8 @@ public class UserAction {
 	 * @date   2016-1-7下午4:28:12
 	 */
 	@RequestMapping(value="/login1")
-	public @ResponseBody JSONObject login(HttpServletRequest request,
+	@ResponseBody
+	public  JSONObject login(HttpServletRequest request,
 			HttpServletResponse response){		
 		String prev_url=request.getParameter("prev_url");
 		if(prev_url==null||prev_url==""){
@@ -198,12 +199,25 @@ public class UserAction {
 		JSONObject json=(JSONObject) JSONObject.toJSON(uuser);
 		return json;
 	}
+	
+	@RequestMapping(value="/login2")
+	public ModelAndView login2(HttpServletRequest request,
+			HttpServletResponse response){
+		ModelAndView mv=new ModelAndView("main");
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		String verifyCode=request.getParameter("verifyCode");
+		System.out.println("username:"+username);
+		System.out.println("password:"+password);
+		return mv;
+	}
 
 	@RequestMapping(value="/logout")
 	public ModelAndView logout(HttpServletRequest request,
 			HttpServletResponse response){
 		String prev_url=request.getHeader("Referer");
 		ModelAndView  mv=new ModelAndView("redirect:"+prev_url);
+		request.getSession().removeAttribute("user");
 		HttpSession session= request.getSession();
 		session.removeAttribute("user");
 		RequestUtils.removeCookie(request, response, "user");

@@ -31,6 +31,8 @@ public class TemplateUtils {
 		
 //		ServletContext sc = getServlet().getServletContext();
 		 String path=Thread.currentThread().getContextClassLoader().getResource("").toString();  
+		 String osStr=getOSinfo();
+		 if(osStr.contains("linux"))
 	        path=path.replace('/', '\\'); // 将/换成\  
 	        path=path.replace("file:", ""); //去掉file:  
 	        path=path.replace("classes\\", "");
@@ -110,10 +112,22 @@ public class TemplateUtils {
 	public static  String getMessageRemindTemplate(){
 		return getTemplate("vm/conf/message_remind.html");
 	}
+	/**
+	 * 获取系统信息
+	 * @author 陈义
+	 * @date   2016年5月8日 下午7:53:25
+	 * @return
+	 */
+	public  static String getOSinfo(){
+		return System.getProperty("os.name");
+	}
+   
 	
 	public static void main(String avg[]){
+		
 
 		TemplateUtils templateUtils=new TemplateUtils();
+		System.out.println(templateUtils.getMessageRemindTemplate());
 		String template=templateUtils.getRegisterCheckTemplate();
 		String notify_content = MessageFormat.format(template,
 				"1", "2", "3");

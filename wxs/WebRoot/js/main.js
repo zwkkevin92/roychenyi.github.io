@@ -249,6 +249,9 @@ function WinMove() {
             type:"POST",
             data:data_str,
             dataType:"json",
+         //contentType: "application/json; charset=utf-8",//(可以)
+          //  contentType: "text/xml",//(可以)
+           contentType:"application/x-www-form-urlencoded",//(可以)
             async: false,
             beforeSend: function () {
                 submitStart();

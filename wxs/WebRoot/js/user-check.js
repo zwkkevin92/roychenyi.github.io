@@ -131,8 +131,9 @@ $(document).ready(function () {
         var str_data = $("#loginform input").map(function () {
             return ($(this).attr("name") + '=' + $(this).val());
         }).get().join("&");
-
-        $.ajax({
+        var data=$('#loginform').serializeArray();
+        ajax1(url,data,login_result);
+      /*  $.ajax({
             url: url,
             type: "POST",
             data: str_data,
@@ -154,7 +155,7 @@ $(document).ready(function () {
             	 }
             }
 
-        });
+        });*/
     });
     //忘记密码时，验证按钮点击事件
     $('#check').click(function(){
@@ -402,3 +403,20 @@ $(document).ready(function () {
         $('#error_text').html("");
     });
 });
+
+function login_result(data){
+ var flag=data["statusFlag"];
+            	 switch (flag){
+            	 	case "-3":
+            	 	$('#error_text').html("<small>登陆失败:账户为进行邮箱验证，请进入邮箱验证</small>");break;
+            	 	case "-2":
+            	 	$('#error_text').html("<small>登陆失败:账户错误，请检查后登陆</small>");break;
+            	 	case "-1":
+            	 	$('#error_text').html("<small>登陆失败:密码错误，请检查后登陆</small>");break;
+            	 	case "0":
+            	 	$('#error_text').html("<small>登陆失败:验证码错误！</small>");break;
+            	 	case "1":
+            	 	window.location=data['url'];break;
+            	 	default:;
+            	 }
+            }

@@ -2,7 +2,7 @@ package com.cx.wxs.service.impl;
 
 import java.util.*;
 
-import javax.resource.spi.AuthenticationMechanism;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
