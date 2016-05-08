@@ -32,12 +32,18 @@ public class TemplateUtils {
 //		ServletContext sc = getServlet().getServletContext();
 		 String path=Thread.currentThread().getContextClassLoader().getResource("").toString();  
 		 String osStr=getOSinfo();
-		 if(osStr.contains("linux"))
-	        path=path.replace('/', '\\'); // 将/换成\  
-	        path=path.replace("file:", ""); //去掉file:  
-	        path=path.replace("classes\\", "");
-	        path=path.substring(1);
-	        tmp=path+tmp;
+		 if(osStr.startsWith("Linux")){
+			 path=path.replace("file:", ""); //去掉file:  
+			 path=path.replace("classes/", "");
+//			 path=path.substring(1);
+			 tmp=path+tmp;
+		 }else if(osStr.startsWith("Windows")){			 
+			 path=path.replace('/', '\\'); // 将/换成\  
+			 path=path.replace("file:", ""); //去掉file:  
+			 path=path.replace("classes\\", "");
+			 path=path.substring(1);
+			 tmp=path+tmp;
+		 }
 		File file=new File(tmp);
 		StringBuffer template = new StringBuffer(512);
 		if(file.exists()&&file.isFile()){		
@@ -127,10 +133,11 @@ public class TemplateUtils {
 		
 
 		TemplateUtils templateUtils=new TemplateUtils();
+		System.out.println(templateUtils.getOSinfo());
 		System.out.println(templateUtils.getMessageRemindTemplate());
 		String template=templateUtils.getRegisterCheckTemplate();
 		String notify_content = MessageFormat.format(template,
-				"1", "2", "3");
+				"陈怡", "2", "3");
 		System.out.println(notify_content);
 	}
 }

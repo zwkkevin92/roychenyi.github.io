@@ -217,9 +217,10 @@ public class UserAction {
 			HttpServletResponse response){
 		String prev_url=request.getHeader("Referer");
 		ModelAndView  mv=new ModelAndView("redirect:"+prev_url);
-		request.getSession().removeAttribute("user");
+		//request.getSession().removeAttribute("user");
 		HttpSession session= request.getSession();
 		session.removeAttribute("user");
+		request.getSession().invalidate();
 		RequestUtils.removeCookie(request, response, "user");
 		return mv;
 	}
