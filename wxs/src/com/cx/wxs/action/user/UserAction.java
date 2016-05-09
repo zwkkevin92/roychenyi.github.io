@@ -464,7 +464,7 @@ public class UserAction {
 	@ResponseBody
 	@RequestMapping(value="/checkVerifyCode")
 	public String checkVerifyCode(String VerifyCode,HttpServletRequest request){
-		String verifyCode=(String) request.getAttribute("VerifyCode");
+	//	String verifyCode=(String) request.getAttribute("VerifyCode");
 		String codeSession=(String) request.getSession().getAttribute("verifycode");
 		String  flag="0";
 		if(VerifyCode.equalsIgnoreCase(codeSession)){

@@ -2,58 +2,8 @@
  * 处理用户登录、注册、验证码验证
  * Created by chenyi on 2016/03/08.
  */
-
-function usercheck(user){
-    var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-    if(!reg.test(user.value)){
-//        layer.tips('亲，用户名为您的邮箱，请输入正确的邮箱',user,{
-//            title:'标题',
-//            icon:1,
-//            closeBtn:1,
-//            shade:0.8,
-//            time:1000,
-//            maxWidth:200,
-//            tips: [2, '#78BA32']//还可配置颜色
-//
-//        });
-        $('#feedback-username').addClass('glyphicon-remove');
-        $('#feedback-username').parent().addClass('has-error');
-        return 0;
-    }else{
-        $('#feedback-username').parent().removeClass('has-error');
-        $('#feedback-username').addClass('glyphicon-ok');
-    }
-
-}
-
-
-
-function check_VerifyCode(E){
-
-
-    $.ajax({
-            url: "checkVerifyCode?VerifyCode=" + E.value + "&nocahe=" + new Date().getTime(),
-            type:"POST",
-            dataType:"json",
-            success:function(data) {
-                if (data == "1") {
-                    $('#feedback-verifyCode').parent().removeClass('has-error');
-                    $('#feedback-verifyCode').addClass('glyphicon-ok');
-                    $('#error_text').html("");
-                } else {
-                    $('#error_text').html("<small>验证码错误！</small>");
-                    $('#feedback-verifyCode').parent().addClass('has-error');
-                    $('#feedback-verifyCode').addClass('glyphicon-remove');
-                    
-                }
-            },
-            error:function(){layer.alert("执行失败！");}
-        }
-    );
-}
-
-$(document).ready(function () {
-    var hash = {
+//邮箱列表
+var hash = {
         'qq.com': 'http://mail.qq.com',
         'gmail.com': 'http://mail.google.com',
         'sina.com': 'http://mail.sina.com.cn',
@@ -77,6 +27,9 @@ $(document).ready(function () {
         'foxmail.com': 'http://www.foxmail.com',
         'outlook.com': 'http://www.outlook.com'
     }
+
+$(document).ready(function () {
+    
     //验证用户名
     $('#username').blur(function(){
         if(this.value.length>0){
@@ -163,32 +116,7 @@ $(document).ready(function () {
         var str_data = $("#forgotform input").map(function () {
             return ($(this).attr("name") + '=' + $(this).val());
         }).get().join("&");
-        $.ajax({
-            url:url,
-            dataType:"json",
-            type:"POST",
-            data:str_data,
-            success:function(data){
-                if(data==null||data==""){
-                    $('#error_text').html("<small>该邮箱没有注册，请点击注册或者重新输入邮箱！</small>");
-                }else{
-                    var _mail = $("#username").val().split('@')[1];    //获取邮箱域
-                    for (var j in hash){
-                        if(j == _mail){
-                            //$(".js_login_mail").show().attr("href", hash[_mail]);    //替换登陆链接
-                            layer.confirm("点击确认，可进入邮箱进行验证",{title:"提示"},function(){
-                                window.location=hash[_mail];
-                            });
-                        }
-                    }
-
-
-                }
-            },
-            error: function(data){
-                $('#error_text').html("<small>错误，请刷新页面了再试！</small>");
-            }
-        });
+        ajax1(url,str_data,forgotPwdCheck_result);
 
     });
 //忘记密码时,修改密码    
@@ -203,21 +131,7 @@ $(document).ready(function () {
             var str_data = $("#changeform input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
-            $.ajax({
-                url: url,
-                dataType:"json",
-                type:"POST",
-                data:str_data,
-                success: function(data){
-                    if(data["statusFlag"]==-1){
-
-                        $('#error_text').html("<small>修改密码失败！</small>");
-                    }else{
-                        window.location=data['url'];
-                    }
-                }
-
-            });
+            ajax1(url,str_data,forgot_changePwd_result);
         }
 
     });
@@ -238,23 +152,8 @@ $(document).ready(function () {
             var str_data = $("#changeform input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
-            $.ajax({
-                url: url,
-                dataType:"json",
-                type:"POST",
-                data:str_data,
-                success: function(data){
-                    if(data["statusFlag"]==-1){
-
-                        $('#error_text').html("<small>输入旧密码错误，请重新输入！</small>");
-                    }else if(data["statusFlag"]==0){
-                        $('#error_text').html("<small>修改密码失败，请重新再试！</small>");
-                    }else{
-                        window.location=data["url"];
-                    }
-                }
-
-            });
+            ajax1(url,str_data,changePwd_result);
+       
         }
 
     });
@@ -274,25 +173,8 @@ $(document).ready(function () {
         if(usercheck(this)==0){
             return null;
         }
-        $.ajax({
-                url: "user/checkusername?username=" + this.value + "&nocahe=" + new Date().getTime(),
-                type:"POST",
-                dataType:"json",
-                success:function(data) {
-                    if (data == "1") {
-                        $('#feedback-username').addClass('glyphicon-ok');
-                        $('#feedback-username').parent().removeClass('has-error');
-                        return ;
-                    } else {
-                        $('#feedback-username').addClass('glyphicon-remove');
-                        $('#feedback-username').parent().addClass('has-error');
-                        $('#error_text').html("<small>该邮箱已经被注册，请确认这是您本人的邮箱吗？若忘记密码，可以去登陆页面点击找回密码</small>");
-
-                    }
-                },
-                error:function(){layer.alert("执行失败！")}
-            }
-        );
+        var  url="user/checkusername?username=" + this.value + "&nocahe=" + new Date().getTime();
+        ajax1(url,"",reg_usernameCheck_result);      
 
     });
     
@@ -311,37 +193,9 @@ $(document).ready(function () {
     	if(this.value.length==0){
     	return null;
     	}
-        $.ajax({
-                url: "user/checknickname",
-                type:"POST",
-                data:"nickname=" + this.value + "&nocahe=" + new Date().getTime(),
-                dataType:"json",
-                success:function(data) {
-                	switch (data){
-                	case "-1": $('#feedback-nickname').addClass('glyphicon-remove');
-                        $('#feedback-nickname').parent().addClass('has-error');
-                        $('#error_text').html("<small>该昵称含非法字符，请您使用新的昵称！</small>");
-                        $('#flag').value="0";
-                        break;
-                    case "0":
-                    $('#feedback-nickname').addClass('glyphicon-remove');
-                        $('#feedback-nickname').parent().addClass('has-error');
-                        $('#error_text').html("<small>该昵称已经被使用，请使用其他昵称，谢谢！</small>");
-                        $('#flag').value="0";
-                        break;
-                    case "1":
-                        $('#feedback-nickname').addClass('glyphicon-ok');
-                        $('#feedback-nickname').parent().removeClass('has-error');
-                        $('#error_text').html("");
-                        $('#flag').value="1";
-                        break;
-                    default :;
-
-                	}
-                },
-                error:function(){layer.alert("执行失败！")}
-            }
-        );
+    	var url="user/checknickname";
+    	var  data="nickname=" + this.value + "&nocahe=" + new Date().getTime();
+        ajax1(url,data,nicknameCheck_result);
     });
     $('#register').click(function(){
         var pwd1=$('#password').val();
@@ -370,32 +224,7 @@ $(document).ready(function () {
             var str_data = $("#reg_form input").map(function () {
                 return ($(this).attr("name") + '=' + $(this).val());
             }).get().join("&");
-            $.ajax({
-                url: url,
-                dataType:"json",
-                type:"POST",
-                data:str_data,
-                success: function(data){
-                    if(data["statusFlag"]==-1){
-
-                        $('#error_text').html("<small>注册失败，请重新再试！</small>");
-                    }else if(data["statusFlag"]==1){
-                        var _mail = $("#reg_username").val().split('@')[1];    //获取邮箱域
-                        for (var j in hash){
-                            if(j == _mail){
-                                //$(".js_login_mail").show().attr("href", hash[_mail]);    //替换登陆链接
-                                layer.confirm("点击确认，可进入邮箱进行验证",{title:"提示"},function(){
-                                    window.location=hash[_mail];
-                                });
-                            }
-                        }
-                    }
-                },
-                error:function(){
-                    $('#error_text').html("<small>注册失败，请重新再试！</small>");
-            }
-
-            });
+           ajax1(url,str_data,register_result);
         }
 
     });
@@ -404,6 +233,51 @@ $(document).ready(function () {
     });
 });
 
+function usercheck(user){
+    var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+    if(!reg.test(user.value)){
+//        layer.tips('亲，用户名为您的邮箱，请输入正确的邮箱',user,{
+//            title:'标题',
+//            icon:1,
+//            closeBtn:1,
+//            shade:0.8,
+//            time:1000,
+//            maxWidth:200,
+//            tips: [2, '#78BA32']//还可配置颜色
+//
+//        });
+        $('#feedback-username').addClass('glyphicon-remove');
+        $('#feedback-username').parent().addClass('has-error');
+        return 0;
+    }else{
+        $('#feedback-username').parent().removeClass('has-error');
+        $('#feedback-username').addClass('glyphicon-ok');
+    }
+
+}
+/***
+ * 验证码检查
+ * @param {} E
+ */
+function check_VerifyCode(E){
+    var url=getRootPath()+"/checkVerifyCode?VerifyCode=" + E.value + "&nocahe=" + new Date().getTime();
+    ajax1(url,"",checkVerifyCode_result);
+}
+//验证码验证结果
+function  checkVerifyCode_result(data){
+     if (data == "1") {
+                    $('#feedback-verifyCode').parent().removeClass('has-error');
+                    $('#feedback-verifyCode').addClass('glyphicon-ok');
+                    $('#error_text').html("");
+                } else {
+                    $('#error_text').html("<small>验证码错误！</small>");
+                    $('#feedback-verifyCode').parent().addClass('has-error');
+                    $('#feedback-verifyCode').addClass('glyphicon-remove');
+                    
+                }
+}
+
+//登陆结果
 function login_result(data){
  var flag=data["statusFlag"];
             	 switch (flag){
@@ -420,3 +294,98 @@ function login_result(data){
             	 	default:;
             	 }
             }
+function forgotPwdCheck_result(data){
+ if(data==null||data==""){
+                    $('#error_text').html("<small>该邮箱没有注册，请点击注册或者重新输入邮箱！</small>");
+                }else{
+                    var _mail = $("#username").val().split('@')[1];    //获取邮箱域
+                    for (var j in hash){
+                        if(j == _mail){
+                            //$(".js_login_mail").show().attr("href", hash[_mail]);    //替换登陆链接
+                            layer.confirm("点击确认，可进入邮箱进行验证",{title:"提示"},function(){
+                                window.location=hash[_mail];
+                            });
+                        }
+                    }
+
+
+                }
+}
+            
+//忘记密码后，修改密码结果
+function forgot_changePwd_result(data){
+    if(data["statusFlag"]==-1){
+
+                        $('#error_text').html("<small>修改密码失败！</small>");
+                    }else{
+                        window.location=data['url'];
+                    }
+}
+//修改密码结果
+function changePwd_result(data){
+ if(data["statusFlag"]==-1){
+
+                        $('#error_text').html("<small>输入旧密码错误，请重新输入！</small>");
+                    }else if(data["statusFlag"]==0){
+                        $('#error_text').html("<small>修改密码失败，请重新再试！</small>");
+                    }else{
+                        window.location=data["url"];
+                    }
+}
+
+//注册邮箱（用户登陆名）验证结果
+function reg_usernameCheck_result(data){
+
+                    if (data == "1") {
+                        $('#feedback-username').addClass('glyphicon-ok');
+                        $('#feedback-username').parent().removeClass('has-error');
+                        return ;
+                    } else {
+                        $('#feedback-username').addClass('glyphicon-remove');
+                        $('#feedback-username').parent().addClass('has-error');
+                        $('#error_text').html("<small>该邮箱已经被注册，请确认这是您本人的邮箱吗？若忘记密码，可以去登陆页面点击找回密码</small>");
+
+                    }
+}
+//注册，昵称验证结果
+function nicknameCheck_result(data){
+	switch (data){
+                	case "-1": $('#feedback-nickname').addClass('glyphicon-remove');
+                        $('#feedback-nickname').parent().addClass('has-error');
+                        $('#error_text').html("<small>该昵称含非法字符，请您使用新的昵称！</small>");
+                        $('#flag').value="0";
+                        break;
+                    case "0":
+                    $('#feedback-nickname').addClass('glyphicon-remove');
+                        $('#feedback-nickname').parent().addClass('has-error');
+                        $('#error_text').html("<small>该昵称已经被使用，请使用其他昵称，谢谢！</small>");
+                        $('#flag').value="0";
+                        break;
+                    case "1":
+                        $('#feedback-nickname').addClass('glyphicon-ok');
+                        $('#feedback-nickname').parent().removeClass('has-error');
+                        $('#error_text').html("");
+                        $('#flag').value="1";
+                        break;
+                    default :;
+
+                	}
+}
+
+//注册结果
+function register_result(data){
+if(data["statusFlag"]==-1){
+
+                        $('#error_text').html("<small>注册失败，请重新再试！</small>");
+                    }else if(data["statusFlag"]==1){
+                        var _mail = $("#reg_username").val().split('@')[1];    //获取邮箱域
+                        for (var j in hash){
+                            if(j == _mail){
+                                //$(".js_login_mail").show().attr("href", hash[_mail]);    //替换登陆链接
+                                layer.confirm("点击确认，可进入邮箱进行验证",{title:"提示"},function(){
+                                    window.location=hash[_mail];
+                                });
+                            }
+                        }
+                    }
+}
