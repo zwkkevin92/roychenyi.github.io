@@ -19,6 +19,7 @@ import com.cx.wxs.dto.DFavoriteDto;
 import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.service.DDiaryService;
+import com.cx.wxs.utils.HTMLutil;
 
 /**
  * @author 陈义
@@ -143,6 +144,21 @@ public class DDiaryServiceImpl implements DDiaryService {
 		}
 		diaryDto.setPageCont(pageCount);
 		return diaryDto;
+	}
+
+	@Override
+	public List<DDiaryDto> getDDiaryPreList(DDiaryDto diaryDto) {
+		
+		List<DDiaryDto> list = dDiaryDao.getDDiaryList(diaryDto);
+		List<DDiaryDto> result = null;
+		if(list != null&&!list.isEmpty()){
+			result = new ArrayList<DDiaryDto>();
+			for(DDiaryDto dDiaryDto :list){
+				dDiaryDto.setContent(HTMLutil.preview(dDiaryDto.getContent(), 300));//默认预览500个字符包括html字符
+				result.add(dDiaryDto);
+			}
+		}
+		return result;
 	}
 
 }
