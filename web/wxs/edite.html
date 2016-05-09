@@ -8,6 +8,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
     <!--引入wangEditor.css-->
     <link rel="stylesheet" type="text/css" href="css/wangEditor/wangEditor.css">
 </head>
@@ -122,24 +123,32 @@
                     </div>
                     <div class="col-md-12 no-padding-min">
                         <div class="ibox">
-                            <form class="form-group">
+                            <form class="form-group" id="article_add_form"  data-url="">
                             <div class="ibox-title">写日志
                             <div class="pull-right">草稿箱|帮助</div>
                             </div>
                             <div class="ibox-content">
                                 <div class="form-group">
-                                    <input type="text" id="text-title" name="text-title" class="form-control" placeholder="文章标题" required=""/>
+                                    <input type="text" id="title" name="title" class="form-control" placeholder="文章标题" />
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" name="textarea" id="textarea"/>
-                                    <div id="textarea1" style="height:400px;max-height:500px;">
-                                        <p>测试，加载编辑框</p>
+                                    <div id="textarea1" style="height:400px;max-height:500px; background-image: url(images/head_bg.jpg);">
+
                                     </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="contribute" value="0" checked>
+                                        <span>允许投稿到我的社团和首页</span>
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     分类：
                                     <select  name="textCatalog">
                                         <option>个人日记</option>
+                                        <option selected>个人日记2</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -151,8 +160,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-primary" onclick="testText()">发布</button>
-                                   &nbsp; <button type="button" class="btn btn-primary" onclick="testText()">存草稿</button>
+                                    <button type="submit" class="btn btn-primary" onclick="testText()">发布</button>
+                                   &nbsp; <button type="button" class="btn btn-default" onclick="testText()">存草稿</button>
                                 </div>
                             </div>
                             </form>
@@ -196,6 +205,7 @@
 
 <!--wangEditor-->
 <script type="text/javascript" src='js/plugins/wangEditor/wangEditor.js'></script>
+<script src="js/plugins/layer/layer.js"></script>
 <script src="js/edite.js"></script>
 <!--<script type="text/javascript">-->
 

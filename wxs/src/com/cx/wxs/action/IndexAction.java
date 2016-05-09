@@ -153,6 +153,7 @@ public class IndexAction {
 		mv.addObject("name", name);
 		return mv;
 	}
+	
 	@RequestMapping(value="/404")
 	public ModelAndView to404(){
 		ModelAndView mv=new ModelAndView("404");
