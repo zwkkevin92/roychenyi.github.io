@@ -297,29 +297,29 @@ function createPagination(page,pageCount){
             + "<li id='page_prev'><a href='javascript:;' title='上一页' onclick='DComment.goPage(-1)'>&laquo;</a></li>";
         if (pageCount <= 7) {
             for (var i = 1; i <= pageCount; i++) {
-                html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
             }
         } else {
             if (page < 5) {
                 for (var i = 1; i <= 6; i++) {
-                    html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                    html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
                 }
                 html += "<li class='disabled'><a >…</a></li>"
-                    + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DDComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+                    + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
             } else if (page >= 5) {
 
-                html += "<li id='page1'><a href='javascript:;' title='第1页' onclick='DDComment.goDirectPage(1)'>1</a></li>"
+                html += "<li id='page1'><a href='javascript:;' title='第1页' onclick='DComment.goDirectPage(1)'>1</a></li>"
                     + "<li class='disabled'><a >…</a></li>";
                 if (page >= pageCount - 5) {
                     for (var i = pageCount - 5; i <= pageCount; i++) {
-                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
                     }
                 } else if (page < pageCount - 5) {
                     for (var i = page - 2; i <= page + 2; i++) {
-                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
                     }
                     html += "<li class='disabled'><a >…</a></li>"
-                        + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DDComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+                        + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
 
                 }
             }

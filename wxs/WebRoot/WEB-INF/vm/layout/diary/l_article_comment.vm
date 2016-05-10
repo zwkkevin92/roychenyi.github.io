@@ -62,13 +62,13 @@
                                             </div>
                                         </div>
 										#end
-                                          <!--评论分页-->
-										  <div id="comment_pagination" class="text-center" data-url=""></div>
 										#else
 											<a id="no-comemnt-info" href="#textarea1">还没有人评论，快来抢第一个沙发吧</a>
 										#end
 									
 											</div>
+                                          <!--评论分页-->
+										  <div id="comment_pagination" class="text-center" data-url="#rootUrl/$author.nickname/article/$diary.diaryId/reply_list"></div>
 									</div>
                                     <div class="ibox-heading">发表评论</div>
 									<div class="row" id="comment">

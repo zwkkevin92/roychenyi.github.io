@@ -41,7 +41,7 @@
 				#else
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
-                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> #if($user.BSiteDto.logo) <img src="#rootUrl()/$user.BSiteDto.logo" style="width:24px;hight:24px;"/> #else<i class="fa fa-user"></i> #end $user.nickname<span class="caret"></span></a>
+                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> #if($user.BSiteDto.logo) <img src="#rootUrl()/$user.BSiteDto.logo" style="width:24px;hight:24px;"/> #else<i class="fa fa-user"></i> #end $user.nickname<input type="hidden" id="U_userId" value="$user.userId" ><span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
                             <li><a href="#rootUrl()$user.BSiteDto.siteUrl">个人中心</a>
                             </li>

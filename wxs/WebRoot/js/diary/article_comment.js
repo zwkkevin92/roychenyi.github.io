@@ -88,7 +88,7 @@ DComment.addComment_result=function(data){
             +" <span><b>"+data["row"]+"楼</b></span><span class='pull-right'><small>"+new Date(data["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"</small><a href='javascript:;' onclick='DComment.showCommentEditor("+data["row"]+")'>回复</a>"
             +" <span class='dropdown pull-right' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'><a class='dropdown-toggle' data-toggle='data-toggle'><i class='fa fa-sort-desc ' style='padding:0 5px; '></i></a>"
             +"   <ul class='dropdown-menu text-right'>"
-            +"<li id='commentDelete"+data.row+"' data-url='"+commenter_url+"/article/"+data.dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data.row+","+data.dreplyId+")'>删除</a></li>"
+            +"<li id='commentDelete"+data.row+"' class='hidden' data-url='"+commenter_url+"/article/"+data.dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data.row+","+data.dreplyId+")'>删除</a></li>"
             +"<li><a>举报</a></li>                </ul></span></span>"
             +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data.uUserDto.nickname+":</a>"
             +"<span class='message-date'> "+new Date(data["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
@@ -99,11 +99,18 @@ DComment.addComment_result=function(data){
             +"<div id='dreply"+data.row+"' class='form-group' style='height:150px;max-height:200px;'></div>"
             +"<input class='btn btn-info' type='button' value='确认' onclick='DComment.addCommentReply("+data.row+")'></form>"
             +"</div></div></div>");
-        if(data.dReply2Dtos[0].uUserByCommentatorDto.userId!=data.dReply2Dtos[0].uUserByUserIdDto.userId){
-            $('#commentDelete'+data.row).addClass("hidden");
+        if(data.dReply2Dtos[0].uUserByCommentatorDto.userId==Number($('#author_id').val())){
+            $('#commentDelete'+data.row).removeClass("hidden");
         }
+        var row=data.row;
+        var pageCount=row/10;
+        if(row%10>0){
+        	pageCount+=1;
+        }
+        $('#pageCount').val(pageCount);
+        DComment.addPagination(Number($('#commentPage').val()),Number($('#pageCount').val()));
         layer.msg("发布成功！",{icon:1,time:1000});
-
+        
     }
 }
 var comment_dreply;
@@ -163,7 +170,7 @@ DComment.addCommentReply=function(commentId){
     }
 
     arr.push({name:"content",value:content});
-    ajax1(url,arr,DComment.addCommentReply_result());
+    ajax1(url,arr,DComment.addCommentReply_result);
 }
 //回复结果
 DComment.addCommentReply_result=function(data){
@@ -187,8 +194,8 @@ DComment.addCommentReply_result=function(data){
 //评论删除
 DComment.deleteComment=function(commentId,replyId){
     var url=$("#commentDelete"+commentId).data("url");
-    var commemtPage=$('#comment_page').val();
-    var data="commentPage="+commemtPage+"&dreplyId="+replyId
+    var commemtPage=$('#commentPage').val();
+    var data="page="+commemtPage+"&dreplyId="+replyId
     ajax1(url,data,DComment.deleteComment_result);
 }
 DComment.deleteComment_result=function(data){
@@ -202,25 +209,32 @@ DComment.deleteComment_result=function(data){
         default :DComment.addCommentInfo(data);
             layer.msg("发布成功！",{icon:1,time:1000});
     }
-
-
+    DComment.addPagination(Number($('#commentPage').val()),Number($('#pageCount').val()));
 }
 //删除回复
 DComment.deleteCommentReply=function(){}
 
 //页面跳转
 DComment.goPage=function(page){
-    page+=Number($('#commentPage').val());
+	var commentPage= Number($('#commentPage').val());
+	var pageCount=Number($('#pageCount').val());
+    page+=commentPage;
+	if(page<1||page>pageCount){
+		layer.msg("已经到底了",{icon:5,time:1000});
+	}else{
     DComment.goDirectPage(page);
+	}
 }
 //页面定位
 DComment.goDirectPage=function(page){
     var url=$('#comment_pagination').data("url");
     var data="page="+page;
     ajax1(url,data,DComment.goPage_result);
+    window.location.hash = "#DComment";
 }
 //页面跳转结果
 DComment.goPage_result=function(data){
+//	data=FastJson.format(data);
     DComment.addCommentInfo(data);
     DComment.addPagination(Number($('#commentPage').val()),Number($('#pageCount').val()));
 }
@@ -245,7 +259,7 @@ DComment.addCommentInfo=function(data){
     if(data.length>0&&data[0].rows>0){
         $('#d_comment>a>span').html("("+data[0]["rows"]+")");
         $('#commentDiv').html("<input type='hidden' id='commentPage' name='commentPage' value='"+data[0].page+"'>");
-        $('#commentDiv').append("<input type=‘hidden’ name=‘pageCount’ id=‘pageCount’ value=‘"+data[0].pageCount+"’>");
+        $('#commentDiv').append("<input type='hidden' name='pageCount' id='pageCount' value='"+data[0].pageCount+"'>");
         var rootUrl=getRootPath()+"/";
         for(var i=0;i<data.length;i++){
             var author_url=rootUrl+data[i].uUserDto.nickname;
@@ -255,7 +269,7 @@ DComment.addCommentInfo=function(data){
                 +" <span><b>"+data[i]["row"]+"楼</b></span><span class='pull-right'><small>"+new Date(data[i]["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"</small><a href='javascript:;' onclick='DComment.showCommentEditor("+data[i]["row"]+")'>回复</a>"
                 +" <span class='dropdown pull-right' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'><a class='dropdown-toggle' data-toggle='data-toggle'><i class='fa fa-sort-desc ' style='padding:0 5px; '></i></a>"
                 +"   <ul class='dropdown-menu text-right'>"
-                +"<li id='commentDelete"+data[i].row+"' data-url='"+commenter_url+"/article/"+data[i].dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data[i].row+","+data[i].dreplyId+")'>删除</a></li>"
+                +"<li id='commentDelete"+data[i].row+"' class='hidden' data-url='"+commenter_url+"/article/"+data[i].dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data[i].row+","+data[i].dreplyId+")'>删除</a></li>"
                 +"<li><a>举报</a></li>                </ul></span></span>"
                 +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data[i].uUserDto.nickname+":</a>"
                 +"<span class='message-date'> "+new Date(data[i]["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
@@ -270,18 +284,19 @@ DComment.addCommentInfo=function(data){
                     +"<span class='message-content'>"+reply[j]["content"]+"</span></div></div>";
             }
             html+="<div class='form-group' >            <input type='text' class='form-control' placeholder='我也来评论一句' onclick='DComment.showCommentEditor("+data[i].row+")'> </div>"
-                +"<div class='chat-message-form hidden'><form id='replyForm"+data[i].row+"' action='"+user_url+"/article/"+data[i].dDiaryDto.diaryId+"/reply2_add'>"
+                +"<div class='chat-message-form hidden'><form id='replyForm"+data[i].row+"' action='"+commenter_url+"/article/"+data[i].dDiaryDto.diaryId+"/reply2_add'>"
                 +"<input type='hidden' name='DReply1Dto.dreplyId' value='"+data[i].dreplyId+"'>"
                 +"<div id='dreply"+data[i].row+"' class='form-group' style='height:150px;max-height:200px;'></div>"
                 +"<input class='btn btn-info' type='button' value='确认' onclick='DComment.addCommentReply("+data[i].row+")'></form>"
                 +"</div></div></div>";
             $('#commentDiv').append(html);
-            if(data[i].dReply2Dtos[0].uUserByCommentatorDto.userId!=data[i].dReply2Dtos[0].uUserByUserIdDto.userId){
-                $('#commentDelete'+data[i].row).addClass("hidden");
+           
+            if(Number($('#author_id').val())==data[i].dReply2Dtos[0].uUserByCommentatorDto.userId){
+                $('#commentDelete'+data[i].row).removeClass("hidden");
             }
 
         }
-
+     //    $('#commentDiv').append("<div id='comment_pagination' class='text-center' data-url='"+commenter_url+"/article/"+data[0].dDiaryDto.diaryId+"/reply_list'></div>");
     }else{
         $('#commentDiv').html("<a id='no-comemnt-info' href='#textarea1'>还没有人评论，快来抢第一个沙发吧</a>");
         $('#d_comment>a>span').html("(0)");

@@ -52,10 +52,14 @@ public class DReply1ServiceImpl implements DReply1Service {
     		Integer count= dReply1Dao.getDReply1Count(dReply1Dto);
     		int pageCount=0;
     		if(dReply1Dto.getRows()==null){
-    			pageCount=count/10+1;
+    			pageCount=count/10;
+
     		}else{
     			pageCount=count/dReply1Dto.getRows();
     		}
+			if(count%10>0){
+				pageCount+=1;
+			}
     		list.get(0).setRows(count);
     		list.get(0).setPageCount(pageCount);
     	}

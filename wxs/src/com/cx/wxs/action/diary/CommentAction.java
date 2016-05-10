@@ -210,7 +210,7 @@ public class CommentAction extends BaseDiaryAction{
 	 */
 	@RequestMapping(value="/{diaryId}/reply_delete")
 	@ResponseBody
-	public List<DReply1Dto> deleteDReply(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,Integer commemtPage,
+	public List<DReply1Dto> deleteDReply(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,Integer page,
 			HttpServletRequest request,HttpServletResponse response,DReply1Dto dReply1Dto,DReply2Dto dReply2Dto){
 		List<DReply1Dto> reply1Dtos=new ArrayList<DReply1Dto>();
 		UUserDto userDto=(UUserDto)request.getSession().getAttribute("user");
@@ -237,8 +237,8 @@ public class CommentAction extends BaseDiaryAction{
 			diaryDto.setReplyCount(diaryDto.getReplyCount()-1);
 			diaryService.updateDDiary(diaryDto);
 			//查找新的评论列表
-			dReply1Dto.setPage(commemtPage);
-			dReply1Dto.setRow(10);
+			dReply1Dto.setPage(page);
+			dReply1Dto.setRows(10);
 			dReply1Dto.setDDiaryDto(diaryDto);
 			reply1Dtos=reply1Service.getDReply1List(dReply1Dto);
 			if(reply1Dtos!=null&&reply1Dtos.size()>0){
@@ -247,7 +247,7 @@ public class CommentAction extends BaseDiaryAction{
 				//当删除评论后评论为null的情况
 				DReply1Dto dto=new DReply1Dto();
 				dto.setStatusFlag("1");
-				dto.setRows(0);
+				dto.setRow(0);
 				reply1Dtos=new ArrayList<DReply1Dto>();
 				reply1Dtos.add(dto);
 			}

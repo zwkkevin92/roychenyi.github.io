@@ -32,6 +32,7 @@
                             
 							</div>
 							<h1 class="no-margins">$author.nickname</h1>
+							<input id="author_id" type="hidden" value="$author.userId"/>
                             <h3 class="no-margins"><small class="text-info">#if($author.USignDto) $author.USignDto.content #end</small></h3>
 							#if($author.BSiteDto)
                             <h3 class="no-margins"><small><a href="#rootUrl()$author.BSiteDto.siteUrl">#rootUrl()$author.BSiteDto.siteUrl</a></small></h3>
