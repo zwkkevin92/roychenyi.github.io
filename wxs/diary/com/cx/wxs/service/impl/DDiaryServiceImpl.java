@@ -148,17 +148,45 @@ public class DDiaryServiceImpl implements DDiaryService {
 
 	@Override
 	public List<DDiaryDto> getDDiaryPreList(DDiaryDto diaryDto) {
-		
 		List<DDiaryDto> list = dDiaryDao.getDDiaryList(diaryDto);
+		return getPreview(list,0,0);
+	}
+
+	@Override
+	public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto diaryDto) {
+		Integer pageCount = getPageByLike(diaryDto);
+		List<DDiaryDto> list = dDiaryDao.getDiaryByLikeTitleOrContent(diaryDto);
+		return getPreview(list,pageCount,diaryDto.getPage());
+	}
+	/**
+	 * 获取内容摘要的工具类
+	 * @param source
+	 * @param num
+	 * @return
+	 */
+	public List<DDiaryDto> getPreview(List<DDiaryDto> source,int pageCount,int page){
 		List<DDiaryDto> result = null;
-		if(list != null&&!list.isEmpty()){
+		if(source != null&&!source.isEmpty()){
 			result = new ArrayList<DDiaryDto>();
-			for(DDiaryDto dDiaryDto :list){
-				dDiaryDto.setContent(HTMLutil.preview(dDiaryDto.getContent(), 300));//默认预览500个字符包括html字符
+			for(DDiaryDto dDiaryDto :source){
+				dDiaryDto.setContent(HTMLutil.preview(dDiaryDto.getContent(), 300));//num个字符包括html字符
+				dDiaryDto.setPage(page);
+				dDiaryDto.setPageCount(pageCount);
 				result.add(dDiaryDto);
 			}
 		}
 		return result;
 	}
 
+	@Override
+	public Integer getPageByLike(DDiaryDto diaryDto) {
+		int count=dDiaryDao.getLikeCount(diaryDto);
+		int pageCount=0;
+		if(count%diaryDto.getRows()>0){
+			pageCount=(count/diaryDto.getRows())+1;
+		}else{
+			pageCount=count/diaryDto.getRows();
+		}
+		return pageCount;
+	}
 }
