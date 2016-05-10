@@ -32,7 +32,6 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer addDDiary(DDiaryDto dDiaryDto);
-
     /**
     * 更新DDiary
     * @author 陈义
