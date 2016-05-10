@@ -1,0 +1,31 @@
+#set($layout = "layout/user/l_user.vm")
+#set($page_title="$author.BSiteDto.title")
+#if($author.username==$user.username)
+#parse("conf/js.vm")
+#parse("conf/css.vm")
+#set($extjs=$Jcropper+$Jcropper-tool)
+#set($extcss=$Ccropper)
+#parse("layout/user/l_avatar.vm")
+#end
+ <div class="col-md-12 no-padding-min">
+				#foreach($diary in ${diaryList})
+					<div class="ibox no-padding">
+						<div class="ibox-title">
+                        <a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
+						</div>
+                        <div class="ibox-content">
+                            $diary.content
+							<div class="article_tool">
+							<ul>
+								<li id="d_view"><i class="fa fa-eye"></i>阅读<span>#if($diary.viewCount)($diary.viewCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
+                                <li id="d_upvote"><i class="text-warning fa #if($upvote) fa-thumbs-up #else fa-thumbs-o-up #end"></i>点赞<span>#if($diary.upvoteCount)($diary.upvoteCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
+								<li id="d_comment"><i class="fa fa-comment-o"></i>评论<span>#if($diary.replyCount)($diary.replyCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
+								<li id="d_favorite"><i class="text-warning fa #if($favorite) fa-star #else fa-star-o #end">
+								</i>收藏<span>#if($diary.favoriteCount)($diary.favoriteCount)#else (0) #end</span></li>
+							     <li class="pull-right"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">查看更多&nbsp;&gt;&gt;&gt;</a></li>
+							</ul>
+							</div>
+                        </div>
+                    </div>
+				#end
+                </div>
