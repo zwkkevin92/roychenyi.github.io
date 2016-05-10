@@ -38,7 +38,7 @@ public class DiarySearch extends BaseAction {
 		diaryDto.setContent(request.getParameter("content"));
 		diaryDto.setTitle(request.getParameter("title"));
 		String pageStr = request.getParameter("page");
-		Integer pageNum = 0;
+		Integer pageNum = 1;
 		if(pageStr!=null){
 			pageNum = Integer.parseInt(pageStr);
 		}

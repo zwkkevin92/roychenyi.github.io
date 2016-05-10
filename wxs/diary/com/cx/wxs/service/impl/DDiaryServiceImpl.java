@@ -153,7 +153,6 @@ public class DDiaryServiceImpl implements DDiaryService {
 		List<DDiaryDto> list = dDiaryDao.getDDiaryList(diaryDto);
 		return getPreview(list,0,0);
 	}
-
 	@Override
 	public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto diaryDto) {
 		Integer pageCount = getPageByLike(diaryDto);
