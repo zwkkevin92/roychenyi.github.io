@@ -289,4 +289,46 @@ function getRootPath(){
 }
 //json解析，有时候因为 fastjson生成的json数据带有$引用会出现查找不到的情况
 var FastJson={isArray:function(a){return"object"==typeof a&&"[object array]"==Object.prototype.toString.call(a).toLowerCase()},isObject:function(a){return"object"==typeof a&&"[object object]"==Object.prototype.toString.call(a).toLowerCase()},format:function(a){if(null==a)return null;"string"==typeof a&&(a=eval("("+a+")"));return this._format(a,a,null,null,null)},_randomId:function(){return"randomId_"+parseInt(1E9*Math.random())},_getJsonValue:function(a,c){var d=this._randomId(),b;b=""+("function "+d+"(root){")+("return root."+c+";");b+="}";b+="";var e=document.createElement("script");e.id=d;e.text=b;document.body.appendChild(e);d=window[d](a);e.parentNode.removeChild(e);return d},_format:function(a,c,d,b,e){d||(d="");if(this.isObject(c)){if(c.$ref){var g=c.$ref;0==g.indexOf("$.")&&(b[e]=this._getJsonValue(a,g.substring(2)));return}for(var f in c)b=d,""!=b&&(b+="."),g=c[f],b+=f,this._format(a,g,b,c,f)}else if(this.isArray(c))for(f in c)b=d,g=c[f],b=b+"["+f+"]",this._format(a,g,b,c,f);return a}};
-  
+ 
+//创建分页器
+function createPagination(page,pageCount){
+    if(pageCount>1) {
+        var html = "<ul class='pagination' >"
+            + "<li id='page_prev'><a href='javascript:;' title='上一页' onclick='DComment.goPage(-1)'>&laquo;</a></li>";
+        if (pageCount <= 7) {
+            for (var i = 1; i <= pageCount; i++) {
+                html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+            }
+        } else {
+            if (page < 5) {
+                for (var i = 1; i <= 6; i++) {
+                    html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                }
+                html += "<li class='disabled'><a >…</a></li>"
+                    + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DDComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+            } else if (page >= 5) {
+
+                html += "<li id='page1'><a href='javascript:;' title='第1页' onclick='DDComment.goDirectPage(1)'>1</a></li>"
+                    + "<li class='disabled'><a >…</a></li>";
+                if (page >= pageCount - 5) {
+                    for (var i = pageCount - 5; i <= pageCount; i++) {
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                    }
+                } else if (page < pageCount - 5) {
+                    for (var i = page - 2; i <= page + 2; i++) {
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DDComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                    }
+                    html += "<li class='disabled'><a >…</a></li>"
+                        + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DDComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+
+                }
+            }
+        }
+        html += "<li id='page_next'><a href='javascript:;' title='下一页' onclick='DComment.goPage(1)'>&raquo;</a></li>"
+            + "</ul>";
+        return html;
+    }else{
+        return "";
+    }
+
+}

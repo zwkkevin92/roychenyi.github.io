@@ -17,14 +17,16 @@ import com.cx.wxs.utils.StringUtils;
 import com.cx.wxs.utils.BeanToDto;
 
 /**
- * @author 陈义
+ * @author 陈义  
  * @date 2016-04-09 16:11:18
  */
+
 @Repository("DDiaryDao")
 public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiaryDao{
 
     private BeanToDto<DDiary, DDiaryDto> beanToDto=new BeanToDto<DDiary, DDiaryDto>();
 
+    
     public BeanToDto<DDiary, DDiaryDto> getBeanToDto(){
         return beanToDto;
     }
@@ -253,6 +255,66 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 				stringBuffer.append(" and a.role=1");
 			}
 			return this.count(stringBuffer.toString(), params);
+		}
+		return 0;
+	}
+
+	@Override
+	public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto dDiaryDto) {
+		if(dDiaryDto!=null){
+			Map<String,Object> params=new HashMap<String, Object>();
+			StringBuffer stringBuffer = new StringBuffer("from "+DDiary.class.getName()+" a where (1!=1");
+			if(StringUtils.isNotEmpty(dDiaryDto.getTitle())){
+				stringBuffer.append(" or a.title like :title)");
+				params.put("title", "%"+dDiaryDto.getTitle()+"%");
+			}
+			if(StringUtils.isNotEmpty(dDiaryDto.getContent())){
+				stringBuffer.append(" or a.content like :content)");
+				params.put("content","%"+ dDiaryDto.getContent()+"%");
+			}
+			if(dDiaryDto.getRole()!=null){
+				stringBuffer.append(" and a.role=:role");
+				params.put("role",dDiaryDto.getRole());
+			}else{
+				stringBuffer.append(" and a.role=1");
+			}
+			System.out.println(stringBuffer.toString());
+			List<DDiary> list = this.find(stringBuffer.toString(), params, dDiaryDto.getPage(), dDiaryDto.getRows());
+			if(list!=null&&!list.isEmpty()){
+				List<DDiaryDto> result = new ArrayList<DDiaryDto>();
+				for(DDiary dDiary : list){
+					DDiaryDto dto = new DDiaryDto();
+					beanToDto.T1ToD1(dDiary, dto);
+					result.add(dto);
+				}
+				return result;
+			}
+			
+		}
+		return null;
+	}
+	public Integer getLikeCount(DDiaryDto dDiaryDto){
+		if(dDiaryDto!=null){
+			Map<String,Object> params=new HashMap<String, Object>();
+			StringBuffer stringBuffer = new StringBuffer(DbType.SELECT+" count(*) from "+DDiary.class.getName()+" a where (1!=1");
+			if(StringUtils.isNotEmpty(dDiaryDto.getTitle())){
+				stringBuffer.append(" or a.title like :title)");
+				params.put("title","%"+ dDiaryDto.getTitle()+"%");
+			}
+			if(StringUtils.isNotEmpty(dDiaryDto.getContent())){
+				stringBuffer.append(" or a.content like :content)");
+				params.put("content","%"+ dDiaryDto.getContent()+"%");
+			}
+			if(dDiaryDto.getRole()!=null){
+				stringBuffer.append(" and a.role=:role");
+				params.put("role",dDiaryDto.getRole());
+			}else{
+				stringBuffer.append(" and a.role=1");
+			}
+			Integer result = this.count(stringBuffer.toString(), params);
+			if(result!=null){
+				return result;
+			}
 		}
 		return 0;
 	}

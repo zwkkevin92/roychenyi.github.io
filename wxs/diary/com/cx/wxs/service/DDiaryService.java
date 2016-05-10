@@ -68,7 +68,22 @@ public interface DDiaryService {
      * @date   2016-4-25下午4:54:01
      */
     public DDiaryDto getPageInfo(DDiaryDto diaryDto);
-    
-    
-
+    /***
+     * 获取日志预览列表
+     * @param diaryDto
+     * @return
+     */    
+    public List<DDiaryDto> getDDiaryPreList(DDiaryDto diaryDto);
+    /**
+     * 根据标题或者内容查找文章
+     * @param diaryDto
+     * @return
+     */
+    public List<DDiaryDto>  getDiaryByLikeTitleOrContent(DDiaryDto diaryDto);
+    /**
+     * 获取页数
+     * @param diaryDto
+     * @return
+     */
+    public Integer getPageByLike(DDiaryDto diaryDto);
 }

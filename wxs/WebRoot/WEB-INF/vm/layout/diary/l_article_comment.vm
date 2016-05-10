@@ -62,29 +62,8 @@
                                             </div>
                                         </div>
 										#end
-										#if($dReply1s.get(0).pageCount>1)
-
-											<div id="d_pagination" class="text-center">
-										<ul class="pagination" id="">
-                            <li class="disabled"><a href="javascript:;" title="上一页" onclick="DComment.goPage=function(-1)">&laquo;</a></li>
-						    <li class="active"><a href="javascript:;">1</a></li>
-							#if($pageCount<6)								
-								#foreach($foo in [2..$pageCount])
-									<li ><a href="javascript:;">$foo</a></li>
-									#end
-								#else
-                            <li><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><a href="javascript:;">4</a></li>
-                            <li class="disabled"><a href="javascript:;">……</a></li>
-                            <li><a href="javascript:;">$pageCount</a></li>
-									#end
-
-                            <li><a href="#" title="下一页">&raquo;</a></li>
-                            <li>跳转到<input style="width: 3em" type="text" id="goPage" value="12"><button onclick="DComment.goPage($('#goPage').val().trim())">确定</button></li>
-                        </ul>
-													</div>			
-	#end
+                                          <!--评论分页-->
+										  <div id="comment_pagination" class="text-center" data-url=""></div>
 										#else
 											<a id="no-comemnt-info" href="#textarea1">还没有人评论，快来抢第一个沙发吧</a>
 										#end
