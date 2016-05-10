@@ -72,4 +72,15 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
      * @date   2016-5-6上午9:09:01
      */
     public Integer getDiaryCount(DDiaryDto dDiaryDto);
+    /**
+     * @param 
+     * @return
+     * @author 
+     * @date   2016-5-6上午9:09:01
+     */
+    public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto dDiaryDto);
+    /**
+     * 
+     */
+    public Integer getLikeCount(DDiaryDto dDiaryDto);
 }

@@ -26,9 +26,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cx.wxs.bean.EmailInfo;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.dto.WWxsDto;
 import com.cx.wxs.enums.EmailType;
+import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.EmailService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.service.WWxsService;
@@ -53,6 +55,8 @@ public class IndexAction {
 	private EmailService emailService;
 	@Resource
 	private WWxsService wxsService;
+	@Resource
+	private DDiaryService dDiaryService;
 	
 
 	/**
@@ -97,6 +101,14 @@ public class IndexAction {
 	 */
 	public void setWxsService(WWxsService wxsService) {
 		this.wxsService = wxsService;
+	}
+
+	public DDiaryService getdDiaryService() {
+		return dDiaryService;
+	}
+
+	public void setdDiaryService(DDiaryService dDiaryService) {
+		this.dDiaryService = dDiaryService;
 	}
 
 	/***
@@ -147,6 +159,10 @@ public class IndexAction {
 				mv.setViewName("404");
 			}else{
 				mv.setViewName("user/main");
+				DDiaryDto dDiaryDto = new DDiaryDto();
+				dDiaryDto.setUUserDto(userDto);
+				dDiaryDto.setRows(10);//默认一页显示10行
+				mv.addObject("diaryList", dDiaryService.getDDiaryPreList(dDiaryDto));
 				mv.addObject("author",userDto);
 			}
 		}
