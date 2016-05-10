@@ -110,15 +110,17 @@ public class DDiaryServiceImpl implements DDiaryService {
 	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
 		// TODO Auto-generated method stub
 		//收藏数量
+		DDiaryDto dDiaryDto=new DDiaryDto();
+		dDiaryDto.setDiaryId(diaryDto.getDiaryId());
 		DFavoriteDto dFavoriteDto=new DFavoriteDto();
-		dFavoriteDto.setDDiaryDto(diaryDto);
+		dFavoriteDto.setDDiaryDto(dDiaryDto);
 		int favoriteCount =dFavoriteDao.getDFavoriteCount(dFavoriteDto);
-		diaryDto.setFavoriteCount(favoriteCount);
+		dDiaryDto.setFavoriteCount(favoriteCount);
 		//点赞数量
 		DUpvoteDto dUpvoteDto=new DUpvoteDto();
-		dUpvoteDto.setDDiaryDto(diaryDto);
+		dUpvoteDto.setDDiaryDto(dDiaryDto);
 		int upvoteCount=dUpvoteDao.getDUpvoteCount(dUpvoteDto);
-		diaryDto.setUpvoteCount(upvoteCount);
+		dDiaryDto.setUpvoteCount(upvoteCount);
 		/*//访问数量  不更新，这样会清楚游客访问数量
 		DAccessDto dAccessDto=new DAccessDto();
 		dAccessDto.setDDiaryDto(diaryDto);
@@ -126,11 +128,11 @@ public class DDiaryServiceImpl implements DDiaryService {
 		diaryDto.setViewCount(accessCount);*/
 		//评论数量
 		DReply1Dto dReply1Dto=new DReply1Dto();
-		dReply1Dto.setDDiaryDto(diaryDto);
+		dReply1Dto.setDDiaryDto(dDiaryDto);
 		int replyCount=dReply1Dao.getDReply1Count(dReply1Dto);
-		diaryDto.setReplyCount(replyCount);
+		dDiaryDto.setReplyCount(replyCount);
 		//更新统计数据
-		dDiaryDao.updateDDiary(diaryDto);
+		dDiaryDao.updateDDiary(dDiaryDto);
 		return dDiaryDao.getCurrentDiarys(diaryDto);
 	}
 	@Override
@@ -142,7 +144,7 @@ public class DDiaryServiceImpl implements DDiaryService {
 		}else{
 			pageCount=count/diaryDto.getRows();
 		}
-		diaryDto.setPageCont(pageCount);
+		diaryDto.setPageCount(pageCount);
 		return diaryDto;
 	}
 

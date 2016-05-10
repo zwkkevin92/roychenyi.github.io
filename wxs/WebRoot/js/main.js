@@ -112,14 +112,15 @@ function dropdownOpen() {
 	$dropdownLi.mouseover(function() {
 		$(this).addClass('open');
 	}).mouseout(function() {
+		
 		$(this).removeClass('open');
 	});
 	
 	  var $dropdownSpan=$('span.dropdown');
     $dropdownSpan.mouseover(function() {
         $(this).addClass('gray-bg open');
-    }).mouseout(function() {
-        $(this).removeClass('gray-bg open');
+    }).mouseout(function() {    	   
+       $(this).removeClass('gray-bg open');
     });
     
 }
