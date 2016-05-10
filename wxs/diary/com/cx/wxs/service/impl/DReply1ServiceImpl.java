@@ -24,7 +24,7 @@ public class DReply1ServiceImpl implements DReply1Service {
     }
 
     /**
-    * 通过用户id获取DReply1Dto信息
+    * 通过用户id获取DReply1Dto信息,一般是获取最新的评论
     * @author 陈义
     * @date 2016-01-19 14:41:49
     */
@@ -32,10 +32,11 @@ public class DReply1ServiceImpl implements DReply1Service {
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
     	dReply1Dto=dReply1Dao.getDReply1ByID(dReply1Dto);
     	int row=dReply1Dao.getDReply1Count(dReply1Dto);
-    	int page=row/10+1;
+    	int pageCount=row/10+1;
     	dReply1Dto.setRow(row);
-    	dReply1Dto.setPage(page);
-    	dReply1Dto.setPageCont(page);
+    	dReply1Dto.setRows(row);
+    	dReply1Dto.setPage(pageCount);
+    	dReply1Dto.setPageCount(pageCount);
         return dReply1Dto;
     }
 
@@ -46,7 +47,19 @@ public class DReply1ServiceImpl implements DReply1Service {
     */
     @Override
     public List<DReply1Dto> getDReply1List(DReply1Dto dReply1Dto){
-        return dReply1Dao.getDReply1List(dReply1Dto);
+    	List<DReply1Dto> list=dReply1Dao.getDReply1List(dReply1Dto);
+    	if(list!=null&&list.size()>0){
+    		Integer count= dReply1Dao.getDReply1Count(dReply1Dto);
+    		int pageCount=0;
+    		if(dReply1Dto.getRows()==null){
+    			pageCount=count/10+1;
+    		}else{
+    			pageCount=count/dReply1Dto.getRows();
+    		}
+    		list.get(0).setRows(count);
+    		list.get(0).setPageCount(pageCount);
+    	}
+        return list;
     }
 
     /**

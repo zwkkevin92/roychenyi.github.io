@@ -1,9 +1,11 @@
- <div class="ibox-content">
+<div class="ibox-content">
                                     <div id="comment_list">
 									<div class="chat-discussion" id="commentDiv">
 										#if($dReply1s)
-											
-											<input type="hidden" id="comment_page" value="$dReply1s[0].page">
+											#set($commentPage=$dReply1s[0].page)
+											<input type="hidden" id="commentPage" name="commentPage" value="$commentPage">
+										    #set($pageCount=$dReply1s.get(0).pageCount)
+											<input type='hidden' name="pageCount" id="pageCount" value="$pageCount">
 										#foreach($reply1 in $dReply1s)
 											#set($comment_count=($reply1.page - 1) * $reply1.rows + $velocityCount)
                                         <div class="chat-message" id="commentDiv${comment_count}" data-replyId="$reply1.dreplyId">
@@ -15,7 +17,7 @@
 												<span class="dropdown pull-right">
 							                 <a class="dropdown-toggle" data-toggle="data-toggle"><i class="fa fa-sort-desc " style="padding:0 5px; " ></i></a>
                                         <ul class="dropdown-menu text-right" >
-                                            <li ><a>删除</a></li>
+                                            <li id="commentDelete${comment_count}" #if($user.userId!=$author.userId) class="hidden" #end data-url="#rootUrl/$author.nickname/article/$diary.diaryId/reply_delete"><a href="javascript:;" onclick="DComment.deleteComment($comment_count,$reply1.dreplyId)">删除</a></li>
                                             <li><a>举报</a></li>
                                         </ul></span>
 											</span>
@@ -60,10 +62,34 @@
                                             </div>
                                         </div>
 										#end
+										#if($dReply1s.get(0).pageCount>1)
+
+											<div id="d_pagination" class="text-center">
+										<ul class="pagination" id="">
+                            <li class="disabled"><a href="javascript:;" title="上一页" onclick="DComment.goPage=function(-1)">&laquo;</a></li>
+						    <li class="active"><a href="javascript:;">1</a></li>
+							#if($pageCount<6)								
+								#foreach($foo in [2..$pageCount])
+									<li ><a href="javascript:;">$foo</a></li>
+									#end
+								#else
+                            <li><a href="javascript:;">2</a></li>
+                            <li><a href="javascript:;">3</a></li>
+                            <li><a href="javascript:;">4</a></li>
+                            <li class="disabled"><a href="javascript:;">……</a></li>
+                            <li><a href="javascript:;">$pageCount</a></li>
+									#end
+
+                            <li><a href="#" title="下一页">&raquo;</a></li>
+                            <li>跳转到<input style="width: 3em" type="text" id="goPage" value="12"><button onclick="DComment.goPage($('#goPage').val().trim())">确定</button></li>
+                        </ul>
+													</div>			
+	#end
 										#else
 											<a id="no-comemnt-info" href="#textarea1">还没有人评论，快来抢第一个沙发吧</a>
 										#end
-									</div>
+									
+											</div>
 									</div>
                                     <div class="ibox-heading">发表评论</div>
 									<div class="row" id="comment">

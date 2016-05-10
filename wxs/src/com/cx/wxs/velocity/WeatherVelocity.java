@@ -28,7 +28,7 @@ public class WeatherVelocity extends VelocityTool{
 		if(weather==null){
 			try{ String ip=clientInfo.getIpAddr(request);
 			GetPlaceByIp getPlaceByIp = new GetPlaceByIp();
-			if(ip.contains("127.0.0.1")||ip.contains("192.168.")||ip.contains("10.")){
+			if(ip.contains("127.0.0.1")||ip.contains("192.168.")||ip.contains("10.")||ip.contains("169.254.")){
 			//	ip="61.183.36.13";//荆州ip
 				ip="47.153.128.0";//北京ip
 			//	ip="74.82.169.23";//硅谷ip

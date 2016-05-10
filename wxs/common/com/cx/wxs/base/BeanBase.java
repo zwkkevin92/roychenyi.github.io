@@ -331,7 +331,7 @@ public  class BeanBase implements Serializable{
 		return pageCount;
 	}
 
-	public void setPageCont(Integer pageCount) {
+	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
 	}
 
@@ -471,9 +471,7 @@ public  class BeanBase implements Serializable{
 		this.search = search;
 	}
 
-	public void setPageCount(Integer pageCount) {
-		this.pageCount = pageCount;
-	}
+
 	
 	
 
