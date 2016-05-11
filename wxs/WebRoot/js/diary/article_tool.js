@@ -26,9 +26,8 @@ $(document).ready(function () {
     });
 
     Ariticle_Tool.addPagination(Number($('#page').val()),Number($('#pageCount').val()));
-    Ariticle_Tool.updateUpvoteCount(window.location.href+"/upvoteCount");
-    Ariticle_Tool.updateFavoriteCount(window.location.href+"/favoriteCount");
-    Ariticle_Tool.updateCommentCount(window.location.href+"/commentCount")
+    Ariticle_Tool.updateCount(window.location.href+"/infoCount");
+
 
 });
 var Ariticle_Tool={
@@ -64,11 +63,11 @@ var Ariticle_Tool={
             case -1:layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});break;
             case 0:$('#d_upvote>a>span').html("("+data["upvoteCount"]+")");
                 $('#d_upvote>a>i').addClass("fa-thumbs-o-up");
-                $('#d_upvote>a>i').removeClass("fa-thumbs-up");
+                $('#d_upvote>a>i').removeClass("fa-thumbs-up text-warning");
                 layer.msg("点赞-1!",{icon:5,time:1000});break;
             case 1: $('#d_upvote>a>span').html("("+data["upvoteCount"]+")");
                 $('#d_upvote>a>i').removeClass("fa-thumbs-o-up");
-                $('#d_upvote>a>i').addClass("fa-thumbs-up");
+                $('#d_upvote>a>i').addClass("fa-thumbs-up text-warning");
                 layer.msg("点赞+1!",{icon:6,time:1000});break;
             default :;
         }
@@ -86,34 +85,27 @@ var Ariticle_Tool={
             case -1:layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});break;
             case 0:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
                 $('#d_favorite>a>i').addClass("fa-star-o");
-                $('#d_favorite>a>i').removeClass("fa-star");
+                $('#d_favorite>a>i').removeClass("fa-star text-warning");
                 layer.msg("点赞-1!",{icon:5,time:1000});break;
             case 1:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
-                $('#d_favorite>a>i').removeClass("fa-star-o");
-                $('#d_favorite>a>i').addClass("fa-star");
+                $('#d_favorite>a>i').removeClass("fa-star-o ");
+                $('#d_favorite>a>i').addClass("fa-star text-warning");
                 layer.msg("点赞+1!",{icon:6,time:1000});break;
             default:break;
 
         }
     },
-    updateUpvoteCount:function(url){
-        ajax(url,'',Ariticle_Tool.updateUpvoteCount_result);
+    //更新文章计数
+    updateCount:function(url){
+        ajax(url,'',Ariticle_Tool.updateCount_result);
     },
-    updateUpvoteCount_result:function(data){
+    //更新文章计数结果
+    updateCount_result:function(data){
         $('#d_upvote>a>span').html("("+data.upvoteCount+")");
-    },
-    updateFavoriteCount:function(url){
-        ajax(url,'',Ariticle_Tool.updateFavoriteCoun)
-    },
-    updateFavoriteCount_result:function(data){
+        $('#d_comment>a>span').html("("+data.replyCount+")");
         $('#d_favorite>a>span').html("("+data.favoriteCount+")");
     },
-    updateCommentCount:function(url){
-        ajax(url,'',Ariticle_Tool.updateCommentCount_result);
-    },
-    updateCommentCount_result:function(data){
-        $('#d_comment>a>span').html("("+data.replyCount+")");
-    },
+    
     //文章列表更新
     list_info:function(data){
         data=FastJson.format(data);
@@ -177,50 +169,3 @@ var Ariticle_Tool={
 
 
 
-/*
- //文章删除结果
- function d_delete_result(data){
-
- if(data["statusFlag"]==-1){
- layer.msg("删除失败，请重新再试!",{icon:2,time:1000});
- }else if(data["statusFlag"]==1){
-
- window.location.href=data["url"];
- }
- }
- //点赞处理
- function d_upvote_result(data){
- if(data["statusFlag"]==-1){
- layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});
- }else if(data["statusFlag"]==1){
- $('#d_upvote>a>span').html("("+data["upvoteCount"]+")");
- $('#d_upvote>a>i').removeClass("fa-thumbs-o-up");
- $('#d_upvote>a>i').addClass("fa-thumbs-up");
- layer.msg("点赞+1!",{icon:6,time:1000});
- }else if(data["statusFlag"]==0){
- $('#d_upvote>a>span').html("("+data["upvoteCount"]+")");
- $('#d_upvote>a>i').addClass("fa-thumbs-o-up");
- $('#d_upvote>a>i').removeClass("fa-thumbs-up");
- layer.msg("点赞-1!",{icon:5,time:1000});
- }else if(data["statusFlag"]==-2){
- layer.msg("您尚未登陆，请登陆后再试!",{icon:5,time:1000});
- }
- }
- //收藏处理
- function d_favorite_result(data){
- var flag=Number(data["statusFlag"]);
- switch(flag){
- case -2:layer.msg("您尚未登陆，请登陆后再试!",{icon:5,time:1000});break;
- case -1:layer.msg("点赞失败，请重新再试!",{icon:2,time:1000});break;
- case 0:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
- $('#d_favorite>a>i').addClass("fa-star-o");
- $('#d_favorite>a>i').removeClass("fa-star");
- layer.msg("点赞-1!",{icon:5,time:1000});break;
- case 1:$('#d_favorite>a>span').html("("+data["favoriteCount"]+")");
- $('#d_favorite>a>i').removeClass("fa-star-o");
- $('#d_favorite>a>i').addClass("fa-star");
- layer.msg("点赞+1!",{icon:6,time:1000});break;
- default:break;
-
- }
- }*/

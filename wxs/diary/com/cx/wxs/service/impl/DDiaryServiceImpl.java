@@ -32,14 +32,12 @@ import com.cx.wxs.utils.HTMLutil;
 public class DDiaryServiceImpl implements DDiaryService {
     @Autowired
     private DDiaryDao dDiaryDao;
-    @Autowired
+/*    @Autowired
     private DFavoriteDao dFavoriteDao;
     @Autowired
     private DUpvoteDao dUpvoteDao;
     @Autowired
-    private DReply1Dao dReply1Dao;
-    @Autowired
-    private DAccessDao dAccessDao;
+    private DReply1Dao dReply1Dao;*/
 
     public void setDDiaryDao(DDiaryDao dDiaryDao){
         this.dDiaryDao=dDiaryDao;
@@ -136,7 +134,7 @@ public class DDiaryServiceImpl implements DDiaryService {
 	public List<DDiaryDto> getCurrentDiarys(DDiaryDto diaryDto) {
 		// TODO Auto-generated method stub
 		//收藏数量
-		DDiaryDto dDiaryDto=new DDiaryDto();
+/*		DDiaryDto dDiaryDto=new DDiaryDto();
 		dDiaryDto.setDiaryId(diaryDto.getDiaryId());
 		DFavoriteDto dFavoriteDto=new DFavoriteDto();
 		dFavoriteDto.setDDiaryDto(dDiaryDto);
@@ -147,18 +145,13 @@ public class DDiaryServiceImpl implements DDiaryService {
 		dUpvoteDto.setDDiaryDto(dDiaryDto);
 		int upvoteCount=dUpvoteDao.getDUpvoteCount(dUpvoteDto);
 		dDiaryDto.setUpvoteCount(upvoteCount);
-		/*//访问数量  不更新，这样会清楚游客访问数量
-		DAccessDto dAccessDto=new DAccessDto();
-		dAccessDto.setDDiaryDto(diaryDto);
-		int accessCount =dAccessDao.getDAccessCount(dAccessDto);
-		diaryDto.setViewCount(accessCount);*/
 		//评论数量
 		DReply1Dto dReply1Dto=new DReply1Dto();
 		dReply1Dto.setDDiaryDto(dDiaryDto);
 		int replyCount=dReply1Dao.getDReply1Count(dReply1Dto);
 		dDiaryDto.setReplyCount(replyCount);
 		//更新统计数据
-		dDiaryDao.updateDDiary(dDiaryDto);
+		dDiaryDao.updateDDiary(dDiaryDto);*/
 		//查询日志所在行和页数
 		DDiaryDto dDiaryDto2  =dDiaryDao.getDiaryRow(diaryDto);      //查询所在行
 		int count=dDiaryDto2.getRows();
@@ -205,7 +198,7 @@ public class DDiaryServiceImpl implements DDiaryService {
 	 * @return
 	 */
 	public List<DDiaryDto> getPreview(List<DDiaryDto> source,int pageCount,int page){
-		List<DDiaryDto> result = null;
+		/*List<DDiaryDto> result = null;
 		if(source != null&&!source.isEmpty()){
 			result = new ArrayList<DDiaryDto>();
 			for(DDiaryDto dDiaryDto :source){
@@ -214,8 +207,11 @@ public class DDiaryServiceImpl implements DDiaryService {
 				dDiaryDto.setPageCount(pageCount);
 				result.add(dDiaryDto);
 			}
+		}*/
+		for(int i=0;i<source.size();i++){
+			source.get(i).setContent(HTMLutil.preview(source.get(i).getContent(), 300));
 		}
-		return result;
+		return source;
 	}
 
 	@Override

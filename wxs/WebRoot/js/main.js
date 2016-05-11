@@ -78,14 +78,14 @@ $(document).ready(function () {
         }
     })
 
-    $('#top-search').click(function(){
+/*    $('#top-search').click(function(){
         location.href="search.html";
     });
 
     $('#user').click(function(){
         location.href="login";
     });
-
+*/
     $(document).scroll(function(){
         var  scrollTop =  $(document).scrollTop(),bodyHeight = $(window).height();
         if(scrollTop > bodyHeight){
@@ -93,12 +93,28 @@ $(document).ready(function () {
         }else{
             $('#gotop').css('display','none');
         }
+       // var top=$('#leftMenu').offset().top;
+        var top=$('#leftMenu').position().top;
+        var top1=$('#leftMenu').offset().top;
+      /*  if(scrollTop>top1){
+            var navbarH=$('#navbar').height();
+            var width=$('#leftMenu').width();
+            var footerH=$('footer').height();
+            var height=$(document).height();
+            $('#leftMenu>div').css({position: 'fixed',top:navbarH,bottom:footerH,width:width});
+            if(footerH>(height-scrollTop)){
+                $('#leftMenu>div').removeAttr('style');
+            }
+        }else{
+            $('#leftMenu>div').removeAttr('style');
+        }*/
+        $('#gotop').append("left位置："+top+"height:"+$('#navbar').height());
     });
 
 
     $("[data-toggle=popover]").popover();
     //关闭点击触发导航栏下拉，实现鼠标移入触发
-    //   $(document).off('click.bs.dropdown.data-api');
+    $(document).off('click.bs.dropdown.data-api');
     dropdownOpen();
 });
 

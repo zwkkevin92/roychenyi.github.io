@@ -1,5 +1,8 @@
 #set($layout = "layout/user/l_user.vm")
 #set($page_title="$author.BSiteDto.title")
+#parse("conf/js.vm")
+#set($extjs=$JuserMain)
+#* 
 #if($author.username==$user.username)
 #parse("conf/js.vm")
 #parse("conf/css.vm")
@@ -7,40 +10,34 @@
 #set($extcss=$Ccropper)
 #parse("layout/user/l_avatar.vm")
 #end
-
+*#
  <div class="row">
-                <div class="col-md-3 no-padding-min">
+                <div id="leftMenu" class="col-md-2 no-padding">
+					<div>
                     <div class="ibox">
                     <div class="ibox-title">个人资料</div>
                     <div class="ibox-content">
-                      <h1 class="text-center"> $author.nickname</h1>
-                        <p class="text-center"><a class="btn btn-success">关注</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-success">消息</a></p>
-                        <div id="data">
+						<div class="text-center">
+						<img  #if($author.BSiteDto.logo)  src="#rootUrl()/$author.BSiteDto.logo" title="$author.nickname" #else src="#rootUrl()/images/face.png" #end   style="width: 100px;height: 100px;"/>
+                        <h1 > $author.nickname</h1>
+                        <p ><a class="btn btn-success">勾搭</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-success">消息</a></p>
+						</div>
+						<div id="data">
                             <p>性别：#if($author.sex==1) 男  #elseif($author.sex==0) 女 #else 保密  #end</p>
                             <p>等级：#if($author.SysRankDto.name) $author.SysRankDto.name #else 0 #end </p>
                             <p>粉丝：#if($author.fans) $author.fans #else 0 #end</p>
                             <p>关注：#if($author.follows) $author.follows #else 0 #end</p>
                             <p>日志：#if($author.articleCount) $author.articleCount #else 0 #end </p>
-                            <p>图片：#if($author.imageCount) $author.imageCount #else 0 #end</p>
+                            ##<p>图片：#if($author.imageCount) $author.imageCount #else 0 #end</p>
                             
                             <p class="pull-right"><a>更多<i class="fa fa-angle-double-right"></i></a></p>
                         </div>
                     </div>
                     </div>
-                    <div class="ibox">
-                        <div class="ibox-title">用户好友</div>
-                        <div class="ibox-content">
-                            测试
-                        </div>
-                    </div>
-					 <div class="ibox">
-                        <div class="ibox-title">最近访客</div>
-                        <div class="ibox-content">
-                            测试
-                        </div>
-                    </div>
+
+					</div>
                 </div>
-                <div class="col-md-6 no-padding-min">
+                <div id="centerContent" class="col-md-7 no-padding-min">
 				#foreach($diary in ${diaryList})
 					<div class="ibox no-padding">
 						<div class="ibox-title">
@@ -52,9 +49,9 @@
 							<div class="article_tool">
 							<ul>
 								<li id="d_view"><i class="fa fa-eye"></i>阅读<span>#if($diary.viewCount)($diary.viewCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
-                                <li id="d_upvote"><i class="text-warning fa #if($upvote) fa-thumbs-up #else fa-thumbs-o-up #end"></i>点赞<span>#if($diary.upvoteCount)($diary.upvoteCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
+                                <li id="d_upvote"><i class=" fa #if($upvote) fa-thumbs-up #else fa-thumbs-o-up #end"></i>点赞<span>#if($diary.upvoteCount)($diary.upvoteCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
 								<li id="d_comment"><i class="fa fa-comment-o"></i>评论<span>#if($diary.replyCount)($diary.replyCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>
-								<li id="d_favorite"><i class="text-warning fa #if($favorite) fa-star #else fa-star-o #end">
+								<li id="d_favorite"><i class=" fa #if($favorite) fa-star #else fa-star-o #end">
 								</i>收藏<span>#if($diary.favoriteCount)($diary.favoriteCount)#else (0) #end</span></li>
 							     <li class="pull-right"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">查看更多&nbsp;&gt;&gt;&gt;</a></li>
 							</ul>
@@ -63,7 +60,7 @@
                     </div>
 				#end
                 </div>
-                <div class="col-md-3 no-padding-min">
+                <div id="rightMenu" class="col-md-3 no-padding">
                     <div class="ibox">
                         <div class="ibox-title">社团</div>
                         <div class="ibox-content">社团活动</div>
@@ -72,9 +69,17 @@
                         <div class="ibox-title">日志</div>
                         <div class="ibox-content">日志列表</div>
                     </div>
-                    <div class="ibox">
-                        <div class="ibox-title">图片</div>
-                        <div class="ibox-content">日志<br>列表</div>
+                                        <div class="ibox">
+                        <div class="ibox-title">用户好友</div>
+                        <div class="ibox-content">
+                            测试
+                        </div>
+                    </div>
+					 <div class="ibox">
+                        <div class="ibox-title">最近访客</div>
+                        <div class="ibox-content">
+                            测试
+                        </div>
                     </div>
                 </div>
 				</div>  				

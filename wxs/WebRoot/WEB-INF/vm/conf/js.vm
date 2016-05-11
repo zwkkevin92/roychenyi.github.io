@@ -27,3 +27,5 @@
 #set($Jtime="<script src='#rootUrl()/js/plugins/time/time.js'></script>")
 ##挂件
 #set($Jhanger="<script src='#rootUrl()/js/site/hanger.js'></script>")
+##用户主函数
+#set($JuserMain="<script src='#rootUrl()/js/site/userMain.js'></script>")

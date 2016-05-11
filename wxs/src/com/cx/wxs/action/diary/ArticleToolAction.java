@@ -163,6 +163,30 @@ public class ArticleToolAction extends BaseDiaryAction{
 		}
 		return diaryDto;
 	}	
+	@RequestMapping(value="/details/{diaryId}/infoCount")
+	@ResponseBody
+	public DDiaryDto updateInfoCount(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse){
+		DDiaryDto dDiaryDto=new DDiaryDto(diaryId);
+		//获取最新点赞计数
+		DUpvoteDto upvoteDto=new DUpvoteDto();
+		upvoteDto.setDDiaryDto(dDiaryDto);
+	    Integer upvoteCount=upvoteService.getDUpvoteCount(upvoteDto);
+		dDiaryDto.setUpvoteCount(upvoteCount);
+		//获取最新收藏计数
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		favoriteDto.setDDiaryDto(dDiaryDto);
+		Integer favoriteCount=favoriteService.getDFavoriteCount(favoriteDto);
+		dDiaryDto.setFavoriteCount(favoriteCount);
+		//获取最新评论极速
+		DReply1Dto dReply1Dto=new DReply1Dto();
+		dReply1Dto.setDDiaryDto(dDiaryDto);
+		int commentCount=reply1Service.getDReply1Count(dReply1Dto);
+		dDiaryDto.setReplyCount(commentCount);	
+		//更新计数
+		diaryService.updateDDiary(dDiaryDto);
+		return dDiaryDto;
+	}
 	/**
 	 * 获取文章点赞数量
 	 * @param vip  用户昵称
