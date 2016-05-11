@@ -99,15 +99,12 @@ DComment.addComment_result=function(data){
             +"<div id='dreply"+data.row+"' class='form-group' style='height:150px;max-height:200px;'></div>"
             +"<input class='btn btn-info' type='button' value='确认' onclick='DComment.addCommentReply("+data.row+")'></form>"
             +"</div></div></div>");
-        if(data.dReply2Dtos[0].uUserByCommentatorDto.userId==Number($('#author_id').val())){
+        if(data.dReply2Dtos[0].uUserByCommentatorDto.userId==Number($('#U_userId').val())){
             $('#commentDelete'+data.row).removeClass("hidden");
         }
         var row=data.row;
-        var pageCount=row/10;
-        if(row%10>0){
-        	pageCount+=1;
-        }
-        $('#pageCount').val(pageCount);
+       
+        $('#pageCount').val(data.pageCount);
         DComment.addPagination(Number($('#commentPage').val()),Number($('#pageCount').val()));
         layer.msg("发布成功！",{icon:1,time:1000});
         
@@ -291,7 +288,7 @@ DComment.addCommentInfo=function(data){
                 +"</div></div></div>";
             $('#commentDiv').append(html);
            
-            if(Number($('#author_id').val())==data[i].dReply2Dtos[0].uUserByCommentatorDto.userId){
+            if(Number($('#U_userId').val())==data[i].dReply2Dtos[0].uUserByCommentatorDto.userId){
                 $('#commentDelete'+data[i].row).removeClass("hidden");
             }
 

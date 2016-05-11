@@ -15,7 +15,7 @@ import com.cx.wxs.dao.DDiaryDao;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.service.DDiaryService;
 @Controller
-public class DiarySearch extends BaseAction {
+public class DiarySearchAction extends BaseAction {
 	
 	@Resource
 	private DDiaryService diaryService;

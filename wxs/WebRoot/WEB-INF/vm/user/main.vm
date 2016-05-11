@@ -48,6 +48,7 @@
 						</div>
                         <div class="ibox-content">
                             $diary.content
+							<hr>
 							<div class="article_tool">
 							<ul>
 								<li id="d_view"><i class="fa fa-eye"></i>阅读<span>#if($diary.viewCount)($diary.viewCount)#else (0) #end</span>&nbsp;&nbsp;&nbsp;</li>

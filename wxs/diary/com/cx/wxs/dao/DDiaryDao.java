@@ -72,14 +72,24 @@ public interface DDiaryDao extends IBaseDao<DDiary,Integer>{
      */
     public Integer getDiaryCount(DDiaryDto dDiaryDto);
     /**
-     * @param 
+     * 通过文章或标题获取文章列表
+     * @param 文章标题或内容
      * @return
      * @author 
      * @date   2016-5-6上午9:09:01
      */
     public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto dDiaryDto);
     /**
+     * 通过文章或标题获取文章数量
      * 
      */
     public Integer getLikeCount(DDiaryDto dDiaryDto);
+    /***
+     * 获取用户文章所在行
+     * @param dDiaryDto  diaryId  userId ，通过时间逆序
+     * @return
+     * @author 陈义
+     * @date   2016-5-11上午9:38:17
+     */
+    public DDiaryDto getDiaryRow(DDiaryDto dDiaryDto);
 }

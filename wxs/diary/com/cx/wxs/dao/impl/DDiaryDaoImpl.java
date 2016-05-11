@@ -91,11 +91,22 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
             if(dDiaryDto.getRows()!=null&&dDiaryDto.getPage()!=null){
             	list=this.find(stringBuffer.toString(), params, dDiaryDto.getPage(), dDiaryDto.getRows());
             }else{
-            	list=this.find(stringBuffer.toString(), params);
+            	list=this.find(stringBuffer.toString(), params,1,10);
             }
             if(list!=null&&list.size()>0){
-            	for(DDiary diary:list){
+            	for(int i=0;i<list.size();i++){
+            		DDiary diary=list.get(i);
             		DDiaryDto dto=beanToDto.T1ToD1(diary, new DDiaryDto());
+            		if(dDiaryDto.getRows()!=null&&dDiaryDto.getPage()!=null){
+            		   dto.setPage(dDiaryDto.getPage());
+         			//   dto.setRows(dDiaryDto.getRows());
+         			   dto.setRow((dDiaryDto.getPage()-1)*dDiaryDto.getRows()+i+1);
+         		   }else{
+         			   dto.setPage(1);
+         			//   dto.setRows(10);
+         			   dto.setRow(i+1);
+         		   
+            		}
             		list1.add(dto);
             	}
             	return list1;
@@ -263,13 +274,14 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 	public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto dDiaryDto) {
 		if(dDiaryDto!=null){
 			Map<String,Object> params=new HashMap<String, Object>();
-			StringBuffer stringBuffer = new StringBuffer("from "+DDiary.class.getName()+" a where (1!=1");
+			StringBuffer stringBuffer = new StringBuffer("from "+DDiary.class.getName()+" a where 1=1 ");
 			if(StringUtils.isNotEmpty(dDiaryDto.getTitle())){
-				stringBuffer.append(" or a.title like :title)");
+				stringBuffer.append(" and ( title=:title1 or a.title like :title)");
+				params.put("title1",dDiaryDto.getTitle());
 				params.put("title", "%"+dDiaryDto.getTitle()+"%");
 			}
 			if(StringUtils.isNotEmpty(dDiaryDto.getContent())){
-				stringBuffer.append(" or a.content like :content)");
+				stringBuffer.append(" and  (  a.content like :content)");
 				params.put("content","%"+ dDiaryDto.getContent()+"%");
 			}
 			if(dDiaryDto.getRole()!=null){
@@ -279,7 +291,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 				stringBuffer.append(" and a.role=1");
 			}
 			System.out.println(stringBuffer.toString());
-			List<DDiary> list = this.find(stringBuffer.toString(), params, dDiaryDto.getPage(), dDiaryDto.getRows());
+			List<DDiary> list = this.find(stringBuffer.toString(), params, dDiaryDto.getPage(), dDiaryDto.getRows());			
 			if(list!=null&&!list.isEmpty()){
 				List<DDiaryDto> result = new ArrayList<DDiaryDto>();
 				for(DDiary dDiary : list){
@@ -293,16 +305,18 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 		}
 		return null;
 	}
+	@Override
 	public Integer getLikeCount(DDiaryDto dDiaryDto){
 		if(dDiaryDto!=null){
 			Map<String,Object> params=new HashMap<String, Object>();
-			StringBuffer stringBuffer = new StringBuffer(DbType.SELECT+" count(*) from "+DDiary.class.getName()+" a where (1!=1");
+			StringBuffer stringBuffer = new StringBuffer(DbType.SELECT+" count(*) from "+DDiary.class.getName()+" a where (1=1)");
 			if(StringUtils.isNotEmpty(dDiaryDto.getTitle())){
-				stringBuffer.append(" or a.title like :title)");
-				params.put("title","%"+ dDiaryDto.getTitle()+"%");
+				stringBuffer.append(" and ( title=:title1 or a.title like :title)");
+				params.put("title1",dDiaryDto.getTitle());
+				params.put("title", "%"+dDiaryDto.getTitle()+"%");
 			}
 			if(StringUtils.isNotEmpty(dDiaryDto.getContent())){
-				stringBuffer.append(" or a.content like :content)");
+				stringBuffer.append("and  (  a.content like :content)");
 				params.put("content","%"+ dDiaryDto.getContent()+"%");
 			}
 			if(dDiaryDto.getRole()!=null){
@@ -318,5 +332,49 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 		}
 		return 0;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DDiaryDao#getDiaryRow(com.cx.wxs.dto.DDiaryDto)
+	 */
+	@Override
+	public DDiaryDto getDiaryRow(DDiaryDto dDiaryDto) {
+		// TODO Auto-generated method stub
+		int row=0;
+		if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null&&dDiaryDto.getUUserDto()!=null){
+			Map<String,Object> params=new HashMap<String, Object>();
+			StringBuffer stringBuffer = new StringBuffer("from "+DDiary.class.getName()+" a where 1=1");
+			stringBuffer.append(" and a.UUser.userI=:userId");
+			params.put("userId",dDiaryDto.getUUserDto().getUserId());
+			//分类
+			if(dDiaryDto.getDCatalogDto()!=null){
+				stringBuffer.append(" and a.DCatalog.catalogId=:catalogId");
+				params.put("catalogId",dDiaryDto.getDCatalogDto().getCatalogId());
+				}
+			//权限
+			if(dDiaryDto.getRole()!=null){
+            	stringBuffer.append(" and a.role =:role");
+            	params.put("role",dDiaryDto.getRole());
+            }else{
+            	stringBuffer.append(" and a.role=1");
+            }
+			//逆向排序
+            stringBuffer.append(" order by a.diaryId desc ");
+			List<DDiary> dDiaries=this.find(stringBuffer.toString(), params);
+			for(int i=0;i<dDiaries.size();i++){
+				if(dDiaryDto.getDiaryId().equals(dDiaries.get(i).getDiaryId())){
+					row=i+1;
+					break;
+				}
+			}
+			dDiaryDto.setRows(dDiaries.size());
+			dDiaryDto.setRow(row);
+		}else{
+			dDiaryDto.setRow(0);
+			dDiaryDto.setRows(0);
+		}
+		return dDiaryDto;
+	}
+	
+	
 
 }

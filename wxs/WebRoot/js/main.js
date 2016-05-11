@@ -83,7 +83,7 @@ $(document).ready(function () {
    });
 
     $('#user').click(function(){
-        location.href="login.html";
+        location.href="login";
     });
 
     $(document).scroll(function(){
@@ -93,7 +93,7 @@ $(document).ready(function () {
         }else{
             $('#gotop').css('display','none');
         }
-    })
+    });
 
 
     $("[data-toggle=popover]").popover();

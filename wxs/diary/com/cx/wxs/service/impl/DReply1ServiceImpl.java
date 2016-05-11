@@ -31,10 +31,13 @@ public class DReply1ServiceImpl implements DReply1Service {
     @Override
     public DReply1Dto getDReply1ByID(DReply1Dto dReply1Dto){
     	dReply1Dto=dReply1Dao.getDReply1ByID(dReply1Dto);
-    	int row=dReply1Dao.getDReply1Count(dReply1Dto);
-    	int pageCount=row/10+1;
-    	dReply1Dto.setRow(row);
-    	dReply1Dto.setRows(row);
+    	int count=dReply1Dao.getDReply1Count(dReply1Dto);
+    	int pageCount=count/10;
+    	if(count%10>0){
+			pageCount+=1;
+		}
+    	dReply1Dto.setRow(count);    //一般获取最新的评论，所以用最大长度
+    	dReply1Dto.setRows(count);
     	dReply1Dto.setPage(pageCount);
     	dReply1Dto.setPageCount(pageCount);
         return dReply1Dto;

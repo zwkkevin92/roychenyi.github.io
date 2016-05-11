@@ -53,5 +53,13 @@ public interface DReply1Dao extends IBaseDao<DReply1,Integer>{
      * @date   2016-5-4上午10:38:24
      */
     public Integer getDReply1Count(DReply1Dto dReply1Dto);
+    /**
+     * 获取评论所在的行（该日志的第几行列表）
+     * @param dReply1Dto  diaryId,replyId
+     * @return
+     * @author 陈义
+     * @date   2016-5-11上午10:13:18
+     */
+    public Integer getDRpply1Row(DReply1Dto dReply1Dto);
 
 }

@@ -3,6 +3,7 @@ package com.cx.wxs.action.diary;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -243,8 +244,8 @@ public class DiaryAction extends BaseDiaryAction{
 		}
 		return  diaryDto;
 	}
-	@RequestMapping(value="/article_list")
-	public ModelAndView articleList(@PathVariable("vip") String vip,Integer page,
+	@RequestMapping(value="/")
+	public ModelAndView articlePage(@PathVariable("vip") String vip,Integer page,
 			HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv=new ModelAndView("diary/d_list");
 		UUserDto userDto=getUserDtoByNickname(vip);
@@ -264,7 +265,7 @@ public class DiaryAction extends BaseDiaryAction{
 			List<DDiaryDto> diaryDtos=diaryService.getDDiaryList(diaryDto);
 			//分页信息
 			diaryDto=diaryService.getPageInfo(diaryDto);
-			this.setCookie_page(diaryDto, request, response);
+		//	this.setCookie_page(diaryDto, request, response);
 			//获取文章分类
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
@@ -276,6 +277,30 @@ public class DiaryAction extends BaseDiaryAction{
 		}
 		return mv;
 	}
+	 
+	@RequestMapping(value="/article_list") 
+	@ResponseBody
+	public List<DDiaryDto> articleList(@PathVariable("vip") String vip,Integer page,
+			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
+		List<DDiaryDto> dDiaryDtos=new ArrayList<DDiaryDto>();
+		UUserDto author=this.getUserDtoByNickname(vip);
+		diaryDto.setUUserDto(author);
+		diaryDto.setRows(10);
+		diaryDto.setPage(page);
+		dDiaryDtos=diaryService.getDDiaryList(diaryDto);
+		return dDiaryDtos;
+	}
+	/***
+	 * 文章浏览
+	 * @param vip
+	 * @param diaryId
+	 * @param request
+	 * @param reqResponse
+	 * @param diaryDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-11上午10:45:54
+	 */
 	@RequestMapping(value="/details/{diaryId}")
 	public ModelAndView articlePreview(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){

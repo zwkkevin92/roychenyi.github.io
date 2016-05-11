@@ -7,6 +7,8 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sun.security.krb5.internal.PAEncTSEnc;
+
 import com.cx.wxs.dao.DAccessDao;
 import com.cx.wxs.dao.DDiaryDao;
 import com.cx.wxs.dao.DFavoriteDao;
@@ -50,7 +52,18 @@ public class DDiaryServiceImpl implements DDiaryService {
     */
     @Override
     public DDiaryDto getDDiaryByID(DDiaryDto dDiaryDto){
-        return dDiaryDao.getDDiaryByID(dDiaryDto);
+    	dDiaryDto= dDiaryDao.getDDiaryByID(dDiaryDto);
+    //	int count=dDiaryDao.getDiaryCount(dDiaryDto);  //查询日志总数量
+    	DDiaryDto dDiaryDto2  =dDiaryDao.getDiaryRow(dDiaryDto);      //查询所在行
+    	int count=dDiaryDto2.getRows();
+    	int row=dDiaryDto2.getRow();
+    	int pageCount=count/10;
+    	int page =row/10;
+    	dDiaryDto.setPageCount((count%10>0)?pageCount+1:pageCount);
+    	dDiaryDto.setPage((row%10 > 0)?page+1:page);
+    //	dDiaryDto.setRows(count);
+    //	dDiaryDto.setRow(row);
+        return dDiaryDto;
     }
 
     /**
@@ -60,6 +73,18 @@ public class DDiaryServiceImpl implements DDiaryService {
     */
     @Override
     public List<DDiaryDto> getDDiaryList(DDiaryDto dDiaryDto){
+    	List<DDiaryDto> list=dDiaryDao.getDDiaryList(dDiaryDto);
+    	if(list!=null&&list.size()>0){
+    		Integer count=dDiaryDao.getDiaryCount(dDiaryDto);
+    		int pageCount=0;
+    		if(dDiaryDto.getRows()!=null){
+    			pageCount=count/dDiaryDto.getRows();
+    		}else{
+    			pageCount=count/10;
+    		}
+    		list.get(0).setRows(count);
+    		list.get(0).setPageCount((count%10>0)?pageCount+1:pageCount);
+    	}
         return dDiaryDao.getDDiaryList(dDiaryDto);
     }
 

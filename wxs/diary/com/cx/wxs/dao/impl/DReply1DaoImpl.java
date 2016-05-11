@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.DReply1Dao;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DReply2Dto;
 import com.cx.wxs.enums.DbType;
@@ -215,5 +216,29 @@ public class DReply1DaoImpl extends BaseDaoImpl<DReply1, Integer> implements DRe
     	}
     	return 0;
     }
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.dao.DReply1Dao#getDRpply1Row(com.cx.wxs.dto.DReply1Dto)
+	 */
+	@Override
+	public Integer getDRpply1Row(DReply1Dto dReply1Dto) {
+		// TODO Auto-generated method stub
+		int row=0;
+		if(dReply1Dto!=null&&dReply1Dto.getDreplyId()!=null&&dReply1Dto.getDDiaryDto()!=null){
+			Map<String,Object> params=new HashMap<String, Object>();
+			StringBuffer stringBuffer=new StringBuffer();  
+			stringBuffer.append("from  "+DReply1.class.getName()+"  a where 1=1 ");
+			stringBuffer.append(" and a.DDiary.diaryId=:diaryId ");
+			params.put("diaryId",dReply1Dto.getDDiaryDto().getDiaryId());
+			List<DReply1> dReply1s=this.find(stringBuffer.toString(),params);
+			for(int i=0;i<dReply1s.size();i++){
+				if(dReply1Dto.getDreplyId().equals(dReply1s.get(i).getDreplyId())){
+					row=i+1;
+					break;
+				}
+			}
+		}
+		return row;
+	}
 
 }
