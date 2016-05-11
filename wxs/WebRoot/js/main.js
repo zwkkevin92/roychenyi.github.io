@@ -1,6 +1,6 @@
 // Custom scripts
 $(document).ready(function () {
- 
+
     // MetsiMenu
     $('#side-menu').metisMenu();
 
@@ -63,14 +63,14 @@ $(document).ready(function () {
 
     // Fixed Sidebar
     // unComment this only whe you have a fixed-sidebar
-            //    $(window).bind("load", function() {
-            //        if($("body").hasClass('fixed-sidebar')) {
-            //            $('.sidebar-collapse').slimScroll({
-            //                height: '100%',
-            //                railOpacity: 0.9,
-            //            });
-            //        }
-            //    })
+    //    $(window).bind("load", function() {
+    //        if($("body").hasClass('fixed-sidebar')) {
+    //            $('.sidebar-collapse').slimScroll({
+    //                height: '100%',
+    //                railOpacity: 0.9,
+    //            });
+    //        }
+    //    })
 
     $(window).bind("load resize click scroll", function() {
         if(!$("body").hasClass('body-small')) {
@@ -78,9 +78,9 @@ $(document).ready(function () {
         }
     })
 
-   $('#top-search').click(function(){
-       location.href="search.html";
-   });
+    $('#top-search').click(function(){
+        location.href="search.html";
+    });
 
     $('#user').click(function(){
         location.href="login";
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     $("[data-toggle=popover]").popover();
     //关闭点击触发导航栏下拉，实现鼠标移入触发
- //   $(document).off('click.bs.dropdown.data-api');
+    //   $(document).off('click.bs.dropdown.data-api');
     dropdownOpen();
 });
 
@@ -107,30 +107,30 @@ $(document).ready(function () {
  */
 function dropdownOpen() {
 
-	var $dropdownLi = $('li.dropdown');
+    var $dropdownLi = $('li.dropdown');
 
-	$dropdownLi.mouseover(function() {
-		$(this).addClass('open');
-	}).mouseout(function() {
-		
-		$(this).removeClass('open');
-	});
-	
-	  var $dropdownSpan=$('span.dropdown');
+    $dropdownLi.mouseover(function() {
+        $(this).addClass('open');
+    }).mouseout(function() {
+
+        $(this).removeClass('open');
+    });
+
+    var $dropdownSpan=$('span.dropdown');
     $dropdownSpan.mouseover(function() {
         $(this).addClass('gray-bg open');
-    }).mouseout(function() {    	   
-       $(this).removeClass('gray-bg open');
+    }).mouseout(function() {
+        $(this).removeClass('gray-bg open');
     });
-    
+
 }
 
 function dropdown_open(_this){
-   $(_this).addClass('gray-bg open');
+    $(_this).addClass('gray-bg open');
 }
 
 function dropdown_close(_this){
-   $(_this).removeClass('gray-bg open');
+    $(_this).removeClass('gray-bg open');
 }
 
 // For demo purpose - animation css script
@@ -197,83 +197,66 @@ function WinMove() {
 };
 
 //提交开始
-    function submitStart() {
-        layer.load();
-    }
-    //提交结束
-    function submitEnd(){
-        layer.closeAll('loading')
-    }
-    //提交失败
-    function submitFail(msg){
-        layer.alert(msg);
-    }
-    //ajax 提交函数，不带成功处理函数
-     function ajax(url,data_str){
-        
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:data_str,
-            dataType:"json",
-            async: false,
-            beforeSend: function () {
-                submitStart();
-            },
+function submitStart() {
+    layer.load();
+}
+//提交结束
+function submitEnd(){
+    layer.closeAll('loading')
+}
+//提交失败
+function submitFail(msg){
+    layer.alert(msg);
+}
+//简单ajax函数
+function ajax(url,data_str,success_func){
 
-            success: function (data) {
-                if(data["statusFlag"]==-1){
-                    
-                }else if(data["statusFlag"]==1){
-                    $.cookie("flag","true");
-                    flag=true;
-                }
-            },
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:data_str,
+        dataType:"json",
+    //    async: false,
 
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                submitFail(textStatus || errorThrown);
-                a=false;
-            },
+        success: function (data) {
+            success_func(data);
+        }
 
-            complete: function () {
-                submitEnd();
-            }
+    });
 
-        });
-       return false;
-    }
-    //ajax带成功处理函数
-     function ajax1(url,data_str,success_function){
-        var a=false;
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:data_str,
-            dataType:"json",
-         //contentType: "application/json; charset=utf-8",//(可以)
-          //  contentType: "text/xml",//(可以)
-           contentType:"application/x-www-form-urlencoded",//(可以)
-            async: false,
-            beforeSend: function () {
-                submitStart();
-            },
+}
+//ajax带成功处理函数
+function ajax1(url,data_str,success_function){
+    var a=false;
+    $.ajax({
+        url:url,
+        type:"POST",
+        data:data_str,
+        dataType:"json",
+        //contentType: "application/json; charset=utf-8",//(可以)
+        //  contentType: "text/xml",//(可以)
+        contentType:"application/x-www-form-urlencoded",//(可以)
+        async: false,
+        beforeSend: function () {
+            submitStart();
+        },
 
-            success: function(data){
+        success: function(data){
             success_function(data)
-            }, 
+        },
 
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                submitFail(textStatus || errorThrown);
-                a=false;
-            },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            submitFail(textStatus || errorThrown);
+            a=false;
+        },
 
-            complete: function () {
-                submitEnd();
-            }
+        complete: function () {
+            submitEnd();
+        }
 
-        });
-        return a;
-    }
+    });
+    return a;
+}
 //js获取项目根路径，如： http://localhost:8083/uimcardprj
 function getRootPath(){
     //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
@@ -289,42 +272,44 @@ function getRootPath(){
 }
 //json解析，有时候因为 fastjson生成的json数据带有$引用会出现查找不到的情况
 var FastJson={isArray:function(a){return"object"==typeof a&&"[object array]"==Object.prototype.toString.call(a).toLowerCase()},isObject:function(a){return"object"==typeof a&&"[object object]"==Object.prototype.toString.call(a).toLowerCase()},format:function(a){if(null==a)return null;"string"==typeof a&&(a=eval("("+a+")"));return this._format(a,a,null,null,null)},_randomId:function(){return"randomId_"+parseInt(1E9*Math.random())},_getJsonValue:function(a,c){var d=this._randomId(),b;b=""+("function "+d+"(root){")+("return root."+c+";");b+="}";b+="";var e=document.createElement("script");e.id=d;e.text=b;document.body.appendChild(e);d=window[d](a);e.parentNode.removeChild(e);return d},_format:function(a,c,d,b,e){d||(d="");if(this.isObject(c)){if(c.$ref){var g=c.$ref;0==g.indexOf("$.")&&(b[e]=this._getJsonValue(a,g.substring(2)));return}for(var f in c)b=d,""!=b&&(b+="."),g=c[f],b+=f,this._format(a,g,b,c,f)}else if(this.isArray(c))for(f in c)b=d,g=c[f],b=b+"["+f+"]",this._format(a,g,b,c,f);return a}};
- 
+//时间格式化
+Date.prototype.format=function(format){var o={"M+":this.getMonth()+1,"d+":this.getDate(),"h+":this.getHours(),"m+":this.getMinutes(),"s+":this.getSeconds(),"q+":Math.floor((this.getMonth()+3)/3),"S":this.getMilliseconds()};if(/(y+)/.test(format)){format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4-RegExp.$1.length))}for(var k in o){if(new RegExp("("+k+")").test(format)){format=format.replace(RegExp.$1,RegExp.$1.length==1?o[k]:("00"+o[k]).substr((""+o[k]).length))}}return format};
+
 //创建分页器
-function createPagination(page,pageCount){
+function createPagination(page,pageCount,obj){
     if(pageCount>1) {
         var html = "<ul class='pagination' >"
-            + "<li id='page_prev'><a href='javascript:;' title='上一页' onclick='DComment.goPage(-1)'>&laquo;</a></li>";
+            + "<li id='page_prev'><a href='javascript:;' title='上一页' onclick='"+obj+".goPage(-1)'>&laquo;</a></li>";
         if (pageCount <= 7) {
             for (var i = 1; i <= pageCount; i++) {
-                html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='"+obj+".goDirectPage(" + i + ")'>" + i + "</a></li>";
             }
         } else {
             if (page < 5) {
                 for (var i = 1; i <= 6; i++) {
-                    html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                    html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='"+obj+".goDirectPage(" + i + ")'>" + i + "</a></li>";
                 }
                 html += "<li class='disabled'><a >…</a></li>"
-                    + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+                    + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='"+obj+".goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
             } else if (page >= 5) {
 
-                html += "<li id='page1'><a href='javascript:;' title='第1页' onclick='DComment.goDirectPage(1)'>1</a></li>"
+                html += "<li id='page1'><a href='javascript:;' title='第1页' onclick='"+obj+".goDirectPage(1)'>1</a></li>"
                     + "<li class='disabled'><a >…</a></li>";
                 if (page >= pageCount - 5) {
                     for (var i = pageCount - 5; i <= pageCount; i++) {
-                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='"+obj+".goDirectPage(" + i + ")'>" + i + "</a></li>";
                     }
                 } else if (page < pageCount - 5) {
                     for (var i = page - 2; i <= page + 2; i++) {
-                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='DComment.goDirectPage(" + i + ")'>" + i + "</a></li>";
+                        html += "<li id='page" + i + "'><a href='javascript:;' title='第" + i + "页' onclick='"+obj+".goDirectPage(" + i + ")'>" + i + "</a></li>";
                     }
                     html += "<li class='disabled'><a >…</a></li>"
-                        + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='DComment.goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
+                        + "<li id='page" + pageCount + "'><a href='javascript:;' title='第" + pageCount + "页' onclick='"+obj+".goDirectPage(" + pageCount + ")'>" + pageCount + "</a></li>";
 
                 }
             }
         }
-        html += "<li id='page_next'><a href='javascript:;' title='下一页' onclick='DComment.goPage(1)'>&raquo;</a></li>"
+        html += "<li id='page_next'><a href='javascript:;' title='下一页' onclick='"+obj+".goPage(1)'>&raquo;</a></li>"
             + "</ul>";
         return html;
     }else{
@@ -332,3 +317,5 @@ function createPagination(page,pageCount){
     }
 
 }
+
+

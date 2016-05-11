@@ -25,3 +25,5 @@
 #set($Jarticle_comment="<script src='#rootUrl()/js/diary/article_comment.js'></script>")
 ##时间转换器
 #set($Jtime="<script src='#rootUrl()/js/plugins/time/time.js'></script>")
+##挂件
+#set($Jhanger="<script src='#rootUrl()/js/site/hanger.js'></script>")

@@ -52,5 +52,13 @@ public interface DUpvoteService {
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteDUpvote(DUpvoteDto dUpvoteDto);
+    /***
+     * 获取文章点赞数量
+     * @param dUpvoteDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-11下午7:47:24
+     */
+    public Integer getDUpvoteCount(DUpvoteDto dUpvoteDto);
 
 }

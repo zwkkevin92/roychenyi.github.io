@@ -53,7 +53,7 @@ public class WeatherVelocity extends VelocityTool{
 			return "";
 		}
 		StringBuffer  stringBuffer=new StringBuffer();
-		stringBuffer.append("<div class='weather-module' id='weather-module'><div class='other-info' id='weather-info'>");
+		stringBuffer.append("<div class='other-info' id='weather-info'>");
 		stringBuffer.append("<div class='shadow-wrapper city-wrapper' title='"+weather.getCity()+"' id='weather_city_name'>");
 		stringBuffer.append("<p class='city textoverflow'>"+weather.getCity()+"</p></div>");
 		stringBuffer.append("<div class='shadow-wrapper date-wrapper'><p class='date'>"+todayWeather.getDate()+" "+todayWeather.getWeather()+"</p></div></div>");

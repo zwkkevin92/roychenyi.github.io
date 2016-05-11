@@ -52,18 +52,19 @@ public class DDiaryServiceImpl implements DDiaryService {
     */
     @Override
     public DDiaryDto getDDiaryByID(DDiaryDto dDiaryDto){
-    	dDiaryDto= dDiaryDao.getDDiaryByID(dDiaryDto);
     //	int count=dDiaryDao.getDiaryCount(dDiaryDto);  //查询日志总数量
     	DDiaryDto dDiaryDto2  =dDiaryDao.getDiaryRow(dDiaryDto);      //查询所在行
     	int count=dDiaryDto2.getRows();
     	int row=dDiaryDto2.getRow();
     	int pageCount=count/10;
     	int page =row/10;
+    	dDiaryDto= dDiaryDao.getDDiaryByID(dDiaryDto);
     	dDiaryDto.setPageCount((count%10>0)?pageCount+1:pageCount);
     	dDiaryDto.setPage((row%10 > 0)?page+1:page);
-    //	dDiaryDto.setRows(count);
-    //	dDiaryDto.setRow(row);
-        return dDiaryDto;
+    	dDiaryDto.setRows(count);
+    	dDiaryDto.setRow(row);
+ //   	this.setDiaryCountInfo(dDiaryDto);
+    	return dDiaryDto;
     }
 
     /**
@@ -85,7 +86,7 @@ public class DDiaryServiceImpl implements DDiaryService {
     		list.get(0).setRows(count);
     		list.get(0).setPageCount((count%10>0)?pageCount+1:pageCount);
     	}
-        return dDiaryDao.getDDiaryList(dDiaryDto);
+        return list;
     }
 
     /**
@@ -158,7 +159,20 @@ public class DDiaryServiceImpl implements DDiaryService {
 		dDiaryDto.setReplyCount(replyCount);
 		//更新统计数据
 		dDiaryDao.updateDDiary(dDiaryDto);
-		return dDiaryDao.getCurrentDiarys(diaryDto);
+		//查询日志所在行和页数
+		DDiaryDto dDiaryDto2  =dDiaryDao.getDiaryRow(diaryDto);      //查询所在行
+		int count=dDiaryDto2.getRows();
+		int row=dDiaryDto2.getRow();
+		int pageCount=count/10;
+		int page =row/10;    	
+		List<DDiaryDto> list=dDiaryDao.getCurrentDiarys(diaryDto);
+		if(list!=null&&list.get(0)!=null){
+			list.get(0).setPageCount((count%10>0)?pageCount+1:pageCount);
+			list.get(0).setPage((row%10 > 0)?page+1:page);
+			list.get(0).setRows(count);
+			list.get(0).setRow(row);
+		}
+		return list;
 	}
 	@Override
 	 public DDiaryDto getPageInfo(DDiaryDto diaryDto){
@@ -215,4 +229,26 @@ public class DDiaryServiceImpl implements DDiaryService {
 		}
 		return pageCount;
 	}
+	 /***
+     * 设置diaryDto的相关计数信息，page,row,rows,pageCount
+     * 
+     * @author 陈义
+     * @date   2016-5-11下午3:58:32
+     */
+	 @Override
+	 public void setDiaryCountInfo(DDiaryDto dDiaryDto){
+		 DDiaryDto dDiaryDto2  =dDiaryDao.getDiaryRow(dDiaryDto);      //查询所在行
+	    	int count=dDiaryDto2.getRows();
+	    	int row=dDiaryDto2.getRow();
+	    	int pageCount=count/10;
+	    	int page =row/10;
+	    	dDiaryDto.setPageCount((count%10>0)?pageCount+1:pageCount);
+	    	dDiaryDto.setPage((row%10 > 0)?page+1:page);
+	    	dDiaryDto.setRows(count);
+	    	dDiaryDto.setRow(row);
+	 }
+	 @Override
+	 public Integer getDiaryCount(DDiaryDto dDiaryDto){
+		 return dDiaryDao.getDiaryCount(dDiaryDto);
+	 }
 }

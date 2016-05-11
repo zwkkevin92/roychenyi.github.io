@@ -48,6 +48,10 @@ public class DDiaryDto extends BeanBase{
     public DDiaryDto(){
 
     }
+    
+    public DDiaryDto(Integer diaryId){
+    	this.diaryId=diaryId;
+    }
 
     /** full constructor */
     public DDiaryDto(Integer diaryId,SysTypeDto sysTypeDto,UUserDto UUserDto,BSiteDto BSiteDto,DCatalogDto DCatalogDto,String title,String content,String txt,Integer diarySize,Integer replyCount,Integer viewCount,Integer upvoteCount,Integer favoriteCount,Short clientType,String clientIp,String clientAgent,Timestamp writeTime,Timestamp lastReadTime,Timestamp lastReplyTime,Timestamp modifyTime,Short replyNotify,Short moodLevel,Short locked,Short contribute,Short role,String tag,Integer annexId,Integer ext1,Integer ext2,Integer ext3,Integer ext4){super();

@@ -51,5 +51,13 @@ public interface DFavoriteService {
     */
     
     public Integer deleteDFavorite(DFavoriteDto dFavoriteDto);
+    /***
+     * 获取文章收藏数量
+     * @param dFavoriteDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-11下午7:45:37
+     */
+    public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto);
 
 }

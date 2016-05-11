@@ -19,9 +19,12 @@
 <!--挂件-->
 <div id="hanger" class="blog_hanger">
 	<!-- 天气 -->
-	#if($weatherTool.getTodayWeather($request))
+	<div class='weather-module' id='weatherModule'>
+#**	#if($weatherTool.getTodayWeather($request))
 		$weatherTool.getTodayWeather($request)
-		#end
+#end
+*#
+	</div>
 </div>
                         <div class="blog_titil">
 							<div>#if($author.username==$user.username) 
@@ -66,6 +69,7 @@
 <!-- Custom and plugin javascript -->
 <script src="#rootUrl()/js/plugins/pace/pace.min.js"></script>
 <script src="#rootUrl()/js/main.js"></script>
+<script src='#rootUrl()/js/site/hanger.js'></script>
 #if($author.username==$user.username)
 	<script src='#rootUrl()/js/plugins/cropper/cropper.min.js'></script>
 	<script src='#rootUrl()/js/plugins/cropper/cropper-tool.js'></script>

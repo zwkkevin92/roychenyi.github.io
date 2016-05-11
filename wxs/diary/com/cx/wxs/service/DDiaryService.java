@@ -86,4 +86,19 @@ public interface DDiaryService {
      * @return
      */
     public Integer getPageByLike(DDiaryDto diaryDto);
+    /***
+     * 设置diaryDto的相关计数信息，page,row,rows,pageCount
+     * 
+     * @author 陈义
+     * @date   2016-5-11下午3:58:32
+     */
+    public void setDiaryCountInfo(DDiaryDto diaryDto);
+    /***
+     * 获取日志数量
+     * @param dDiaryDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-11下午4:36:54
+     */
+    public Integer getDiaryCount(DDiaryDto dDiaryDto); 
 }

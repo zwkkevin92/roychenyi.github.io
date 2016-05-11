@@ -77,4 +77,13 @@ public class DUpvoteServiceImpl implements DUpvoteService {
         return dUpvoteDao.deleteDUpvote(dUpvoteDto);
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DUpvoteService#getDUpvoteCount(com.cx.wxs.dto.DUpvoteDto)
+	 */
+	@Override
+	public Integer getDUpvoteCount(DUpvoteDto dUpvoteDto) {
+		// TODO Auto-generated method stub
+		return dUpvoteDao.getDUpvoteCount(dUpvoteDto);
+	}
+
 }

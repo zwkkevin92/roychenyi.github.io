@@ -244,19 +244,25 @@ public class DiaryAction extends BaseDiaryAction{
 		}
 		return  diaryDto;
 	}
-	@RequestMapping(value="/")
+	@RequestMapping(value="")
 	public ModelAndView articlePage(@PathVariable("vip") String vip,Integer page,
-			HttpServletRequest request,HttpServletResponse response){
+			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
 		ModelAndView mv=new ModelAndView("diary/d_list");
 		UUserDto userDto=getUserDtoByNickname(vip);
 		if(userDto==null){
 			mv.setViewName("404");
-		}else{
+		}else{			
 			//获取日志列表
-			DDiaryDto diaryDto=new DDiaryDto();
+		//	DDiaryDto diaryDto=new DDiaryDto();
 			diaryDto.setUUserDto(userDto);
 			if(page!=null){
-			    diaryDto.setPage(page);	
+				int count=diaryService.getDiaryCount(diaryDto);
+				//考虑用户删除了日志，日志总数少于客户端显示数量
+				if(page>count){   
+			        diaryDto.setPage(count);
+				}else{
+					diaryDto.setPage(page);	
+				}
 			}else{
 				diaryDto.setPage(1);
 			}
@@ -270,7 +276,7 @@ public class DiaryAction extends BaseDiaryAction{
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
 			this.getDcatolog(catalogDto, mv);
-			mv.addObject("page",diaryDto);
+		//	mv.addObject("page",diaryDto);
 			mv.addObject("author", userDto);
 			mv.addObject("diarys",diaryDtos);
 
@@ -286,7 +292,13 @@ public class DiaryAction extends BaseDiaryAction{
 		UUserDto author=this.getUserDtoByNickname(vip);
 		diaryDto.setUUserDto(author);
 		diaryDto.setRows(10);
-		diaryDto.setPage(page);
+		int count=diaryService.getDiaryCount(diaryDto);
+		//考虑用户删除了日志，日志总数少于客户端显示数量
+		if(page>count){   
+	        diaryDto.setPage(count);
+		}else{
+			diaryDto.setPage(page);	
+		}
 		dDiaryDtos=diaryService.getDDiaryList(diaryDto);
 		return dDiaryDtos;
 	}
@@ -393,20 +405,29 @@ public class DiaryAction extends BaseDiaryAction{
 	@ResponseBody
 	public DDiaryDto  articleDelete(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
+		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto==null||!userDto.getNickname().equals(vip)){
+			diaryDto.setStatusFlag("-2");
+			return diaryDto;
+		}
 		diaryDto.setDiaryId(diaryId);
-		Date date=new Date();
+		diaryDto.setUUserDto(userDto);
 		diaryDto=diaryService.getDDiaryByID(diaryDto);
+		Date date=new Date();
 		diaryDto.setRole((short)-1);
 		diaryDto.setModifyTime(new Timestamp(date.getTime()));
 		if(diaryService.updateDDiary(diaryDto)>0){
 			diaryDto.setStatusFlag("1");
 			String basePath=RequestUtils.getDomain(request);
-			String url=basePath+"/"+vip+"/article/article_list";
-			Cookie cookie= RequestUtils.getCookie(request, "page");
+			String url=basePath+"/"+vip+"/article/";
+			if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
+				url+="?page="+diaryDto.getPage();
+			}
+			/*Cookie cookie= RequestUtils.getCookie(request, "page");
 			if(cookie!=null&&!cookie.getValue().equals("1")){
 				int page=Integer.parseInt(cookie.getValue());
 				url+="?page="+page;
-			}
+			}*/
 			diaryDto.setUrl(url);
 		}else{
 			diaryDto.setStatusFlag("-1");

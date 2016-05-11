@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cx.wxs.action.BaseDiaryAction;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DFavoriteDto;
+import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.UUserDto;
+import com.cx.wxs.po.DReply1;
 import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.DFavoriteService;
+import com.cx.wxs.service.DReply1Service;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.UUserService;
 
@@ -33,6 +36,8 @@ public class ArticleToolAction extends BaseDiaryAction{
 	private DUpvoteService upvoteService;
 	@Resource
 	private DFavoriteService favoriteService;
+	@Resource
+	private DReply1Service reply1Service;
 	@Resource
 	private UUserService userService;
 	@Resource
@@ -157,6 +162,51 @@ public class ArticleToolAction extends BaseDiaryAction{
 			}
 		}
 		return diaryDto;
+	}	
+	/**
+	 * 获取文章点赞数量
+	 * @param vip  用户昵称
+	 * @param diaryId 文章id
+	 * @param request
+	 * @param reqResponse
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-11下午7:56:21
+	 */
+	@RequestMapping(value="/details/{diaryId}/upvoteCount")
+	@ResponseBody
+	public DDiaryDto updateUpvoteCount(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse){
+		DDiaryDto dDiaryDto=new DDiaryDto(diaryId);
+		DUpvoteDto upvoteDto=new DUpvoteDto();
+		upvoteDto.setDDiaryDto(dDiaryDto);
+	    int count=upvoteService.getDUpvoteCount(upvoteDto);
+		dDiaryDto.setUpvoteCount(count);
+		diaryService.updateDDiary(dDiaryDto);
+		return dDiaryDto;
 	}
-
+	@RequestMapping(value="/details/{diaryId}/favoriteCount")
+	@ResponseBody
+	public DDiaryDto updateFavoriteCount(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse){
+		DDiaryDto dDiaryDto=new DDiaryDto(diaryId);
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		favoriteDto.setDDiaryDto(dDiaryDto);
+		int count=favoriteService.getDFavoriteCount(favoriteDto);
+		dDiaryDto.setFavoriteCount(count);
+		diaryService.updateDDiary(dDiaryDto);
+		return dDiaryDto;
+	}
+	@RequestMapping(value="/details/{diaryId}/commentCount")
+	@ResponseBody	
+	public DDiaryDto updateCommentCount(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse){
+		DDiaryDto dDiaryDto=new DDiaryDto(diaryId);
+		DReply1Dto dReply1Dto=new DReply1Dto();
+		dReply1Dto.setDDiaryDto(dDiaryDto);
+		int count=reply1Service.getDReply1Count(dReply1Dto);
+		dDiaryDto.setReplyCount(count);
+		diaryService.updateDDiary(dDiaryDto);
+		return dDiaryDto;
+	}
 }

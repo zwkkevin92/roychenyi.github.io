@@ -78,4 +78,13 @@ public class DFavoriteServiceImpl implements DFavoriteService {
         return dFavoriteDao.deleteDFavorite(dFavoriteDto);
     }
 
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DFavoriteService#getDFavoriteCount(com.cx.wxs.dto.DFavoriteDto)
+	 */
+	@Override
+	public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto) {
+		// TODO Auto-generated method stub
+		return dFavoriteDao.getDFavoriteCount(dFavoriteDto);
+	}
+
 }

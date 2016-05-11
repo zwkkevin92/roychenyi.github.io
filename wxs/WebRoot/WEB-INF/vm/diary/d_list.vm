@@ -27,7 +27,10 @@
          <div class="ibox-content">
              <div class="row">
                 <div class="col-md-9">
-
+					<div id="diary_list">
+						#if($diarys)
+						<input id="page" type="hidden" value="$diarys[0].page">
+						<input id="pageCount" type="hidden" value="$diarys[0].pageCount">
                     <ul class="list-group">
                         #foreach($diary in $diarys)
                         <li class="list-group-item"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
@@ -44,9 +47,14 @@
                         </li>
                         #end
                     </ul>
-
+									
+					</div>
+					<!--文章分页-->
+					<div id="diary_pagination" class="text-center" data-url="#rootUrl/$author.nickname/article/article_list"></div>
+					#end
                 </div>
                 <div class="col-md-3">
+					#if($catalogs)
                     <ul class="list-group">
 						<li class="list-group-item"><h4 class="list-group-item-heading text-info">文章分类</h4></li>
                         #foreach($catalog in $catalogs)
@@ -57,7 +65,7 @@
 						#end
 						#end
                     </ul>
-
+					#end
                 </div>
              </div>
             </div>

@@ -142,7 +142,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
         // TODO Auto-generated method stub
         if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null){
            StringBuffer stringBuffer =new StringBuffer(DbType.UPDATE.toString());
-           String[] fl = new String[]{"uid"};//过滤掉的字段
+           String[] fl = new String[]{"uid","diaryId","clientType","clientIp","clientAgent"};//过滤掉的字段
            Map<String, Object> map = dDiaryDto.createSetPropertiesVal(dDiaryDto, "a", fl);
            Map<String, Object> params = (Map<String, Object>) map.get(StringUtils.PARAMS);
            stringBuffer.append(" from "+DDiary.class.getName()+" a");
@@ -343,7 +343,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 		if(dDiaryDto!=null&&dDiaryDto.getDiaryId()!=null&&dDiaryDto.getUUserDto()!=null){
 			Map<String,Object> params=new HashMap<String, Object>();
 			StringBuffer stringBuffer = new StringBuffer("from "+DDiary.class.getName()+" a where 1=1");
-			stringBuffer.append(" and a.UUser.userI=:userId");
+			stringBuffer.append(" and a.UUser.userId=:userId");
 			params.put("userId",dDiaryDto.getUUserDto().getUserId());
 			//分类
 			if(dDiaryDto.getDCatalogDto()!=null){

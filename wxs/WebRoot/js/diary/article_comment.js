@@ -240,7 +240,7 @@ DComment.addPagination=function(page,pageCount){
   //  var page= Number($('#commentPage').val());
  //   var pageCount=Number($('#page').val());
     if(pageCount>1) {
-         var html=createPagination(page,pageCount);
+         var html=createPagination(page,pageCount,'DComment');
         $('#comment_pagination').html(html);
         if(page==1){
             $('#page_prev').addClass("disabled")
