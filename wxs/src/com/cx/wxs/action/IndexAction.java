@@ -159,10 +159,11 @@ public class IndexAction {
 				mv.setViewName("404");
 			}else{
 				mv.setViewName("user/main");
+				//获取用户的文章
 				DDiaryDto dDiaryDto = new DDiaryDto();
 				dDiaryDto.setUUserDto(userDto);
-				dDiaryDto.setRows(10);//默认一页显示10行
-				mv.addObject("diaryList", dDiaryService.getDDiaryPreList(dDiaryDto));
+			//	dDiaryDto.setRows(10);//默认一页显示10行
+			//	mv.addObject("diaryList", dDiaryService.getDDiaryList(dDiaryDto));
 				mv.addObject("author",userDto);
 			}
 		}

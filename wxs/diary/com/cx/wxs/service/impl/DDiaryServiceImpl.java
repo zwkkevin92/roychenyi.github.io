@@ -84,7 +84,8 @@ public class DDiaryServiceImpl implements DDiaryService {
     		list.get(0).setRows(count);
     		list.get(0).setPageCount((count%10>0)?pageCount+1:pageCount);
     	}
-        return list;
+    	
+        return this.getPreview(list);
     }
 
     /**
@@ -183,13 +184,13 @@ public class DDiaryServiceImpl implements DDiaryService {
 	@Override
 	public List<DDiaryDto> getDDiaryPreList(DDiaryDto diaryDto) {
 		List<DDiaryDto> list = dDiaryDao.getDDiaryList(diaryDto);
-		return getPreview(list,0,0);
+		return getPreview(list);
 	}
 	@Override
 	public List<DDiaryDto> getDiaryByLikeTitleOrContent(DDiaryDto diaryDto) {
 		Integer pageCount = getPageByLike(diaryDto);
 		List<DDiaryDto> list = dDiaryDao.getDiaryByLikeTitleOrContent(diaryDto);
-		return getPreview(list,pageCount,diaryDto.getPage());
+		return getPreview(list);
 	}
 	/**
 	 * 获取内容摘要的工具类
@@ -197,7 +198,7 @@ public class DDiaryServiceImpl implements DDiaryService {
 	 * @param num
 	 * @return
 	 */
-	public List<DDiaryDto> getPreview(List<DDiaryDto> source,int pageCount,int page){
+	public List<DDiaryDto> getPreview(List<DDiaryDto> source){
 		/*List<DDiaryDto> result = null;
 		if(source != null&&!source.isEmpty()){
 			result = new ArrayList<DDiaryDto>();
@@ -243,6 +244,7 @@ public class DDiaryServiceImpl implements DDiaryService {
 	    	dDiaryDto.setRows(count);
 	    	dDiaryDto.setRow(row);
 	 }
+	 //获取文章数量
 	 @Override
 	 public Integer getDiaryCount(DDiaryDto dDiaryDto){
 		 return dDiaryDao.getDiaryCount(dDiaryDto);

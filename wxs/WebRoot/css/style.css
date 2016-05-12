@@ -6614,7 +6614,7 @@ body.skin-3 {
     position: fixed;
     z-index: 14;
     bottom: 60px;
-    right: 15px;
+    right: 5%;
     color: transparent;
     background-color:#D3AD6C; /* #e6e6e6; */
     overflow: hidden;

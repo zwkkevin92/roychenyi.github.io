@@ -232,7 +232,7 @@ function ajax(url,data_str,success_func){
         type:"POST",
         data:data_str,
         dataType:"json",
-    //    async: false,
+        async: false,
 
         success: function (data) {
             success_func(data);

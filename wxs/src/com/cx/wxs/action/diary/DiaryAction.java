@@ -294,7 +294,9 @@ public class DiaryAction extends BaseDiaryAction{
 		diaryDto.setRows(10);
 		int count=diaryService.getDiaryCount(diaryDto);
 		//考虑用户删除了日志，日志总数少于客户端显示数量
-		if(page>count){   
+		if(page==null||page<1){
+			page=1;
+		}else if(page>count){   
 	        diaryDto.setPage(count);
 		}else{
 			diaryDto.setPage(page);	

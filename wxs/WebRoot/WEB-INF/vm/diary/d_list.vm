@@ -1,5 +1,5 @@
 #set($layout = "layout/user/l_user.vm")
-#set($page_title="文章列表-"+"$user.nickname")
+#set($page_title="文章列表-"+"$author.nickname")
 #parse("conf/js.vm")
 #set($extjs=$Jlayer+$Jarticle_tool)
 
