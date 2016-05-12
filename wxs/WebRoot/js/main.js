@@ -94,8 +94,8 @@ $(document).ready(function () {
             $('#gotop').css('display','none');
         }
        // var top=$('#leftMenu').offset().top;
-        var top=$('#leftMenu').position().top;
-        var top1=$('#leftMenu').offset().top;
+      //  var top=$('#leftMenu').position().top;
+      //  var top1=$('#leftMenu').offset().top;
       /*  if(scrollTop>top1){
             var navbarH=$('#navbar').height();
             var width=$('#leftMenu').width();
@@ -108,7 +108,7 @@ $(document).ready(function () {
         }else{
             $('#leftMenu>div').removeAttr('style');
         }*/
-        $('#gotop').append("left位置："+top+"height:"+$('#navbar').height());
+     //   $('#gotop').append("left位置："+top+"height:"+$('#navbar').height());
     });
 
 

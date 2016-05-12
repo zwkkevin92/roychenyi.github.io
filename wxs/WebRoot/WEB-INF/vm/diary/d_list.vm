@@ -7,21 +7,7 @@
 <div class="row">
     <div class="ibox">
         <div class="ibox-title">
-			 #if($user.userId==$author.userId)
-            <div class="navbar-collapse collapse ">
-                <ul class="nav navbar-nav no-padding">
-                    <li class="active"><a href="">我的文章</a></li>
-                    <li><a>私密文章</a></li>
-                    <li><a href="#rootUrl()/$user.nickname/article/article_add">写文章</a></li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li><a>草稿箱</a></li>
-                    <li><a>回收站</a></li>
-                </ul>
-            </div>
-			#else
-				<h4>文章</h4>
-			#end
+			#parse("layout/diary/l_article_menu.vm")
 </div>
 
          <div class="ibox-content">
@@ -31,6 +17,7 @@
 						#if($diarys)
 						<input id="page" type="hidden" value="$diarys[0].page">
 						<input id="pageCount" type="hidden" value="$diarys[0].pageCount">
+						<input id="role" type="hidden" value="$role">
                     <ul class="list-group">
                         #foreach($diary in $diarys)
                         <li class="list-group-item"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
@@ -39,8 +26,9 @@
 							<a class="dropdown-toggle active" href="#rootUrl()/$author.nickname/article/article_edite/$diary.diaryId" data-toggle="data-toggle">编辑<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li id="d_modify"><a href="#rootUrl()/$author.nickname/article/article_edite/$diary.diaryId">编辑</a></li>
-                                            <li id="d_delete"><a data-url="#rootUrl()/$author.nickname/article/article_delete/$diary.diaryId" href="javascript:;">删除</a></li>
-                                            <li><a>转为私密文章</a></li>
+                                            <li id="d_toTrash"><a data-url="#rootUrl()/$author.nickname/article/totrash/$diary.diaryId" href="javascript:;">删除</a></li>
+                                            <li id="d_delete"><a data-url="#rootUrl()/$author.nickname/article/todelete/$diary.diaryId" href="javascript:;">彻底删除</a></li>
+											<li id="d_private"><a data-url="#rootUrl()/$author.nickname/article/toprivate/$diary.diaryId" href="javascript:;">转为私密文章</a></li>
                                         </ul></span>
                             #end
                             <div class="pull-right">$date.format('yyyy/MM/dd',$diary.writeTime)&nbsp;($diary.replyCount/$diary.viewCount)</div>
@@ -48,12 +36,13 @@
                         #end
                     </ul>
 									
+					#end
 					</div>
 					<!--文章分页-->
 					<div id="diary_pagination" class="text-center" data-url="#rootUrl/$author.nickname/article/article_list"></div>
-					#end
                 </div>
                 <div class="col-md-3">
+					<div id="catalog">
 					#if($catalogs)
                     <ul class="list-group">
 						<li class="list-group-item"><h4 class="list-group-item-heading text-info">文章分类</h4></li>
@@ -61,11 +50,12 @@
 						#if($catalog.catalogName=="全部文章")	
 						<li class="list-group-item"><span>$catalog.catalogName</span><span class="pull-right">($catalog.articleCount)</span></li>	
 						#else							
-                        <li class="list-group-item"><a><span>$catalog.catalogName</span><span class="pull-right">($catalog.articleCount)</span></a></li>
+                        <li id="$catalog.catalogId" class="list-group-item"><a><span>$catalog.catalogName</span><span class="pull-right">($catalog.articleCount)</span></a></li>
 						#end
 						#end
                     </ul>
 					#end
+					</div>
                 </div>
              </div>
             </div>

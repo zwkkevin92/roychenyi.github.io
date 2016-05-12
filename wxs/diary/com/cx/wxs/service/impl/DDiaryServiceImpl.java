@@ -209,10 +209,14 @@ public class DDiaryServiceImpl implements DDiaryService {
 				result.add(dDiaryDto);
 			}
 		}*/
+		if(source!=null){
 		for(int i=0;i<source.size();i++){
 			source.get(i).setContent(HTMLutil.preview(source.get(i).getContent(), 300));
 		}
 		return source;
+		}else{
+			return null;
+		}
 	}
 
 	@Override

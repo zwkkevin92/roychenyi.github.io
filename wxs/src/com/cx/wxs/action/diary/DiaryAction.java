@@ -31,6 +31,7 @@ import com.cx.wxs.dto.DReply1Dto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
+import com.cx.wxs.enums.DiaryRole;
 import com.cx.wxs.po.DAccess;
 import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.BSiteService;
@@ -209,7 +210,7 @@ public class DiaryAction extends BaseDiaryAction{
 			diaryDto.setContribute(contribute);
 			diaryDto.setBSiteDto(userDto.getBSiteDto());
 			diaryDto.setUUserDto(userDto);
-
+			diaryDto.setRole((short)2);
 			diaryDto.setWriteTime(new Timestamp(date.getTime()));
 			if(diaryDto.getDiaryId()!=null){
 				diaryDto.setExt2(diaryDto.getDiaryId());
@@ -245,15 +246,18 @@ public class DiaryAction extends BaseDiaryAction{
 		return  diaryDto;
 	}
 	@RequestMapping(value="")
-	public ModelAndView articlePage(@PathVariable("vip") String vip,Integer page,
+	public ModelAndView articlePage(@PathVariable("vip") String vip,Integer page,Integer role,
 			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
 		ModelAndView mv=new ModelAndView("diary/d_list");
 		UUserDto userDto=getUserDtoByNickname(vip);
 		if(userDto==null){
 			mv.setViewName("404");
 		}else{			
-			//获取日志列表
 		//	DDiaryDto diaryDto=new DDiaryDto();
+			//获取文章访问权限
+			role=this.getDiaryRole(role, userDto, request);
+			diaryDto.setRole(Short.parseShort(role.toString()));
+			//获取日志列表
 			diaryDto.setUUserDto(userDto);
 			if(page!=null){
 				int count=diaryService.getDiaryCount(diaryDto);
@@ -267,7 +271,9 @@ public class DiaryAction extends BaseDiaryAction{
 				diaryDto.setPage(1);
 			}
 			diaryDto.setRows(10);
+			/*if(diaryDto.getRole()!=null){
 			diaryDto.setRole((short)1);
+			}*/
 			List<DDiaryDto> diaryDtos=diaryService.getDDiaryList(diaryDto);
 			//分页信息
 			diaryDto=diaryService.getPageInfo(diaryDto);
@@ -276,7 +282,9 @@ public class DiaryAction extends BaseDiaryAction{
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
 			this.getDcatolog(catalogDto, mv);
-		//	mv.addObject("page",diaryDto);
+		    if(role!=null){
+		    	mv.addObject("role",role);
+		    }
 			mv.addObject("author", userDto);
 			mv.addObject("diarys",diaryDtos);
 
@@ -286,7 +294,7 @@ public class DiaryAction extends BaseDiaryAction{
 	 
 	@RequestMapping(value="/article_list") 
 	@ResponseBody
-	public List<DDiaryDto> articleList(@PathVariable("vip") String vip,Integer page,
+	public List<DDiaryDto> articleList(@PathVariable("vip") String vip,Integer page,Integer role,
 			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
 		List<DDiaryDto> dDiaryDtos=new ArrayList<DDiaryDto>();
 		UUserDto author=this.getUserDtoByNickname(vip);
@@ -301,6 +309,9 @@ public class DiaryAction extends BaseDiaryAction{
 		}else{
 			diaryDto.setPage(page);	
 		}
+		//获取文章访问权限
+		role=this.getDiaryRole(role, author, request);
+		diaryDto.setRole(Short.parseShort(role.toString()));
 		dDiaryDtos=diaryService.getDDiaryList(diaryDto);
 		return dDiaryDtos;
 	}
@@ -392,49 +403,22 @@ public class DiaryAction extends BaseDiaryAction{
 		mv.addObject("author", author);		
 		return mv;
 	}
-	/***
-	 * 删除日志（移动到回收站）
+	/**
+	 * 用户收藏 
 	 * @param vip
-	 * @param diaryId
+	 * @param page
+	 * @param role
 	 * @param request
-	 * @param reqResponse
+	 * @param response
 	 * @param diaryDto
 	 * @return
 	 * @author 陈义
-	 * @date   2016-4-16下午4:17:28
+	 * @date   2016-5-12下午11:30:03
 	 */
-	@RequestMapping(value="/article_delete/{diaryId}")
-	@ResponseBody
-	public DDiaryDto  articleDelete(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
-			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
-		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
-		if(userDto==null||!userDto.getNickname().equals(vip)){
-			diaryDto.setStatusFlag("-2");
-			return diaryDto;
-		}
-		diaryDto.setDiaryId(diaryId);
-		diaryDto.setUUserDto(userDto);
-		diaryDto=diaryService.getDDiaryByID(diaryDto);
-		Date date=new Date();
-		diaryDto.setRole((short)-1);
-		diaryDto.setModifyTime(new Timestamp(date.getTime()));
-		if(diaryService.updateDDiary(diaryDto)>0){
-			diaryDto.setStatusFlag("1");
-			String basePath=RequestUtils.getDomain(request);
-			String url=basePath+"/"+vip+"/article/";
-			if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
-				url+="?page="+diaryDto.getPage();
-			}
-			/*Cookie cookie= RequestUtils.getCookie(request, "page");
-			if(cookie!=null&&!cookie.getValue().equals("1")){
-				int page=Integer.parseInt(cookie.getValue());
-				url+="?page="+page;
-			}*/
-			diaryDto.setUrl(url);
-		}else{
-			diaryDto.setStatusFlag("-1");
-		}
-		return diaryDto;
+	@RequestMapping(value="/favorite") 
+	public List<DDiaryDto> toFavoritePage(@PathVariable("vip") String vip,Integer page,Integer role,
+			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
+		return null;
 	}
 
 }

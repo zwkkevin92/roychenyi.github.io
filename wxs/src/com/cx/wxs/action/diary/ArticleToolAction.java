@@ -24,6 +24,7 @@ import com.cx.wxs.service.DFavoriteService;
 import com.cx.wxs.service.DReply1Service;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.UUserService;
+import com.cx.wxs.utils.RequestUtils;
 
 /**
  * @author 陈义
@@ -54,7 +55,7 @@ public class ArticleToolAction extends BaseDiaryAction{
 	 * @author 陈义
 	 * @date   2016-4-16下午4:18:21
 	 */
-	@RequestMapping(value="/article_upvote/{diaryId}")
+	@RequestMapping(value="/toupvote/{diaryId}")
 	@ResponseBody
 	public DDiaryDto articleUpvote(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto,DUpvoteDto upvoteDto){
@@ -115,7 +116,7 @@ public class ArticleToolAction extends BaseDiaryAction{
 	 * @author 陈义
 	 * @date   2016-4-16下午4:18:42
 	 */
-	@RequestMapping(value="/article_favorite/{diaryId}")
+	@RequestMapping(value="/tofavorite/{diaryId}")
 	@ResponseBody
 	public DDiaryDto articleFavorite(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto,DFavoriteDto favoriteDto){
@@ -162,7 +163,75 @@ public class ArticleToolAction extends BaseDiaryAction{
 			}
 		}
 		return diaryDto;
-	}	
+	}
+	@RequestMapping(value="/totrash/{diaryId}")
+	@ResponseBody
+	public DDiaryDto articleToTrash(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
+		
+		diaryDto.setDiaryId(diaryId);
+//		diaryDto.setUUserDto(userDto);
+        diaryDto=this.updateDiaryRole(diaryDto, (short)-1, request);
+        
+		return diaryDto;
+	}
+	/***
+	 * 彻底删除日志（把role改为-2）
+	 * @param vip
+	 * @param diaryId
+	 * @param request
+	 * @param reqResponse
+	 * @param diaryDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-4-16下午4:17:28
+	 */
+	@RequestMapping(value="/todelete/{diaryId}")
+	@ResponseBody
+	public DDiaryDto  articleDelete(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
+	
+		diaryDto.setDiaryId(diaryId);
+		diaryDto=this.updateDiaryRole(diaryDto, (short)-2, request);
+		//返回回收站
+		diaryDto.setUrl(diaryDto.getUrl()+"&role=-1");
+		return diaryDto;
+	}
+	@RequestMapping(value="/toprivate/{diaryId}")
+	@ResponseBody
+	public DDiaryDto articleToPrivate(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
+	/*	UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto==null||!userDto.getNickname().equals(vip)){
+			diaryDto.setStatusFlag("-2");
+			return diaryDto;
+		}*/
+		diaryDto.setDiaryId(diaryId);
+		diaryDto=this.updateDiaryRole(diaryDto, (short)0, request);
+		//返回私密日志列表
+		diaryDto.setUrl(diaryDto.getUrl()+"&role=0");
+		return diaryDto;
+	}
+	@RequestMapping(value="/tocommen/{diaryId}")
+	@ResponseBody
+	public DDiaryDto artivleToCommen(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
+		diaryDto.setDiaryId(diaryId);
+		diaryDto=this.updateDiaryRole(diaryDto, (short)0, request);
+		//返回私密日志列表
+		diaryDto.setUrl(diaryDto.getUrl()+"&role=1");
+		return diaryDto;
+	}
+	/***
+	 * 获取文章的相关计数
+	 * @param vip
+	 * @param diaryId
+	 * @param request
+	 * @param reqResponse
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-12下午7:06:10
+	 */
 	@RequestMapping(value="/details/{diaryId}/infoCount")
 	@ResponseBody
 	public DDiaryDto updateInfoCount(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,

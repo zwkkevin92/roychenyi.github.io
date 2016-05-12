@@ -1,5 +1,7 @@
 package com.cx.wxs.action;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +20,7 @@ import com.cx.wxs.dto.DFavoriteDto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
+import com.cx.wxs.enums.DiaryRole;
 import com.cx.wxs.service.BConfigService;
 import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.DDiaryService;
@@ -200,6 +203,91 @@ public class BaseDiaryAction extends BaseAction{
 	public void reduceDCommentCount(DDiaryDto diaryDto){
 		diaryDto.setReplyCount(diaryDto.getReplyCount()-1);
 		diaryService.updateDDiary(diaryDto);
+	}
+	/**
+	 * 文章访问权限管理 
+	 * @param role
+	 * @param userDto
+	 * @param request
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-12下午8:47:20
+	 */
+	public Integer getDiaryRole(Integer role,UUserDto userDto,HttpServletRequest request){
+		//如果role为空，则是访问公开日志
+		if(role==null){
+			role=1;
+		}
+		//游客或者是普通用户，只能访问公开文章
+		UUserDto userDto2=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto2==null){
+			role=1;
+		}else if(!userDto2.getNickname().equals(userDto.getNickname())&&!userDto2.getRoleId().equals(0)){				
+				role=1;				
+		}
+		//如果role不是指定权限,那么role=1
+		DiaryRole[] roles=DiaryRole.values();
+		int i=roles.length;
+		for(DiaryRole DR:roles){
+			Integer a=Integer.parseInt(DR.toString());
+			if(role.equals(a)){
+				break;
+			}else{
+				i--;
+			}
+		}
+		if(i<1){
+			role=1;
+		}
+		//不是超级管理员，不能访问role=-2的文章（即管理员有权限浏览彻底删除的文章）
+		if(role==-2&&!userDto.getRoleId().equals(0)){
+			role=1;
+		}
+		return role;
+	}
+	//查看用户是否权限进行修改
+	public boolean getUserRole(HttpServletRequest request,String nickname){
+		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto==null||!userDto.getNickname().equals(nickname)){
+			return false;
+		}else{
+		return true;
+		}
+	}
+	/***
+	 * 更新文章的权限状态
+	 * @param diaryDto
+	 * @param role
+	 * @param request
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-12下午8:56:26
+	 */
+	public DDiaryDto updateDiaryRole(DDiaryDto diaryDto,short role,HttpServletRequest request){
+		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");		
+		diaryDto=diaryService.getDDiaryByID(diaryDto);
+		if(diaryDto==null){
+			diaryDto=new DDiaryDto();
+			diaryDto.setStatusFlag("-1");
+		}else if(!userDto.getUserId().equals(diaryDto.getUUserDto().getUserId())){
+			diaryDto.setStatusFlag("-2");
+		}else{
+		Date date=new Date();
+		diaryDto.setModifyTime(new Timestamp(date.getTime()));
+		diaryDto.setRole(role);
+		if(diaryService.updateDDiary(diaryDto)>0){
+			diaryDto.setStatusFlag("1");
+			String basePath=RequestUtils.getDomain(request);
+			String url=basePath+"/"+diaryDto.getUUserDto().getNickname()+"/article?time="+date.getTime();
+			if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
+				url+="&page="+diaryDto.getPage();
+			}
+			diaryDto.setUrl(url);
+		}else{
+			diaryDto.setStatusFlag("-1");
+		}
+		}
+		return diaryDto;
 	}
 
 }

@@ -244,7 +244,7 @@ public class UserAction {
 		userDto.setPassword(password);
 		int popedom=(int)((Math.random()*9+1)*100000);
 		userDto.setPopedom(popedom);
-		userDto.setRoleId(0);
+		userDto.setRoleId(2);
 		if(uuService.addUuser(userDto)>0){
 			StringBuffer url = request.getRequestURL();  
 			String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append(request.getServletContext().getContextPath()).append("/").toString(); 

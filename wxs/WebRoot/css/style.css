@@ -4634,7 +4634,7 @@ dd.project-people {
     right:10px;
     bottom:10px;
 }
-
+/* article */
 .article h1 {
     font-size: 48px;
     font-weight: 700;
@@ -4703,6 +4703,9 @@ dd.project-people {
     background-color: #000000; /* 背景色 */
     color: #f8ac59; /* 文字颜色 */
     text-decoration: none; /* 不显示超链接下划线 */
+}
+#diary_list ul li:nth-child(even){
+    background-color: #fafafa;
 }
 /* Weather 天气模块 */
 .weather-module .other-info {
@@ -6605,18 +6608,49 @@ body.skin-3 {
 .echarts {
     height: 240px;
 }
-
-/*回到顶部*/
-#gotop{
-    height:40px;
-    width:40px;
-    display: block;
+/*fix-layout*/
+.fix-layout{
+	display: block;
     position: fixed;
     z-index: 14;
     bottom: 60px;
     right: 5%;
+    margin-right: -10px;
+}
+.fix-layout a{
+	height:40px;
+    width:40px;
+    display:inherit;
     color: transparent;
-    background-color:#D3AD6C; /* #e6e6e6; */
+    background-color:#e2e2e2; /*#D3AD6C;  #e6e6e6; */
+    border-bottom:solid 1px #fff;
+    overflow: hidden;
+    font: 0/0 arial;
+    cursor: pointer;
+    text-align: center;
+    transition: bottom .5s;
+    -moz-transition: bottom .5s;
+    -webkit-transition: bottom .5s;
+}
+.fix-layout a:hover{
+    z-index:14;border-color:#2acb6b;background-color:#2acb6b;color:#fff;text-decoration:none;
+}
+
+.fix-layout a i{
+	display: inline-block;
+    font-size: 20px;
+    width: 30px;
+    height:40px;
+    line-height: 40px;
+    line-height: 40px\9;
+    overflow: hidden;
+    color: #fff;
+}
+/*回到顶部*/
+/* #gotop{
+    
+    color: transparent;
+    background-color:#D3AD6C; #e6e6e6;
     overflow: hidden;
     font: 0/0 arial;
     cursor: pointer;
@@ -6640,7 +6674,7 @@ body.skin-3 {
     line-height: 40px\9;
     overflow: hidden;
     color: #fff;
-}
+} */
 
 
 

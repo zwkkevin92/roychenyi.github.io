@@ -1,7 +1,10 @@
 <footer>
-	<!--回到顶部-->
+	<div class="fix-layout">
 	<a href="javascript:scrollTo(0,0)" id="gotop" title="回到顶部" style="display:none;"><i class="fa fa-angle-up fa-4x"></i><span>top</span></a>
-
+	<a style="display:none;"><i class="fa fa-qrcode"></i></a>
+	<a title="提建议"><i class="fa fa-question fa-4x"></i></a>
+	<!--回到顶部-->
+	</div>
 	 <div class="footer" >
         <div class="row">
             <div class="col-md-5">数据连接列表：<br>测试</div>

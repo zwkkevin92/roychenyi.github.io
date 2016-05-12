@@ -302,15 +302,15 @@ public class QrCode {
         String imgPath = "d:/a.jpg";  
 
 //        String encoderContent = "http://www.baidu.com"; 
-        String encoderContent = "13663865897";
+        String encoderContent = "http://www.xn--49s54v.xn--6qq986b3xl";
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        encoderContent = br.readLine();
        
         QrCode handler = new QrCode();  
         
         handler.encoderQRCode(encoderContent, imgPath, imgType, size);
-        
-//        handler.encoderQRCode(encoderContent, imgPath, "png");  
+//        OutputStream out=null;
+//        handler.encoderQRCode(encoderContent, out, "png", size);  
 
         String decoderContent = handler.decoderQRCode(imgPath); 
        
@@ -319,9 +319,9 @@ public class QrCode {
 
         System.out.println(decoderContent); 
         
-        BufferedImage img1= ImageIO.read(new File(imgPath));
-        BufferedImage img2= handler.createPhotoAtCenter(img1);
-        ImageIO.write(img2, "jpg", new File("D:/3.jpg"));
+    //    BufferedImage img1= ImageIO.read(new File(imgPath));
+    //    BufferedImage img2= handler.createPhotoAtCenter(img1);
+    //    ImageIO.write(img2, "jpg", new File("D:/3.jpg"));
     }  
 
 }
