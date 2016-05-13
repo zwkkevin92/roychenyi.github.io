@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cx.wxs.dao.DUpvoteDao;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DUpvoteDto;
 import com.cx.wxs.service.DUpvoteService;
 
@@ -84,6 +85,15 @@ public class DUpvoteServiceImpl implements DUpvoteService {
 	public Integer getDUpvoteCount(DUpvoteDto dUpvoteDto) {
 		// TODO Auto-generated method stub
 		return dUpvoteDao.getDUpvoteCount(dUpvoteDto);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DUpvoteService#getdDiarysByUpvote(com.cx.wxs.dto.DUpvoteDto)
+	 */
+	@Override
+	public List<DDiaryDto> getdDiarysByUpvote(DUpvoteDto dUpvoteDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

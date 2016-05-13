@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.IOUtils;
 
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 /**
  * @author 陈义

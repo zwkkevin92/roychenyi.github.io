@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.cx.wxs.base.dao.BaseDaoImpl;
 import com.cx.wxs.dao.DFavoriteDao;
 import com.cx.wxs.dto.DFavoriteDto;
+import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.DbType;
 import com.cx.wxs.po.DFavorite;
+import com.cx.wxs.po.UUser;
 import com.cx.wxs.utils.StringUtils;
 
 import com.cx.wxs.utils.BeanToDto;
@@ -97,20 +99,25 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
             }else{
             	stringBuffer.append(" and a.status=1");
             }
+            stringBuffer.append("order by a.time desc");
             List<DFavorite> list=new ArrayList<DFavorite>();
             List<DFavoriteDto> list1=new ArrayList<DFavoriteDto>();
             if(dFavoriteDto.getPage()!=null){
-            	this.find(stringBuffer.toString(), params, dFavoriteDto.getPage(), dFavoriteDto.getRows());
+            	list= this.find(stringBuffer.toString(), params, dFavoriteDto.getPage(), dFavoriteDto.getRows());
             }else{
-            	this.find(stringBuffer.toString(), params,1,10);
+            	list= this.find(stringBuffer.toString(), params,1,10);
             }          		
             if(list!=null&&list.size()>0){
             	for(int i=0;i<list.size();i++){
             	DFavorite dFavorite=list.get(i);
             	DFavoriteDto dto=beanToDto.T1ToD1(dFavorite, new DFavoriteDto());
+            	UUser user=dFavorite.getDDiary().getUUser();
+            	UUserDto userDto=new UUserDto();
+            	BeanUtils.copyProperties(user,userDto);
+            	dto.getDDiaryDto().setUUserDto(userDto);
             	if(dFavoriteDto.getPage()!=null){
             		dto.setPage(dFavoriteDto.getPage());
-            		dto.setRow((dFavoriteDto.getPage()-1)*dFavoriteDto.getRow()+i+1);
+            		dto.setRow((dFavoriteDto.getPage()-1)*dFavoriteDto.getRows()+i+1);
             	}else{
             		dto.setPage(1);
             		dto.setRow(i+1);
@@ -184,12 +191,12 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
     }
     @Override
     public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto){
-    	if(dFavoriteDto!=null&&dFavoriteDto.getDDiaryDto()!=null){
+    	if(dFavoriteDto!=null&&dFavoriteDto.getUUserDto()!=null){
     		StringBuffer stringBuffer=new StringBuffer(DbType.SELECT+" count(*) ");
 			Map<String,Object> params=new HashMap<String, Object>();
 			stringBuffer.append(" from "+DFavorite.class.getName()+" a where 1=1");
-			stringBuffer.append(" and a.DDiary.diaryId=:diaryId");
-			params.put("diaryId", dFavoriteDto.getDDiaryDto().getDiaryId());
+			 stringBuffer.append(" and  a.UUser.userId=:userId");
+	         params.put("userId", dFavoriteDto.getUUserDto().getUserId());
 			if(dFavoriteDto.getStatus()!=null){
 				stringBuffer.append(" and a.status=:status");
 				params.put("status",dFavoriteDto.getStatus());

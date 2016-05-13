@@ -16,20 +16,26 @@ $(document).ready(function () {
     Ariticle_Tool.addPagination(Number($('#page').val()),Number($('#pageCount').val()));
     Ariticle_Tool.updateCount(window.location.href+"/infoCount");
     Ariticle_Tool.getCatalog();
-    if($('#role').val()!=''&&$('#role').val()!=null){
-        var role=Number($('#role').val().trim())
-        switch (role){
-            case -1:$("li[name='d_toTrash']").addClass("hidden");break;
-            case 0:$("li[name='d_private']").addClass("hidden");break;
-            case 1:$("li[name='d_toCommen']").addClass("hidden");break;break;
-            case 2:$("li[name='d_toTrash']").addClass("hidden");break;
-            default :;
-        }
-    }
+    Ariticle_Tool.roleSet();
 });
 var Ariticle_Tool={
     userId:Number($('#U_userId').val().trim()),
     authorId:Number($('#author_id').val().trim()),
+    role:Number($('#role').val().trim()),
+    //权限配置
+    roleSet:function(){
+        if($('#role').val()!=''&&$('#role').val()!=null){
+            var role=Number($('#role').val().trim())
+            switch (role){
+                case -1:$("li[name='d_toTrash']").addClass("hidden");break;
+                case 0:$("li[name='d_private']").addClass("hidden");break;
+                case 1:$("li[name='d_toCommen']").addClass("hidden");break;break;
+                case 2:$("li[name='d_toTrash']").addClass("hidden");break;
+                case 3:$("span[name='dropdown']").addClass("hidden");break;
+                default :;
+            }
+        }
+    },
     //文章删除
     d_totrash:function(_this){
         var url=$(_this).data("url");
@@ -129,7 +135,7 @@ var Ariticle_Tool={
     },
     d_tocommen:function(_this){
         var url=$(_this).data('url');
-       ajax1(url,'',Ariticle_Tool.d_tocommen_result)
+        ajax1(url,'',Ariticle_Tool.d_tocommen_result)
     },
     d_tocommen_result:function(data){
         var flag=Number(data["statusFlag"]);
@@ -175,7 +181,7 @@ var Ariticle_Tool={
         data=FastJson.format(data);
         console.log(data);
         if(data.length>0&&data[0].rows>0) {
-            var role=Number(data[0].role);
+            var role=Ariticle_Tool.role;
             $('#diary_list').html("<input id='page' type='hidden' value='" + data[0].page + "'>"
                 + "<input id='pageCount' type='hidden' value='" + data[0].pageCount + "'>"
                 +"<input id='role' type='hidden' value='" + role+ "'>");
@@ -184,7 +190,7 @@ var Ariticle_Tool={
             var user_url=rootUrl+data[0].uUserDto.nickname;
             for(var i=0;i<data.length;i++){
                 html+="<li class='list-group-item'><a href='"+user_url+"/article/details/"+data[i].diaryId+"'>"+data[i].title+"</a>"
-                    +"<span id='toolMenu' class='pull-right dropdown' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'>&nbsp;"
+                    +"<span id='toolMenu' name='dropdown' class='pull-right dropdown' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'>&nbsp;"
                     +"  <a class='dropdown-toggle active' href='"+user_url+"/article/article_edite/"+data[i].diaryId+"' data-toggle='data-toggle'>编辑<span class='caret'></span></a>"
                     +"<ul class='dropdown-menu'>"
                     +"<li id='d_modify' name='d_modify'><a href='"+user_url+"/article/article_edite/"+data[i].diaryId+"'>编辑</a></li>"
@@ -201,13 +207,7 @@ var Ariticle_Tool={
             if(Ariticle_Tool.userId!=Ariticle_Tool.authorId){
                 $('#toolMenu').addClass("hidden");
             }else {
-                switch (role){
-                    case -1:$("li[name='d_toTrash']").addClass("hidden");break;
-                    case 0:$("li[name='d_private']").addClass("hidden");break;
-                    case 1:$("li[name='d_toCommen']").addClass("hidden");break;
-                    case 2:$("li[name='d_toTrash']").addClass("hidden");break;
-                    default :;
-                }
+                Ariticle_Tool.roleSet();
                 $("#d_toTrash a").click(function(){    Ariticle_Tool.d_totrash(this) });
                 $("#d_delete a").click(function(){    Ariticle_Tool.d_delete(this) });
                 $('#d_private a').click(function(){Ariticle_Tool.d_toPrivate(this)});

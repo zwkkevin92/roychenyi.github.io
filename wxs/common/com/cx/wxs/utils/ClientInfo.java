@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author 陈义
  * @date   2016-3-19 下午3:14:05
  */
-public class clientInfo {
+public class ClientInfo {
 	
 	/***
 	 * 获取客户端的ip地址

@@ -37,7 +37,7 @@ import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
 import com.cx.wxs.utils.TemplateUtils;
 import com.cx.wxs.utils.ValidateCode;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 /**
  * 用户登陆、注册、用户验证
@@ -173,7 +173,7 @@ public class UserAction {
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		String verifyCode=request.getParameter("verifyCode");
-		String ip=clientInfo.getIpAddr(request);
+		String ip=ClientInfo.getIpAddr(request);
 		String codeSession=(String) request.getSession().getAttribute("verifycode");
 		UUserDto uuser=new UUserDto();
 		//		StatusFlag ="1";    //1:登陆成功；-1 ：登陆失败，密码或用户名错误；0：验证码错误
@@ -441,7 +441,7 @@ public class UserAction {
 		String prev_url=request.getParameter("prev_url");
 		if(uuserDto.getPassword().equals(oldPwd)){
 		  	uuserDto.setPassword(newPwd);
-			String ip=clientInfo.getIpAddr(request);
+			String ip=ClientInfo.getIpAddr(request);
 			uuserDto.setIp(ip);
 			Date date=new Date();
 			uuserDto.setLastTime(new Timestamp(date.getTime()));

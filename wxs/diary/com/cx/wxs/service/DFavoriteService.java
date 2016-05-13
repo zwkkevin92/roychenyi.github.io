@@ -2,6 +2,7 @@ package com.cx.wxs.service;
 
 import java.util.List;
 
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DFavoriteDto;
 
 /**
@@ -59,5 +60,13 @@ public interface DFavoriteService {
      * @date   2016-5-11下午7:45:37
      */
     public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto);
+    /***
+     * 通过收藏获取文章列表
+     * @param dFavoriteDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-13下午2:47:45
+     */
+    public List<DDiaryDto> getDiarysByFavorite(DFavoriteDto dFavoriteDto);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cx.wxs.dao.DFavoriteDao;
+import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DFavoriteDto;
 import com.cx.wxs.service.DFavoriteService;
 
@@ -45,7 +46,19 @@ public class DFavoriteServiceImpl implements DFavoriteService {
     */
     @Override
     public List<DFavoriteDto> getDFavoriteList(DFavoriteDto dFavoriteDto){
-        return dFavoriteDao.getDFavoriteList(dFavoriteDto);
+        List<DFavoriteDto> list=dFavoriteDao.getDFavoriteList(dFavoriteDto);
+        if(list!=null&&list.size()>0){
+        	Integer count=dFavoriteDao.getDFavoriteCount(dFavoriteDto);
+        	int pageCount=0;
+        	if(dFavoriteDto.getRows()!=null){
+        		pageCount=count/dFavoriteDto.getRows();
+        	}else{
+        		pageCount=count/10;
+        	}
+        	list.get(0).setRows(count);
+        	list.get(0).setPageCount(count%10>0?pageCount+1:pageCount);
+        }
+    	return list;
     }
 
     /**
@@ -85,6 +98,36 @@ public class DFavoriteServiceImpl implements DFavoriteService {
 	public Integer getDFavoriteCount(DFavoriteDto dFavoriteDto) {
 		// TODO Auto-generated method stub
 		return dFavoriteDao.getDFavoriteCount(dFavoriteDto);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cx.wxs.service.DFavoriteService#getDiarysByFavorite(com.cx.wxs.dto.DFavoriteDto)
+	 */
+	@Override
+	public List<DDiaryDto> getDiarysByFavorite(DFavoriteDto dFavoriteDto) {
+		// TODO Auto-generated method stub
+		List<DFavoriteDto> list=dFavoriteDao.getDFavoriteList(dFavoriteDto);
+        List<DDiaryDto> list1=new ArrayList<DDiaryDto>();
+		if(list!=null&&list.size()>0){
+			for(DFavoriteDto favoriteDto:list){
+				DDiaryDto diaryDto=favoriteDto.getDDiaryDto();
+				diaryDto.setWriteTime(favoriteDto.getTime());
+				diaryDto.setPage(favoriteDto.getPage());
+				diaryDto.setRow(favoriteDto.getRow());
+				list1.add(diaryDto);				
+			}
+			//收藏的总行数
+        	Integer count=dFavoriteDao.getDFavoriteCount(dFavoriteDto);
+        	int pageCount=0;
+        	if(dFavoriteDto.getRows()!=null){
+        		pageCount=count/dFavoriteDto.getRows();
+        	}else{
+        		pageCount=count/10;
+        	}
+        	list1.get(0).setRows(count);
+        	list1.get(0).setPageCount(count%10>0?pageCount+1:pageCount);
+        }
+    	return list1;
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.UUserService;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 /**
  * @author 陈义

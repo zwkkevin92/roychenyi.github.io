@@ -39,7 +39,7 @@ import com.cx.wxs.utils.Globals;
 import com.cx.wxs.utils.HtmlNodeFilters;
 import com.cx.wxs.utils.StringUtils;
 import com.cx.wxs.utils.ValidateCode;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 
 /**

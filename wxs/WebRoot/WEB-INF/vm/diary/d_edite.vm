@@ -10,7 +10,7 @@
  <div class="ibox">
                             <form class="form-horizontal" id="article_add_form" data-url="#rootUrl()/$user.nickname/article/details" action="#rootUrl()/$user.nickname/article/article_save">
                             <div class="ibox-title">写日志
-                            <div class="pull-right">草稿箱|帮助</div>
+                            <div class="pull-right"><a  href="#rootUrl/$author.nickname/article?role=2">草稿箱</a>|<a href="javascript:;" onclick="history.go(-1);">返回</a></div>
                             </div>
                             <div class="ibox-content">
                                 <div class="form-group">

@@ -23,7 +23,7 @@ import com.cx.wxs.service.BSiteService;
 import com.cx.wxs.service.IImageService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.DateUtils;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 import com.cx.wxs.utils.imageUtils;
 
 /**
@@ -142,9 +142,9 @@ public class ImageAction {
 					 imageDto.setTime(new Timestamp(date.getTime()));
 					 imageDto.setWidth((short)imageUtils.getImageWidth(file.getPath()));
 					 imageDto.setHeight((short)imageUtils.getImageHeight(file.getPath()));
-					 imageDto.setClientIp(clientInfo.getIpAddr(request));
-					 imageDto.setClientAgent(clientInfo.getAgent(request));
-					 imageDto.setClientType((short)(clientInfo.isMoblie(request)?1:0));
+					 imageDto.setClientIp(ClientInfo.getIpAddr(request));
+					 imageDto.setClientAgent(ClientInfo.getAgent(request));
+					 imageDto.setClientType((short)(ClientInfo.isMoblie(request)?1:0));
 					 imageDto.setStatus((short)1);
 					 imageDto.setExt3(resourcePath+"/"+date.getTime()+"_s_200.jpg");
 					 imageDto.setExt4(resourcePath+"/"+date.getTime()+"_s_100.jpg");

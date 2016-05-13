@@ -45,7 +45,7 @@ import com.cx.wxs.service.SysIllegalService;
 import com.cx.wxs.service.SysTypeService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.RequestUtils;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 /**
  * @author 陈义
@@ -68,10 +68,8 @@ public class DiaryAction extends BaseDiaryAction{
 	private SysTypeService sysTypeService;
 	@Resource
 	private DAccessService accessService;
-/*	@Resource
-	private DUpvoteService upvoteService;
-	@Resource
-	private DFavoriteService favoriteService;*/
+    @Resource
+    private DFavoriteService favoriteService;
 	@Resource
 	private DReply1Service reply1Service;
 	@Resource
@@ -345,7 +343,7 @@ public class DiaryAction extends BaseDiaryAction{
 
 		diaryDto=list.get(0);
 	//	System.out.println("content-length:"+diaryDto.getContent().length());
-		if(diaryDto.getDiaryId()==null){
+		if(diaryDto==null){
 			mv.setViewName("diary/d_no_details");
 		}else{
 			//如果访问日志存在，访问一次，访问量+1			
@@ -358,27 +356,8 @@ public class DiaryAction extends BaseDiaryAction{
 			diaryDto.setLastReadTime(new Timestamp(date.getTime()));			
 			diaryService.updateDDiary(diaryDto);			
 			if(userDto!=null){
-				if(!userDto.getUserId().equals(author.getUserId())){
-					//设置访问记录过期
-					
-					//用户已经登录，且登录用户与文章作者不是同一人，则写入访问列表
-					DAccessDto accessDto=new DAccessDto();
-					accessDto.setUUserDto(userDto);
-					accessDto.setDDiaryDto(diaryDto);
-					String ip=clientInfo.getIpAddr(request);
-					String clientAgent=clientInfo.getAgent(request);
-					boolean isMoblie=clientInfo.isMoblie(request);
-					accessDto.setClientIp(ip);
-					accessDto.setClientAgent(clientAgent);
-					accessDto.setClientType((short)(isMoblie?1:0)); 
-					accessDto.setTime(new Timestamp(date.getTime()));
-					accessDto.setStatus((short)1);  //1：未过期，0：过期
-					accessService.addDAccess(accessDto);
-					author.setIsUsers(false);	
-					
-				}else{
-					author.setIsUsers(true);
-				}
+	//		if(!userDto.getUserId().equals(author.getUserId())){
+	            this.addDiaryAccess(request, author, diaryDto);
 				//该用户是否点赞
 				DUpvoteDto upvoteDto=this.getDUpvoteDto(diaryDto, userDto);
 				if(upvoteDto!=null){
@@ -389,9 +368,7 @@ public class DiaryAction extends BaseDiaryAction{
 				if(favoriteDto!=null){
 					mv.addObject("favorite", favoriteDto);
 				}	
-			}else{
-					author.setIsUsers(false);		
-				}		
+			}	
 			mv.addObject("diary",diaryDto);
 			//获取日志评论
 			DReply1Dto  dReply1Dto=new DReply1Dto();
@@ -437,12 +414,27 @@ public class DiaryAction extends BaseDiaryAction{
 	 * @date   2016-5-12下午11:30:03
 	 */
 	@RequestMapping(value="/favorite") 
-	public List<DDiaryDto> toFavoritePage(@PathVariable("vip") String vip,Integer page,Integer role,
+	public ModelAndView toFavoritePage(@PathVariable("vip") String vip,Integer page,Integer role,
 			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
-		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
-		DFavoriteDto favoriteDto=new DFavoriteDto();
-		favoriteDto.setUUserDto(userDto);
-		return null;
+	    ModelAndView mv=new ModelAndView("diary/d_list");
+	   /* UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+	    if(userDto==null||!userDto.equals("vip")){
+	    	mv.setViewName("404");
+	    	return mv;
+	    }*/
+	    UUserDto userDto =this.getUserDtoByNickname(vip);
+	    mv.addObject("author", userDto);
+		List<DDiaryDto> list=this.getDiarysByFavorite(userDto, page);
+		mv.addObject("diarys", list);
+		mv.addObject("role",3);
+		return mv;
+	}
+	@RequestMapping(value="/favorite/list")
+	@ResponseBody
+	public List<DDiaryDto> getFavoriteDiarys(@PathVariable("vip") String vip,Integer page,Integer role,
+			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
+		UUserDto userDto =this.getUserDtoByNickname(vip);
+		return this.getDiarysByFavorite(userDto, page);
 	}
 
 }

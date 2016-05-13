@@ -1,6 +1,7 @@
 package com.cx.wxs.action;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cx.wxs.action.diary.DiaryAction;
 import com.cx.wxs.dto.BConfigDto;
+import com.cx.wxs.dto.DAccessDto;
 import com.cx.wxs.dto.DCatalogDto;
 import com.cx.wxs.dto.DDiaryDto;
 import com.cx.wxs.dto.DFavoriteDto;
@@ -22,11 +24,13 @@ import com.cx.wxs.dto.SysTypeDto;
 import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.enums.DiaryRole;
 import com.cx.wxs.service.BConfigService;
+import com.cx.wxs.service.DAccessService;
 import com.cx.wxs.service.DCatalogService;
 import com.cx.wxs.service.DDiaryService;
 import com.cx.wxs.service.DFavoriteService;
 import com.cx.wxs.service.DUpvoteService;
 import com.cx.wxs.service.SysTypeService;
+import com.cx.wxs.utils.ClientInfo;
 import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
 
@@ -49,6 +53,8 @@ public class BaseDiaryAction extends BaseAction{
 	private DFavoriteService favoriteService;
 	@Resource
 	private DDiaryService diaryService;
+	@Resource
+	private DAccessService accessService;
 
 
 	public void getDiarySetting(UUserDto userDto,ModelAndView mv){
@@ -70,7 +76,7 @@ public class BaseDiaryAction extends BaseAction{
 		mv.addObject("sysTypeList", sysTypeList);
 	}
 	/**
-	 * 获取分页信息
+	 * 获取用户文章分类信息
 	 * @param catalogDto
 	 * @param mv
 	 * @author 陈义
@@ -94,6 +100,34 @@ public class BaseDiaryAction extends BaseAction{
 		RequestUtils.setCookie(request, response, "pageCount", pageCount.toString(),12*3600);
 		session.setAttribute("page", page);
 		session.setAttribute("pageCount", pageCount);
+	}
+
+	public void  addDiaryAccess(HttpServletRequest request,UUserDto author,DDiaryDto diaryDto){
+		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		if(userDto!=null){
+			if(!userDto.getUserId().equals(author.getUserId())){
+				//设置访问记录过期
+
+				//用户已经登录，且登录用户与文章作者不是同一人，则写入访问列表
+				Date date=new Date();
+				DAccessDto accessDto=new DAccessDto();
+				accessDto.setUUserDto(userDto);
+				accessDto.setDDiaryDto(diaryDto);
+				String ip=ClientInfo.getIpAddr(request);
+				String clientAgent=ClientInfo.getAgent(request);
+				boolean isMoblie=ClientInfo.isMoblie(request);
+				accessDto.setClientIp(ip);
+				accessDto.setClientAgent(clientAgent);
+				accessDto.setClientType((short)(isMoblie?1:0)); 
+				accessDto.setTime(new Timestamp(date.getTime()));
+				accessDto.setStatus((short)1);  //1：未过期，0：过期
+				accessService.addDAccess(accessDto);
+				author.setIsUsers(false);	
+
+			}else{
+				author.setIsUsers(true);
+			}
+		}
 	}
 	/**
 	 * 通过日记id和用户userID获取用户的点赞信息
@@ -223,7 +257,7 @@ public class BaseDiaryAction extends BaseAction{
 		if(userDto2==null){
 			role=1;
 		}else if(!userDto2.getNickname().equals(userDto.getNickname())&&!userDto2.getRoleId().equals(0)){				
-				role=1;				
+			role=1;				
 		}
 		//如果role不是指定权限,那么role=1
 		DiaryRole[] roles=DiaryRole.values();
@@ -251,7 +285,7 @@ public class BaseDiaryAction extends BaseAction{
 		if(userDto==null||!userDto.getNickname().equals(nickname)){
 			return false;
 		}else{
-		return true;
+			return true;
 		}
 	}
 	/***
@@ -272,24 +306,43 @@ public class BaseDiaryAction extends BaseAction{
 		}else if(!userDto.getUserId().equals(diaryDto.getUUserDto().getUserId())){
 			diaryDto.setStatusFlag("-2");
 		}else{
-		Date date=new Date();
-		diaryDto.setModifyTime(new Timestamp(date.getTime()));
-		diaryDto.setRole(role);
-		if(diaryService.updateDDiary(diaryDto)>0){
-			diaryDto.setDCatalogDto(null);
-			diaryService.setDiaryCountInfo(diaryDto);
-			String basePath=RequestUtils.getDomain(request);
-			String url=basePath+"/"+diaryDto.getUUserDto().getNickname()+"/article?time="+date.getTime();
-			if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
-				url+="&page="+diaryDto.getPage();
+			Date date=new Date();
+			diaryDto.setModifyTime(new Timestamp(date.getTime()));
+			diaryDto.setRole(role);
+			if(diaryService.updateDDiary(diaryDto)>0){
+				diaryDto.setDCatalogDto(null);
+				diaryService.setDiaryCountInfo(diaryDto);
+				String basePath=RequestUtils.getDomain(request);
+				String url=basePath+"/"+diaryDto.getUUserDto().getNickname()+"/article?time="+date.getTime();
+				if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
+					url+="&page="+diaryDto.getPage();
+				}
+				diaryDto.setStatusFlag("1");
+				diaryDto.setUrl(url);
+			}else{
+				diaryDto.setStatusFlag("-1");
 			}
-			diaryDto.setStatusFlag("1");
-			diaryDto.setUrl(url);
-		}else{
-			diaryDto.setStatusFlag("-1");
-		}
 		}
 		return diaryDto;
+	}
+	/***
+	 * 用户用户的收藏列表
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-13下午3:00:16
+	 */
+	public List<DDiaryDto> getDiarysByFavorite(UUserDto userDto,Integer page){
+		//	UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		//	UUserDto userDto=this.getUserDtoByNickname(nickname);
+		List<DDiaryDto> list=new ArrayList<DDiaryDto>();
+
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		favoriteDto.setUUserDto(userDto);
+		favoriteDto.setPage(page);
+		favoriteDto.setRows(10);
+		list=favoriteService.getDiarysByFavorite(favoriteDto);
+
+		return list;
 	}
 
 }

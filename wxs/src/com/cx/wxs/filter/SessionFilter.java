@@ -25,7 +25,7 @@ import com.cx.wxs.servlet.MyRequestWrapper;
 import com.cx.wxs.utils.GlobalContext;
 import com.cx.wxs.utils.RequestUtils;
 import com.cx.wxs.utils.StringUtils;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 
 /**
  * @author 陈义
@@ -113,9 +113,9 @@ public class SessionFilter extends OncePerRequestFilter {
 			userDto=user;
 		}
 
-		if(userDto!=null){
+		/*if(userDto!=null){
 			request.setAttribute("uid", userDto.getUserId());
-		}
+		}*/
 		
 		
 		if(userDto!=null&&(url.contains("login")||url.contains("register"))){
@@ -131,9 +131,9 @@ public class SessionFilter extends OncePerRequestFilter {
 		if(userDto!=null){
 		m.put("uid", new String[]{userDto.getUserId().toString()});  
 		}
-		String ip=clientInfo.getIpAddr(request);
-		String clientAgent=clientInfo.getAgent(request);
-		boolean isMoblie=clientInfo.isMoblie(request);
+		String ip=ClientInfo.getIpAddr(request);
+		String clientAgent=ClientInfo.getAgent(request);
+		boolean isMoblie=ClientInfo.isMoblie(request);
 		short clientType=(short) (isMoblie?0:1);
 		m.put("ip",new String[]{ip});
 		m.put("clientIp",new String[]{ip});

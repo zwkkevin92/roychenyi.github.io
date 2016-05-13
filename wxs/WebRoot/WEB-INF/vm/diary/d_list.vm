@@ -14,15 +14,15 @@
              <div class="row">
                 <div class="col-md-9">
 					<div id="diary_list">
-						#if($diarys)
+						#if($diarys.size()>0)
 						<input id="page" type="hidden" value="$diarys[0].page">
 						<input id="pageCount" type="hidden" value="$diarys[0].pageCount">
 						<input id="role" type="hidden" value="$role">
                     <ul class="list-group">
                         #foreach($diary in $diarys)
-                        <li id="$diary.row" class="list-group-item"><a href="#rootUrl/$author.nickname/article/details/$diary.diaryId">$diary.title</a>
+                        <li id="$diary.row" class="list-group-item"><a #if($role==3) href="#rootUrl/$diary.UUserDto.nickname/article/details/$diary.diaryId" #else href="#rootUrl/$author.nickname/article/details/$diary.diaryId" #end>$diary.title</a>
                             #if($user.userId==$author.userId)
-                        <span class="pull-right dropdown">&nbsp;
+                        <span class="pull-right dropdown" name="dropdown">&nbsp;
 							<a class="dropdown-toggle active" href="#rootUrl()/$author.nickname/article/article_edite/$diary.diaryId" data-toggle="data-toggle">编辑<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li id="d_modify" name="d_modify"><a href="#rootUrl()/$author.nickname/article/article_edite/$diary.diaryId">编辑</a></li>
@@ -40,7 +40,7 @@
 					#end
 					</div>
 					<!--文章分页-->
-					<div id="diary_pagination" class="text-center" data-url="#rootUrl/$author.nickname/article/article_list"></div>
+					<div id="diary_pagination" class="text-center" #if($role==3) data-url="#rootUrl/$author.nickname/article/favorite/list" #else data-url="#rootUrl/$author.nickname/article/article_list" #end></div>
                 </div>
                 <div class="col-md-3">
 					<div id="catalog" data-url="#rootUrl/$author.nickname/article/catalog">

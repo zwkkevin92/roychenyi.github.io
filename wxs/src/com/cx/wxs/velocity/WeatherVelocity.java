@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import com.cx.wxs.utils.DateUtils;
 import com.cx.wxs.utils.RequestUtils;
-import com.cx.wxs.utils.clientInfo;
+import com.cx.wxs.utils.ClientInfo;
 import com.cx.wxs.utils.weather.DayWeather;
 import com.cx.wxs.utils.weather.GetPlaceByIp;
 import com.cx.wxs.utils.weather.WeatherBean;
@@ -26,7 +26,7 @@ public class WeatherVelocity extends VelocityTool{
 		Date date=new Date();
 		WeatherBean weather=(WeatherBean) request.getSession().getAttribute("weather");		
 		if(weather==null){
-			try{ String ip=clientInfo.getIpAddr(request);
+			try{ String ip=ClientInfo.getIpAddr(request);
 			GetPlaceByIp getPlaceByIp = new GetPlaceByIp();
 			if(ip.contains("127.0.0.1")||ip.contains("192.168.")||ip.contains("10.")||ip.contains("169.254.")){
 			//	ip="61.183.36.13";//荆州ip
