@@ -85,7 +85,43 @@ public class DFavoriteDaoImpl extends BaseDaoImpl<DFavorite, Integer> implements
     */
     @Override
     public List<DFavoriteDto> getDFavoriteList(DFavoriteDto dFavoriteDto){
-        return null;
+        if(dFavoriteDto!=null&&dFavoriteDto.getUUserDto()!=null){
+        	StringBuffer stringBuffer=new StringBuffer();
+            Map<String,Object> params=new HashMap<String, Object>();
+            stringBuffer.append("from  "+DFavorite.class.getName()+"  a where 1=1");
+            stringBuffer.append(" and  a.UUser.userId=:userId");
+            params.put("userId", dFavoriteDto.getUUserDto().getUserId());
+            if(dFavoriteDto.getStatus()!=null){
+            	stringBuffer.append(" and a.status=:status");
+            	params.put("status",dFavoriteDto.getStatus());
+            }else{
+            	stringBuffer.append(" and a.status=1");
+            }
+            List<DFavorite> list=new ArrayList<DFavorite>();
+            List<DFavoriteDto> list1=new ArrayList<DFavoriteDto>();
+            if(dFavoriteDto.getPage()!=null){
+            	this.find(stringBuffer.toString(), params, dFavoriteDto.getPage(), dFavoriteDto.getRows());
+            }else{
+            	this.find(stringBuffer.toString(), params,1,10);
+            }          		
+            if(list!=null&&list.size()>0){
+            	for(int i=0;i<list.size();i++){
+            	DFavorite dFavorite=list.get(i);
+            	DFavoriteDto dto=beanToDto.T1ToD1(dFavorite, new DFavoriteDto());
+            	if(dFavoriteDto.getPage()!=null){
+            		dto.setPage(dFavoriteDto.getPage());
+            		dto.setRow((dFavoriteDto.getPage()-1)*dFavoriteDto.getRow()+i+1);
+            	}else{
+            		dto.setPage(1);
+            		dto.setRow(i+1);
+            	}
+            	list1.add(dto);            
+            	}
+             return list1;   
+            }
+            
+        }
+    	return null;
     }
 
     /**

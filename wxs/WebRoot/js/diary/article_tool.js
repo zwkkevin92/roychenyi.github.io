@@ -7,27 +7,29 @@ $(document).ready(function () {
     $("#d_toTrash a").click(function(){    Ariticle_Tool.d_totrash(this) });
     $("#d_delete a").click(function(){    Ariticle_Tool.d_delete(this) });
     $('#d_private a').click(function(){Ariticle_Tool.d_toPrivate(this)});
+    $('#d_toCommen a').click(function(){Ariticle_Tool.d_tocommen(this)});
 
     $('#d_upvote a').click(function(){ Ariticle_Tool.d_upvote(this);    });
     $('#d_favorite a').click(function () {   Ariticle_Tool.d_favorite(this);});
 
-    
+
     Ariticle_Tool.addPagination(Number($('#page').val()),Number($('#pageCount').val()));
     Ariticle_Tool.updateCount(window.location.href+"/infoCount");
-     if($('#role').val()!=''&&$('#role').val()!=null){
+    Ariticle_Tool.getCatalog();
+    if($('#role').val()!=''&&$('#role').val()!=null){
         var role=Number($('#role').val().trim())
         switch (role){
-            case -1:$('#d_toTrash').addClass("hidden");break;
-            case 0:$('#d_private').addClass("hidden");break;
-            case 1:;break;
-            case 2:$('#d_toTrash').addClass("hidden");break;
+            case -1:$("li[name='d_toTrash']").addClass("hidden");break;
+            case 0:$("li[name='d_private']").addClass("hidden");break;
+            case 1:$("li[name='d_toCommen']").addClass("hidden");break;break;
+            case 2:$("li[name='d_toTrash']").addClass("hidden");break;
             default :;
         }
     }
 });
 var Ariticle_Tool={
-     userId:Number($('#U_userId').val().trim()),
-     authorId:Number($('#author_id').val().trim()),
+    userId:Number($('#U_userId').val().trim()),
+    authorId:Number($('#author_id').val().trim()),
     //文章删除
     d_totrash:function(_this){
         var url=$(_this).data("url");
@@ -47,6 +49,7 @@ var Ariticle_Tool={
             window.location.href=data["url"];
         }
     },
+    //文章删除
     d_delete:function(_this){
         var url=$(_this).data("url");
         layer.confirm('您确定彻底删除该文章吗？',{title:"删除提示",btn: ['确定','取消'] //按钮
@@ -54,6 +57,7 @@ var Ariticle_Tool={
             ajax1(url,'',Ariticle_Tool.d_delete_result);
         });
     },
+    //删除结果
     d_delete_result:function(data){
         var flag=Number(data["statusFlag"]);
         switch (flag){
@@ -86,6 +90,7 @@ var Ariticle_Tool={
         }
 
     },
+    //文章收藏
     d_favorite:function(_this){
         var url=$(_this).data("url");
         ajax1(url,'',Ariticle_Tool.d_favorite_result);
@@ -108,11 +113,25 @@ var Ariticle_Tool={
 
         }
     },
+    //转私密文章
     d_toPrivate:function(_this){
         var url=$(_this).data("url");
         ajax1(url,'',Ariticle_Tool.d_toPrivate_result);
     },
     d_toPrivate_result:function(data){
+        var flag=Number(data["statusFlag"]);
+        switch (flag){
+            case -2:layer.msg("您没有权限进行操作!",{icon:5,time:1000});break;
+            case -1:layer.msg("转私密失败，请重新再试，或给管理员提意见!",{icon:2,time:1000});
+            case 1:window.location.href=data["url"];break;
+            default :break;
+        }
+    },
+    d_tocommen:function(_this){
+        var url=$(_this).data('url');
+       ajax1(url,'',Ariticle_Tool.d_tocommen_result)
+    },
+    d_tocommen_result:function(data){
         var flag=Number(data["statusFlag"]);
         switch (flag){
             case -2:layer.msg("您没有权限进行操作!",{icon:5,time:1000});break;
@@ -131,7 +150,26 @@ var Ariticle_Tool={
         $('#d_comment>a>span').html("("+data.replyCount+")");
         $('#d_favorite>a>span').html("("+data.favoriteCount+")");
     },
+    //获取文章分类列表
+    getCatalog:function(){
+        var role=Number($('#role').val().trim()),
+            $catalog=$('#catalog');
+        if(role===1&&$catalog!=null){
+            var url= $catalog.data('url');
+            ajax(url,'',Ariticle_Tool.getCatalog_result);
+        }
+    },
+    getCatalog_result:function(data){
+        var $catalog=$('#catalog');
+        var html="<ul class='list-group'><li class='list-group-item'><h4 class='list-group-item-heading text-info'>文章分类</h4></li>"
+            +"<li class='list-group-item'><span>全部文章</span><span class='pull-right'>("+data[0].articleCount+")</span></li>";
+        for(var i=1;i<data.length;i++){
+            html+="<li id='catalog"+data[i].catalogId+"' class='list-group-item'><a><span>"+data[i].catalogName+"</span><span class='pull-right'>("+data[i].articleCount+")</span></a></li>";
+        }
+        html+="</ul>"
+        $catalog.html(html);
 
+    },
     //文章列表更新
     list_info:function(data){
         data=FastJson.format(data);
@@ -149,10 +187,11 @@ var Ariticle_Tool={
                     +"<span id='toolMenu' class='pull-right dropdown' onmouseover='dropdown_open(this)' onmouseout='dropdown_close(this)'>&nbsp;"
                     +"  <a class='dropdown-toggle active' href='"+user_url+"/article/article_edite/"+data[i].diaryId+"' data-toggle='data-toggle'>编辑<span class='caret'></span></a>"
                     +"<ul class='dropdown-menu'>"
-                    +"<li id='d_modify'><a href='"+user_url+"/article/article_edite/"+data[i].diaryId+"'>编辑</a></li>"
-                    +"<li id='d_toTrash'><a data-url='"+user_url+"/article/totrash/"+data[i].diaryId+"' href='javascript:;' >删除</a></li>"
-                    +"<li id='d_delete'><a data-url='"+user_url+"/article/todelete/"+data[i].diaryId+"' href='javascript:;'>彻底删除</a></li>"
-                    +"<li id='d_private'><a data-url='"+user_url+"/article/toprivate/"+data[i].diaryId+"' href='javascript:;'>转为私密文章</a></li>"
+                    +"<li id='d_modify' name='d_modify'><a href='"+user_url+"/article/article_edite/"+data[i].diaryId+"'>编辑</a></li>"
+                    +"<li id='d_toCommen' name='d_toCommen'><a data-url='"+user_url+"/article/tocommen/"+data[i].diaryId+"' href='javascript:;' >公开发布文章</a></li>"
+                    +"<li id='d_toTrash' name='d_toTrash'><a data-url='"+user_url+"/article/totrash/"+data[i].diaryId+"' href='javascript:;' >删除</a></li>"
+                    +"<li id='d_delete' name='d_delete'><a data-url='"+user_url+"/article/todelete/"+data[i].diaryId+"' href='javascript:;'>彻底删除</a></li>"
+                    +"<li id='d_private' name='d_private'><a data-url='"+user_url+"/article/toprivate/"+data[i].diaryId+"' href='javascript:;'>转为私密文章</a></li>"
                     +"</ul></span>"
                     +"<div class='pull-right'>"+new Date(data[i].writeTime).format("yyyy/MM/dd")+"&nbsp;("+data[i].replyCount+"/"+data[i].viewCount+")</div>"
                     +"</li>" ;
@@ -163,15 +202,17 @@ var Ariticle_Tool={
                 $('#toolMenu').addClass("hidden");
             }else {
                 switch (role){
-                    case -1:$('#d_toTrash').addClass("hidden");break;
-                    case 0:$('#d_private').addClass("hidden");break;
-                    case 1:;break;
-                    case 2:$('#d_toTrash').addClass("hidden");break;
+                    case -1:$("li[name='d_toTrash']").addClass("hidden");break;
+                    case 0:$("li[name='d_private']").addClass("hidden");break;
+                    case 1:$("li[name='d_toCommen']").addClass("hidden");break;
+                    case 2:$("li[name='d_toTrash']").addClass("hidden");break;
                     default :;
                 }
                 $("#d_toTrash a").click(function(){    Ariticle_Tool.d_totrash(this) });
                 $("#d_delete a").click(function(){    Ariticle_Tool.d_delete(this) });
                 $('#d_private a').click(function(){Ariticle_Tool.d_toPrivate(this)});
+                $('#d_toCommen a').click(function(){Ariticle_Tool.d_tocommen(this)});
+
             }
         }
     },
@@ -200,7 +241,11 @@ var Ariticle_Tool={
     },
     goDirectPage:function(page){
         var url=$('#diary_pagination').data('url'),
+            role=$('#role').val(),
             data="page="+page;
+        if(role!=null&&role!=''){
+            data+="&role="+role;
+        }
         ajax1(url,data,this.goPage_result);
     },
     goPage_result:function(data){

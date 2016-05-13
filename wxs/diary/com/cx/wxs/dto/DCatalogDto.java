@@ -29,6 +29,10 @@ public class DCatalogDto extends BeanBase{
     public DCatalogDto(){
 
     }
+    
+    public DCatalogDto(Integer catalogId){
+    	this.catalogId=catalogId;
+    }
 
     /** full constructor */
     public DCatalogDto(Integer catalogId,UUserDto UUserDto,BSiteDto BSiteDto,String catalogName,String description,Timestamp createTime,Integer articleCount,Integer catalogType,String verifyCode,Short sortOrder,Integer ext1,Integer ext2,String ext3,String ext4){super();

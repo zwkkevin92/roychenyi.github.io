@@ -276,12 +276,14 @@ public class BaseDiaryAction extends BaseAction{
 		diaryDto.setModifyTime(new Timestamp(date.getTime()));
 		diaryDto.setRole(role);
 		if(diaryService.updateDDiary(diaryDto)>0){
-			diaryDto.setStatusFlag("1");
+			diaryDto.setDCatalogDto(null);
+			diaryService.setDiaryCountInfo(diaryDto);
 			String basePath=RequestUtils.getDomain(request);
 			String url=basePath+"/"+diaryDto.getUUserDto().getNickname()+"/article?time="+date.getTime();
 			if(diaryDto.getPage()!=null&&diaryDto.getPage()>1){
 				url+="&page="+diaryDto.getPage();
 			}
+			diaryDto.setStatusFlag("1");
 			diaryDto.setUrl(url);
 		}else{
 			diaryDto.setStatusFlag("-1");

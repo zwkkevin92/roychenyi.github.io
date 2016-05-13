@@ -217,7 +217,7 @@ public class ArticleToolAction extends BaseDiaryAction{
 	public DDiaryDto artivleToCommen(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
 		diaryDto.setDiaryId(diaryId);
-		diaryDto=this.updateDiaryRole(diaryDto, (short)0, request);
+		diaryDto=this.updateDiaryRole(diaryDto, (short)1, request);
 		//返回私密日志列表
 		diaryDto.setUrl(diaryDto.getUrl()+"&role=1");
 		return diaryDto;

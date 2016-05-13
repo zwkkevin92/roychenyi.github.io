@@ -281,7 +281,7 @@ public class DiaryAction extends BaseDiaryAction{
 			//获取文章分类
 			DCatalogDto catalogDto=new DCatalogDto();
 			catalogDto.setUUserDto(userDto);
-			this.getDcatolog(catalogDto, mv);
+		//	this.getDcatolog(catalogDto, mv);
 		    if(role!=null){
 		    	mv.addObject("role",role);
 		    }
@@ -403,6 +403,27 @@ public class DiaryAction extends BaseDiaryAction{
 		mv.addObject("author", author);		
 		return mv;
 	}
+	/***
+	 * 通过用户自定义分类获取文章列表
+	 * @param vip
+	 * @param catalogId
+	 * @param request
+	 * @param reqResponse
+	 * @param diaryDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-13上午10:16:52
+	 */
+	@RequestMapping("/catalog/{catalogid}")
+	@ResponseBody
+	public List<DDiaryDto> getDiarysByCatalog(@PathVariable("vip") String vip,@PathVariable("catalogid") Integer catalogId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
+		UUserDto author =this.getUserDtoByNickname(vip);
+	    DCatalogDto catalogDto=new DCatalogDto(catalogId);
+	    diaryDto.setUUserDto(author);
+	    diaryDto.setDCatalogDto(catalogDto);
+	    return diaryService.getDDiaryList(diaryDto);
+	}
 	/**
 	 * 用户收藏 
 	 * @param vip
@@ -418,6 +439,9 @@ public class DiaryAction extends BaseDiaryAction{
 	@RequestMapping(value="/favorite") 
 	public List<DDiaryDto> toFavoritePage(@PathVariable("vip") String vip,Integer page,Integer role,
 			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
+		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
+		DFavoriteDto favoriteDto=new DFavoriteDto();
+		favoriteDto.setUUserDto(userDto);
 		return null;
 	}
 
