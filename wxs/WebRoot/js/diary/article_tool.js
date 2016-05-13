@@ -21,11 +21,11 @@ $(document).ready(function () {
 var Ariticle_Tool={
     userId:Number($('#U_userId').val().trim()),
     authorId:Number($('#author_id').val().trim()),
-    role:Number($('#role').val().trim()),
+    role:Number($('#role').val()),
     //权限配置
     roleSet:function(){
         if($('#role').val()!=''&&$('#role').val()!=null){
-            var role=Number($('#role').val().trim())
+            var role=Number($('#role').val())
             switch (role){
                 case -1:$("li[name='d_toTrash']").addClass("hidden");break;
                 case 0:$("li[name='d_private']").addClass("hidden");break;
@@ -158,7 +158,7 @@ var Ariticle_Tool={
     },
     //获取文章分类列表
     getCatalog:function(){
-        var role=Number($('#role').val().trim()),
+        var role=Number($('#role').val()),
             $catalog=$('#catalog');
         if(role===1&&$catalog!=null){
             var url= $catalog.data('url');
@@ -215,6 +215,7 @@ var Ariticle_Tool={
 
             }
         }
+         window.location.hash='#articleMenu';
     },
     //添加分页
     addPagination:function(page,pageCount){

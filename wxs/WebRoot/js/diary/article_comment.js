@@ -298,4 +298,5 @@ DComment.addCommentInfo=function(data){
         $('#commentDiv').html("<a id='no-comemnt-info' href='#textarea1'>还没有人评论，快来抢第一个沙发吧</a>");
         $('#d_comment>a>span').html("(0)");
     }
+     window.location.hash='#commentDiv';
 }

@@ -346,6 +346,7 @@ public class DiaryAction extends BaseDiaryAction{
 		if(diaryDto==null){
 			mv.setViewName("diary/d_no_details");
 		}else{
+			
 			//如果访问日志存在，访问一次，访问量+1			
 			if(diaryDto.getViewCount()==null){
 				diaryDto.setViewCount(1);
@@ -368,7 +369,14 @@ public class DiaryAction extends BaseDiaryAction{
 				if(favoriteDto!=null){
 					mv.addObject("favorite", favoriteDto);
 				}	
-			}	
+			}
+			if(diaryDto.getRole()!=1){
+				if(userDto==null){
+					mv.setViewName("diary/d_no_details");
+				}else if(!userDto.getNickname().equals(vip)){
+					mv.setViewName("diary/d_no_details");
+				}
+			}
 			mv.addObject("diary",diaryDto);
 			//获取日志评论
 			DReply1Dto  dReply1Dto=new DReply1Dto();

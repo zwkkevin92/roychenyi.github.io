@@ -217,15 +217,15 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
 		DDiary diary1=new DDiary();
 		DDiary diary2=new DDiary();
 		DDiary diary3=new DDiary();
-		StringBuffer stringBuffer=new StringBuffer(" from "+DDiary.class.getName()+"  a where a.role=1");
+		StringBuffer stringBuffer=new StringBuffer(" from "+DDiary.class.getName()+"  a where 1=1 and a.UUser.userId=:userId ");
 		Map<String,Object> params=new HashMap<String, Object>();
         params.put("id",diaryDto.getDiaryId());
         params.put("userId",diaryDto.getUUserDto().getUserId());
-        String hql0=stringBuffer.toString()+" and a.diaryId=:id and a.UUser.userId=:userId";
+        String hql0=stringBuffer.toString()+" and a.diaryId=:id ";
         diary1=this.get(hql0,params);
-		String hql1=stringBuffer.toString()+" and a.diaryId<:id and a.UUser.userId=:userId order by diaryId desc ";
+		String hql1=stringBuffer.toString()+" and role=1 and a.diaryId<:id  order by diaryId desc ";
 		diary2=this.get(hql1, params);
-		String hql2=stringBuffer.toString()+" and a.diaryId>:id and a.UUser.userId=:userId  ";
+		String hql2=stringBuffer.toString()+" and role=1 and a.diaryId>:id   ";
 		diary3=this.get(hql2,params);
 		if(diary1!=null){
 		list.add(beanToDto.T1ToD1(diary1, new DDiaryDto()));
