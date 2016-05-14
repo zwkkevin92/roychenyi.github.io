@@ -87,13 +87,13 @@ public class UserAction {
 	 */
 	@RequestMapping(value="/login1")
 	@ResponseBody
-	public  JSONObject login(HttpServletRequest request,
+	public  JSONObject loginCheck(HttpServletRequest request,
 			HttpServletResponse response){		
 		String prev_url=request.getParameter("prev_url");
 		if(prev_url==null||prev_url==""){
 			prev_url=request.getHeader("Referer");
 		}
-		HttpSession session= request.getSession();
+	//	HttpSession session= request.getSession();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		String verifyCode=request.getParameter("verifyCode");
@@ -135,7 +135,14 @@ public class UserAction {
 		System.out.println("password:"+password);
 		return mv;
 	}
-
+/**
+ * 用户退出登录
+ * @param request
+ * @param response
+ * @return
+ * @author 陈义
+ * @date   2016-5-14下午8:32:30
+ */
 	@RequestMapping(value="/logout")
 	public ModelAndView logout(HttpServletRequest request,
 			HttpServletResponse response){
@@ -149,6 +156,14 @@ public class UserAction {
 		return mv;
 	}
 
+	/***
+	 * 跳转到注册页面
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:32:59
+	 */
 	@RequestMapping(value="/register")
 	public ModelAndView toRegister(HttpServletRequest request,
 			HttpServletResponse response){
@@ -158,6 +173,15 @@ public class UserAction {
 		return mv;
 	}
 
+	/***
+	 * 注册确认，发送验证邮件
+	 * @param request
+	 * @param response
+	 * @param userDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:33:21
+	 */
 	@ResponseBody 
 	@RequestMapping(value="/register1",method=RequestMethod.POST)
 	public UUserDto register(HttpServletRequest request,
@@ -199,7 +223,14 @@ public class UserAction {
 		}		
 		return userDto;
 	}
-	
+	/***
+	 * 验证邮箱验证
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:33:45
+	 */
 	@RequestMapping(value="register/check")
 	public ModelAndView registerCheck(HttpServletRequest request,
 			HttpServletResponse response){
@@ -243,6 +274,14 @@ public class UserAction {
 		return mv;
 	}
 
+	/***
+	 * 跳转到页面的忘记页面
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:34:03
+	 */
 	@RequestMapping(value="/forgot")
 	public ModelAndView toforgot(HttpServletRequest request,
 			HttpServletResponse response){
@@ -253,6 +292,14 @@ public class UserAction {
 	}
 
 
+	/***
+	 * 忘记页面验证结果
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:34:21
+	 */
 	@RequestMapping(value="/forgot/result")
 	@ResponseBody
 	public UUserDto forgot(HttpServletRequest request,HttpServletResponse response){
@@ -303,7 +350,14 @@ public class UserAction {
 
 		return user;
 	}
-	
+	/***
+	 * 修改密码界面
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:34:48
+	 */
 	@RequestMapping(value="/forgot/changepassword")
 	public ModelAndView changePassword(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv=new ModelAndView();
@@ -322,6 +376,15 @@ public class UserAction {
 		}
 		return mv;
 	}
+	/***
+	 * 密码修改
+	 * @param uid
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:35:17
+	 */
 	@ResponseBody
 	@RequestMapping(value="/forgot/change" , method = { RequestMethod.GET, RequestMethod.POST }, produces="application/json")
 	public UUserDto changePassword1(Integer uid, HttpServletRequest request,HttpServletResponse response){
@@ -347,7 +410,13 @@ public class UserAction {
 		}
 		return uuserDto;
 	}
-	
+	/***
+	 * 修改密码界面
+	 * @param request
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:35:40
+	 */
 	@RequestMapping(value="/change/newpassword")
 	public ModelAndView newPassword(HttpServletRequest request){
 		ModelAndView mv=new ModelAndView("user/newpassword");
@@ -355,6 +424,14 @@ public class UserAction {
 		mv.addObject("prev_url", prev_url);
 		return mv;
 	}
+	/***
+	 * 修改新密码结果
+	 * @param request
+	 * @param response
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:35:53
+	 */
 	@ResponseBody
 	@RequestMapping(value="/change/new")
 	public UUserDto newPassword1(HttpServletRequest request,HttpServletResponse response){
@@ -382,9 +459,15 @@ public class UserAction {
 		uuserDto.setUrl(prev_url);
 		return uuserDto;
 	}
-	
-	
-
+		
+	/***
+	 * 验证码验证
+	 * @param VerifyCode
+	 * @param request
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午8:36:19
+	 */
 	@ResponseBody
 	@RequestMapping(value="/checkVerifyCode")
 	public String checkVerifyCode(String VerifyCode,HttpServletRequest request){

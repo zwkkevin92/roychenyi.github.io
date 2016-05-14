@@ -127,6 +127,12 @@ public class SessionFilter extends OncePerRequestFilter {
 			
 			response.sendRedirect(request.getContextPath());
 		}
+		if(url.contains("/system/")){
+			UUserDto admin=(UUserDto) request.getSession().getAttribute("admin");
+			if(admin==null){
+				response.sendRedirect(RequestUtils.getDomain(request)+"/admin/login");
+			}
+		}
 		Map<String,String[]> m = new HashMap<String,String[]>(request.getParameterMap());  
 		if(userDto!=null){
 		m.put("uid", new String[]{userDto.getUserId().toString()});  

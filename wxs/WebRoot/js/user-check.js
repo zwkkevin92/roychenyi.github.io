@@ -48,7 +48,7 @@ $(document).ready(function () {
     $('#verifyCode').blur(
         function(){
             if(this.value.length>0){
-                check_VerifyCode(this);
+                checkVerifyCode(this);
             }else{
                 $('#feedback-verifyCode').removeClass('glyphicon-ok').removeClass('glyphicon-remove');
                 $('#feedback-verifyCode').parent().removeClass('has-error');
@@ -58,7 +58,7 @@ $(document).ready(function () {
 //验证码验证，当输入验证码长度达到4位数时验证
     $('#verifyCode').change(function(){
         if(this.value.length==4&&this.value.length>0) {
-            check_VerifyCode(this);
+            checkVerifyCode(this);
         }
     });
 //验证码输入框，聚焦时确定
@@ -86,29 +86,7 @@ $(document).ready(function () {
         }).get().join("&");
         var data=$('#loginform').serializeArray();
         ajax1(url,data,login_result);
-      /*  $.ajax({
-            url: url,
-            type: "POST",
-            data: str_data,
-            dataType:"json",
-            success: function (data) {
-            	 var flag=data["statusFlag"];
-            	 switch (flag){
-            	 	case "-3":
-            	 	$('#error_text').html("<small>登陆失败:账户为进行邮箱验证，请进入邮箱验证</small>");break;
-            	 	case "-2":
-            	 	$('#error_text').html("<small>登陆失败:账户错误，请检查后登陆</small>");break;
-            	 	case "-1":
-            	 	$('#error_text').html("<small>登陆失败:密码错误，请检查后登陆</small>");break;
-            	 	case "0":
-            	 	$('#error_text').html("<small>登陆失败:验证码错误！</small>");break;
-            	 	case "1":
-            	 	window.location=data['url'];break;
-            	 	default:;
-            	 }
-            }
 
-        });*/
     });
     //忘记密码时，验证按钮点击事件
     $('#check').click(function(){
@@ -236,16 +214,7 @@ $(document).ready(function () {
 function usercheck(user){
     var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     if(!reg.test(user.value)){
-//        layer.tips('亲，用户名为您的邮箱，请输入正确的邮箱',user,{
-//            title:'标题',
-//            icon:1,
-//            closeBtn:1,
-//            shade:0.8,
-//            time:1000,
-//            maxWidth:200,
-//            tips: [2, '#78BA32']//还可配置颜色
-//
-//        });
+
         $('#feedback-username').addClass('glyphicon-remove');
         $('#feedback-username').parent().addClass('has-error');
         return 0;
@@ -259,7 +228,7 @@ function usercheck(user){
  * 验证码检查
  * @param {} E
  */
-function check_VerifyCode(E){
+function checkVerifyCode(E){
     var url=getRootPath()+"/checkVerifyCode?VerifyCode=" + E.value + "&nocahe=" + new Date().getTime();
     ajax1(url,"",checkVerifyCode_result);
 }
@@ -281,6 +250,7 @@ function  checkVerifyCode_result(data){
 function login_result(data){
  var flag=data["statusFlag"];
             	 switch (flag){
+            	 	case "-4":$('#error_text').html("<small>您没有权限进行后台管理</small>");break;
             	 	case "-3":
             	 	$('#error_text').html("<small>登陆失败:账户为进行邮箱验证，请进入邮箱验证</small>");break;
             	 	case "-2":
@@ -291,6 +261,7 @@ function login_result(data){
             	 	$('#error_text').html("<small>登陆失败:验证码错误！</small>");break;
             	 	case "1":
             	 	window.location=data['url'];break;
+            	 	case "2":window.location=data['url'];break;
             	 	default:;
             	 }
             }

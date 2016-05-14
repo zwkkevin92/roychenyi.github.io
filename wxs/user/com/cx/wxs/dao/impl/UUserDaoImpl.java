@@ -236,7 +236,11 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 				UUser uuser= list.get(0);
 				if(uuser.getPassword().equals(uuserDto.getPassword())||uuser.getPassword()==uuserDto.getPassword()){
 					dto=beanToDto.T1ToD1(uuser, dto);
+					if(dto.getRoleId()==2){
 					dto.setStatusFlag("1");
+					}else{
+						dto.setStatusFlag("2");
+					}
 					Date date=new Date();
 					uuser.setLastTime(new Timestamp(date.getTime()));
 					uuser.setLastIp(uuserDto.getIp());
