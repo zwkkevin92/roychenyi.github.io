@@ -167,13 +167,23 @@ var Ariticle_Tool={
     },
     getCatalog_result:function(data){
         var $catalog=$('#catalog');
-        var html="<ul class='list-group'><li class='list-group-item'><h4 class='list-group-item-heading text-info'>文章分类</h4></li>"
+        var html="<input   type='hidden' id='catalogId' value=''>"
+            +"<ul class='list-group'><li class='list-group-item'><h4 class='list-group-item-heading text-info'>文章分类</h4></li>"
             +"<li class='list-group-item'><span>全部文章</span><span class='pull-right'>("+data[0].articleCount+")</span></li>";
         for(var i=1;i<data.length;i++){
-            html+="<li id='catalog"+data[i].catalogId+"' class='list-group-item'><a><span>"+data[i].catalogName+"</span><span class='pull-right'>("+data[i].articleCount+")</span></a></li>";
+            html+="<li id='catalog"+data[i].catalogId+"' class='list-group-item'><a href='javascript:;' onclick='Ariticle_Tool.getDiarysByCatalog("+data[i].catalogId+")'><span>"+data[i].catalogName+"</span><span class='pull-right'>("+data[i].articleCount+")</span></a></li>";
         }
         html+="</ul>"
         $catalog.html(html);
+
+    },
+    getDiarysByCatalog:function(catalogId){
+        $('#catalogId').val(catalogId);
+        $("li[id*='catalog']").find('a').removeClass('text-info');
+        $('#catalog'+catalogId).find('a').addClass('text-info');
+        Ariticle_Tool.goDirectPage(1);
+    },
+    getDiarysByCatalog_result:function(data){
 
     },
     //文章列表更新
@@ -215,12 +225,15 @@ var Ariticle_Tool={
 
             }
         }
-         window.location.hash='#articleMenu';
+        window.location.hash='#articleMenu';
     },
     //添加分页
     addPagination:function(page,pageCount){
         if(pageCount>1){
             var html=createPagination(page,pageCount,'Ariticle_Tool');
+            if(html==null||html==''){
+              $('#diary_pagination').html('');
+            }else{
             $('#diary_pagination').html(html);
             if(page===1){
                 $('#page_prev').addClass("disabled");
@@ -228,6 +241,10 @@ var Ariticle_Tool={
                 $('#page_next').addClass("disabled");
             }
             $('#page'+page).addClass("active");
+            
+            }
+        }else{
+           $('#diary_pagination').html('');
         }
     },
     goPage:function(page){
@@ -243,9 +260,13 @@ var Ariticle_Tool={
     goDirectPage:function(page){
         var url=$('#diary_pagination').data('url'),
             role=$('#role').val(),
+            catalogId=$('#catalogId').val(),
             data="page="+page;
         if(role!=null&&role!=''){
             data+="&role="+role;
+        }
+        if(catalogId!=null&&catalogId!=''){
+            data+="&DCatalogDto.catalogId="+catalogId;
         }
         ajax1(url,data,this.goPage_result);
     },

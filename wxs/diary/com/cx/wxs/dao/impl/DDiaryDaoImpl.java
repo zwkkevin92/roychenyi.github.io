@@ -79,7 +79,7 @@ public class DDiaryDaoImpl extends BaseDaoImpl<DDiary, Integer> implements DDiar
             stringBuffer.append(" where a.UUser.userId=:userId");
             params.put("userId",dDiaryDto.getUUserDto().getUserId());
             if(dDiaryDto.getDCatalogDto()!=null){
-            	stringBuffer.append(" amd a.DCatalog.catalogId=:catalogId");
+            	stringBuffer.append(" and a.DCatalog.catalogId=:catalogId");
             	params.put("catalogId",dDiaryDto.getDCatalogDto().getCatalogId());
             }
             if(dDiaryDto.getRole()!=null){

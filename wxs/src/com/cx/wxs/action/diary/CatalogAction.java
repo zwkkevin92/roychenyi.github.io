@@ -49,4 +49,6 @@ public class CatalogAction extends BaseDiaryAction{
 		return list;
 	}
 	
+	
+	
 }

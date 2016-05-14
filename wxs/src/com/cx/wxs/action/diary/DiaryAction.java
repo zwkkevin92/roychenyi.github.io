@@ -445,4 +445,10 @@ public class DiaryAction extends BaseDiaryAction{
 		return this.getDiarysByFavorite(userDto, page);
 	}
 
+	@RequestMapping(value="/catalog/diarys")
+	@ResponseBody
+	public List<DDiaryDto> getDiarysByCatalog(@PathVariable("vip") String vip,Integer page,Integer role,
+			HttpServletRequest request,HttpServletResponse response,DDiaryDto diaryDto){
+		return null;
+	}
 }
