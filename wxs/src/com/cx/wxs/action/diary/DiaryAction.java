@@ -325,7 +325,7 @@ public class DiaryAction extends BaseDiaryAction{
 	 * @date   2016-5-11上午10:45:54
 	 */
 	@RequestMapping(value="/details/{diaryId}")
-	public ModelAndView articlePreview(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+	public ModelAndView articleDetails(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
 		ModelAndView mv=new ModelAndView("diary/d_details");
 	
@@ -389,6 +389,22 @@ public class DiaryAction extends BaseDiaryAction{
 		return mv;
 	}
 	/***
+	 * 预览文章
+	 * @param vip
+	 * @param diaryId
+	 * @param request
+	 * @param reqResponse
+	 * @param diaryDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午2:33:41
+	 */
+	@RequestMapping(value="/preview/{diaryId}")
+	public DDiaryDto articlePreview(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
+			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto){
+		return null;
+	}
+	/***
 	 * 通过用户自定义分类获取文章列表
 	 * @param vip
 	 * @param catalogId
@@ -437,6 +453,18 @@ public class DiaryAction extends BaseDiaryAction{
 		mv.addObject("role",3);
 		return mv;
 	}
+	/***
+	 * 获取文章收藏列表
+	 * @param vip
+	 * @param page
+	 * @param role
+	 * @param request
+	 * @param response
+	 * @param diaryDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-14下午2:34:03
+	 */
 	@RequestMapping(value="/favorite/list")
 	@ResponseBody
 	public List<DDiaryDto> getFavoriteDiarys(@PathVariable("vip") String vip,Integer page,Integer role,
@@ -444,7 +472,7 @@ public class DiaryAction extends BaseDiaryAction{
 		UUserDto userDto =this.getUserDtoByNickname(vip);
 		return this.getDiarysByFavorite(userDto, page);
 	}
-
+ 
 	@RequestMapping(value="/catalog/diarys")
 	@ResponseBody
 	public List<DDiaryDto> getDiarysByCatalog(@PathVariable("vip") String vip,Integer page,Integer role,

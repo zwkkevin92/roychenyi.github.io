@@ -19,8 +19,8 @@ $(document).ready(function () {
     Ariticle_Tool.roleSet();
 });
 var Ariticle_Tool={
-    userId:Number($('#U_userId').val().trim()),
-    authorId:Number($('#author_id').val().trim()),
+    userId:Number($('#U_userId').val()),
+    authorId:Number($('#author_id').val()),
     role:Number($('#role').val()),
     //权限配置
     roleSet:function(){
@@ -179,8 +179,8 @@ var Ariticle_Tool={
     },
     getDiarysByCatalog:function(catalogId){
         $('#catalogId').val(catalogId);
-        $("li[id*='catalog']").find('a').removeClass('text-info');
-        $('#catalog'+catalogId).find('a').addClass('text-info');
+        $("li[id*='catalog']").find('a').removeClass('text-warning');
+        $('#catalog'+catalogId).find('a').addClass('text-warning');
         Ariticle_Tool.goDirectPage(1);
     },
     getDiarysByCatalog_result:function(data){
@@ -215,7 +215,7 @@ var Ariticle_Tool={
             html+="</ul>";
             $('#diary_list').append(html);
             if(Ariticle_Tool.userId!=Ariticle_Tool.authorId){
-                $('#toolMenu').addClass("hidden");
+               $("span[name='dropdown']").addClass("hidden");
             }else {
                 Ariticle_Tool.roleSet();
                 $("#d_toTrash a").click(function(){    Ariticle_Tool.d_totrash(this) });

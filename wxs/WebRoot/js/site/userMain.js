@@ -62,7 +62,7 @@ var UserMain={
           $('#page').val(page);
           $('#pageCount').val(pageCount);
           for(var i=0;i<data.length;i++){
-              html+="<div class='ibox no-padding'><div class='ibox-title'><h3>"
+              html+="<div class='ibox no-padding animated fadeInUp'><div class='ibox-title'><h3>"
                     +"<a href='"+d_url+data[i].diaryId+"' target='_blank'>"+data[i].title+"</a>"
                     +"<span class='pull-right small'>("+new Date(data[i].writeTime).format('yyyy/MM/dd hh:mm:ss')+")</span>"
                   +"</h3></div>"

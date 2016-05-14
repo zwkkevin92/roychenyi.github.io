@@ -1,0 +1,58 @@
+#set($layout = "layout/normal.vm")
+#set($page_title="后台登陆")
+#parse("conf/js.vm")
+#set($extjs=$Jlayer+$JuserCheck)
+##set($extjs="<!--javascrpt-plugins-layer--><script src='#rootUrl()/js/plugins/layer/layer.js'></script><script src='#rootUrl()/js/user-check.js'></script>")
+##页面主体
+ <div class="middle-box text-center loginscreen  animated fadeInDown">
+                <div>
+           <!--        <div>
+
+                        <h1 class="logo-name">文</h1>
+
+                    </div>
+					-->
+                    <h3>欢迎登陆</h3>
+                     #if($flag==0)
+						<p id="error_text" class="text-danger text-left"><small>验证码错误</small></p>
+					 #elseif($flag==-1)
+					 <p id="error_text" class="text-danger text-left"><small>账号或密码错误请检查后输入</small></p>
+					 #end
+					 <p id="error_text" class="text-danger text-left"></p>					 
+                    <form class="m-t" role="form" id="loginform" action="#rootUrl()/login1" method="post">
+                        <div class="form-group has-feedback">
+							<input type="hidden" id="prev_url" name="prev_url" value='$prev_url' />
+                            <input type="text" id="username" name="username" class="form-control" placeholder="账号" required="" >
+						    <span id="feedback-username" class="form-control-feedback glyphicon"></span>		
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="密码" required="">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                            <div class="col-lg-7 col-sm-7 col-xs-7 has-feedback">
+
+                                    <input type="text" class="form-control" id="verifyCode" name="verifyCode"
+                                           placeholder="验证码"    />
+                                    <span id="feedback-verifyCode" class="form-control-feedback glyphicon"></span>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 no-padding">
+                                <img id="CreateCheckCode" alt="验证码" src="#rootUrl()/servlet/verify.img" onclick="this.src=this.src+'?'"/>
+                                <a href="javascript:document.getElementById('CreateCheckCode').onclick()" >换一张</a>
+                            </div>
+                            </div>
+                        </div>
+                        <button type="button" id="login" class="btn btn-primary block full-width m-b">登 录</button>
+
+
+                        <p class="text-muted text-center"> <a href="#rootUrl()/forgot"  target="_blank" > 忘记密码了？</a> | <a href="register">注册一个新账号</a>
+                        </p>
+			
+
+
+                    </form>
+					
+                </div>
+            </div>
+		

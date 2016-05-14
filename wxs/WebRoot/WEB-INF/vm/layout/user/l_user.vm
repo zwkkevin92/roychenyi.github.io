@@ -15,7 +15,7 @@
         <div class="container">
 			<div class="row">
                 <div class="blog_headarea" style="background-image: url(#rootUrl()/images/head_bg.jpg);">
-<div class="pull-right">统计</div>
+##<div class="pull-right">统计</div>
 <!--挂件-->
 <div id="hanger" class="blog_hanger">
 	<!-- 天气 -->
@@ -50,7 +50,7 @@
                                 <li><a style="">关于我</a></li>
                             </ul>
                         </div>
-                    <div class="pull-right">统计</div>
+                  ##  <div class="pull-right">统计</div>
                 </div>
 				
             </div>
