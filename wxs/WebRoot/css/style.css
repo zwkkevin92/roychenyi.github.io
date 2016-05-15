@@ -167,7 +167,7 @@ body.body-small .navbar-top-links li:last-child {
     transition: all 0.5s;
 }
 .nav > li.active {
-    border-bottom: 2px solid #19aa8d;
+    border-left: 2px solid #19aa8d;
     background: #293846;
 }
 .nav.nav-second-level > li.active {
@@ -3061,8 +3061,9 @@ ol.unstyled {
     bottom: 0;
     left: 0;
     padding: 10px 20px;
-    /*position: absolute;*/
+    /* position: absolute; */
     right: 0;
+    z-index:10;
 }
 .footer.fixed_full {
     position: fixed;
@@ -4487,6 +4488,12 @@ dd.project-people {
     padding: 10px 20px;
     position: relative;
     border-radius: 4px;
+}
+.message em{
+    display:block; border-width:10px; position:absolute;  left:-20px;border-style:solid dashed dashed; border-color:transparent #e7eaec transparent transparent ;font-size:0; line-height:0;
+}
+.message i{
+    display:block; border-width:10px; position:absolute;  left:-19px;border-style:solid dashed dashed; border-color:transparent #FFF transparent transparent;font-size:0; line-height:0;
 }
 .chat-discussion .chat-message .message-date {
     float: right;
@@ -5969,7 +5976,7 @@ body.rtls.mini-navbar .footer.fixed,
 body.body-small.mini-navbar .footer.fixed {
     margin: 0 70px 0 0;
 }
-body.rtls.mini-navbar.fixed-sidebar .footer.fixed,
+body.rtls.mini-navbar.fixed-sidebar ..fixed,
 body.body-small.mini-navbar .footer.fixed {
     margin: 0 0 0 0;
 }

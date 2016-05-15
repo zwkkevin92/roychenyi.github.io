@@ -283,7 +283,7 @@ public class UserAction {
 	 * @date   2016-5-14下午8:34:03
 	 */
 	@RequestMapping(value="/forgot")
-	public ModelAndView toforgot(HttpServletRequest request,
+	public ModelAndView toforget(HttpServletRequest request,
 			HttpServletResponse response){
 		ModelAndView mv=new ModelAndView("user/iforgot");
 		String prev_url=request.getHeader("Referer");
@@ -302,7 +302,7 @@ public class UserAction {
 	 */
 	@RequestMapping(value="/forgot/result")
 	@ResponseBody
-	public UUserDto forgot(HttpServletRequest request,HttpServletResponse response){
+	public UUserDto forget(HttpServletRequest request,HttpServletResponse response){
 		UUserDto user=new UUserDto();
 		String prev_url=request.getParameter("prev_url");
 		if(prev_url==null||prev_url==""){

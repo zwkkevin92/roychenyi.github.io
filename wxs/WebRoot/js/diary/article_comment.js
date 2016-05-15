@@ -90,7 +90,7 @@ DComment.addComment_result=function(data){
             +"   <ul class='dropdown-menu text-right'>"
             +"<li id='commentDelete"+data.row+"' class='hidden' data-url='"+commenter_url+"/article/"+data.dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data.row+","+data.dreplyId+")'>删除</a></li>"
             +"<li><a>举报</a></li>                </ul></span></span>"
-            +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data.uUserDto.nickname+":</a>"
+            +"<div class='message'><em></em><i></i><a class='message-author' href='"+user_url+"'> "+data.uUserDto.nickname+":</a>"
             +"<span class='message-date'> "+new Date(data["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
             +"<span class='message-content'> "+data.dReply2Dtos[0].content+"</span>"
             +"<div class='form-group' >            <input type='text' class='form-control' placeholder='我也来评论一句' onclick='DComment.showCommentEditor("+data.row+")'> </div>"
@@ -181,7 +181,7 @@ DComment.addCommentReply_result=function(data){
         var user_url=rootUrl+data.uUserByUserIdDto.nickname;
         $("#"+formId).parent().before("<div class='chat-message'><a href='"+user_url+"'>"+
             "<img class='message-avatar' src='"+rootUrl+data["uUserByUserIdDto"]["portrait"]+"' alt='"+data["uUserByUserIdDto"]["nickname"]+"'></a>"
-            +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(data["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
+            +"<div class='message'><em></em><i></i><a class='message-author' href='"+user_url+"'> "+data["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(data["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
             +"<span class='message-content'>"+data["content"]+"</span></div></div>");
         layer.msg("回复成功！",{icon:1,time:1000});
         comment_dreply.$txt.html("");
@@ -268,7 +268,7 @@ DComment.addCommentInfo=function(data){
                 +"   <ul class='dropdown-menu text-right'>"
                 +"<li id='commentDelete"+data[i].row+"' class='hidden' data-url='"+commenter_url+"/article/"+data[i].dDiaryDto.diaryId+"/reply_delete'><a href='javascript:;' onclick='DComment.deleteComment("+data[i].row+","+data[i].dreplyId+")'>删除</a></li>"
                 +"<li><a>举报</a></li>                </ul></span></span>"
-                +"<div class='message'><a class='message-author' href='"+user_url+"'> "+data[i].uUserDto.nickname+":</a>"
+                +"<div class='message'><em></em><i></i><a class='message-author' href='"+user_url+"'> "+data[i].uUserDto.nickname+":</a>"
                 +"<span class='message-date'> "+new Date(data[i]["writeTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
                 +"<span class='message-content'> "+data[i].dReply2Dtos[0].content+"</span>";
             //获取子评论（回复），从第二个开始
@@ -277,7 +277,7 @@ DComment.addCommentInfo=function(data){
                 user_url=rootUrl+reply[j].uUserByUserIdDto.nickname;
                 html+="<div class='chat-message'><a href='"+user_url+"'>"+
                     "<img class='message-avatar' src='"+rootUrl+reply[j]["uUserByUserIdDto"]["portrait"]+"' alt='"+reply[j]["uUserByUserIdDto"]["nickname"]+"'></a>"
-                    +"<div class='message'><a class='message-author' href='"+user_url+"'> "+reply[j]["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(reply[j]["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
+                    +"<div class='message'><em></em><i></i><a class='message-author' href='"+user_url+"'> "+reply[j]["uUserByUserIdDto"]["nickname"]+"</a><span class='message-date'> "+new Date(reply[j]["replyTime"]).format("yyyy-MM-dd hh:mm:ss")+"  </span>"
                     +"<span class='message-content'>"+reply[j]["content"]+"</span></div></div>";
             }
             html+="<div class='form-group' >            <input type='text' class='form-control' placeholder='我也来评论一句' onclick='DComment.showCommentEditor("+data[i].row+")'> </div>"

@@ -163,7 +163,7 @@ public class DiaryAction extends BaseDiaryAction{
 	@RequestMapping(value="/article_edite/{diaryId}")
 	public ModelAndView toArticleEdite(@PathVariable("vip") String vip,@PathVariable("diaryId") Integer diaryId,
 			HttpServletRequest request,HttpServletResponse reqResponse,DDiaryDto diaryDto ){
-		ModelAndView mv=new ModelAndView("diary/d_edite");
+		ModelAndView mv=new ModelAndView("diary/d_edit");
 		UUserDto userDto=(UUserDto) request.getSession().getAttribute("user");
 		UUserDto userDto1=this.getUserDtoByNickname(vip);
 		try{
