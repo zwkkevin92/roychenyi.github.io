@@ -58,8 +58,7 @@ public class AdminAction extends IndexAction{
 		if(verifyCode.equalsIgnoreCase(verifyCodeSession)){
 			userDto.setPassword(StringUtils.md5(userDto.getPassword()));
 			userDto=userService.login(userDto);
-			if(userDto.getStatusFlag().equals("2")){
-							
+			if(userDto.getStatusFlag().equals("2")){							
 				request.getSession().setAttribute("admin", userDto);
 				userDto.setUrl(RequestUtils.getDomain(request)+"system/mian");
 			}else{
