@@ -138,6 +138,13 @@ function dropdownOpen() {
     }).mouseout(function() {
         $(this).removeClass('gray-bg open');
     });
+    
+    var $dropdownDiv=$('div.dropdown');
+    $dropdownDiv.mouseover(function() {
+        $(this).addClass('open');
+    }).mouseout(function() {
+        $(this).removeClass('open');
+    });
 
 }
 

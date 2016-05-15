@@ -26,6 +26,8 @@
                                            #foreach($reply2 in $reply1.DReply2Dtos)
 											#if($velocityCount==1)
 												<div class="message" >
+													<em></em>
+													<i></i>
                                                 <a class="message-author" href="#rootUrl/$reply2.UUserByUserIdDto.nickname"> $reply2.UUserByUserIdDto.nickname:</a>
                                                 <span class="message-date"> $date.format('yyyy/MM/dd HH:mm:ss',$reply2.replyTime)  </span>
                                                     <span class="message-content">
@@ -35,6 +37,8 @@
 											<div class="chat-message">
                                                      <a href="#rootUrl/$reply2.UUserByUserIdDto.nickname"><img class="message-avatar" src="#rootUrl/$reply2.UUserByUserIdDto.portrait" alt="$reply2.UUserByUserIdDto.nickname"></a>
                                                    <div class="message">
+													<em></em>
+													<i></i>
                                                 <a class="message-author" href="#rootUrl/$reply2.UUserByUserIdDto.nickname"> $reply2.UUserByUserIdDto.nickname</a>
                                                 <span class="message-date"> $date.format('yyyy/MM/dd HH:mm:ss',$reply2.replyTime)  </span>
                                                     <span class="message-content">

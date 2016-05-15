@@ -118,7 +118,7 @@ public class SessionFilter extends OncePerRequestFilter {
 		}*/
 		
 		
-		if(userDto!=null&&(url.contains("login")||url.contains("register"))){
+		if(userDto!=null&&(url.contains(RequestUtils.getDomain(request)+"login")||url.contains(RequestUtils.getDomain(request)+"register"))){
 			request.getSession().setAttribute("goUrl", request.getRequestURL()+"?"+request.getQueryString());
             //跳转到login.jsp
 			System.out.println(request.getSession().getAttribute("goUrl"));
@@ -129,8 +129,9 @@ public class SessionFilter extends OncePerRequestFilter {
 		}
 		if(url.contains("/system/")){
 			UUserDto admin=(UUserDto) request.getSession().getAttribute("admin");
-			if(admin==null){
-				response.sendRedirect(RequestUtils.getDomain(request)+"/admin/login");
+			if(admin==null&&!url.contains("system/login")){
+				String goUrl=RequestUtils.getDomain(request)+"system/login";
+				response.sendRedirect(goUrl);
 			}
 		}
 		Map<String,String[]> m = new HashMap<String,String[]>(request.getParameterMap());  

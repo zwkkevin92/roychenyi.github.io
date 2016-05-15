@@ -1,0 +1,27 @@
+#set($disable_seachable=true)
+
+#html_doctype()
+<head>
+	#parse("layout/head.vm")
+</head>
+<body  >
+	 <div id="wrapper">
+		<!--右侧目录-->
+		#parse("layout/system/leftMenu.vm")
+		<div id="page-wrapper" class="gray-bg dashbard-1">
+         #parse("layout/system/navbar.vm")
+		 $screen_content
+		</div>
+#parse("layout/footer.vm")	
+	 </div>
+
+
+#jquery
+<!-- Custom and plugin javascript -->
+<script src="#rootUrl()/js/plugins/pace/pace.min.js"></script>
+<script src="#rootUrl()/js/main.js"></script>
+#if($extjs)
+$extjs
+#end
+</body>	
+</html>

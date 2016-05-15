@@ -15,6 +15,7 @@ import com.cx.wxs.dto.UUserDto;
 import com.cx.wxs.service.UUserInfoService;
 import com.cx.wxs.service.UUserService;
 import com.cx.wxs.utils.RequestUtils;
+import com.cx.wxs.utils.StringUtils;
 
 /**
  * @author 陈义
@@ -55,11 +56,11 @@ public class AdminAction extends IndexAction{
 		String verifyCode=request.getParameter("verifyCode");
 		String verifyCodeSession=(String) request.getSession().getAttribute("verifycode");
 		if(verifyCode.equalsIgnoreCase(verifyCodeSession)){
+			userDto.setPassword(StringUtils.md5(userDto.getPassword()));
 			userDto=userService.login(userDto);
-			if(userDto.getStatusFlag().equals("2")){
-							
+			if(userDto.getStatusFlag().equals("2")){							
 				request.getSession().setAttribute("admin", userDto);
-				userDto.setUrl(RequestUtils.getDomain(request)+"/system/mian");
+				userDto.setUrl(RequestUtils.getDomain(request)+"system/mian");
 			}else{
 				userDto.setStatusFlag("-4");
 			}
@@ -70,7 +71,7 @@ public class AdminAction extends IndexAction{
 	}
 	@RequestMapping(value="/mian")
 	public ModelAndView toAdminMain(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv=new ModelAndView("admin/mian");
+		ModelAndView mv=new ModelAndView("admin/main");
 		return mv;
 	}
 }
