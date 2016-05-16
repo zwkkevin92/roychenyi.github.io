@@ -95,6 +95,6 @@ public class WxsManageAction {
 	 */
 	@RequestMapping(value="/update")
 	public WWxsDto  updateWxs(HttpServletRequest request,HttpServletResponse response,WWxsDto wxsDto){
-		return null;
+		return wxsDto;
 	}
 }
