@@ -1,15 +1,18 @@
 package com.cx.wxs.dto;
 
 import com.cx.wxs.base.BeanBase;
+import com.cx.wxs.po.SysSchool;
+
 import java.sql.Timestamp;
 
 /**
  * @author 陈义
- * @date 2015-12-09 22:36:38
+ * @date 2016-05-16 10:44:22
  */
 public class WWxsDto extends BeanBase{
     private Integer wxsId;
-    private Integer account;
+    private SysSchool sysSchool;
+    private String account;
     private String password;
     private String name;
     private String title;
@@ -20,6 +23,9 @@ public class WWxsDto extends BeanBase{
     private Short flag;
     private Timestamp createTime;
     private Timestamp lastTime;
+    private Short clientType;
+    private String clientIp;
+    private String clientAgent;
     private Short mode;
     private String accessCode;
     private String indexName;
@@ -39,7 +45,8 @@ public class WWxsDto extends BeanBase{
     }
 
     /** full constructor */
-    public WWxsDto(Integer wxsId,Integer account,String password,String name,String title,String wxsUrl,String wxsDetail,String logo,Integer styleId,Short flag,Timestamp createTime,Timestamp lastTime,Short mode,String accessCode,String indexName,String diaryName,String soundName,String imageName,Integer siteType,Short status,Integer ext1,Integer ext2,String ext3,String ext4){super();
+    public WWxsDto(SysSchool sysSchool,Integer wxsId,String account,String password,String name,String title,String wxsUrl,String wxsDetail,String logo,Integer styleId,Short flag,Timestamp createTime,Timestamp lastTime,Short clientType,String clientIp,String clientAgent,Short mode,String accessCode,String indexName,String diaryName,String soundName,String imageName,Integer siteType,Short status,Integer ext1,Integer ext2,String ext3,String ext4){super();
+        this.sysSchool=sysSchool;
         this.wxsId=wxsId;
         this.account=account;
         this.password=password;
@@ -52,6 +59,9 @@ public class WWxsDto extends BeanBase{
         this.flag=flag;
         this.createTime=createTime;
         this.lastTime=lastTime;
+        this.clientType=clientType;
+        this.clientIp=clientIp;
+        this.clientAgent=clientAgent;
         this.mode=mode;
         this.accessCode=accessCode;
         this.indexName=indexName;
@@ -65,17 +75,29 @@ public class WWxsDto extends BeanBase{
         this.ext3=ext3;
         this.ext4=ext4;
     }
+
     public Integer getWxsId(){
         return wxsId;
     }
     public void setWxsId(Integer wxsId){
         this.wxsId=wxsId;
     }
+    
+	public SysSchool getSysSchool() {
+		return sysSchool;
+	}
 
-    public Integer getAccount(){
+	/**
+	 * @param sysSchool the sysSchool to set
+	 */
+	public void setSysSchool(SysSchool sysSchool) {
+		this.sysSchool = sysSchool;
+	}
+
+	public String getAccount(){
         return account;
     }
-    public void setAccount(Integer account){
+    public void setAccount(String account){
         this.account=account;
     }
 
@@ -147,6 +169,27 @@ public class WWxsDto extends BeanBase{
     }
     public void setLastTime(Timestamp lastTime){
         this.lastTime=lastTime;
+    }
+
+    public Short getClientType(){
+        return clientType;
+    }
+    public void setClientType(Short clientType){
+        this.clientType=clientType;
+    }
+
+    public String getClientIp(){
+        return clientIp;
+    }
+    public void setClientIp(String clientIp){
+        this.clientIp=clientIp;
+    }
+
+    public String getClientAgent(){
+        return clientAgent;
+    }
+    public void setClientAgent(String clientAgent){
+        this.clientAgent=clientAgent;
     }
 
     public Short getMode(){
