@@ -17,6 +17,14 @@ public interface WWxsDao extends IBaseDao<WWxs,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public WWxsDto getWWxsByID(WWxsDto wWxsDto);
+    /**
+     * 通过相关信息获取wxsDto
+     * @param wWxsDto
+     * @return
+     * @author 陈义
+     * @date   2016-5-16下午11:41:36
+     */
+    public WWxsDto getWWxsDto(WWxsDto wWxsDto);
     /***
      * 通过名字之类的获取文学社信息
      * @param wWxsDto

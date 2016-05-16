@@ -54,6 +54,31 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao{
         }
         return null;
     }
+    @Override
+    public WWxsDto getWWxsDto(WWxsDto wWxsDto){
+    	// TODO Auto-generated method stub
+        if(wWxsDto!=null){
+           StringBuffer stringBuffer=new StringBuffer();
+           Map<String,Object> params=new HashMap<String, Object>();
+           stringBuffer.append("from  "+WWxs.class.getName()+"  a where 1=1");
+           if(wWxsDto.getName()!=null){
+           stringBuffer.append(" and  a.name=:name");
+           params.put("name",wWxsDto.getName());
+           }
+           if(wWxsDto.getAccount()!=null){
+        	   stringBuffer.append(" and  a.account=:account");
+               params.put("account",wWxsDto.getAccount());   
+           }
+           List<WWxs> list=this.find(stringBuffer.toString(), params);
+           if(list!=null&&list.size()>0){
+            WWxs t1= list.get(0);
+            WWxsDto    dto=new    WWxsDto();
+            dto=beanToDto.T1ToD1(t1,dto);
+            return dto;
+            }
+        }
+        return null;
+    }
 
     /**
     * 通过相关数据获取WWxsDtoList
