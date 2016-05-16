@@ -88,3 +88,92 @@
         </div>
     </div>
     </div>  
+=======
+<div class="col-lg-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>社团列表</h5>  <span class="label label-primary">K+</span>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">选项1</a>
+                        </li>
+                        <li><a href="#">选项2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div id="clubList">
+                    <ul class="list-group">
+                        <li class="list-group-item"><span>社团1</span><span class="pull-right">管理</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>新建社团</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">选项1</a>
+                        </li>
+                        <li><a href="#">选项2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content ">
+                <div class="middle-box text-center loginscreen   animated fadeInDown no-padding" style="margin-top: 0px; ">
+                    <div>
+                        <h3>欢迎创建新文学社</h3>
+                        <p id="error_text" class="text-danger text-left"></p>
+                        <form class="m-t" id="reg_form" role="form" action="#rootUrl()/club/creatcheck">
+                            <div class="form-group has-feedback">
+                                <input type="text" id="wxs_name" name="name" class="form-control" placeholder="请输入文学社名字" required="">
+                                <span id="feedback-name" class="form-control-feedback glyphicon"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" id="account" name="account" class="form-control" placeholder="请输入文学社账户" required="">
+
+                                <span id="feedback-account" class="form-control-feedback glyphicon"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password1" name="password1" class="form-control" placeholder="请输入密码" required="">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="请再次输入密码" required="">
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="mail" name="main" class="form-control" placeholder="文学社邮箱" required="">
+
+                            </div>
+                            <button type="button" id="register" name="register" class="btn btn-primary block full-width m-b">确认</button>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    </div>  
