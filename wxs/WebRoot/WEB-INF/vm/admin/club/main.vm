@@ -1,7 +1,9 @@
+#set($layout = "layout/system/l_admin.vm")
+#set($page_title="文学社管理")
 <div class="col-lg-4">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>社团列表</h5>  <span class="label label-primary">K+</span>
+                <h5>社团列表</h5>  <span class="label label-primary"></span>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -22,10 +24,16 @@
             </div>
             <div class="ibox-content">
                 <div id="clubList">
+					<input id="page" type="hidden" value="0">
+					<input id="pageCount" type="hidden" value="0">
+						
                     <ul class="list-group">
                         <li class="list-group-item"><span>社团1</span><span class="pull-right">管理</span></li>
+						<li class="list-group-item"><span>社团1</span><span class="pull-right">管理</span><span class='pull-right' name='school'><a>学校</a></span></li>
                     </ul>
                 </div>
+				<!--社团分页-->
+                <div id="club_pagination" class="text-center" data-url=""></div>
             </div>
         </div>
         <div class="ibox float-e-margins">

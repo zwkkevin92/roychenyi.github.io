@@ -76,7 +76,7 @@
     <a href="index.html#"><i class="fa fa-inbox"></i> <span class="nav-label">社团</span><span
             class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-        <li><a href="graph_echarts.html">添加社团</a>
+        <li><a href="#rootUrl/system/club/create">添加社团</a>
         </li>
         <li><a>社团管理</a></li>
     </ul>
