@@ -37,8 +37,9 @@ public class WxsManageAction {
 	@RequestMapping(value="/checkacount")
 	@ResponseBody
 	public String checkAcount(HttpServletRequest request,HttpServletResponse response,WWxsDto wWxsDto){
+
 		String flag = "0";//默认为0，失败
-		
+		System.out.println("13551");
 		if(wWxsDto!=null&&wWxsDto.getAccount()!=null){
 			List<WWxsDto> list = wxsService.getWWxsList(wWxsDto);
 			if(list!=null&&list.size()>0){
