@@ -15,7 +15,7 @@ import com.cx.wxs.utils.ClientInfo;
  * @param <T>
  * @date   2016-4-7 下午4:53:07
  */
-@Controller
+@Controller 
 public class BaseAction {
 	@Resource
 	private UUserService userService;
@@ -28,9 +28,11 @@ public class BaseAction {
 	}
 
 	/**
+	 * @author Administrator
 	 * @param userService the userService to set
 	 */
 	public void setUserService(UUserService userService) {
+		System.out.println("neirb");
 		this.userService = userService;
 	}
 	/***

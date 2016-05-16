@@ -1,5 +1,6 @@
 package com.cx.wxs.action.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -79,7 +80,9 @@ public class WxsManageAction {
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public List<WWxsDto> getWxsList(@PathVariable("page") Integer page,HttpServletRequest request,HttpServletResponse response,WWxsDto wxsDto){
-		return null;
+		List<WWxsDto> wxsList=new ArrayList<WWxsDto>();
+		wxsList=wxsService.getWWxsList(wxsDto);
+		return wxsList;
 	}
 	/**
 	 * 更新wxs

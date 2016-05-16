@@ -39,6 +39,7 @@ public class AdminAction extends IndexAction{
 	@RequestMapping(value="/login")
 	public ModelAndView tologin(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv=new ModelAndView("admin/user/login");
+		System.out.println();
 		return mv;
 	}
 	/***
