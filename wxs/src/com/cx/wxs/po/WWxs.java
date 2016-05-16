@@ -2,12 +2,18 @@ package com.cx.wxs.po;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -25,7 +31,8 @@ public class WWxs implements java.io.Serializable {
 	// Fields
 
 	private Integer wxsId;
-	private Integer account;
+	private SysSchool sysSchool;
+	private String account;
 	private String password;
 	private String name;
 	private String title;
@@ -36,6 +43,9 @@ public class WWxs implements java.io.Serializable {
 	private Short flag;
 	private Timestamp createTime;
 	private Timestamp lastTime;
+	private Short clientType;
+	private String clientIp;
+	private String clientAgent;
 	private Short mode;
 	private String accessCode;
 	private String indexName;
@@ -49,6 +59,7 @@ public class WWxs implements java.io.Serializable {
 	private String ext3;
 	private String ext4;
 	private List<WBook> WBooks = new ArrayList<WBook>(0);
+	private List<WMenber> WMenbers = new ArrayList<WMenber>(0);
 	private List<WConfig> WConfigs = new ArrayList<WConfig>(0);
 	private List<WLink> WLinks = new ArrayList<WLink>(0);
 	private List<WStatus> WStatuses = new ArrayList<WStatus>(0);
@@ -62,20 +73,22 @@ public class WWxs implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public WWxs(Integer account, String password) {
+	public WWxs(String account, String password) {
 		this.account = account;
 		this.password = password;
 	}
 
 	/** full constructor */
-	public WWxs(Integer account, String password, String name, String title,
+	public WWxs(SysSchool sysSchool,String account, String password, String name, String title,
 			String wxsUrl, String wxsDetail, String logo, Integer styleId,
-			Short flag, Timestamp createTime, Timestamp lastTime, Short mode,
+			Short flag, Timestamp createTime, Timestamp lastTime, Short clientType, String clientIp,
+			String clientAgent, Short mode,
 			String accessCode, String indexName, String diaryName,
 			String soundName, String imageName, Integer siteType, Short status,
 			Integer ext1, Integer ext2, String ext3, String ext4,
-			List<WBook> WBooks, List<WConfig> WConfigs, List<WLink> WLinks,
+			List<WBook> WBooks,List<WMenber> WMenbers, List<WConfig> WConfigs, List<WLink> WLinks,
 			List<WStatus> WStatuses, List<SysInvitationCode> sysInvitationCodes) {
+		this.sysSchool=sysSchool;
 		this.account = account;
 		this.password = password;
 		this.name = name;
@@ -87,6 +100,9 @@ public class WWxs implements java.io.Serializable {
 		this.flag = flag;
 		this.createTime = createTime;
 		this.lastTime = lastTime;
+		this.clientType=clientType;
+		this.clientIp=clientIp;
+		this.clientAgent=clientAgent;
 		this.mode = mode;
 		this.accessCode = accessCode;
 		this.indexName = indexName;
@@ -100,6 +116,7 @@ public class WWxs implements java.io.Serializable {
 		this.ext3 = ext3;
 		this.ext4 = ext4;
 		this.WBooks = WBooks;
+		this.WMenbers=WMenbers;
 		this.WConfigs = WConfigs;
 		this.WLinks = WLinks;
 		this.WStatuses = WStatuses;
@@ -117,13 +134,23 @@ public class WWxs implements java.io.Serializable {
 	public void setWxsId(Integer wxsId) {
 		this.wxsId = wxsId;
 	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "school_id")
+	public SysSchool getSysSchool() {
+		return this.sysSchool;
+	}
 
-	@Column(name = "account", nullable = false)
-	public Integer getAccount() {
+	public void setSysSchool(SysSchool sysSchool) {
+		this.sysSchool = sysSchool;
+	}
+
+	@Column(name = "account", nullable = false,length=50)
+	public String getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(Integer account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 
@@ -217,6 +244,33 @@ public class WWxs implements java.io.Serializable {
 		this.lastTime = lastTime;
 	}
 
+	@Column(name = "client_type")
+	public Short getClientType() {
+		return this.clientType;
+	}
+
+	public void setClientType(Short clientType) {
+		this.clientType = clientType;
+	}
+
+	@Column(name = "client_ip", length = 50)
+	public String getClientIp() {
+		return this.clientIp;
+	}
+
+	public void setClientIp(String clientIp) {
+		this.clientIp = clientIp;
+	}
+
+	@Column(name = "client_agent", length = 250)
+	public String getClientAgent() {
+		return this.clientAgent;
+	}
+
+	public void setClientAgent(String clientAgent) {
+		this.clientAgent = clientAgent;
+	}
+	
 	@Column(name = "mode")
 	public Short getMode() {
 		return this.mode;
@@ -332,6 +386,23 @@ public class WWxs implements java.io.Serializable {
 
 	public void setWBooks(List<WBook> WBooks) {
 		this.WBooks = WBooks;
+	}
+	
+	
+
+	/**
+	 * @return the wMenbers
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")
+	public List<WMenber> getWMenbers() {
+		return WMenbers;
+	}
+
+	/**
+	 * @param wMenbers the wMenbers to set
+	 */
+	public void setWMenbers(List<WMenber> wMenbers) {
+		WMenbers = wMenbers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "WWxs")

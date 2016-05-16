@@ -2,7 +2,10 @@ package com.cx.wxs.po;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,6 +68,7 @@ public class UUser implements java.io.Serializable {
 	private Integer follows;
 	private Integer popedom;
 	private Integer codeId;
+	private List<WMenber> WMenbers = new ArrayList<WMenber>(0);
 	private List<DDiary> DDiaries = new ArrayList<DDiary>(0);
 	private List<VVote> VVotes = new ArrayList<VVote>(0);
 	private List<DUpvote> DUpvotes = new ArrayList<DUpvote>(0);
@@ -138,7 +142,7 @@ public class UUser implements java.io.Serializable {
 			Integer topicCount, Integer topicReplyCount, Integer imageCount,
 			Integer imageReplyCount, Integer guestbookCount, Integer tagCount,
 			Integer fans, Integer follows, Integer popedom, Integer codeId,
-			List<DDiary> DDiaries, List<VVote> VVotes, List<DUpvote> DUpvotes,
+			List<WMenber> WMenbers, List<DDiary> DDiaries, List<VVote> VVotes, List<DUpvote> DUpvotes,
 			List<DReply1> DReply1s, List<IReply2> IReply2sForUserId,
 			List<SSound> SSounds, List<USign> USigns,
 			List<SReply2> SReply2sForCommentator, List<BAccess> BAccesses,
@@ -196,6 +200,7 @@ public class UUser implements java.io.Serializable {
 		this.follows = follows;
 		this.popedom = popedom;
 		this.codeId = codeId;
+		this.WMenbers=WMenbers;
 		this.DDiaries = DDiaries;
 		this.VVotes = VVotes;
 		this.DUpvotes = DUpvotes;
@@ -597,6 +602,22 @@ public class UUser implements java.io.Serializable {
 
 	public void setCodeId(Integer codeId) {
 		this.codeId = codeId;
+	}
+
+	
+	/**
+	 * @return the wMenbers
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
+	public List<WMenber> getWMenbers() {
+		return WMenbers;
+	}
+
+	/**
+	 * @param wMenbers the wMenbers to set
+	 */
+	public void setWMenbers(List<WMenber> wMenbers) {
+		WMenbers = wMenbers;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "UUser")
