@@ -1,6 +1,7 @@
 package com.cx.wxs.enums;
 
 /**
+ * 状态值
  * @author 陈义
  * @date   2016-5-15 下午2:47:31
  */
