@@ -1,7 +1,7 @@
 package com.cx.wxs.dto;
 
 import com.cx.wxs.base.BeanBase;
-import com.cx.wxs.po.SysSchool;
+import com.cx.wxs.dto.SysSchoolDto;
 
 import java.sql.Timestamp;
 
@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 public class WWxsDto extends BeanBase{
     private Integer wxsId;
-    private SysSchool sysSchool;
+    private SysSchoolDto sysSchoolDto;
     private String account;
     private String password;
     private String name;
@@ -45,8 +45,8 @@ public class WWxsDto extends BeanBase{
     }
 
     /** full constructor */
-    public WWxsDto(SysSchool sysSchool,Integer wxsId,String account,String password,String name,String title,String wxsUrl,String wxsDetail,String logo,Integer styleId,Short flag,Timestamp createTime,Timestamp lastTime,Short clientType,String clientIp,String clientAgent,Short mode,String accessCode,String indexName,String diaryName,String soundName,String imageName,Integer siteType,Short status,Integer ext1,Integer ext2,String ext3,String ext4){super();
-        this.sysSchool=sysSchool;
+    public WWxsDto(SysSchoolDto sysSchoolDto,Integer wxsId,String account,String password,String name,String title,String wxsUrl,String wxsDetail,String logo,Integer styleId,Short flag,Timestamp createTime,Timestamp lastTime,Short clientType,String clientIp,String clientAgent,Short mode,String accessCode,String indexName,String diaryName,String soundName,String imageName,Integer siteType,Short status,Integer ext1,Integer ext2,String ext3,String ext4){super();
+        this.sysSchoolDto=sysSchoolDto;
         this.wxsId=wxsId;
         this.account=account;
         this.password=password;
@@ -83,15 +83,15 @@ public class WWxsDto extends BeanBase{
         this.wxsId=wxsId;
     }
     
-	public SysSchool getSysSchool() {
-		return sysSchool;
+	public SysSchoolDto getSysSchoolDto() {
+		return sysSchoolDto;
 	}
 
 	/**
 	 * @param sysSchool the sysSchool to set
 	 */
-	public void setSysSchool(SysSchool sysSchool) {
-		this.sysSchool = sysSchool;
+	public void setSysSchoolDto(SysSchoolDto sysSchoolDto) {
+		this.sysSchoolDto = sysSchoolDto;
 	}
 
 	public String getAccount(){

@@ -29,3 +29,5 @@
 #set($Jhanger="<script src='#rootUrl()/js/site/hanger.js'></script>")
 ##用户主函数
 #set($JuserMain="<script src='#rootUrl()/js/site/userMain.js'></script>")
+##系统社团
+#set($JsysClub="<script src='#rootUrl()/js/admin/sys-club.js'></script>")
