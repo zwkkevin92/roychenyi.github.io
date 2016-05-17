@@ -93,11 +93,11 @@ public class UUserServiceImpl implements UUserService{
 		if(userDto==null){
 			return null;
 		}else if(userDto.getStatusFlag()==null){
-		if(uuserDto.getRoleId()==0&&userDto.getRoleId()==0){
+		if(uuserDto.getRoleId()!=null&&uuserDto.getRoleId()==0&&userDto.getRoleId()==0){
 			
-				uuserDto.setStatusFlag("2");
+				userDto.setStatusFlag("2");
 		}else{
-			uuserDto.setStatusFlag("1");
+			userDto.setStatusFlag("1");
 		}
 		}
 		return userDto;
