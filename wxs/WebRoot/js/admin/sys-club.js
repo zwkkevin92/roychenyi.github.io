@@ -34,7 +34,14 @@ var SysClub={
     //检查社团名称
     checkName:function(_this){
         var url=this.getUrl()+"/checkname",
+            name=$(_this).val(),
             data="name="+$(_this).val()+"&nocahe=" + new Date().getTime();
+        if(name.length<4||name.substring(name.length-3,name.length)!='文学社'){
+            $('#feedback-name').addClass('glyphicon-remove');
+            $('#feedback-name').parent().addClass('has-error');
+            $('#error_text').html("<small>文学社名称必须以“文学社”结尾</small>");
+            return false;
+        }
         ajax1(url,data,SysClub.checkName_result);
     },
     checkName_result:function(data){
@@ -51,8 +58,8 @@ var SysClub={
     },
     //检查社团账户
     checkAccount:function(_this){
-        var url=this.getUrl()+"/checkaccount",
-            data="name="+$(_this).val()+"&nocahe=" + new Date().getTime();
+        var url=this.getUrl()+"/checkacount",
+            data="account="+$(_this).val()+"&nocahe=" + new Date().getTime();
         ajax1(url,data,SysClub.checkAccount_reslut);
     },
     checkAccount_reslut:function(data){
@@ -70,8 +77,8 @@ var SysClub={
     //创建社团
     clubCreate:function(){
         var url=$('#clubCreateForm').attr('action'),
-            data=$('#clubCreateForm').serialize(),
-            pwd1=$('#password').val(),
+            data=$('#clubCreateForm').serialize();
+         /*   pwd1=$('#password').val(),
             pwd2=$('#password1').val();
         if(pwd1==''||pwd2==''){
             $('#error_text').html("<small>密码不能为空</small>");
@@ -82,7 +89,7 @@ var SysClub={
         }else if(pwd1.length>48||pwd1.length<8){
             $('#error_text').html("<small>密码长度不能小于8且不能超过48</small>");
             return false;
-        }
+        }*/
         if($('#error_text').val!=''){
             return false;
         }

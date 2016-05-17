@@ -39,6 +39,7 @@ public class WWxs implements java.io.Serializable {
 	private String wxsUrl;
 	private String wxsDetail;
 	private String logo;
+	private String mail;
 	private Integer styleId;
 	private Short flag;
 	private Timestamp createTime;
@@ -80,7 +81,7 @@ public class WWxs implements java.io.Serializable {
 
 	/** full constructor */
 	public WWxs(SysSchool sysSchool,String account, String password, String name, String title,
-			String wxsUrl, String wxsDetail, String logo, Integer styleId,
+			String wxsUrl, String wxsDetail, String logo,String mail, Integer styleId,
 			Short flag, Timestamp createTime, Timestamp lastTime, Short clientType, String clientIp,
 			String clientAgent, Short mode,
 			String accessCode, String indexName, String diaryName,
@@ -96,6 +97,7 @@ public class WWxs implements java.io.Serializable {
 		this.wxsUrl = wxsUrl;
 		this.wxsDetail = wxsDetail;
 		this.logo = logo;
+		this.mail=mail;
 		this.styleId = styleId;
 		this.flag = flag;
 		this.createTime = createTime;
@@ -206,6 +208,15 @@ public class WWxs implements java.io.Serializable {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+	
+	@Column(name = "mail", length = 100)
+	public String getMail() {
+		return this.mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	@Column(name = "style_id")

@@ -29,7 +29,7 @@ public class IllegalAction {
 	private SysIllegalService sysIllegalService;
 	@RequestMapping(value="")
 	public ModelAndView illegalManage(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv=new ModelAndView();
+		ModelAndView mv=new ModelAndView("system/common/illegal");
 		return mv;
 	}
 	/**
