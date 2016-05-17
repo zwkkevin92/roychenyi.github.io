@@ -33,6 +33,7 @@ public class SysSchool implements java.io.Serializable {
 	private String description;
 	private String address;
 	private Short post;
+	private List<WWxs> WWxses=new ArrayList<WWxs>(0);
 	private List<SysCollege> sysColleges = new ArrayList<SysCollege>(0);
 
 	// Constructors
@@ -43,7 +44,7 @@ public class SysSchool implements java.io.Serializable {
 
 	/** full constructor */
 	public SysSchool(SysProvince sysProvince, SysCity sysCity, String name,
-			String description, String address, Short post,
+			String description, String address, Short post,List<WWxs> WWxses,
 			List<SysCollege> sysColleges) {
 		this.sysProvince = sysProvince;
 		this.sysCity = sysCity;
@@ -51,6 +52,7 @@ public class SysSchool implements java.io.Serializable {
 		this.description = description;
 		this.address = address;
 		this.post = post;
+		this.WWxses=WWxses;
 		this.sysColleges = sysColleges;
 	}
 
@@ -120,6 +122,15 @@ public class SysSchool implements java.io.Serializable {
 
 	public void setPost(Short post) {
 		this.post = post;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysSchool")
+	public List<WWxs> getWWxses() {
+		return this.WWxses;
+	}
+
+	public void setWWxses(List<WWxs> WWxses) {
+		this.WWxses = WWxses;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sysSchool")
