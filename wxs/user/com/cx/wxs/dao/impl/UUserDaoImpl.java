@@ -236,11 +236,11 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 				UUser uuser= list.get(0);
 				if(uuser.getPassword().equals(uuserDto.getPassword())||uuser.getPassword()==uuserDto.getPassword()){
 					dto=beanToDto.T1ToD1(uuser, dto);
-					if(dto.getRoleId()==0){
+					/*if(dto.getRoleId()==0){
 					dto.setStatusFlag("2");
 					}else{
 						dto.setStatusFlag("1");
-					}
+					}*/
 					Date date=new Date();
 					uuser.setLastTime(new Timestamp(date.getTime()));
 					uuser.setLastIp(uuserDto.getIp());
@@ -256,6 +256,7 @@ public class UUserDaoImpl extends BaseDaoImpl<UUser, Integer> implements UUserDa
 			return dto;
 		}
 		return null;
+
 	}
 	/***
 	 * 设置默认属性

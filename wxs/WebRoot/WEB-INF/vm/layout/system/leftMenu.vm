@@ -9,8 +9,8 @@
                                  style="width: 100px;height: 100px;"/>
                              </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear"> <span class="block m-t-xs text-center"><h3> <strong
-                                class="font-bold">$admin.nickname</strong></h3>
+                                <span class="clear"> <span class="block m-t-xs text-center">
+										<h3> <strong  class="font-bold">$admin.nickname</strong></h3>
                              </span>  
 							 <span class="text-muted text-xs block">超级管理员 </span>##<b class="caret"></b> 
 								</span>
@@ -37,50 +37,50 @@
 
 </li>
 <li class="active">
-    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">基本信息</span> <span class="fa arrow"></span></a>
+    <a href="javascript:;"><i class="fa fa-th-large"></i> <span class="nav-label">基本信息</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-		 <li><a href="index_3.html">学校</a>			
+		 <li><a href="#rootUrl/system/school">学校</a>			
         </li>
-        <li><a href="index_2.html">地理信息</a>
+        <li><a href="#rootUrl/system/locaion">地理信息</a>
         </li>
-        <li ><a href="index_1.html">敏感词</a>
+        <li ><a href="#rootUrl/system/illegal">敏感词</a>
         </li>
-        <li><a href="index_3.html">文章分类</a>
+        <li><a href="#rootUrl/system/articletype">文章分类</a>
         </li>
-        <li><a href="index_4.html">邀请码</a>
+        <li><a href="#rootUrl/system/invite">邀请码</a>
         </li>
-		<li><a href="index_4.html">管理员</a>
+		<li><a href="#rootUrl/system/administrator">管理员</a>
         </li>
     </ul>
 </li>
 <li>
-    <a href="layouts.html"><i class="fa fa-home"></i> <span class="nav-label">首页管理</span><span
+    <a href="#rootUrl/system/indexManage"><i class="fa fa-home"></i> <span class="nav-label">首页管理</span><span
             class="label label-danger pull-right"></span></a>
 </li>
 <li>
-    <a href="index.html#"><i class="fa fa fa-globe"></i> <span class="nav-label">样式控制</span><span
+    <a href="javascript:;"><i class="fa fa fa-globe"></i> <span class="nav-label">主题</span><span
             class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-        <li><a href="toastr_notifications.html">添加样式</a>
+        <li><a href="#rootUrl/system/style">添加样式</a>
         </li>
     </ul>
 </li>
 <li>
-    <a href="index.html#"><i class="fa fa-user"></i> <span class="nav-label">用户</span><span
+    <a href="javascript:;"><i class="fa fa-user"></i> <span class="nav-label">用户</span><span
             class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-		<li><a>权限管理</a></li>
-        <li><a href="javascript:;">黑名单</a>
+		<li><a href="#rootUrl/system/user">用户管理</a></li>
+        <li><a href="#rootUrl/system/blacklist">黑名单</a>
         </li>
     </ul>
 </li>
 <li>
-    <a href="index.html#"><i class="fa fa-inbox"></i> <span class="nav-label">社团</span><span
+    <a href="javascript:;"><i class="fa fa-inbox"></i> <span class="nav-label">社团</span><span
             class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li><a href="#rootUrl/system/club">社团管理</a>
         </li>
-        <li><a>社团数据</a></li>
+        <li><a href="#rootUrl/system/clubData">社团数据</a></li>
     </ul>
 </li>
 
@@ -88,16 +88,16 @@
     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">文字 </span><span   class="fa arrow"></span><span
             class="label label-warning pull-right"></span></a>
     <ul class="nav nav-second-level">
-        <li><a href="mailbox.html">文章审核</a>
+        <li><a href="#rootUrl/system/article/check">文章审核</a>
         </li>
-        <li><a href="mail_detail.html">投诉管理</a>
+        <li><a href="#rootUrl/system/article/complaint">投诉管理</a>
         </li>
-        <li><a href="mail_compose.html">文章推送</a>
+        <li><a href="#rootUrl/system/article/push">文章推送</a>
         </li>
     </ul>
 </li>
 <li>
-    <a href="#"><i class="fa fa-book"></i> <span class="nav-label">书籍 </span><span   class="fa arrow"></span><span
+    <a href="#rootUrl/system/book"><i class="fa fa-book"></i> <span class="nav-label">书籍 </span><span   class="fa arrow"></span><span
             class="label label-warning pull-right"></span></a>
  <!--   <ul class="nav nav-second-level">
         <li><a href="mailbox.html">文章审核</a>
@@ -110,24 +110,24 @@
 	-->
 </li>
 <li>
-    <a href="javacript:;"><i class="fa fa-image"></i> <span class="nav-label">图片</span></a>
+    <a href="#rootUrl/system/image"><i class="fa fa-image"></i> <span class="nav-label">图片</span></a>
 </li>
 <li>
-    <a href="index.html#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">报表</span><span class="fa arrow"></span></a>
+    <a href="#rootUrl/system/report"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">报表</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-        <li><a href="form_basic.html"></a>
+        <li><a href="">热点分析</a>
         </li>
-        <li><a href="form_validate.html">流量统计</a>
+        <li><a href="">流量统计</a>
         </li>
 		<li><a>访问统计</a></li>
     </ul>
 </li>
 <li>
-    <a href="index.html#"><i class="fa fa-server"></i> <span class="nav-label">服务器</span><span class="fa arrow"></span></a>
+    <a href="javascript:;"><i class="fa fa-server"></i> <span class="nav-label">服务器</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
-        <li><a href="contacts.html">服务器</a>
+        <li><a href="#rootUrl/system/server">服务器</a>
         </li>
-        <li><a href="profile.html">数据库</a>
+        <li><a href="#rootUrl/system/database">数据库</a>
 
         </li>
 

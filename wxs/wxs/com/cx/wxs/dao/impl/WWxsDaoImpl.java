@@ -94,18 +94,37 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao {
 	@Override
 	public List<WWxsDto> getWWxsList(WWxsDto wWxsDto) {
 		if (wWxsDto != null) {
-			StringBuffer sb = new StringBuffer(" from " + WWxs.class.getName());
+			StringBuffer sb = new StringBuffer(" from " + WWxs.class.getName() +" a where 1=1");
+			Map<String, Object> params = new HashMap<String, Object>();
+			if(wWxsDto.getName()!=null){
+				sb.append(" and a.name like :name");
+				params.put("name","%"+wWxsDto.getName()+"%");
+			}
+			if(wWxsDto.getSysSchoolDto()!=null){
+				sb.append(" and a.sysSchool.schoolId=:schoolId");
+				params.put("schoolId",wWxsDto.getSysSchoolDto().getSchoolId());
+			}
+			if(wWxsDto.getStatus()!=null){
+				sb.append(" and status=:status");
+				params.put("status",wWxsDto.getStatus());
+			}else{
+				sb.append(" and status=1 ");
+			}
 			if (StringUtils.isNotEmpty(wWxsDto.getOrder())
 					&& StringUtils.isNotEmpty(wWxsDto.getSort())) {
-				sb.append("order by "+wWxsDto.getSort()+" "+wWxsDto.getOrder());
+				sb.append(" order by "+wWxsDto.getSort()+" "+wWxsDto.getOrder());
 			}
-			@SuppressWarnings("unchecked")
-			List<WWxs> list = this.executeSQL(sb.toString(), wWxsDto.getPage(),
-					wWxsDto.getRows(), null, WWxs.class);
-			List<WWxsDto> result = null;
+			
+			List<WWxs> list = new ArrayList<WWxs>();
+			if(wWxsDto.getPage()!=null&&wWxsDto.getRows()!=null){
+				list=this.find(sb.toString(), params,wWxsDto.getPage(),wWxsDto.getRows());
+					
+			}else{
+				list=this.find(sb.toString(),params,1,10);
+			}
+			List<WWxsDto> result = new ArrayList<WWxsDto>();
 			if(list!=null&&list.size()>0){
-				result = new ArrayList<WWxsDto>();
-				WWxsDto dto = null;
+				WWxsDto dto = new WWxsDto();
 				Integer count = (wWxsDto.getPage()-1)*wWxsDto.getRows();
 				for(int i=0;i<list.size();i++){
 					WWxs dao=list.get(i);
@@ -150,7 +169,7 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao {
 		if (wWxsDto != null && wWxsDto.getWxsId() != null) {
 			StringBuffer stringBuffer = new StringBuffer(
 					DbType.UPDATE.toString());
-			String[] fl = new String[] { "uid" };// 过滤掉的字段
+			String[] fl = new String[] { "uid","wxsId" };// 过滤掉的字段
 			Map<String, Object> map = wWxsDto.createSetPropertiesVal(wWxsDto,
 					"a", fl);
 			Map<String, Object> params = (Map<String, Object>) map
@@ -215,8 +234,28 @@ public class WWxsDaoImpl extends BaseDaoImpl<WWxs, Integer> implements WWxsDao {
 
 	@Override
 	public Integer getWWxsCount(WWxsDto wWxsDto) {
-		String hql ="select count(*) from "+WWxs.class.getName();
-		return this.count(hql);
+		if(wWxsDto!=null){
+		StringBuffer sb=new StringBuffer(DbType.SELECT+" count(*) ");
+		Map<String, Object> params = new HashMap<String, Object>();
+		sb.append(" from "+WWxs.class.getName()+" a where 1=1");
+		if(wWxsDto.getName()!=null){
+			sb.append(" and a.name like :name");
+			params.put("name","%"+wWxsDto.getName()+"%");
+		}
+		if(wWxsDto.getSysSchoolDto()!=null){
+			sb.append(" and a.sysSchool.schoolId=:schoolId");
+			params.put("schoolId",wWxsDto.getSysSchoolDto().getSchoolId());
+		}
+		if(wWxsDto.getStatus()!=null){
+			sb.append(" and status=:status");
+			params.put("status",wWxsDto.getStatus());
+		}else{
+			sb.append(" and status=1 ");
+		}
+		return this.count(sb.toString(), params);
+		}else{
+		return 0;
+		}
 	}
 
 }

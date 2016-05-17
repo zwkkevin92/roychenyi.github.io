@@ -15,7 +15,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(DiaryRole.COMMEN);
+		System.out.println("----COMMEN:"+DiaryRole.COMMEN);
 		DiaryRole[] role= DiaryRole.values();
 		int i=3;
 		for(DiaryRole a:role){

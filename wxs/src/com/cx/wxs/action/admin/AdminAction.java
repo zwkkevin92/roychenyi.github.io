@@ -38,7 +38,7 @@ public class AdminAction extends IndexAction{
 	 */
 	@RequestMapping(value="/login")
 	public ModelAndView tologin(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv=new ModelAndView("admin/user/login");
+		ModelAndView mv=new ModelAndView("system/user/login");
 		System.out.println();
 		return mv;
 	}
@@ -58,6 +58,8 @@ public class AdminAction extends IndexAction{
 		String verifyCodeSession=(String) request.getSession().getAttribute("verifycode");
 		if(verifyCode.equalsIgnoreCase(verifyCodeSession)){
 			userDto.setPassword(StringUtils.md5(userDto.getPassword()));
+			//管理员权限登陆
+			userDto.setRoleId(0);
 			userDto=userService.login(userDto);
 			if(userDto.getStatusFlag().equals("2")){							
 				request.getSession().setAttribute("admin", userDto);
@@ -72,7 +74,7 @@ public class AdminAction extends IndexAction{
 	}
 	@RequestMapping(value="/mian")
 	public ModelAndView toAdminMain(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv=new ModelAndView("admin/main");
+		ModelAndView mv=new ModelAndView("system/main");
 		return mv;
 	}
 }
