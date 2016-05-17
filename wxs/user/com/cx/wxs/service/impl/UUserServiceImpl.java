@@ -89,7 +89,18 @@ public class UUserServiceImpl implements UUserService{
 	@Override
 	public UUserDto login(UUserDto uuserDto) {
 		// TODO Auto-generated method stub
-		return uuserDao.login(uuserDto);
+		UUserDto userDto=uuserDao.login(uuserDto);
+		if(userDto==null){
+			return null;
+		}else if(userDto.getStatusFlag()==null){
+		if(uuserDto.getRoleId()==0&&userDto.getRoleId()==0){
+			
+				uuserDto.setStatusFlag("2");
+		}else{
+			uuserDto.setStatusFlag("1");
+		}
+		}
+		return userDto;
 	}
 
 }
