@@ -45,7 +45,7 @@ import com.cx.wxs.utils.ClientInfo;
 /**
  * @author 陈义
  * @date   2016-1-7 下午4:21:18
- */
+ */ 
 @Controller
 public class IndexAction {
 
