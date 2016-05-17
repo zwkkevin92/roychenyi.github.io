@@ -33,9 +33,14 @@ public class WxsManageAction {
 	public void setWxsService(WWxsService wxsService) {
 		this.wxsService = wxsService;
 	}
+	@RequestMapping(value="")
+	public ModelAndView index(HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mv =new ModelAndView("system/club/main");
+		return mv;
+	}
 	@RequestMapping(value="/create")
 	public ModelAndView create(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv =new ModelAndView("admin/club/main");
+		ModelAndView mv =new ModelAndView("system/club/main");
 		return mv;
 	}
 	@RequestMapping(value="/checkacount")
@@ -83,7 +88,7 @@ public class WxsManageAction {
 	 */
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public List<WWxsDto> getWxsList(@PathVariable("page") Integer page,HttpServletRequest request,HttpServletResponse response,WWxsDto wxsDto){
+	public List<WWxsDto> getWxsList(Integer page,HttpServletRequest request,HttpServletResponse response,WWxsDto wxsDto){
 		
 		wxsDto.setRows(10);
 		if(page==null){
