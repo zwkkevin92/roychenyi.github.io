@@ -6,23 +6,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>社团列表</h5>  <span class="label label-primary"></span>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">选项1</a>
-                        </li>
-                        <li><a href="#">选项2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
+                 #parse("layout/system/iboxTools.vm")
             </div>
             <div class="ibox-content">
                 <div id="clubList">
@@ -43,23 +27,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>新建社团</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">选项1</a>
-                        </li>
-                        <li><a href="#">选项2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
+                #parse("layout/system/iboxTools.vm")
             </div>
             <div class="ibox-content ">
                 <div class="middle-box text-center loginscreen   animated fadeInDown no-padding" style="margin-top: 0px; ">
@@ -77,6 +45,7 @@
 
                                 <span id="feedback-account" class="form-control-feedback glyphicon"></span>
                             </div>
+							<!--
                             <div class="form-group">
                                 <input type="password" id="password1" name="password1" class="form-control" placeholder="请输入密码" required="">
                             </div>
@@ -84,6 +53,7 @@
                                 <input type="password" id="password" name="password" class="form-control" placeholder="请再次输入密码" required="">
 
                             </div>
+							-->
                             <div class="form-group">
                                 <input type="text" id="mail" name="main" class="form-control" placeholder="文学社邮箱" required="">
 

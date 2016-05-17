@@ -1,4 +1,4 @@
 #set($layout = "layout/system/l_admin.vm")
 #set($page_title="敏感词管理")
 #parse("conf/js.vm")
-#set($extjs=$JsysClub)
+#set($extjs=$Jlayer+$JsysClub)
