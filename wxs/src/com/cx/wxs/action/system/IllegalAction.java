@@ -1,5 +1,10 @@
 package com.cx.wxs.action.system;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +44,48 @@ public class IllegalAction {
 	@RequestMapping(value="add")
 	@ResponseBody
 	public SysIllegalDto addIllegal(HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+		Date date=new Date();
+		sysIllegalDto.setNullify((short)1);
+		sysIllegalDto.setCreateTime(new Timestamp(date.getTime()));
+		int illegalId=sysIllegalService.addSysIllegal(sysIllegalDto);
+		if(illegalId>0){
+			sysIllegalDto.setStatusFlag("-1");
+		}else{
+			sysIllegalDto.setStatusFlag("1");
+		}
+		return sysIllegalDto;
+	}
+	/**
+	 * 获取列表
+	 * @param page
+	 * @param request
+	 * @param response
+	 * @param sysIllegalDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-17上午10:59:24
+	 */
+	@RequestMapping(value="list")
+	@ResponseBody
+	public List<SysIllegalDto> getIllegalList(Integer page,HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+		List<SysIllegalDto> sysIllegalDtos=new ArrayList<SysIllegalDto>();
+		sysIllegalDtos=sysIllegalService.getSysIllegalList(sysIllegalDto);
+		return sysIllegalDtos;
+	}
+	/**
+	 * 更新一个敏感词
+	 * @param request
+	 * @param response
+	 * @param sysIllegalDto
+	 * @return
+	 * @author 陈义
+	 * @date   2016-5-17上午10:59:37
+	 */
+	@RequestMapping(value="update")
+	@ResponseBody
+	public SysIllegalDto updateIllegal(HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+		sysIllegalService.updateSysIllegal(sysIllegalDto);
+		sysIllegalDto=sysIllegalService.getSysIllegalByID(sysIllegalDto);
 		return sysIllegalDto;
 	}
 }

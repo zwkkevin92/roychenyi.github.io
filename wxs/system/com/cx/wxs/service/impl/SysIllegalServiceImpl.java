@@ -50,6 +50,7 @@ public class SysIllegalServiceImpl implements SysIllegalService {
     */
     @Override
     public Integer addSysIllegal(SysIllegalDto sysIllegalDto){
+    	
         return sysIllegalDao.addSysIllegal(sysIllegalDto);
     }
 
