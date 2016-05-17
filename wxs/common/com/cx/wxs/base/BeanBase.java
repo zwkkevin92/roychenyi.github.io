@@ -46,7 +46,7 @@ public  class BeanBase implements Serializable{
    private Integer rows;  //行数
    private Integer row;   //所在行
    private String sort; //排序字段
-   private String dir;   //排序方向
+   private String dir;   //
    private String group;//分组字段
    private String order;   //排序方向
    private Integer pageCount; //页数

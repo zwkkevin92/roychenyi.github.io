@@ -16,6 +16,12 @@ public interface WWxsService {
     * @date 2015-12-13 19:01:59
     */
     public WWxsDto getWWxsByID(WWxsDto wWxsDto);
+    /**
+     * 通过账号或者名字获取社团信息
+     * @param wWxsDto
+     * @return
+     */
+    public WWxsDto getWWxsDto(WWxsDto wWxsDto);
 
     /***
      * 通过名字id等信息获取wxs信息
