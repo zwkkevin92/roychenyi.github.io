@@ -61,5 +61,11 @@ public interface WWxsDao extends IBaseDao<WWxs,Integer>{
     * @date 2015-12-13 19:01:59
     */
     public Integer deleteWWxs(WWxsDto wWxsDto);
+    /**
+     * 获取文学社数量
+     * @param wWxsDto
+     * @return
+     */
+    public Integer getWWxsCount(WWxsDto wWxsDto);
 
 }

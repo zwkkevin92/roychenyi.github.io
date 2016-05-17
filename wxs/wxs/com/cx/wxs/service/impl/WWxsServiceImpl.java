@@ -5,9 +5,11 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.sql.PagerUtils;
 import com.cx.wxs.dao.WWxsDao;
 import com.cx.wxs.dto.WWxsDto;
 import com.cx.wxs.service.WWxsService;
+import com.cx.wxs.utils.PageUtils;
 
 /**
  * @author 陈义
@@ -40,7 +42,15 @@ public class WWxsServiceImpl implements WWxsService {
     */
     @Override
     public List<WWxsDto> getWWxsList(WWxsDto wWxsDto){
-        return wWxsDao.getWWxsList(wWxsDto);
+    	Integer count = wWxsDao.getWWxsCount(wWxsDto);
+    	Integer totalPage = PageUtils.getTotalPage(count,wWxsDto.getRows()); 
+        List<WWxsDto> list = wWxsDao.getWWxsList(wWxsDto);
+        if(list!=null&&list.size()>0){
+       // 	list.get(0).setPage(wWxsDto.getPage());
+        	list.get(0).setPageCount(totalPage);
+        	list.get(0).setRows(count);
+        }
+        return list;
     }
 
     /**
@@ -80,6 +90,12 @@ public class WWxsServiceImpl implements WWxsService {
 	public WWxsDto getWwxs(WWxsDto wWxsDto) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public WWxsDto getWWxsDto(WWxsDto wWxsDto) {
+		return wWxsDao.getWWxsDto(wWxsDto);
+		
 	}
 
 }

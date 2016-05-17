@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cx.wxs.dto.WWxsDto;
 import com.cx.wxs.service.WWxsService;
+import com.cx.wxs.utils.StringUtils;
 
 /**
  * @author 陈义
@@ -29,6 +30,9 @@ public class WxsManageAction {
 	@Resource
 	WWxsService wxsService;
 	
+	public void setWxsService(WWxsService wxsService) {
+		this.wxsService = wxsService;
+	}
 	@RequestMapping(value="/create")
 	public ModelAndView create(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv =new ModelAndView("admin/club/main");
@@ -37,13 +41,11 @@ public class WxsManageAction {
 	@RequestMapping(value="/checkacount")
 	@ResponseBody
 	public String checkAcount(HttpServletRequest request,HttpServletResponse response,WWxsDto wWxsDto){
-
-		
-		String flag = "0";//默认为0，失败
-		if(wWxsDto!=null&&wWxsDto.getAccount()!=null){
-			List<WWxsDto> list = wxsService.getWWxsList(wWxsDto);
-			if(list!=null&&list.size()>0){
-				
+		String flag = "0";//默认为0，失败（数据库中已经存在）
+		if(wWxsDto!=null&&StringUtils.isNotEmpty(wWxsDto.getAccount())){
+			wWxsDto = wxsService.getWWxsDto(wWxsDto);
+			if(wWxsDto==null){
+				flag = "1";//修改flag,，成功（数据库中不存在）
 			}
 		}
 		return flag;
@@ -53,9 +55,9 @@ public class WxsManageAction {
 	@ResponseBody
 	public String checkName(HttpServletRequest request,HttpServletResponse response,WWxsDto wWxsDto){
 		String flag = "0";//默认为0，失败（数据库中已经存在）
-		if(wWxsDto!=null&&!wWxsDto.getName().trim().equals("")){
-			List<WWxsDto> list = wxsService.getWWxsList(wWxsDto);
-			if(list!=null&&list.size()==0){
+		if(wWxsDto!=null&&StringUtils.isNotEmpty(wWxsDto.getName())){
+			wWxsDto = wxsService.getWWxsDto(wWxsDto);
+			if(wWxsDto==null){
 				flag = "1";//修改flag,，成功（数据库中不存在）
 			}
 		}
@@ -82,6 +84,12 @@ public class WxsManageAction {
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public List<WWxsDto> getWxsList(@PathVariable("page") Integer page,HttpServletRequest request,HttpServletResponse response,WWxsDto wxsDto){
+		
+		wxsDto.setRows(10);
+		if(page==null){
+			page = 1;
+		}
+		wxsDto.setPage(page);
 		List<WWxsDto> wxsList=new ArrayList<WWxsDto>();
 		wxsList=wxsService.getWWxsList(wxsDto);
 		return wxsList;
