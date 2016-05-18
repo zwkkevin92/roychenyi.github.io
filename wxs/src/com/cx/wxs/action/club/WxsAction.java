@@ -24,7 +24,7 @@ import com.cx.wxs.utils.TemplateUtils;
 @RequestMapping("/club")
 public class WxsAction {
 	@Resource
-	WWxsService wxsService;
+	private  WWxsService wxsService;
 	@Resource
 	private EmailService emailService;
 	
@@ -33,7 +33,7 @@ public class WxsAction {
 		ModelAndView mv =new ModelAndView("wxs/create");
 		return mv;
 	}
-	@RequestMapping(value="checkAcount")
+	@RequestMapping(value="checkAccount")
 	@ResponseBody
 	public String checkAcount(HttpServletRequest request,HttpServletResponse response,WWxsDto wWxsDto){
 		String flag = "0";//默认为0，失败

@@ -11,7 +11,7 @@ $link.getRoot()#end
 
 #macro(bootstrap)
    <link href="#rootUrl()/css/bootstrap.min.css" rel="stylesheet">
-   <link href="#rootUrl()/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+   <link href="#rootUrl()/css/plugins/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
    <link href="#rootUrl()/css/animate.css" rel="stylesheet">   
 #end
 

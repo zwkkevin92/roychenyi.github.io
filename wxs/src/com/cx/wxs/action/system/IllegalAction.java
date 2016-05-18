@@ -3,7 +3,9 @@ package com.cx.wxs.action.system;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +47,7 @@ public class IllegalAction {
 	@ResponseBody
 	public SysIllegalDto addIllegal(HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
 		Date date=new Date();
-		sysIllegalDto.setNullify((short)1);
+	//	sysIllegalDto.setNullify((short)1);
 		sysIllegalDto.setCreateTime(new Timestamp(date.getTime()));
 		int illegalId=sysIllegalService.addSysIllegal(sysIllegalDto);
 		if(illegalId>0){
@@ -67,10 +69,15 @@ public class IllegalAction {
 	 */
 	@RequestMapping(value="list")
 	@ResponseBody
-	public List<SysIllegalDto> getIllegalList(Integer page,HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+	public Map<Object, Object> getIllegalList(Integer page,HttpServletRequest request,HttpServletResponse response){
 		List<SysIllegalDto> sysIllegalDtos=new ArrayList<SysIllegalDto>();
-		sysIllegalDtos=sysIllegalService.getSysIllegalList(sysIllegalDto);
-		return sysIllegalDtos;
+		sysIllegalDtos=sysIllegalService.getSysIllegalList(new SysIllegalDto());
+		  Map<Object, Object> info = new HashMap<Object, Object>();
+		    info.put("data", sysIllegalDtos);
+		 //   info.put("recordsTotal", sysIllegalDtos.size());
+		 //   info.put("recordsFiltered", null);
+		 //   info.put("draw", "0");
+		return info;
 	}
 	/**
 	 * 更新一个敏感词
@@ -84,8 +91,19 @@ public class IllegalAction {
 	@RequestMapping(value="update")
 	@ResponseBody
 	public SysIllegalDto updateIllegal(HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+		Date date=new Date();
+		sysIllegalDto.setUpdateTime(new Timestamp(date.getTime()));
 		sysIllegalService.updateSysIllegal(sysIllegalDto);
 		sysIllegalDto=sysIllegalService.getSysIllegalByID(sysIllegalDto);
+		return sysIllegalDto;
+	}
+	@RequestMapping(value="nullify")
+	@ResponseBody
+	public SysIllegalDto nullifyIllegal(HttpServletRequest request,HttpServletResponse response,SysIllegalDto sysIllegalDto){
+		sysIllegalDto=sysIllegalService.getSysIllegalByID(sysIllegalDto);
+		sysIllegalDto.setNullify((short)1);
+		sysIllegalService.updateSysIllegal(sysIllegalDto);
+	//	sysIllegalDto=sysIllegalService.getSysIllegalByID(sysIllegalDto);
 		return sysIllegalDto;
 	}
 }
