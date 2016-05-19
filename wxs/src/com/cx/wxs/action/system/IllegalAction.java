@@ -70,7 +70,10 @@ public class IllegalAction {
 	@RequestMapping(value="list")
 	@ResponseBody
 	public Map<Object, Object> getIllegalList(Integer page,HttpServletRequest request,HttpServletResponse response){
+<<<<<<< HEAD
 		request.getParameter("iDisplayLength");
+=======
+>>>>>>> 4d5552cfa9bc600fbb644ebed2eb9b80a9a074c4
 		List<SysIllegalDto> sysIllegalDtos=new ArrayList<SysIllegalDto>();
 		sysIllegalDtos=sysIllegalService.getSysIllegalList(new SysIllegalDto());
 		  Map<Object, Object> info = new HashMap<Object, Object>();
