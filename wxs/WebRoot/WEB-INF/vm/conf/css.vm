@@ -1,8 +1,10 @@
 ##css的基本路径
 #set($CcssURL="#rootUrl()/css")
 ##timeCircles 时间倒计时
-#set($CtimeCircles="<link href='#rootUrl()/css/TimeCireles/TimeCircles.css' rel='stylesheet' />")
+#set($CtimeCircles="<link href='#rootUrl()/css/plugins/TimeCireles/TimeCircles.css' rel='stylesheet' />")
 ##wangEditor
-#set($CwangEditor="<link href='#rootUrl()/css/wangEditor/wangEditor.min.css' rel='stylesheet' />")
+#set($CwangEditor="<link href='#rootUrl()/css/plugins/wangEditor/wangEditor.min.css' rel='stylesheet' />")
 ##cropper
 #set($Ccropper="<link href='#rootUrl()/js/plugins/cropper/cropper.min.css' rel='stylesheet' />")
+##dataTables
+#set($CdataTables="<link href='#rootUrl()/css/plugins/dataTables/dataTables.bootstrap.css' rel='stylesheet' />")

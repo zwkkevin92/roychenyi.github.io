@@ -27,7 +27,7 @@ public class InvitationCodeAction {
 	private SysInvitationCodeService sysInvitationCodeService;
 	@RequestMapping(value="")
 	public ModelAndView invitaionManage(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv=new ModelAndView();
+		ModelAndView mv=new ModelAndView("system/common/invite");
 		return mv;
 	}
 	@RequestMapping(value="/add")
