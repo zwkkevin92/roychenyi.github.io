@@ -29,5 +29,12 @@
 #set($Jhanger="<script src='#rootUrl()/js/site/hanger.js'></script>")
 ##用户主函数
 #set($JuserMain="<script src='#rootUrl()/js/site/userMain.js'></script>")
+##handlebars
+#set($Jhandlebars="<script src='#rootUrl()/js/plugins/handlebars/handlebars-v4.0.5.js'></script>")
+##dataTables
+#set($JdataTables="<script src='#rootUrl()/js/plugins/dataTables/jquery.dataTables.js'></script>"
+     +"<script src='#rootUrl()/js/plugins/dataTables/dataTables.bootstrap.js'></script>" )
 ##系统社团
 #set($JsysClub="<script src='#rootUrl()/js/admin/sys-club.js'></script>")
+##系统敏感词
+#set($JsysIllegal="<script src='#rootUrl()/js/admin/SysIllegal.js'></script>")

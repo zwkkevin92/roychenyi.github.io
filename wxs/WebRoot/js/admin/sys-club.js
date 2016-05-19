@@ -90,7 +90,7 @@ var SysClub={
             $('#error_text').html("<small>密码长度不能小于8且不能超过48</small>");
             return false;
         }*/
-        if($('#error_text').val!=''){
+        if($('#error_text').html()!=''){
             return false;
         }
         ajax1(url,data,SysClub.clubCreate_result);
